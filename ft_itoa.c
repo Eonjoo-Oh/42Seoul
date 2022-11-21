@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 13:42:16 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/17 15:52:06 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/21 18:16:47 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ char	*ft_itoa(int n)
 	char	*result;
 
 	cnt = 0;
+	if (n < 0)
+	{
+		cnt = 1;
+		n *= -1;
+	}
 	temp = n;
 	while (temp > 0)
 	{
@@ -30,11 +35,16 @@ char	*ft_itoa(int n)
 	if (result == 0)
 		return (0);
 	result[cnt] = '\0';
-	while (cnt - 1 >= 0)
+	if (n < 0)
 	{
-		result[cnt - 1] = n % 10;
+		temp = 1;
+		result[0] = '-';
+	}
+	while (temp < cnt)
+	{
+		result[temp] = n % 10;
 		n /= 10;
-		cnt--;
+		temp++;
 	}
 	return (result);
 }
