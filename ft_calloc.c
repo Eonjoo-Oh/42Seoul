@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 09:26:41 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/17 16:20:35 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/21 17:27:34 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,11 @@
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	char	*arr;
-	size_t	i;
+	void	*arr;
 
-	i = 0;
-	arr = (char *)malloc(sizeof(char) * (nmemb + 1));
+	arr = (void *)malloc(nmemb * size);
 	if (arr == 0)
 		return (0);
-	while (i < size)
-	{
-		arr[i] = 0;
-		i++;
-	}
+	ft_memset(arr, 0, nmemb * size);
 	return (arr);
 }

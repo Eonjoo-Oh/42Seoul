@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:19:09 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/12 16:05:25 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/21 15:22:43 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	const char	*s_str;
+	const char		*s_str;
 	unsigned char	*d_str;
-	size_t	i;
+	size_t			i;
 
 	d_str = dest;
 	s_str = src;
 	i = 0;
+	if (dest == 0 || n > ft_strlen(src))
+		return (0);
 	while (i < n)
 	{
 		d_str[i] = s_str[i];

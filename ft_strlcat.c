@@ -6,38 +6,33 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 14:01:19 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/17 16:05:16 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/21 16:04:22 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-size_t ft_strlcat(char *dst, const char *src, size_t size)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t dst_l;
-	size_t src_l;
-	size_t i;
+	size_t	dst_l;
+	size_t	src_l;
+	size_t	i;
 
-	src_l = ft_strlen(src);
-	while (dst[dst_l])
-	{
-		dst_l++;
-	}
 	i = 0;
-	if (dst == 0 || size == 0)
-		return (src_l);
-	if (size < dst_l)
+	src_l = ft_strlen(src);
+	dst_l = ft_strlen(dst);
+	if (size <= dst_l)
 		return (src_l + size);
 	else
 	{
-		while (src[i] && i + 1 < size)
+		while (src[i] && (i + 1 + dst_l < size))
 		{
-			dst[dst_l] = src[i];
-			dst_l++;
+			dst[dst_l + i] = src[i];
 			i++;
 		}
 	}
-	dst[dst_l] = '\0';
+	if (dst_l + i < size)
+		dst[dst_l + i] = '\0';
 	return (dst_l + src_l);
 }

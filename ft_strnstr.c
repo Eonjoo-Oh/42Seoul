@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:25:03 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/17 16:32:53 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/21 16:44:46 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ const char	*ft_strnstr(const char *big, const char *little, size_t len)
 		if (big[i] == *little)
 		{
 			cnt = 0;
-			temp = big + i;//ㅇㅣ게 아마안될것임
+			temp = big + i;
 			j = 0;
 			while (little[j] != '\0')
 			{
@@ -35,8 +35,8 @@ const char	*ft_strnstr(const char *big, const char *little, size_t len)
 			}
 			if (cnt != 0)
 				return (temp);
-			i++;
 		}
+		i++;
 	}
 	return (0);
 }

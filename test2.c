@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:19:09 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/17 15:44:55 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/21 17:09:02 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,38 @@
 #include <stdio.h>
 #include <string.h>
 
-char	*ft_itoa(int n)
+int	ft_atoi(const char *nptr)
 {
-	int		cnt;
-	int		temp;
-	char	*result;
+	int	i;
+	int	sign;
+	int	result;
 
-	cnt = 0;
-	temp = n;
-	while (temp > 0)
+	sign = 1;
+	result = 0;
+	i = 0;
+	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
+		i++;
+	if (nptr[i] == '+' || nptr[i] == '-')
 	{
-		temp /= 10;
-		cnt++;
+		if (nptr[i] == '-')
+			sign = -1;
+		i++;
 	}
-	printf("cnt : %d\n", cnt);
-	result = (char *)malloc(sizeof(char) * (cnt + 1));
-	if (result == 0)
+	printf ("sign : %d\n", sign);
+	if (!(nptr[i] >= '0' && nptr[i] <= '9'))
 		return (0);
-	result[cnt] = '\0';
-	while (cnt - 1 >= 0)
+	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
-		result[cnt - 1] = n % 10;//왜 안들어가지?
-		printf("n : %d\n", n % 10);
-		printf("result[%d] : %c\n", cnt - 1, result[cnt - 1]);
-		n /= 10;
-		cnt--;
+		result = 10 * result + nptr[i] - '0';
+		i++;
 	}
-	return (result);
+	return (result * sign);
 }
 
-int main(void)
+int	main(void)
 {
-	char *str = ft_itoa(321);
-	printf("%s\n", str);
+	int	atoi;
 
-	return (0);
+	atoi = ft_atoi("\n\n\n  -46\b9 \n5d6");
+	printf ("%d", atoi);
 }

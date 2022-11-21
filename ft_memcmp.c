@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:19:37 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/17 15:52:17 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/21 16:38:39 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	i = 0;
 	if (n == 0)
 		return (0);
-	while ((i < n) && (str1[i] || str2[i]))
+	while ((i < n))
 	{
 		if (str1[i] != str2[i])
 		{

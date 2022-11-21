@@ -3,12 +3,12 @@
 #include <string.h>
 #include <stdlib.h>
 
-int main(void)
+int	main(void)
 {
-	const char *str = "abcdcde";
-	const char *str2 = "cd";
-	char *result = strnstr(str, str2, 7);
-	printf("%s\n", result);
-
+	char dst[] = "abcd";
+	char src[] = "zs";
+	memcpy(dst, src, 0);
+	printf("%s", dst);
 	return (0);
 }
+

@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:06:05 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/17 15:53:55 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/21 13:36:31 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	char			*str;
+	char			a;
 	unsigned int	i;
 
 	i = 0;
@@ -23,9 +24,13 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	{
 		i++;
 	}
-	str = (char *)malloc(sizeof(char) * (i + 1));
+	str = (char)malloc(sizeof(char) * (i + 1));
 	if (str == 0)
-		return (0);
-	str = f(i, s);
+	i = 0;
+	while (s[i])
+	{
+		str[i] = f(i, s[i]);
+		i++;
+	}
 	return (str);
 }
