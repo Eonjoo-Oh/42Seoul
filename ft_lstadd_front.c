@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 09:50:51 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/22 14:42:06 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/22 17:25:40 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,23 @@ typedef struct node
 	void * content;
 } t_list
 */
+/*
+lst
+head -> next -> next -> NULL
+new -> head -> next -> next -> NULL
+
+lst
+new -> NULL
+*/
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	new->next = *lst;
+	if (lst == NULL)
+		return ;
+	if (*lst == NULL)
+		*lst = new;
+	else
+	{
+		new->next = *lst;
+		*lst = new;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:19:09 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/22 14:59:04 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/22 15:38:36 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,51 +15,86 @@
 #include <stdio.h>
 #include <string.h>
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
+#include "libft.h"
+#include <stdlib.h>
+
+int	count_c(char const *s, char c)
+{	
+	int	i;
+	int	cnt;
 
 	i = 0;
-	while (*s)
+	cnt = 0;
+	while (s[i])
 	{
+		if (s[i] == c)
+			cnt++;
 		i++;
-		s++;
 	}
-	return (i);
+	return (cnt);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*each_word(char const *s, int start, int end, int idx)
 {
-	size_t	s1_len;
-	size_t	s2_len;
-	char	*str;
-	size_t	i;
+	int		i;
+	int		cnt;
+	char	*result;
 
+	cnt = 0;
 	i = 0;
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
-	str = (char *)malloc(sizeof(char) * (s1_len + s2_len) + 1);
-	if (str == 0)
+	*result[idx] = (char *)malloc(sizeof(char) * (end - start + 1));
+	if (result == 0)
 		return (0);
-	while (i < s1_len)
+	result[end - start] = 0;
+	while (i < end - start)
 	{
-		str[i] = s1[i];
+		result[i] = s[start + i];
 		i++;
 	}
-	while (i < s1_len + s2_len)
-	{
-		str[i] = s2[i - s1_len];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+	return (result);
 }
+
+char	**ft_split(char const *s, char c)
+{
+	char	**result;
+	int		word_c;
+	int		i;
+	int		j;
+	int		temp;
+
+	i = 0;
+	j = 0;
+	word_c = count_c(s, c) + 1;
+	result = (char **)malloc(sizeof(char) * (word_c + 1));
+	result[word_c] = 0;
+	while (i < word_c)
+	{
+		while (s[j] != c)
+		{
+			temp = i;
+			j++;
+		}
+		result[i] = each_word(s, temp, j, i);
+		i++;
+		j++;
+	}
+	free(result);
+	return (result);
+}
+
 
 int	main(void)
 {
-		char *s1 = "abcdefg";
-        char *s2 = "hijklmn";
-		char *result = ft_strjoin(s1, s2);
+		char *s1 = "ab,cd,ef,g";
+        char *s2 = ",";
+		char **result = ft_strjoin(s1, s2);
 
-		printf("%s\n", result);
+		while (i < 4)
+		{
+			while (result[i])
+			{
+				printf("%c", result[i][j]);
+			}
+			printf("\n");
+		}
 }

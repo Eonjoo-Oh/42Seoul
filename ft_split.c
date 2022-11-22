@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 11:45:24 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/17 16:29:57 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/22 17:12:57 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	count_c(char const *s, char c)
 	return (cnt);
 }
 
-char	*each_word(char const *s, int start, int end)
+char	*each_word(char const *s, int start, int end, int idx)
 {
 	int		i;
 	int		cnt;
@@ -37,15 +37,14 @@ char	*each_word(char const *s, int start, int end)
 
 	cnt = 0;
 	i = 0;
-	result = (char *)malloc(sizeof(char) * (end - start + 1));
+	result[idx] = (char *)malloc(sizeof(char) * (end - start + 1));
 	if (result == 0)
 		return (0);
 	result[end - start] = 0;
 	while (i < end - start)
 	{
-		result[i] = s[start];
+		result[i] = s[start + i];
 		i++;
-		start++;
 	}
 	return (result);
 }
@@ -67,13 +66,13 @@ char	**ft_split(char const *s, char c)
 	{
 		while (s[j] != c)
 		{
-			temp = j;
+			temp = i;
 			j++;
 		}
-		result[i] = each_word(s, temp, j);
+		result[i] = each_word(s, temp, j, i);
 		i++;
 		j++;
 	}
-	free(result);//ㅇㅣ렇게하는게 맞나?
+	free(result);
 	return (result);
 }
