@@ -6,46 +6,60 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:19:09 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/21 17:09:02 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/22 14:59:04 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 
-int	ft_atoi(const char *nptr)
+size_t	ft_strlen(const char *s)
 {
-	int	i;
-	int	sign;
-	int	result;
+	size_t	i;
 
-	sign = 1;
-	result = 0;
 	i = 0;
-	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
-		i++;
-	if (nptr[i] == '+' || nptr[i] == '-')
+	while (*s)
 	{
-		if (nptr[i] == '-')
-			sign = -1;
 		i++;
+		s++;
 	}
-	printf ("sign : %d\n", sign);
-	if (!(nptr[i] >= '0' && nptr[i] <= '9'))
+	return (i);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	size_t	s1_len;
+	size_t	s2_len;
+	char	*str;
+	size_t	i;
+
+	i = 0;
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	str = (char *)malloc(sizeof(char) * (s1_len + s2_len) + 1);
+	if (str == 0)
 		return (0);
-	while (nptr[i] >= '0' && nptr[i] <= '9')
+	while (i < s1_len)
 	{
-		result = 10 * result + nptr[i] - '0';
+		str[i] = s1[i];
 		i++;
 	}
-	return (result * sign);
+	while (i < s1_len + s2_len)
+	{
+		str[i] = s2[i - s1_len];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }
 
 int	main(void)
 {
-	int	atoi;
+		char *s1 = "abcdefg";
+        char *s2 = "hijklmn";
+		char *result = ft_strjoin(s1, s2);
 
-	atoi = ft_atoi("\n\n\n  -46\b9 \n5d6");
-	printf ("%d", atoi);
+		printf("%s\n", result);
 }

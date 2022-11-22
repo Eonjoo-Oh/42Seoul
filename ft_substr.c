@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 09:30:53 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/17 16:32:12 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/22 14:43:23 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,24 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*result;
 	char	*str;
+	size_t	i;
+	size_t	m_len;
 
-	result = (char *)malloc(sizeof(char) * (len + 1));
+	i = 0;
+	m_len = len;
+	if (s == 0)
+		return (0);
+	if (start >= ft_strlen(s) || len == 0)
+		return (ft_strdup(""));
+	if (len > ft_strlen(s))
+		m_len = ft_strlen(s) - start + 1;
+	result = (char *)malloc(sizeof(char) * (m_len + 1));
 	if (result == 0)
 		return (0);
-	str = (char *)s;
-	while (*str)
+	while (i < m_len)
 	{
-		if (*str == start)
-		{
-			while (*result)
-			{
-				result = str;
-				result++;
-				str++;
-				return (result);
-			}
-		}
-		str++;
+		result[i] = str[start + i];
+		i++;
 	}
-	return (0);
+	return (result);
 }

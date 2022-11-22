@@ -6,16 +6,19 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 09:50:51 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/21 13:20:34 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/22 14:42:06 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
+/*
+typedef struct node
+{
+	struct node *next;
+	void * content;
+} t_list
+*/
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	while (*lst != 0)
-	{
-		new->next = *lst;
-	}
+	new->next = *lst;
 }

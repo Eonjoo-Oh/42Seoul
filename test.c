@@ -5,10 +5,10 @@
 
 int	main(void)
 {
-	char dst[] = "abcd";
-	char src[] = "zs";
-	memcpy(dst, src, 0);
-	printf("%s", dst);
-	return (0);
-}
+	char src[10] = "1234512345";
+	char find[10] = "1234512345";
+	char *result;
 
+	result = strnstr(src, find, 10 * sizeof(char));
+	printf("%s", result);
+}
