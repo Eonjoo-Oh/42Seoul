@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: eonjoo <eonjoo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 11:45:24 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/23 18:43:22 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/24 00:32:34 by eonjoo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,29 +22,41 @@ int	count_c(char const *s, char c)
 	cnt = 0;
 	while (s[i])
 	{
-		if (s[i] == c)
+		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
 			cnt++;
 		i++;
 	}
 	return (cnt);
 }
 
-char	*each_word(char const *s, int start, int end, int idx)
+int word_len(char const *s, char c)
 {
-	int		i;
-	int		cnt;
-	char	*result;
+	int len;
 
-	cnt = 0;
-	i = 0;
-	result[idx] = (char *)malloc(sizeof(char) * (end - start + 1));
-	if (result == 0)
-		return (0);
-	result[end - start] = 0;
-	while (i < end - start)
+	len = 0;
+	while (*s != c && *s != '\0')
+		len++;
+	return (len);
+}
+
+void free_all(char **result, int i)
+{
+	while (i >= 0)
 	{
-		result[i] = s[start + i];
-		i++;
+		free(result[i]);
+		i--;
+	} //순서대로 free 안해줘도 되겠지?
+}
+
+char *put_word(char const *s, int len)
+{
+	char *result;
+	int i;
+
+	i = 0;
+	while (i < len)
+	{
+		result[i] = s[i];
 	}
 	return (result);
 }
@@ -53,26 +65,28 @@ char	**ft_split(char const *s, char c)
 {
 	char	**result;
 	int		word_c;
-	int		i;
-	int		j;
-	int		temp;
+	int word_l;
+	int i;
 
 	i = 0;
-	j = 0;
 	word_c = count_c(s, c) + 1;
 	result = (char **)malloc(sizeof(char) * (word_c + 1));
+	if (result == 0)
+		return (0);
 	result[word_c] = 0;
 	while (i < word_c)
 	{
-		while (s[j] != c)
+		while (*s == c)
+			s++;
+		word_l = word_len(s, c);
+		result[i] = (char *)malloc(sizeof(char) * (word_l + 1));
+		if (result[i] == 0)
 		{
-			temp = i;
-			j++;
+			free_all(result, i);
+			return (0);
 		}
-		result[i] = each_word(s, temp, j, i);
+		result[i] = put_word(s, word_l);
 		i++;
-		j++;
 	}
-	free(result);
 	return (result);
 }
