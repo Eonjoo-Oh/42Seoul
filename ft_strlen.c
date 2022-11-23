@@ -6,21 +6,21 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:07:54 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/17 16:03:35 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/23 15:40:11 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
 	i = 0;
-	while (*s)
+	while (s[i])
 	{
 		i++;
-		s++;
 	}
 	return (i);
 }

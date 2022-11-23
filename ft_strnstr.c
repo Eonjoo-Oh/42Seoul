@@ -6,20 +6,20 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:25:03 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/22 13:35:18 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/23 15:22:23 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-const char	*ft_strnstr(const char *src, const char *find, size_t len)
+char	*ft_strnstr(const char *src, const char *find, size_t len)
 {
 	size_t		i;
 	size_t		j;
 
 	i = 0;
 	if (*find == '\0')
-		return (src);
+		return ((char *)src);
 	if (*src == '\0' || len <= 0 || ft_strlen(src) < ft_strlen(find))
 		return (0);
 	while (i < len)
@@ -29,7 +29,7 @@ const char	*ft_strnstr(const char *src, const char *find, size_t len)
 		{
 			j++;
 			if (find[j] == 0)
-				return (&(src[i]));
+				return ((char *)&(src[i]));
 		}
 		i++;
 	}

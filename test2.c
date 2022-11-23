@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:19:09 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/22 15:38:36 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/23 19:09:45 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,86 +15,134 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "libft.h"
-#include <stdlib.h>
-
-int	count_c(char const *s, char c)
-{	
-	int	i;
-	int	cnt;
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
 
 	i = 0;
-	cnt = 0;
 	while (s[i])
 	{
-		if (s[i] == c)
-			cnt++;
 		i++;
 	}
-	return (cnt);
+	return (i);
 }
 
-char	*each_word(char const *s, int start, int end, int idx)
+int	find_start(char const *s1, char const *set)
 {
-	int		i;
-	int		cnt;
-	char	*result;
-
-	cnt = 0;
-	i = 0;
-	*result[idx] = (char *)malloc(sizeof(char) * (end - start + 1));
-	if (result == 0)
-		return (0);
-	result[end - start] = 0;
-	while (i < end - start)
-	{
-		result[i] = s[start + i];
-		i++;
-	}
-	return (result);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	char	**result;
-	int		word_c;
-	int		i;
-	int		j;
-	int		temp;
+	int	i;
+	int	j;
+	int	start;
 
 	i = 0;
-	j = 0;
-	word_c = count_c(s, c) + 1;
-	result = (char **)malloc(sizeof(char) * (word_c + 1));
-	result[word_c] = 0;
-	while (i < word_c)
+	while (s1[i])
 	{
-		while (s[j] != c)
+		start = i;
+		j = 0;
+		while (set[j])
 		{
-			temp = i;
+			if (s1[i] == set[j])
+			{
+				i++;
+				break ;
+			}
 			j++;
 		}
-		result[i] = each_word(s, temp, j, i);
-		i++;
-		j++;
+		if (start == i)
+			break ;
 	}
-	free(result);
-	return (result);
+	return (start);
 }
 
+char	*ft_strdup(const char *src)
+{
+	char	*str;
+	char	*c_src;
+	int		l;
+	int		i;
+
+	l = 0;
+	i = 0;
+	c_src = (char *)src;
+	while (c_src[l])
+	{
+		l++;
+	}
+	str = (char *)malloc(sizeof(char) * (l + 1));
+	if (str == 0)
+		return (0);
+	while (i < l)
+	{
+		str[i] = c_src[i];
+		i++;
+	}
+	str[i] = 0;
+	return (str);
+}
+
+int	find_end(const char *s1, char const *set, int start)
+{
+	int	len;
+	int	end;
+	int	j;
+
+	len = (int)ft_strlen(s1);
+	if (len == 0)
+	{
+		end = 0;
+		return (end);
+	}
+	while (len > start)
+	{
+		end = len - 1;
+		j = 0;
+		while (set[j])
+		{
+			if (s1[len - 1] == set[j])
+			{
+				len--;
+				break ;
+			}
+			j++;
+		}
+		if (end == len - 1)
+			break ;
+	}
+	return (end);
+}
+
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	int		start;
+	int		end;
+	int		i;
+	char	*result;
+
+	start = find_start(s1, set);
+	end = find_end(s1, set, start);
+	if (start == ((int)(ft_strlen(s1)) - 1))
+		return (ft_strdup(""));
+	if (end == 0 && start == 0)
+		return (ft_strdup(""));
+	result = (char *)malloc(sizeof(char) * (end - start + 2));
+	if (!result)
+		return (0);
+	i = 0;
+	while (start + i <= end)
+	{
+		result[i] = s1[start + i];
+		i++;
+	}
+	result[i] = '\0';
+	return (result);
+}
 
 int	main(void)
 {
-		char *s1 = "ab,cd,ef,g";
-        char *s2 = ",";
-		char **result = ft_strjoin(s1, s2);
+	char *s1 = "abcdba";
+    char *s2 = "acb";
+	char *result;
+	char *s;
 
-		while (i < 4)
-		{
-			while (result[i])
-			{
-				printf("%c", result[i][j]);
-			}
-			printf("\n");
-		}
+	s = ft_strtrim(s1, s2);
+	printf("result :%s\n", result);
 }

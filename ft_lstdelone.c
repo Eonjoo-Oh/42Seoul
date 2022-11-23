@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 10:18:51 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/21 10:52:44 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/23 20:34:08 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
+	if (lst == 0)
+		return ;
 	del(lst->content);
 	free(lst);
 }

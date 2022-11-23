@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 10:23:56 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/21 13:20:08 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/23 20:54:02 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*tmp;
 
-	while (tmp != 0)
+	if (lst == 0)
+		return ;
+	while (*lst)
 	{
-		del((*lst)->content);
 		tmp = (*lst)->next;
+		del((*lst)->content);
 		free (*lst);
 	}
-	lst = 0;
+	(*lst) = 0;
 }

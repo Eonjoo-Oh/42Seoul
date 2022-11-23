@@ -5,50 +5,40 @@
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
-{
-	const char		*s_str;
-	size_t			i;
-
-	s_str = (const char *)src;
-	i = 0;
-	if (dest == 0 && src == 0)
-		return (0);
-	while (i < n)
-	{
-		((unsigned char *)dest)[i] = s_str[i];
-		i++;
-	}
-	return (dest);
-}
-
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	unsigned char	*d_str;
-	const char		*s_str;
-	char			*tmp;
+	unsigned char	*s_str;
 	size_t			i;
 
-	tmp = dest;
-	d_str = (unsigned char *)dest;
-	s_str = (const char *)src;
 	i = 0;
-	if (dest == 0 && src == 0)
+	d_str = (unsigned char *)dest;
+	s_str = (unsigned char *)src;
+	if (d_str == 0 && s_str == 0)
 		return (0);
-	ft_memcpy(tmp, src, n);
-	while (i < n)
+	if (d_str < s_str)
 	{
-		d_str[i] = tmp[i];
-		i++;
+		while (i++ < n)
+		{
+			d_str[i] = s_str[i];
+		}
+	}
+	else
+	{
+		while (n - i > 0)
+		{
+			d_str[n - i - 1] = s_str[n - i - 1];
+			i++;
+		}
 	}
 	return (dest);
 }
 
 int	main(void)
 {
-	char src[10] = "123456789";
-	ft_memmove(&(src[3]), src, 4 * sizeof(char));
-	printf("%s", src);
+	char str[10] = "123456";
+	ft_memmove(&(str[1]), str, 3);
+	printf("%s", str);
 }	
 /*
 dest = 456789
