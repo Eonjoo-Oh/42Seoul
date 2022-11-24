@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: eonjoo <eonjoo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 10:38:22 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/21 13:37:26 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/25 01:10:12 by eonjoo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,21 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*new;
+	t_list *new_node;
+	t_list *new_head;
 
-	new = (t_list *)(malloc)(sizeof(t_list));
-	if (new == 0)
-		return (0);
-	while (lst != 0)
+	new_head = NULL;
+	while (lst)
 	{
-		f(lst->content);
-		new = lst;
+		new_node = ft_lstnew(lst->content);
+		if (new_node == NULL)
+		{
+			del(lst->content);
+			ft_lstclear(&new_head, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&new_head, new_node);
 		lst = lst->next;
 	}
-	return (new);
+	return (new_head);
 }
-//del과 free는 언제 쓰이는 것?

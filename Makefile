@@ -19,11 +19,18 @@ all : $(NAME)
 	$(CC) $(CFLAG) -c $< -o $@
 $(NAME) : $(OBJS)
 	${AR} ${ARFLAGS} ${NAME} ${OBJS}
+	touch $@
+
 bonus : $(OBJS) $(BONUS_OBJS)
 	${AR} ${ARFLAGS} ${NAME} ${OBJS} ${BONUS_OBJS}
+	touch $@
+
 clean :
-	rm -rf ${OBJS}
+	rm -rf ${OBJS} $(BONUS_OBJS)
+
 fclean : clean
 	rm -f ${NAME}
+
 re : fclean all
+
 .PHONY : clean fclean re

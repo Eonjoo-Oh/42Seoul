@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: eonjoo <eonjoo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 10:23:56 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/23 20:54:02 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/25 00:31:06 by eonjoo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 		tmp = (*lst)->next;
 		del((*lst)->content);
 		free (*lst);
+		(*lst) = tmp;
 	}
 	(*lst) = 0;
 }

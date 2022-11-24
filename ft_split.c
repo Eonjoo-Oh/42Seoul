@@ -6,7 +6,7 @@
 /*   By: eonjoo <eonjoo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 11:45:24 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/24 00:32:34 by eonjoo           ###   ########.fr       */
+/*   Updated: 2022/11/25 00:15:17 by eonjoo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ char *put_word(char const *s, int len)
 	while (i < len)
 	{
 		result[i] = s[i];
+		i++;
 	}
 	return (result);
 }
@@ -70,6 +71,8 @@ char	**ft_split(char const *s, char c)
 
 	i = 0;
 	word_c = count_c(s, c) + 1;
+	if (s == 0)
+		return (0);
 	result = (char **)malloc(sizeof(char) * (word_c + 1));
 	if (result == 0)
 		return (0);
