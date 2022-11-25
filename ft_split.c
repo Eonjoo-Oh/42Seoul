@@ -3,93 +3,102 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eonjoo <eonjoo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 11:45:24 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/25 00:15:17 by eonjoo           ###   ########.fr       */
+/*   Updated: 2022/11/25 17:13:10 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-int	count_c(char const *s, char c)
-{	
+int	is_charset(char c, char charset)
+{
 	int	i;
-	int	cnt;
 
 	i = 0;
-	cnt = 0;
-	while (s[i])
+	if (c == charset)
+		return (1);
+	if (c == '\0')
+		return (1);
+	return (0);
+}
+
+int	word_cnt(char const *str, char charset)
+{
+	int	i;
+	int	word;
+
+	word = 0;
+	i = 0;
+	while (str[i])
 	{
-		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
-			cnt++;
+		if (is_charset(str[i], charset) == 0
+			&& is_charset(str[i + 1], charset) == 1)
+			word++;
 		i++;
 	}
-	return (cnt);
+	return (word);
 }
 
-int word_len(char const *s, char c)
+void free_str(char **str, int i)
 {
-	int len;
-
-	len = 0;
-	while (*s != c && *s != '\0')
-		len++;
-	return (len);
+	int j;
+	while (i )
 }
 
-void free_all(char **result, int i)
+void	write_word(char *result, char const *from, char charset)
 {
-	while (i >= 0)
-	{
-		free(result[i]);
-		i--;
-	} //순서대로 free 안해줘도 되겠지?
-}
-
-char *put_word(char const *s, int len)
-{
-	char *result;
-	int i;
+	int	i;
 
 	i = 0;
-	while (i < len)
+	while (is_charset(from[i], charset) == 0)
 	{
-		result[i] = s[i];
+		result[i] = from[i];
 		i++;
 	}
-	return (result);
+	result[i] = '\0';
+}
+
+void	split_word(char **result, char const *str, char charset)
+{
+	int	i;
+	int	j;
+	int	word;
+
+	word = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (is_charset(str[i], charset) == 1)
+			i++;
+		else
+		{
+			j = 0;
+			while (is_charset(str[i + j], charset) == 0)
+				j++;
+			result[word] = (char *)malloc(sizeof(char) * (j + 1));
+			if (result[word] == 0)
+				return ;
+			write_word(result[word], str + i, charset);
+			i += j;
+			word++;
+		}
+	}
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**result;
-	int		word_c;
-	int word_l;
-	int i;
+	char	**res;
+	int		words;
 
-	i = 0;
-	word_c = count_c(s, c) + 1;
 	if (s == 0)
 		return (0);
-	result = (char **)malloc(sizeof(char) * (word_c + 1));
-	if (result == 0)
+	words = word_cnt(s, c);
+	res = (char **)malloc(sizeof(char *) * (words + 1));
+	if (res == 0)
 		return (0);
-	result[word_c] = 0;
-	while (i < word_c)
-	{
-		while (*s == c)
-			s++;
-		word_l = word_len(s, c);
-		result[i] = (char *)malloc(sizeof(char) * (word_l + 1));
-		if (result[i] == 0)
-		{
-			free_all(result, i);
-			return (0);
-		}
-		result[i] = put_word(s, word_l);
-		i++;
-	}
-	return (result);
+	res[words] = 0;
+	split_word(res, s, c);
+	return (res);
 }
