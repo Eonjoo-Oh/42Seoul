@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 11:19:09 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/25 15:59:59 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/25 17:50:32 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+
+#include "libft.h"
 
 int	is_charset(char c, char charset)
 {
@@ -75,12 +77,31 @@ void	split_word(char **result, char const *str, char charset)
 			while (is_charset(str[i + j], charset) == 0)
 				j++;
 			result[word] = (char *)malloc(sizeof(char) * (j + 1));
+			if (result[word] == 0)
+				return ;
 			write_word(result[word], str + i, charset);
 			i += j;
 			word++;
 		}
 	}
 }
+
+char	**ft_split(char const *s, char c)
+{
+	char	**res;
+	int		words;
+
+	if (s == 0)
+		return (0);
+	words = word_cnt(s, c);
+	res = (char **)malloc(sizeof(char *) * (words + 1));
+	if (res == 0)
+		return (0);
+	res[words] = 0;
+	split_word(res, s, c);
+	return (res);
+}
+
 
 char	**ft_split(char const *s, char c)
 {

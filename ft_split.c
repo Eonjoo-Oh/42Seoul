@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 11:45:24 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/25 17:13:10 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/25 17:34:13 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,6 @@ int	word_cnt(char const *str, char charset)
 		i++;
 	}
 	return (word);
-}
-
-void free_str(char **str, int i)
-{
-	int j;
-	while (i )
 }
 
 void	write_word(char *result, char const *from, char charset)
