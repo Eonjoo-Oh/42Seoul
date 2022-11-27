@@ -6,12 +6,11 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 09:55:11 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/22 14:59:39 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/27 12:29:33 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

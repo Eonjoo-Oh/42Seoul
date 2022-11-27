@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eonjoo <eonjoo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 11:25:07 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/25 00:15:09 by eonjoo           ###   ########.fr       */
+/*   Updated: 2022/11/27 12:40:52 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <unistd.h>
 
-void print_n(int n, int fd)
+static void	print_n(int n, int fd)
 {
-	int i;
-	int l;
-	char str[10];
+	int		i;
+	int		l;
+	char	str[10];
 
 	i = 0;
 	l = 0;

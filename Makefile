@@ -16,7 +16,7 @@ OBJS = ${SRCS:.c=.o}
 BONUS_OBJS = ${BONUS_SRCS:.c=.o}
 all : $(NAME)
 %.o : %.c
-	$(CC) $(CFLAG) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 $(NAME) : $(OBJS)
 	${AR} ${ARFLAGS} ${NAME} ${OBJS}
 	touch $@

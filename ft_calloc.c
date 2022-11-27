@@ -6,12 +6,11 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 09:26:41 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/21 17:27:34 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/27 12:24:18 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {

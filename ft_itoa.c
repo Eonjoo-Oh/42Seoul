@@ -6,14 +6,13 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 13:42:16 by eoh               #+#    #+#             */
-/*   Updated: 2022/11/25 15:18:56 by eoh              ###   ########.fr       */
+/*   Updated: 2022/11/27 12:32:02 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-int	n_size(long long int n)
+static int	n_size(long long int n)
 {
 	int	len;
 
