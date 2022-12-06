@@ -17,4 +17,5 @@ int main(void)
     printf("print heXadecimal : %X\n", 'a');
     printf("print percent: %%\n");
     write(1, "%", 1);
+
 }

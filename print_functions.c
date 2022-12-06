@@ -6,15 +6,21 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 15:32:33 by eoh               #+#    #+#             */
-/*   Updated: 2022/12/06 11:35:09 by eoh              ###   ########.fr       */
+/*   Updated: 2022/12/06 14:23:01 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdarg.h>
+#include <unistd.h>
+#include <stdio.h>
+
+char	*ft_itoa(int n);
+
 int	print_char(va_list ap)
 {
-	char	temp;
+	char	*temp;
 
-	temp = va_arg(ap. char);
+	temp = va_arg(ap, char *);
 	write (1, &temp, 1);
 
 	return (1);//길이를 반환하게는 하는데 어디서 길이를 ft_prntf함수에 줄 수 있을까? 또 굳이 malloc 필요없을듯?
@@ -41,12 +47,25 @@ int	print_str(va_list ap)
 int	print_pointer(va_list ap)
 {
 	int		len;
-	char	*temp;
+	int		i;
+	void	*temp;
+	char	*result;
+	char	*hexa;
 
+	hexa = "0123456789abcdef";
+	i = 0;
 	len = 2;
 	write (1, "0x", 2);
-	temp = va_arg(ap, );
-	//주소값을 어떻게 받아서 출력해야할까?
+	temp = va_arg(ap, void *);
+	result = (char *)temp;
+	while (result[i])
+	{
+		write (1, &(hexa[result[i] / 16]), 1);
+		write (1, &(hexa[result[i] % 16]), 1);
+		len += 2;
+		i++;
+	}
+	return (len);
 }
 
 int	print_decimal(va_list ap)

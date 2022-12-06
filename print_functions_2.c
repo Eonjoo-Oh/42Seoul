@@ -6,20 +6,27 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:18:34 by eoh               #+#    #+#             */
-/*   Updated: 2022/12/06 12:09:17 by eoh              ###   ########.fr       */
+/*   Updated: 2022/12/06 14:51:53 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdarg.h>
+#include <unistd.h>
+
+char	*ft_itoa(int n);
+
 int print_unsigned(va_list ap)
 {
-    int             len;
-    unsigned int    temp;
-    char            *result;
+	int		len;
+	int		temp;
+	char	*result;
 
-    len = 0;
-    temp = va_arg(ap, unsigned int);
-    result = ft_atoi((int)temp);
-    while (result[len])
+	len = 0;
+	temp = va_arg(ap, int);
+	if (temp < 0)
+		return (0);
+	result = ft_itoa(temp);
+	while (result[len])
 	{
 		write(1, &(result[len]), 1);
 		len++;
@@ -29,19 +36,14 @@ int print_unsigned(va_list ap)
 
 int print_hexadecimal(va_list ap)
 {
-    char temp;
-    char *hexa;
+	char    *temp;
+	char	res;
+	char    *hexa;
 
-    hexa = "0123456789abcdef";
-    temp = va_arg(ap, char);
-    write (1, &(hexa[temp/16]), 1);
-    write (1, &(hexa[temp%16]), 1);
-    return (2);
-}
-
-int print_percent(va_list ap);
-{
-    write(1, "%", 1);
-    return (1);
-    //%는 va_arg로 인자를 밀어주지 않는다
+	hexa = "0123456789abcdef";
+	temp = va_arg(ap, char *);
+	res = (char)temp;
+	write (1, &(hexa[res / 16]), 1);
+	write (1, &(hexa[res % 16]), 1);
+	return (2);
 }

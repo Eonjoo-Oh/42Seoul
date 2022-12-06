@@ -6,14 +6,26 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 13:32:21 by eoh               #+#    #+#             */
-/*   Updated: 2022/12/06 12:09:34 by eoh              ###   ########.fr       */
+/*   Updated: 2022/12/06 14:35:23 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include "libft.h"
+//#include "ft_printf.h"
+//#include "libft.h"
 #include <stdarg.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
+
+int	print_char(va_list ap);
+int	print_str(va_list ap);
+int	print_pointer(va_list ap);
+int	print_decimal(va_list ap);
+int print_integer(va_list ap);
+int print_unsigned(va_list ap);
+int print_hexadecimal(va_list ap);
+int write_arg(const char *arg, va_list ap);
+int	find_type(const char *arg, va_list ap);
 
 int	ft_printf(const char *arg, ...)
 {
@@ -22,13 +34,13 @@ int	ft_printf(const char *arg, ...)
 
 	va_start(ap, arg);
 	len = write_arg(arg, ap);
+	va_end(ap);
 	if (len == 0)
 		return (0);
-	va_end(ap);
 	return (len);
 }
 
-int	write_arg(char *arg, va_list ap)
+int	write_arg(const char *arg, va_list ap)
 {
 	int	temp;
 	int	len;
@@ -36,12 +48,13 @@ int	write_arg(char *arg, va_list ap)
 	len = 0;
 	while (*arg)
 	{
-		if (*arg == %)
+		if (*arg == '%')
 		{
-			temp = find_type(arg++, ap);
+			arg++;
+			temp = find_type(arg, ap);
 			if (temp == 0)
 				return (0);
-			arg++;//arg+2를해야하는지? 위에 arg++해서 이미 값이 바꼈을지?
+			arg++;
 			len += temp;
 			continue ;
 		}
@@ -52,7 +65,7 @@ int	write_arg(char *arg, va_list ap)
 	return (len);
 }
 
-int	find_type(char *arg, va_list ap)
+int	find_type(const char *arg, va_list ap)
 {
 	int	len;
 
@@ -75,11 +88,4 @@ int	find_type(char *arg, va_list ap)
 		write (1, "%", 1);
 		len = 1;
 	return (len);
-	/*
-	잘못된 값이 들어왔을때 오류처리를 해주고 싶었음. 근데 어떻게?
-	-> 길이를 반환하고 길이가ㅏ 0인 경우는 잘못된 값이 들어온 경우이다.
-	몇개비슷한 함수들을 하나로 합칠수없을까? 
-	-> hexadecimal 과 heXadecimal이 같이 동작해서 합쳤고 %는 va_arg로 ap를 밀어줄 필요가 없으므로 
-	바로 작성 후 길이는 1 
-	*/
 }
