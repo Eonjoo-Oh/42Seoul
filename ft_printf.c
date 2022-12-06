@@ -6,26 +6,11 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 13:32:21 by eoh               #+#    #+#             */
-/*   Updated: 2022/12/06 14:35:23 by eoh              ###   ########.fr       */
+/*   Updated: 2022/12/06 15:36:17 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "ft_printf.h"
-//#include "libft.h"
-#include <stdarg.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
-
-int	print_char(va_list ap);
-int	print_str(va_list ap);
-int	print_pointer(va_list ap);
-int	print_decimal(va_list ap);
-int print_integer(va_list ap);
-int print_unsigned(va_list ap);
-int print_hexadecimal(va_list ap);
-int write_arg(const char *arg, va_list ap);
-int	find_type(const char *arg, va_list ap);
+#include "ft_printf.h"
 
 int	ft_printf(const char *arg, ...)
 {
@@ -85,7 +70,9 @@ int	find_type(const char *arg, va_list ap)
 	else if (*arg == 'x' || *arg == 'X')
 		len = print_hexadecimal(ap);
 	else if (*arg == '%')
+	{
 		write (1, "%", 1);
 		len = 1;
+	}
 	return (len);
 }

@@ -6,14 +6,11 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:18:34 by eoh               #+#    #+#             */
-/*   Updated: 2022/12/06 14:51:53 by eoh              ###   ########.fr       */
+/*   Updated: 2022/12/06 16:12:27 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <unistd.h>
-
-char	*ft_itoa(int n);
+#include "ft_printf.h"
 
 int print_unsigned(va_list ap)
 {

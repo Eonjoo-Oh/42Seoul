@@ -6,15 +6,11 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 15:32:33 by eoh               #+#    #+#             */
-/*   Updated: 2022/12/06 14:23:01 by eoh              ###   ########.fr       */
+/*   Updated: 2022/12/06 16:10:23 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <unistd.h>
-#include <stdio.h>
-
-char	*ft_itoa(int n);
+#include "ft_printf.h"
 
 int	print_char(va_list ap)
 {
@@ -23,10 +19,7 @@ int	print_char(va_list ap)
 	temp = va_arg(ap, char *);
 	write (1, &temp, 1);
 
-	return (1);//길이를 반환하게는 하는데 어디서 길이를 ft_prntf함수에 줄 수 있을까? 또 굳이 malloc 필요없을듯?
-	/*
-	len을 findtype 
-	*/
+	return (1);
 }
 
 int	print_str(va_list ap)
@@ -36,6 +29,11 @@ int	print_str(va_list ap)
 
 	len = 0;
 	temp = va_arg(ap, char *);
+	if (temp == 0)
+	{
+		write (1, "(null)", 6);
+		return (6);
+	}
 	while (temp[len])
 	{
 		write(1, &(temp[len]), 1);
