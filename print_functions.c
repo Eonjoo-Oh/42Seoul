@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 15:32:33 by eoh               #+#    #+#             */
-/*   Updated: 2022/12/06 16:10:23 by eoh              ###   ########.fr       */
+/*   Updated: 2022/12/07 17:25:15 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,42 +44,24 @@ int	print_str(va_list ap)
 
 int	print_pointer(va_list ap)
 {
-	int		len;
-	int		i;
-	void	*temp;
-	char	*result;
-	char	*hexa;
+	int			len;
+	long long	temp;
+	const char	*arg;
 
-	hexa = "0123456789abcdef";
-	i = 0;
-	len = 2;
+	arg = "a"; 
+	temp = va_arg(ap, unsigned long long);
 	write (1, "0x", 2);
-	temp = va_arg(ap, void *);
-	result = (char *)temp;
-	while (result[i])
-	{
-		write (1, &(hexa[result[i] / 16]), 1);
-		write (1, &(hexa[result[i] % 16]), 1);
-		len += 2;
-		i++;
-	}
-	return (len);
+	len = write_hex(temp, arg);
+	return (len + 2);
 }
 
 int	print_decimal(va_list ap)
 {
 	int				len;
 	long long int	temp;
-	char			*result;
 
-	len = 0;
 	temp = va_arg(ap, long long int);
-	result = ft_itoa((int)temp);
-	while (result[len])
-	{
-		write(1, &(result[len]), 1);
-		len++;
-	}
+	len = ft_putnbr((int)temp);
 	return (len);
 }
 
@@ -87,15 +69,8 @@ int print_integer(va_list ap)
 {
 	int		len;
 	int		temp;
-	char	*result;
 
-	len = 0;
 	temp = va_arg(ap, int);
-	result = ft_itoa(temp);
-	while (result[len])
-	{
-		write(1, &(result[len]), 1);
-		len++;
-	}
+	len = ft_putnbr(temp);
 	return (len);
 }

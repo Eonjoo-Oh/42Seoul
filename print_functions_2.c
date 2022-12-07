@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:18:34 by eoh               #+#    #+#             */
-/*   Updated: 2022/12/06 16:12:27 by eoh              ###   ########.fr       */
+/*   Updated: 2022/12/07 17:27:30 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,30 @@
 
 int print_unsigned(va_list ap)
 {
-	int		len;
-	int		temp;
-	char	*result;
+	int				len;
+	unsigned int	temp;
 
-	len = 0;
-	temp = va_arg(ap, int);
-	if (temp < 0)
-		return (0);
-	result = ft_itoa(temp);
-	while (result[len])
-	{
-		write(1, &(result[len]), 1);
-		len++;
-	}
+	temp = va_arg(ap, unsigned int);
+	len = ft_putnbr(temp);
 	return (len);
 }
 
-int print_hexadecimal(va_list ap)
+int print_hexadecimal(va_list ap, const char *arg)
 {
-	char    *temp;
-	char	res;
-	char    *hexa;
+	unsigned long long	res;
+	int 				len;
 
-	hexa = "0123456789abcdef";
-	temp = va_arg(ap, char *);
-	res = (char)temp;
-	write (1, &(hexa[res / 16]), 1);
-	write (1, &(hexa[res % 16]), 1);
-	return (2);
+	res = va_arg(ap, unsigned long long);
+	len = write_hex(res, arg);
+	return (len);
 }
+
+/*int print_big_hex(va_list ap)
+{
+	unsigned long long	res;
+	int 				len;
+
+	res = va_arg(ap, unsigned long long);
+	len = write_big_hex(res);
+	return (len);
+}*/

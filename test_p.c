@@ -9,40 +9,42 @@ int	print_pointer(va_list ap);
 int	write_arg(const char *arg, va_list ap);
 int	find_type(const char *arg, va_list ap);
 
-int	find_hexlen(long long num)
+int hex_len(long long num)
 {
-	int	len = 0;
+	int len;
+
+	len = 0;
 	if (num == 0)
 		return (1);
 	while (num > 0)
 	{
-		len++;
 		num /= 16;
+		len++;
 	}
 	return (len);
 }
 
 int write_hex(long long num)
 {
-	char	*hex;
-	char	str[16];
-	int		len;
-	int 	i;
+	char *hex;
+	char str[32];
+	int	len;
+	int i;
 
-	len = find_hexlen(num);
-	i = len;
 	hex = "0123456789abcdef";
-	while (len > -1)
+	len = hex_len(num);
+	i = len - 1;
+	while (i > -1)
 	{
-		str[len - 1] = hex[num % 16];
+		str[i] = hex[num % 16];
 		num /= 16;
-		len--;
+		i--;
 	}
-	len = 0;
-	while (len < i)
+	i = 0;
+	while (i < len)
 	{
-		write(1, &(str[len]), 1);
-		len++;
+		write (1, &(str[i]), 1);
+		i++;
 	}
 	return (len);
 }
@@ -131,8 +133,8 @@ int main(void)
 	int origin_res;
 	int my_res;
     //int a = 3;
-    my_res = ft_printf("my     : %p\n", (void *)0);
-    origin_res = printf("origin : %p\n", (void *)0);
+    my_res = ft_printf("my     : %p\n", (void *)-123);
+    origin_res = printf("origin : %p\n", (void *)-123);
 	printf("origin_res : %d\n", origin_res);
 	printf("my_res : %d\n", my_res);
 }

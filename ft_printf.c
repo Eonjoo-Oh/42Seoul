@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 13:32:21 by eoh               #+#    #+#             */
-/*   Updated: 2022/12/06 15:36:17 by eoh              ###   ########.fr       */
+/*   Updated: 2022/12/07 17:23:40 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	find_type(const char *arg, va_list ap)
 	else if (*arg == 'u')
 		len = print_unsigned(ap);
 	else if (*arg == 'x' || *arg == 'X')
-		len = print_hexadecimal(ap);
+		len = print_hexadecimal(ap, arg);
 	else if (*arg == '%')
 	{
 		write (1, "%", 1);

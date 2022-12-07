@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror
 ARFLAGS = crs
 AR = ar
 
-SRCS = ft_itoa.c ft_printf.c print_functions.c print_functions_2.c 
+SRCS = ft_printf.c print_functions.c print_functions_2.c other_functions.c
 
 OBJS = ${SRCS:.c=.o}
 

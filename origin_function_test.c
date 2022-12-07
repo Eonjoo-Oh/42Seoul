@@ -13,10 +13,9 @@ int main(void)
     printf("print pointer : %p\n", &a);
     printf("print decimal : %d\n", 2147483647);
     printf("print integer : %i\n", -123);
-    printf("print unsigned : %u\n", 123);
-    printf("print hexadecimal : %x\n", 'Z');
-    printf("print heXadecimal : %X\n", 'a');
+    printf("print unsigned : %u\n", -2147);
+    printf("print hexadecimal : %x\n", 10);
+    printf("print heXadecimal : %X\n", 10);
     printf("print percent: %%\n");
     write(1, "%", 1);
-    printf("\nb : %d\n", b);
 }
