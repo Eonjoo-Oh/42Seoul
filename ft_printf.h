@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:27:02 by eoh               #+#    #+#             */
-/*   Updated: 2022/12/07 17:27:41 by eoh              ###   ########.fr       */
+/*   Updated: 2022/12/07 17:34:52 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,9 @@ int	print_decimal(va_list ap);
 int	print_integer(va_list ap);
 int	print_unsigned(va_list ap);
 int	print_hexadecimal(va_list ap, const char *arg);
-//int	print_big_hex(va_list ap);
 int	write_arg(const char *arg, va_list ap);
 int	find_type(const char *arg, va_list ap);
 int	write_hex(unsigned long long num, const char *arg);
-//int	write_big_hex(unsigned long long num);
 int	ft_putnbr(int n);
+int putnbr_unsigned(unsigned int n);
 #endif
