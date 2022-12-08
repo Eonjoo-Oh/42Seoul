@@ -6,10 +6,11 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 13:32:21 by eoh               #+#    #+#             */
-/*   Updated: 2022/12/07 18:51:47 by eoh              ###   ########.fr       */
+/*   Updated: 2022/12/08 15:20:42 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "ft_printf.h"
 
 int	ft_printf(const char *arg, ...)
@@ -20,8 +21,6 @@ int	ft_printf(const char *arg, ...)
 	va_start(ap, arg);
 	len = write_arg(arg, ap);
 	va_end(ap);
-	if (len == 0)
-		return (0);
 	return (len);
 }
 
@@ -37,8 +36,8 @@ int	write_arg(const char *arg, va_list ap)
 		{
 			arg++;
 			temp = find_type(arg, ap);
-			if (temp == 0)
-				return (0);
+			if (temp == -1)
+				return (-1);
 			arg++;
 			len += temp;
 			continue ;
@@ -54,7 +53,7 @@ int	find_type(const char *arg, va_list ap)
 {
 	int	len;
 
-	len = 0;
+	len = -1;
 	if (*arg == 'c')
 		len = print_char(ap);
 	else if (*arg == 's')
@@ -75,4 +74,13 @@ int	find_type(const char *arg, va_list ap)
 		len = 1;
 	}
 	return (len);
+}
+
+int main(void)
+{
+    printf("Bt\t/l-s> l%dn0HU**%iEz7}%%pzR%s.Uj|5me%x?/`f%s5(<${YK;%dp%u%X_[\rHei%u9", 1228504768, 190156702, "G2za^}|[/P-nwwYmGjfNQ\"o\"RdG-*c+b@<2D&mM\\lrK>R)vpkdeyn!*lW{='F\r=>Ba=Bqso}IGCr\"@$R", 17036593, "7T2qcf-\v,+]Tje%\\*_\fA2pR.?:b#t\"CNYzV?*a:SvP T~dUg9cQ`TZr:lSokN1N>Mg", -152355607, 1735389943, 215164987, 1027577336);
+    printf("\n--------------\n");
+	ft_printf("Bt\t/l-s> l%dn0HU**%iEz7}%%pzR%s.Uj|5me%x?/`f%s5(<${YK;%dp%u%X_[\rHei%u9", 1228504768, 190156702, "G2za^}|[/P-nwwYmGjfNQ\"o\"RdG-*c+b@<2D&mM\\lrK>R)vpkdeyn!*lW{='F\r=>Ba=Bqso}IGCr\"@$R", 17036593, "7T2qcf-\v,+]Tje%\\*_\fA2pR.?:b#t\"CNYzV?*a:SvP T~dUg9cQ`TZr:lSokN1N>Mg", -152355607, 1735389943, 215164987, 1027577336);
+
+    return (0);
 }
