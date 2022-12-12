@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 15:32:33 by eoh               #+#    #+#             */
-/*   Updated: 2022/12/08 14:49:38 by eoh              ###   ########.fr       */
+/*   Updated: 2022/12/12 14:44:58 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,29 @@
 int	print_char(va_list ap)
 {
 	char	*temp;
+	int		error;
 
 	temp = va_arg(ap, char *);
-	write (1, &temp, 1);
-
+	error = write (1, &temp, 1);
 	return (1);
 }
 
 int	print_str(va_list ap)
 {
 	int		len;
+	int		error;
 	char	*temp;
 
 	len = 0;
 	temp = va_arg(ap, char *);
 	if (temp == 0)
 	{
-		write (1, "(null)", 6);
+		error = write (1, "(null)", 6);
 		return (6);
 	}
 	while (temp[len])
 	{
-		write(1, &(temp[len]), 1);
+		error = write(1, &(temp[len]), 1);
 		len++;
 	}
 	return (len);

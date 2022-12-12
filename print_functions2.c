@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_functions_2.c                                :+:      :+:    :+:   */
+/*   print_functions2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:18:34 by eoh               #+#    #+#             */
-/*   Updated: 2022/12/07 18:52:03 by eoh              ###   ########.fr       */
+/*   Updated: 2022/12/12 13:39:01 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int print_unsigned(va_list ap)
 
 int print_hexadecimal(va_list ap, const char *arg)
 {
-	unsigned long long	res;
-	int 				len;
+	unsigned int	res;
+	int 			len;
 
-	res = va_arg(ap, unsigned long long);
+	res = va_arg(ap, unsigned int);
 	len = write_hex(res, arg);
 	return (len);
 }
