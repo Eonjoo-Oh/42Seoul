@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:27:02 by eoh               #+#    #+#             */
-/*   Updated: 2022/12/13 13:03:16 by eoh              ###   ########.fr       */
+/*   Updated: 2022/12/13 17:09:50 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+int	ft_printf(const char *arg, ...);
 int	print_char(va_list ap);
 int	print_str(va_list ap);
 int	print_pointer(va_list ap);

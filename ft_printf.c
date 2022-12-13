@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 13:32:21 by eoh               #+#    #+#             */
-/*   Updated: 2022/12/13 13:03:12 by eoh              ###   ########.fr       */
+/*   Updated: 2022/12/13 14:42:34 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	write_arg(const char *arg, va_list ap)
 			len += temp;
 			continue ;
 		}
-		write(1, arg, 1);
+		if (write(1, arg, 1) == -1)
+			return (-1);
 		arg++;
 		len++;
 	}
@@ -69,20 +70,9 @@ int	find_type(const char *arg, va_list ap)
 		len = print_hexadecimal(ap, arg);
 	else if (*arg == '%')
 	{
-		if (write (1, "%", 1) == 0)
+		if (write (1, "%", 1) == -1)
 			return (-1);
 		len = 1;
 	}
 	return (len);
 }
-/*
-int main(void) {
-	int a, b;
-
-	a = printf("%u\n", -10);
-	b = ft_printf("%u\n", -10);
-	printf("a : %d, b : %d", a, b);
-
-	return (0);
-}
-*/
