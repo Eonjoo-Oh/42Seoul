@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 15:32:33 by eoh               #+#    #+#             */
-/*   Updated: 2022/12/12 15:07:04 by eoh              ###   ########.fr       */
+/*   Updated: 2022/12/13 13:07:07 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	print_pointer(va_list ap)
 	long long	temp;
 	const char	*arg;
 
-	arg = "a"; 
+	arg = "a";
 	temp = va_arg(ap, unsigned long long);
 	error = write (1, "0x", 2);
 	if (error == -1)
@@ -75,7 +75,7 @@ int	print_decimal(va_list ap)
 	return (len);
 }
 
-int print_integer(va_list ap)
+int	print_integer(va_list ap)
 {
 	int		len;
 	int		temp;

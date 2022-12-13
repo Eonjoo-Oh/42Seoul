@@ -6,13 +6,13 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:18:34 by eoh               #+#    #+#             */
-/*   Updated: 2022/12/12 15:44:58 by eoh              ###   ########.fr       */
+/*   Updated: 2022/12/13 13:09:53 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int print_unsigned(va_list ap)
+int	print_unsigned(va_list ap)
 {
 	int				i;
 	int				l;
@@ -39,17 +39,17 @@ int print_unsigned(va_list ap)
 	return (l);
 }
 
-int print_hexadecimal(va_list ap, const char *arg)
+int	print_hexadecimal(va_list ap, const char *arg)
 {
 	unsigned int	res;
-	int 			len;
+	int				len;
 
 	res = va_arg(ap, unsigned int);
 	len = write_hex(res, arg);
 	return (len);
 }
 
-int unsigned_zero(void)
+int	unsigned_zero(void)
 {
 	if (write (1, "0", 1) == -1)
 		return (-1);

@@ -6,15 +6,15 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:41:14 by eoh               #+#    #+#             */
-/*   Updated: 2022/12/12 15:19:07 by eoh              ###   ########.fr       */
+/*   Updated: 2022/12/13 13:06:26 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int hex_len(unsigned long long num)
+int	hex_len(unsigned long long num)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	if (num == 0)
@@ -27,12 +27,12 @@ int hex_len(unsigned long long num)
 	return (len);
 }
 
-int write_hex(unsigned long long num, const char *arg)
+int	write_hex(unsigned long long num, const char *arg)
 {
-	char *hex;
-	char str[16];
-	int	len;
-	int i;
+	char	*hex;
+	char	str[16];
+	int		len;
+	int		i;
 
 	hex = "0123456789abcdef";
 	if (*arg == 'X')
@@ -82,7 +82,7 @@ static int	print_n(int n)
 
 int	ft_putnbr(int n)
 {
-	int len;
+	int	len;
 
 	if (n == -2147483648)
 	{
