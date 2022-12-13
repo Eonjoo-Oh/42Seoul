@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:41:14 by eoh               #+#    #+#             */
-/*   Updated: 2022/12/13 13:32:54 by eoh              ###   ########.fr       */
+/*   Updated: 2022/12/13 18:02:11 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	write_hex(unsigned long long num, const char *arg)
 	return (len);
 }
 
-static int	print_n(int n)
+int	print_n(int n)
 {
 	int		i;
 	int		l;
