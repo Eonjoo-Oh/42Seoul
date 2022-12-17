@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 15:32:33 by eoh               #+#    #+#             */
-/*   Updated: 2022/12/13 18:00:45 by eoh              ###   ########.fr       */
+/*   Updated: 2022/12/17 10:27:38 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ int	print_str(va_list ap)
 
 int	print_pointer(va_list ap)
 {
-	int					len;
-	int					error;
-	unsigned long long	temp;
-	const char			*arg;
+	int				len;
+	int				error;
+	uintptr_t		temp;
+	const char		*arg;
 
 	arg = "a";
-	temp = va_arg(ap, unsigned long long);
+	temp = va_arg(ap, uintptr_t);
 	error = write (1, "0x", 2);
 	if (error == -1)
 		return (-1);
