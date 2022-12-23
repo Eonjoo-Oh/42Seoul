@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:41:14 by eoh               #+#    #+#             */
-/*   Updated: 2022/12/16 18:21:27 by eoh              ###   ########.fr       */
+/*   Updated: 2022/12/21 11:10:26 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,10 @@ int	write_hex(unsigned long long num, const char *arg)
 	int		len;
 	int		i;
 
-	hex = "0123456789abcdef";
 	if (*arg == 'X')
 		hex = "0123456789ABCDEF";
+	else
+		hex = "0123456789abcdef";
 	len = hex_len(num);
 	i = len - 1;
 	while (i > -1)
