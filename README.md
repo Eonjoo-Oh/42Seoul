@@ -1,5 +1,6 @@
-<div align=center><h3>ft_printf</h3></div>
+<div align=center><h2>ft_printf</h2></div>
 <div align=center><h3>: Because ft_putnbr() and ft_putstr() aren’t enough</h3></div>
+
 
 * period 
   : 2022.11.29 ~ 2022.12.21
