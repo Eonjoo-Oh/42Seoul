@@ -1,10 +1,7 @@
-<div align=center><h3>2th Projects</h3></div>
+<div align=center><h3>ft_printf</h3></div>
+<div align=center><h3>: Because ft_putnbr() and ft_putstr() aren’t enough</h3></div>
 
-
-* projects name
-    : <ft_printf : Because ft_putnbr() and ft_putstr() aren’t enough>
 * period 
-  : 2022.12.22 ~ 2022.01.09
+  : 2022.11.29 ~ 2022.12.21
 * study page link 
-  : [my notion page](https://flower-donut-4f5.notion.site/ft_printf-fa857b6014104e31a732d03e0b7c54e0)
-     
+  : [notion page](https://flower-donut-4f5.notion.site/ft_printf-fa857b6014104e31a732d03e0b7c54e0)
