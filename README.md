@@ -1,5 +1,4 @@
 <div align=center><h2>ft_printf</h2></div>
-<div align=center><h3>: Because ft_putnbr() and ft_putstr() aren’t enough</h3></div>
 
 
 * period 
