@@ -25,6 +25,7 @@ void push_swap(int argc, char **argv)
     new_argv = ft_strjoin(argv, argc);
     argv = (ft_split(new_argv));
     int_av = ft_atoi(argv);
-
+    stack_a = ft_lstnew(int_av);
+    
     system("leaks a.out");
 }
