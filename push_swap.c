@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:53:48 by eoh               #+#    #+#             */
-/*   Updated: 2023/02/21 19:17:21 by eoh              ###   ########.fr       */
+/*   Updated: 2023/02/25 17:51:29 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void push_swap(int argc, char **argv)
     int int_print;
     char *new_argv;
 
+    if (check_error(argv) == -1)
+        return ;
     new_argv = ft_strjoin(argv, argc);
     argv = (ft_split(new_argv));
     int_av = ft_atoi(argv);
