@@ -1,5 +1,4 @@
 #include "push_swap.h"
-#include <unistd.h>
 #include <stdio.h>
 
 void new_push_swap(int argc, char **argv)

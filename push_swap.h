@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eonjoo <eonjoo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:52:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/02/26 18:56:57 by eonjoo           ###   ########.fr       */
+/*   Updated: 2023/02/27 14:18:48 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 #include <stdlib.h>
+#include <unistd.h>
 
 typedef struct t_list
 {
@@ -21,12 +22,19 @@ typedef struct t_list
     struct t_list *prev;
     struct t_list *next;
 } t_list;
+/*
+typedef struct s_stack
+{
 
+}
+*/
 void new_push_swap(int argc, char **argv);
 t_list *first_stack(char **argv);
-void lstadd_back(t_list **lst, int data);
-t_list *make_lst(void);
+t_list *make_lst(int data);
+void lstadd_back(t_list **lst, t_list *new_node);
 int check_range(long long n);
 long long long_atoi(char *nptr);
 int is_digit_sp(char *str);
 char **ft_split(char const *s);
+
+#endif
