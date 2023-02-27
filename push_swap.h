@@ -28,10 +28,10 @@ typedef struct s_stack
 
 }
 */
-void new_push_swap(int argc, char **argv);
+void push_swap(int argc, char **argv);
 t_list *first_stack(char **argv);
-t_list *make_lst(int data);
 void lstadd_back(t_list **lst, t_list *new_node);
+t_list *make_lst(int data);
 int check_range(long long n);
 long long long_atoi(char *nptr);
 int is_digit_sp(char *str);
