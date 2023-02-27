@@ -1,33 +1,19 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 15:53:48 by eoh               #+#    #+#             */
-/*   Updated: 2023/02/25 17:51:29 by eoh              ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
+#include "push_swap.h"
 #include <stdio.h>
 
-int **ft_atoi(char **s);
-char	**ft_split(char const *s);
-char *ft_strjoin(char **argv, int argc);
-
-void push_swap(int argc, char **argv)
+void new_push_swap(int argc, char **argv)
 {
-    int **int_av;
-    int int_print;
-    char *new_argv;
+    t_list *stack_a;
 
-    if (check_error(argv) == -1)
-        return ;
-    new_argv = ft_strjoin(argv, argc);
-    argv = (ft_split(new_argv));
-    int_av = ft_atoi(argv);
-    stack_a = ft_lstnew(int_av);
-    
-    system("leaks a.out");
+    if (argc == 1)
+        return;
+    stack_a = first_stack(argv);
+    if (stack_a == 0)
+        write(1, "Error\n", 6);
+    // test
+    while (stack_a->next != 0)
+    {
+        printf("%d\n", stack_a->content);
+    }
+    // end
 }
