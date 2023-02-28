@@ -21,5 +21,6 @@ int main(int argc, char **argv)
         printf("%d\n", test_lst->content);
         test_lst = test_lst->next;
     }
+    //system("leaks a.out");
     return (0);
 }

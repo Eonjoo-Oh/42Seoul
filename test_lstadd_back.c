@@ -3,19 +3,47 @@
 
 typedef struct t_list
 {
-    int content;
     struct t_list *prev;
     struct t_list *next;
+    int content;
 } t_list;
 
+typedef struct s_list
+{
+    struct t_list *head;
+} s_list;
+
 t_list *make_lst(int data);
-void lstadd_back(t_list **lst, t_list *new_node);
+void lstadd_back(s_list *lst, int data);
 
 int main(void)
 {
     int i = 0;
     int arr[5] = {1, 2, 3, 4, 5};
-    t_list *result;
+    s_list *result;
+    t_list *tmp;
+
+    result = NULL;
+    while (i < 5)
+    {
+        lstadd_back(result, arr[i]);
+        i++;
+    }
+    tmp = result->head;
+    while (tmp->next != result->head)
+    {
+        printf("%d", tmp->content);
+        tmp = tmp->next;
+    }
+    printf("%d", tmp->content);
+}
+/*
+int main(void)
+{
+    int i = 0;
+    int arr[5] = {1, 2, 3, 4, 5};
+    s_list *result;
+    t_list *temp;
     t_list *node;
 
     result = NULL;
@@ -25,15 +53,15 @@ int main(void)
         lstadd_back(&result, node);
         i++;
     }
-    while (result->next != NULL)
+    temp = result->head;
+    while (temp->next != result->head)
     {
-        printf("%d\n", result->content);
-        result = result->next;
+        printf("%d\n", temp->content);
+        temp = temp->next;
     }
-    printf("%d\n", result->content);
     return (0);
 }
-
+*/
 
 /*
 int main()

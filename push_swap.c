@@ -9,11 +9,6 @@ void new_push_swap(int argc, char **argv)
         return;
     stack_a = first_stack(argv);
     if (stack_a == 0)
-        write(1, "Error\n", 6);
-    // test
-    while (stack_a->next != 0)
-    {
-        printf("%d\n", stack_a->content);
-    }
-    // end
+        write(2, "Error\n", 6);
+   
 }

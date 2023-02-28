@@ -18,19 +18,19 @@
 
 typedef struct t_list
 {
-    int content;
     struct t_list *prev;
     struct t_list *next;
+    int content;
 } t_list;
-/*
-typedef struct s_stack
-{
 
-}
-*/
+typedef struct s_list
+{
+    struct t_list *head;
+} s_list;
+
 void push_swap(int argc, char **argv);
 t_list *first_stack(char **argv);
-void lstadd_back(t_list **lst, t_list *new_node);
+void lstadd_back(s_list *lst, int data);
 t_list *make_lst(int data);
 int check_range(long long n);
 long long long_atoi(char *nptr);

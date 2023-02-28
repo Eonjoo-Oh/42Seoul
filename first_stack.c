@@ -6,11 +6,11 @@ t_list *first_stack(char **argv)
     int i;
     int j;
     char **splited;
-    t_list *first_stack;
+    s_list *stack;
     t_list *node;
 
     i = 1;
-    first_stack = NULL;
+    stack = NULL;
     while (argv[i] != 0)
     {
         if (is_digit_sp(argv[i]) == -1)
@@ -22,10 +22,10 @@ t_list *first_stack(char **argv)
             if (check_range(long_atoi(splited[j])) == -1)
                 return (0);
             node=(make_lst((int)long_atoi(splited[j])));
-            lstadd_back(&first_stack, node);
+            lstadd_back(&stack, node);
             j++;
         }
         i++;
     }
-    return (first_stack);
+    return (stack->head);
 }
