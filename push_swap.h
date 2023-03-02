@@ -29,7 +29,7 @@ typedef struct s_list
 } t_list;
 
 void push_swap(int argc, char **argv);
-t_list **first_stack(char **argv);
+t_list *first_stack(char **argv);
 void lstadd_back(t_list *lst, t_node *new_node);
 t_node *make_lst(int data);
 int check_range(long long n);

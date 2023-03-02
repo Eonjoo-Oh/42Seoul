@@ -10,4 +10,5 @@ void push_swap(int argc, char **argv)
     stack_a = first_stack(argv);
     if (stack_a == 0)
         write(2, "Error\n", 6);
+    printf("%d\n", stack_a->head->content);
 }

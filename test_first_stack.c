@@ -13,24 +13,23 @@ typedef struct s_list
     t_node *head;
 } t_list;
 
-t_list **first_stack(char **argv);
+t_list *first_stack(char **argv);
 
 int main(int argc, char **argv)
 {
-    t_list **stack;
-    t_node *test;
-    
-    test = NULL;
+    t_list *stack;
+    t_node *node;
+
     if (argc == 1)
-        exit(1);
+        return (0);
     stack = first_stack(argv);
-    (*stack)->head = test;
-    while (test->next != (*stack)->head)
+    node = stack->head;
+    while (node->next != stack->head)
     {
-        printf("%d\n", test->content);
-        test = test->next;
+        printf("%d\n", node->content);
+        node = node->next;
     }
-    printf("%d\n", test->content);
-    //system("leaks a.out");
+    printf("%d\n", node->content);
+    //system ("leaks a.out");
     return (0);
 }
