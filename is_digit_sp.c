@@ -7,8 +7,8 @@ int is_digit_sp(char *str)
     i = 0;
     while (str[i])
     {
-        if (!((str[i] >= '0' && str[i] <= '9') || 
-        ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)))
+        if (!((str[i] >= '0' && str[i] <= '9') ||
+              ((str[i] >= 9 && str[i] <= 13) || str[i] == 32) || str[i] == '-'))
             return (-1);
         i++;
     }
