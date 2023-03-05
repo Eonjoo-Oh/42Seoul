@@ -26,12 +26,20 @@ void push_swap(int argc, char **argv)
         exit(1);
     }
     node = stack_a->head;
+
+    if ((check_dup(node) == -1))
+    {
+        write(2, "Error\n", 6);
+        exit(1);
+    }
+
+    // test_makestack;
     while (node->next != stack_a->head)
     {
         printf("%d\n", node->content);
         node = node->next;
     }
-    printf("%d\n", node->content); 
+    printf("%d\n", node->content);
 }
 
 int main(int argc, char ** argv)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: eonjoo <eonjoo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:52:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/02/27 14:18:48 by eoh              ###   ########.fr       */
+/*   Updated: 2023/03/05 15:13:58 by eonjoo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ int check_range(long long n);
 long long long_atoi(char *nptr);
 int is_digit_sp(char *str);
 char **ft_split(char const *s);
+int check_dup(t_node *node);
 
 #endif
