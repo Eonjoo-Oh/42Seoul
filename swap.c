@@ -36,7 +36,7 @@ void sb(t_list *stack_b)
     last->prev = second;
 }
 
-void ss(t_list *stack_a, t_list *stack b);
+void ss(t_list *stack_a, t_list *stack_b)
 {
     sa(stack_a);
     sb(stack_b);
