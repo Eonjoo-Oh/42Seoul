@@ -1,58 +1,45 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct t_list
+typedef struct s_node
 {
+    struct s_node *prev;
+    struct s_node *next;
     int content;
-    struct t_list *prev;
-    struct t_list *next;
+} t_node;
+
+typedef struct s_list
+{
+    t_node *head;
 } t_list;
 
-t_list *make_lst(int data);
-void lstadd_back(t_list **lst, t_list *new_node);
+t_node *make_lst(int data);
+void lstadd_back(t_list *lst, t_node *new_node);
 
 int main(void)
 {
     int i = 0;
     int arr[5] = {1, 2, 3, 4, 5};
     t_list *result;
-    t_list *node;
+    t_node *temp;
+    t_node *node;
 
-    result = NULL;
+    result = (t_list *)malloc(sizeof(t_list));
+    if (!result)
+        return (0);
+    result->head = NULL;
     while (i < 5)
     {
         node = make_lst(arr[i]);
-        lstadd_back(&result, node);
+        lstadd_back(result, node);
         i++;
     }
-    while (result->next != NULL)
+    temp = result->head;
+    while (temp->next != result->head)
     {
-        printf("%d\n", result->content);
-        result = result->next;
+        printf("%d\n", temp->content);
+        temp = temp->next;
     }
-    printf("%d\n", result->content);
+    printf("%d\n", temp->content);
     return (0);
 }
-
-
-/*
-int main()
-{
-    t_list *lst = NULL;
-
-    lstadd_back(&lst, make_lst(1));
-    lstadd_back(&lst, make_lst(2));
-    lstadd_back(&lst, make_lst(3));
-    lstadd_back(&lst, make_lst(4));
-    lstadd_back(&lst, make_lst(5));
-
-    t_list *tmp = lst;
-    while (tmp != NULL)
-    {
-        printf("%d\n", tmp->content);
-        tmp = tmp->next;
-    }
-
-    return 0;
-}
-*/
