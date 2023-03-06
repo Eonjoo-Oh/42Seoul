@@ -6,7 +6,7 @@
 /*   By: eonjoo <eonjoo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:52:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/03/05 19:02:37 by eonjoo           ###   ########.fr       */
+/*   Updated: 2023/03/06 14:32:01 by eonjoo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,13 @@ int check_dup(t_node *node);
 void sa(t_list *stack_a);
 void sb(t_list *stack_b);
 void ss(t_list *stack_a, t_list *stack_b);
+void pa(t_list *stack_a, t_list *stack_b);
+void pb(t_list *stack_a, t_list *stack_b);
+void ra(t_list *stack_a);
+void rb(t_list *stack_b);
+void rr(t_list *stack_a, t_list *stack_b);
+void rra(t_list *stack_a);
+void rrb(t_list *stack_b);
+void rrr(t_list *stack_a, t_list *stack_b);
 
 #endif

@@ -1,39 +1,41 @@
-#include "push_swap.c"
+#include "push_swap.h"
 
 void pa(t_list *stack_a, t_list *stack_b)
 {
-    t_node *a;
-    t_node *b;
     t_node *first_b;
+    t_node *last_b;
     t_node *last_a;
 
-    a = stack_a->head;
-    b = stack_b->head->next;
     first_b = stack_b->head;
-    last_a = a->prev;
-    stack_b->head = b;
-    first_b->next = a;
+    last_b = first_b->prev;
+    last_a = stack_a->head->prev;
+
+    stack_b->head = first_b->next;
+    first_b->next = stack_a->head;
     first_b->prev = last_a;
-    a->prev = first_b;
-    last_a->prev = first_b;
+    stack_a->head->prev = first_b;
+    last_a->next = first_b;
     stack_a->head = first_b;
+    stack_b->head->prev = last_b;
+    last_b->next = stack_b->head;
 }
 
 void pb(t_list *stack_a, t_list *stack_b)
 {
-    t_node *a;
-    t_node *b;
     t_node *first_a;
+    t_node *last_a;
     t_node *last_b;
 
-    a = stack_a->head->next;
-    b = stack_b->head;
     first_a = stack_a->head;
-    last_b = b->prev;
-    stack_a->head = a;
-    first_a->next = b;
+    last_a = first_a->prev;
+    last_b = stack_b->head->prev;
+
+    stack_a->head = first_a->next;
+    first_a->next = stack_b->head;
     first_a->prev = last_b;
-    b->prev = first_a;
-    last_b->prev = first_a;
+    stack_b->head->prev = first_a;
+    last_b->next = first_a;
     stack_b->head = first_a;
+    stack_a->head->prev = last_a;
+    last_a->next = stack_a->head;
 }

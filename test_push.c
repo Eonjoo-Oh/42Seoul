@@ -1,47 +1,45 @@
 #include <stdio.h>
 #include "push_swap.h"
 
-void test_swap(t_list *stack_a, t_list *stack_b)
+void test_push(t_list *stack_a, t_list *stack_b)
 {
     t_node *a_head;
     t_node *b_head;
 
-    temp_a = stack_a;
-    temp_a = stack_b;
-    printf("\n------ test sa ------\n");
-    sa(stack_a);
+    printf("------ test pa ------\n");
+    pa(stack_a, stack_b);
     a_head = stack_a->head;
     a_head->prev->next = NULL;
+    printf("stack_a :\n");
     while (a_head != NULL)
     {
         printf("%d\n", a_head->content);
         a_head = a_head->next;
     }
-    printf("\n------ test sb ------\n");
-    sb(stack_b);
+
     b_head = stack_b->head;
     b_head->prev->next = NULL;
+    printf("stack_b :\n");
     while (b_head != NULL)
     {
         printf("%d\n", b_head->content);
         b_head = b_head->next;
     }
 
-     printf("\n------ test ss ------\n");
-     ss(stack_a, stack_b);
-     a_head = stack_a->head;
-     a_head->prev->next = NULL;
-     b_head = stack_b->head;
-     b_head->prev->next = NULL;
+    printf("------ test pb ------\n");
+    pb(stack_a, stack_b);
+    a_head = stack_a->head;
+    a_head->prev->next = NULL;
+    printf("stack_a :\n");
+    while (a_head != NULL)
+    {
+        printf("%d\n", a_head->content);
+        a_head = a_head->next;
+    }
 
-     printf("stack a:\n");
-     while (a_head != NULL)
-     {
-         printf("%d\n", a_head->content);
-         a_head = a_head->next;
-     }
-
-    printf("stack b:\n");
+    b_head = stack_b->head;
+    b_head->prev->next = NULL;
+    printf("stack_b :\n");
     while (b_head != NULL)
     {
         printf("%d\n", b_head->content);
@@ -101,7 +99,6 @@ int main(void)
     }
     // make_stack_b
 
-    // test_make_stack
     /*
     i = 0;
     temp = stack_b->head;
@@ -112,6 +109,7 @@ int main(void)
         i++;
     }
     */
+    // test_make_stack
 
-    test_swap(stack, stack_b);
+    test_push(stack, stack_b);
 }
