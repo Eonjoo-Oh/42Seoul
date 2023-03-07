@@ -27,7 +27,7 @@ void push_swap(int argc, char **argv)
     }
     node = stack_a->head;
 
-    if ((check_dup(node) == -1))
+    if ((check_dup(stack_a) == -1))
     {
         write(2, "Error\n", 6);
         exit(1);

@@ -37,7 +37,7 @@ int check_range(long long n);
 long long long_atoi(char *nptr);
 int is_digit_sp(char *str);
 char **ft_split(char const *s);
-int check_dup(t_node *node);
+int check_dup(t_list *stack);
 
 // commands
 void sa(t_list *stack_a);

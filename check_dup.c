@@ -1,50 +1,26 @@
 #include "push_swap.h"
 
-int check_dup(t_node *node)
+int check_dup(t_list *stack)
 {
-    int *plus;
-    int *minus;
+    t_node *first_node;
+    t_node *last_node;
     t_node *temp;
-    long long i;
-    int n;
 
-    plus = (int *)malloc(sizeof(int) * 2147483647);
-    if (!plus)
-        return (0);
-    minus = (int *)malloc(sizeof(int) * 2147483647);
-    if (!minus)
-        return (0);
-    i = 0;
-    while (i < 2147483647)
+    first_node = stack->head;
+    last_node = stack->head->prev;
+
+    last_node->next = NULL;
+    while (first_node != NULL)
     {
-        plus[i] = 0;
-        minus[i] = 0;
-        i++;
-    }
-    temp = node;
-    temp->prev->next = NULL;
-    while (temp != NULL)
-    {
-        n = temp->content;
-        if (n < 0)
+        temp = first_node->next;
+        while (temp != NULL)
         {
-            n = (n + 1) * -1;
-            if (minus[n] == 0)
-                minus[n]++;
-            else
+            if (first_node->content == temp->content)
                 return (-1);
+            temp = temp->next;
         }
-        else if (n >= 0)
-        {
-            if (plus[n] == 0)
-                plus[n]++;
-            else
-                return (-1);
-        }
-        temp = temp->next;
+        first_node = first_node->next;
     }
-    node->prev->next = node;
-    free(plus);
-    free(minus);
+    last_node->next = stack->head;
     return (1);
 }
