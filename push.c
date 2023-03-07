@@ -18,6 +18,8 @@ void pa(t_list *stack_a, t_list *stack_b)
     stack_a->head = first_b;
     stack_b->head->prev = last_b;
     last_b->next = stack_b->head;
+
+    write (1, "pa\n", 3);
 }
 
 void pb(t_list *stack_a, t_list *stack_b)
@@ -38,4 +40,6 @@ void pb(t_list *stack_a, t_list *stack_b)
     stack_b->head = first_a;
     stack_a->head->prev = last_a;
     last_a->next = stack_a->head;
+
+    write (1, "pb\n", 3);
 }

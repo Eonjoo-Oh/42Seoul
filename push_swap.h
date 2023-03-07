@@ -56,4 +56,5 @@ void rrr(t_list *stack_a, t_list *stack_b);
 int count_node(t_list *stack);
 int check_sorted(t_list *stack);
 void sort_few(t_list *stack_a, int size);
+
 #endif

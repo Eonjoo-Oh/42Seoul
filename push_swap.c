@@ -17,7 +17,7 @@ void push_swap(int argc, char **argv)
     t_list *stack_a;
     t_node *node;
 
-    if (argc == 1)
+    if (argc <= 2)
         exit(1);
     stack_a = first_stack(argv);
     if (stack_a == 0)
@@ -34,12 +34,11 @@ void push_swap(int argc, char **argv)
     }
     if ((check_sorted(stack_a) == -1))
         exit(1);
-    /*
-    if (count_node(stack_a) < 5)
+    if (count_node(stack_a) < 4)
     {
         sort_few(stack_a, count_node(stack_a));
         return ;
-    }*/
+    }
     // test_makestack;
     while (node->next != stack_a->head)
     {
