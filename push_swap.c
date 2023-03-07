@@ -32,7 +32,14 @@ void push_swap(int argc, char **argv)
         write(2, "Error\n", 6);
         exit(1);
     }
-
+    if ((check_sorted(stack_a) == -1))
+        exit(1);
+    /*
+    if (count_node(stack_a) < 5)
+    {
+        sort_few(stack_a, count_node(stack_a));
+        return ;
+    }*/
     // test_makestack;
     while (node->next != stack_a->head)
     {
@@ -40,6 +47,7 @@ void push_swap(int argc, char **argv)
         node = node->next;
     }
     printf("%d\n", node->content);
+    printf("size: %d\n", count_node(stack_a));
 }
 
 int main(int argc, char ** argv)
