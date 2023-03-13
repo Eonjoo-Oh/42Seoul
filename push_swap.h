@@ -6,7 +6,7 @@
 /*   By: eonjoo <eonjoo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:52:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/03/06 14:32:01 by eonjoo           ###   ########.fr       */
+/*   Updated: 2023/03/13 17:34:04 by eonjoo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_node
     struct s_node *prev;
     struct s_node *next;
     int content;
+    int tries;
 } t_node;
 
 typedef struct s_list
@@ -58,3 +59,16 @@ int check_sorted(t_list *stack);
 void sort_few(t_list *stack_a, int size);
 
 #endif
+
+/*
+6
+3
+2
+1
+5
+7
+0
+
+7/2 = 3
+
+*/

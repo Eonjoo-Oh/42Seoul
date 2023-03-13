@@ -15,6 +15,7 @@ void push_swap(int argc, char **argv)
 void push_swap(int argc, char **argv)
 {
     t_list *stack_a;
+    t_list *stack_b;
     t_node *node;
 
     if (argc <= 2)
@@ -38,6 +39,13 @@ void push_swap(int argc, char **argv)
     {
         sort_few(stack_a, count_node(stack_a));
         return ;
+    }
+    else
+    {
+        stack_b = (t_list *)malloc(sizeof(t_list));
+        if (!stack_b)
+            return (0);
+        sort(stack_a, stack_b, count_node(stack_a));
     }
     // test_makestack;
     while (node->next != stack_a->head)
