@@ -34,40 +34,44 @@ int count_tries(t_list *stack_a, t_list *stack_b, int size)
     int index;
     int count;
 
-    a_node = stack_a->head;
     b_node = stack_b->head;
     count = 0;
 
-    while (b_node != stack_b->head->prev)
+    b_node->prev->next = NULL;
+    while (b_node != NULL)
     {
+        a_node = stack_a->head;
         index = find_index(stack_b, b_node);
-        if (index <= count_node(stack_b))
+        if (index <= count_node(stack_b) / 2 + 1)
             count += (index - 1);
         else
-
-            /*
-            while (b_node != stack_b->head)
+            count += count_node(stack_b) - index + 1;
+        // pb의 가장 위에 올리는것까지 세어주었다. 옆으로 넘기기위한 작업을 해야함
+        while (1)
+        {
+            if (a_node = stack_a->head)
             {
-                if (index < count_node(stack_b))
-                    rb(stack_b); //이걸 쓰는 순간 찍히니까 어떻게하는게 좋을까(바로 write를 안하는게 맞나?)
-                    //이걸 실제로 쓰지말고 인덱스로 파악해서 count만 올려주는게 좋지않을까 싶다.
-                    //했다치고모드->이거 계산하는 법을 찾아봐야할듯
-                else
-                    rrb(stack_b);
-                count++;
-            }*/
-            // pb의 가장 위에 올리는것까지 세어주었다. 옆으로 넘기기위한 작업을 해야함
-            while ()
-            {
-                if (a_node = stack_a->head)
+                if (a_node->content > b_node->content)
                 {
-                    if (a_node->content > b_node)
+                    count++;
+                    break;
                 }
-                else if (a_node = stack_a->head->prev)
-
-                    else
-            }
+            } // 맨 앞에 들어올 때
+            else if (a_node != stack_a->head->prev)
+            {
+                if ((a_node->content < b_node->content) && a_node->next->content > b_node->content)
+                {
+                }
+            } // 중간에 들어올 때
+            else
+            {
+                count += 2;
+                break;
+            } // 마지막에 들어올 때
+            a_node = a_node->next;
+        }
         b_node->tries = count;
+        stack_b->head->prev->next = stack_b->head;
         if (count == 1)
             return; // count가 1이면 볼것도 없기때문에 그냥 종료함
         b_node = b_node->next;
