@@ -39,6 +39,9 @@ long long long_atoi(char *nptr);
 int is_digit_sp(char *str);
 char **ft_split(char const *s);
 int check_dup(t_list *stack);
+int check_error(int argc, char **argv);
+int check_argc(int argc);
+t_list *make_stack(void);
 
 // commands
 void sa(t_list *stack_a);
