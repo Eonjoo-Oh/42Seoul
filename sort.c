@@ -59,7 +59,7 @@ void count_tries(t_list *stack_a, t_list *stack_b, int size)
             } // 맨 앞에 들어올 때
             else if (a_node != stack_a->head->prev)
             {
-                if ((a_node->content < b_node->content) && a_node->next->content > b_node->content)
+                if ((a_node->content < b_node->content) && (a_node->next->content > b_node->content))
                 {
                     index = find_index(stack_a, a_node);
                     if (index < count_node(stack_a) / 2 + 1)
@@ -114,13 +114,22 @@ void put_last(t_list *stack_a, t_list *stack_b, t_node *min_node)
     ra(stack_a);
 }
 
-void do_sort(t_list *stack_a, t_list *stack_b, t_node *min_node)
+void do_sort(t_list *stack_a, t_list *stack_b, t_node *node)
 {
     int index;
     t_node *a_node;
+    t_node *b_node;
     t_node *temp;
+    t_node *min_node;
 
-    a_node = stack_a->head->next;
+    a_node = stack_a->head;
+    while (b_node->next != b_node)
+    {
+        if (b_node == node)
+            break;
+        b_node = b_node->next;
+    }
+    min_node = b_node;
 
     if (min_node->tries == 1)
     {
@@ -128,7 +137,7 @@ void do_sort(t_list *stack_a, t_list *stack_b, t_node *min_node)
         return ;
     }
     index = find_index(stack_b, min_node);
-    if (index <= count_node(stack_b)/2 + 1)
+    if (index <= count_node(stack_b) / 2 + 1)
     {
         while (min_node == stack_b->head)
             rb(stack_b);
@@ -138,9 +147,15 @@ void do_sort(t_list *stack_a, t_list *stack_b, t_node *min_node)
         while (min_node = stack_b->head)
             rrb(stack_b);
     }
+    //min_node를 stack_b의 가장 위에 올려줌
     while(a_node->next != stack_a->head)
     {
-        if (min_node->content > a_node->content && min_node->content < a_node->next->content)
+        if (a_node->content > min_node->content)
+        {
+            pa(stack_a, stack_b);
+            return ;
+        }
+        else if (min_node->content > a_node->content && min_node->content < a_node->next->content)
         {
             temp = stack_a->head;
             index = find_index(stack_a, a_node);
@@ -172,9 +187,9 @@ void sort(t_list *stack_a, t_list *stack_b, int size)
 {
     t_node *min_node;
     
+    push_to_b(stack_a, stack_b, size);
     while (stack_b->head != NULL)
     {
-        push_b(stack_a, stack_b, size);
         count_tries(stack_a, stack_b, size - 3);
         min_node = find_min_tries(stack_b);
         do_sort(stack_a, stack_b, min_node);
