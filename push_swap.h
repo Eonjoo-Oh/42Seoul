@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eonjoo <eonjoo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:52:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/03/13 18:39:54 by eonjoo           ###   ########.fr       */
+/*   Updated: 2023/03/14 19:39:20 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,20 @@ typedef struct s_list
     t_node *head;
 } t_list;
 
+// check_error
+int check_error(int argc, char **argv);
+int check_dup(t_list *stack);
+int check_argc(int argc);
+int check_range(long long n);
+
 // parsing
 void push_swap(int argc, char **argv);
 t_list *first_stack(char **argv);
 void lstadd_back(t_list *lst, t_node *new_node);
 t_node *make_lst(int data);
-int check_range(long long n);
 long long long_atoi(char *nptr);
 int is_digit_sp(char *str);
 char **ft_split(char const *s);
-int check_dup(t_list *stack);
-int check_error(int argc, char **argv);
-int check_argc(int argc);
 t_list *make_stack(void);
 
 // commands
