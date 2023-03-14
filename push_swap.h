@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:52:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/03/14 19:39:20 by eoh              ###   ########.fr       */
+/*   Updated: 2023/03/14 19:41:41 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_list
 
 // check_error
 int check_error(int argc, char **argv);
+int check_sorted(t_list *stack);
 int check_dup(t_list *stack);
 int check_argc(int argc);
 int check_range(long long n);

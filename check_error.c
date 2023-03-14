@@ -6,11 +6,18 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 19:35:14 by eoh               #+#    #+#             */
-/*   Updated: 2023/03/14 19:35:40 by eoh              ###   ########.fr       */
+/*   Updated: 2023/03/14 19:43:58 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int check_range(long long n)
+{
+    if (n > 2147483647 || n < -2147483648)
+        return (-1);
+    return (1);
+}
 
 int check_argc(int argc)
 {
