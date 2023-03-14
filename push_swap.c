@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 16:39:01 by eoh               #+#    #+#             */
-/*   Updated: 2023/03/14 19:32:51 by eoh              ###   ########.fr       */
+/*   Updated: 2023/03/14 19:35:39 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void push_swap(int argc, char **argv)
     else
     {
         stack_b = make_stack();
-        sort(stack_a, stack_b, count_node(stack_a));
+        //sort(stack_a, stack_b, count_node(stack_a));
     }
     // test_makestack;
     t_node  *node;
