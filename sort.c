@@ -49,7 +49,7 @@ void count_tries(t_list *stack_a, t_list *stack_b, int size)
         // pb의 가장 위에 올리는것까지 세어주었다. 옆으로 넘기기 위한 작업을 해야함
         while (1)
         {
-            if (a_node = stack_a->head)
+            if (a_node == stack_a->head)
             {
                 if (a_node->content > b_node->content)
                 {
@@ -63,7 +63,7 @@ void count_tries(t_list *stack_a, t_list *stack_b, int size)
                 {
                     index = find_index(stack_a, a_node);
                     if (index < count_node(stack_a) / 2 + 1)
-                        count += index * 2 + 1
+                        count += index * 2 + 1;
                     else
                         count += (count_node(stack_a) - index + 1) * 2 + 1;
                 }
@@ -83,7 +83,7 @@ void count_tries(t_list *stack_a, t_list *stack_b, int size)
     }
 }
 
-void find_min_tries(t_list *stack_b)
+t_node *find_min_tries(t_list *stack_b)
 {
     t_node *b_node;
     t_node *min_node;
@@ -102,7 +102,7 @@ void find_min_tries(t_list *stack_b)
         }
         if (min_node->tries > b_node ->tries)
             min_node = b_node;
-        b_node = b_node->next
+        b_node = b_node->next;
     }
     stack_b->head->prev->next = stack_b->head;
     return (min_node);
@@ -144,7 +144,7 @@ void do_sort(t_list *stack_a, t_list *stack_b, t_node *node)
     }
     else
     {
-        while (min_node = stack_b->head)
+        while (min_node == stack_b->head)
             rrb(stack_b);
     }
     //min_node를 stack_b의 가장 위에 올려줌
