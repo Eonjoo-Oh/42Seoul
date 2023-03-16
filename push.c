@@ -1,45 +1,74 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/16 15:27:43 by eoh               #+#    #+#             */
+/*   Updated: 2023/03/16 16:25:15 by eoh              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void pa(t_list *stack_a, t_list *stack_b)
 {
-    t_node *first_b;
-    t_node *last_b;
-    t_node *last_a;
-
-    first_b = stack_b->head;
-    last_b = first_b->prev;
-    last_a = stack_a->head->prev;
-
-    stack_b->head = first_b->next;
-    first_b->next = stack_a->head;
-    first_b->prev = last_a;
-    stack_a->head->prev = first_b;
-    last_a->next = first_b;
-    stack_a->head = first_b;
-    stack_b->head->prev = last_b;
-    last_b->next = stack_b->head;
-
-    write (1, "pa\n", 3);
+    t_node *temp;
+    
+    if (stack_b->head == NULL)
+        return ;
+    if (stack_a->head == NULL)
+    {
+        stack_a->head = stack_b->head;
+        stack_b->head->next->prev = stack_b->head->prev;
+        stack_b->head->prev->next = stack_b->head->next;
+        stack_b->head = stack_b->head->next;
+        stack_a->head->next = stack_a->head;
+        stack_a->head->prev = stack_a->head;
+    }
+    else
+    {
+        temp = stack_b->head->next;
+        stack_b->head->next->prev = stack_b->head->prev;
+        stack_b->head->prev->next = temp;
+        stack_b->head->next = stack_a->head;
+        stack_b->head->prev = stack_a->head->prev;
+        stack_a->head->prev->next = stack_b->head;
+        stack_a->head->prev = stack_b->head;
+        stack_a->head = stack_b->head;
+        stack_b->head = temp;
+    }
+    write(1, "pa\n", 3);
 }
 
 void pb(t_list *stack_a, t_list *stack_b)
 {
-    t_node *first_a;
-    t_node *last_a;
-    t_node *last_b;
+    t_node *temp;
 
-    first_a = stack_a->head;
-    last_a = first_a->prev;
-    last_b = stack_b->head->prev;
-
-    stack_a->head = first_a->next;
-    first_a->next = stack_b->head;
-    first_a->prev = last_b;
-    stack_b->head->prev = first_a;
-    last_b->next = first_a;
-    stack_b->head = first_a;
-    stack_a->head->prev = last_a;
-    last_a->next = stack_a->head;
-
-    write (1, "pb\n", 3);
-}
+    if (stack_a->head == NULL)
+        return ;
+    if (stack_b->head == NULL)
+    {
+        stack_b->head = stack_a->head;
+        stack_a->head->next->prev = stack_a->head->prev;
+        stack_a->head->prev->next = stack_a->head->next;
+        stack_a->head = stack_a->head->next;
+        stack_b->head->next = stack_b->head;
+        stack_b->head->prev = stack_b->head;
+    }
+    else
+    {
+        temp = stack_a->head->next;
+        stack_a->head->next->prev = stack_a->head->prev;
+        stack_a->head->prev->next = temp;
+        stack_a->head->next = stack_b->head;
+        stack_a->head->prev = stack_b->head->prev;
+        stack_b->head->prev->next = stack_a->head;
+        stack_b->head->prev = stack_a->head;
+        stack_b->head = stack_a->head;
+        stack_a->head = temp;
+    }
+    write(1, "pb\n", 3);
+}//여차하면 맨처음 조건 stack_a->head == NULL을 삭제해버리자;;
+//아니면 함수로 따로 떼어내거나

@@ -7,10 +7,11 @@ int main(int argc, char **argv)
     t_list *stack_b;
     t_node *node_a;
 
-    node_a = stack_a->head;
-
+    if (argc < 2)
+        return (0);
     stack_a = first_stack(argv);
     stack_b = make_stack();
+    node_a = stack_a->head;
     sort(stack_a, stack_b, count_node(stack_a));
 
     printf("\n------ contents ------\n");
