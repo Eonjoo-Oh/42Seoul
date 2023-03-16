@@ -76,7 +76,9 @@ void sort_three(t_list *stack_a)
 
 void sort_few(t_list *stack_a, int size)
 {
-    //정렬이 되어있지 않은 경우만 여기 들어올 수 있다. 
+    //정렬이 되어있지 않은 경우만 여기 들어올 수 있다.
+    if (check_sorted(stack_a) == -1)
+        return ;
     if (size == 2)
     {
         sa(stack_a);
