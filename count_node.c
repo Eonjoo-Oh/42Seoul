@@ -8,7 +8,7 @@ int count_node(t_list *stack)
     temp = stack->head;
     size = 1;
 
-    while ((temp != NULL) && (temp->next != stack->head))
+    while ((temp->next != NULL) && (temp->next != stack->head))
     {
         size++;
         temp = temp->next;
