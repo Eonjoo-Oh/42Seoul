@@ -15,7 +15,7 @@ void sa(t_list *stack_a)
 
     stack_a->head = second;
 
-    write (1, "sa\n", 3);
+    write(1, "sa\n", 3);
 }
 
 void sb(t_list *stack_b)
