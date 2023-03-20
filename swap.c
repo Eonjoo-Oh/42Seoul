@@ -27,13 +27,13 @@ void sb(t_list *stack_b)
     first->next = second->next;
     second->next->prev = first;
     first->prev = second;
-    second->prev = last;
     second->next = first;
+    second->prev = last;
     last->next = second;
 
     stack_b->head = second;
 
-    write (1, "sb\n", 3);
+    write(1, "sa\n", 3);
 }
 
 void ss(t_list *stack_a, t_list *stack_b)

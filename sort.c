@@ -35,12 +35,12 @@ void count_tries(t_list *stack_a, t_list *stack_b)
     int count;
 
     b_node = stack_b->head;
-    count = 0;
 
     b_node->prev->next = NULL;
     while (b_node != NULL)
     {
         a_node = stack_a->head;
+        count = 0;
         index = find_index(stack_b, b_node);
         if (index <= count_node(stack_b) / 2 + 1)
             count += (index - 1);
@@ -57,30 +57,33 @@ void count_tries(t_list *stack_a, t_list *stack_b)
                     break;
                 }
             } // 맨 앞에 들어올 때
-            else if (a_node != stack_a->head->prev)
-            {
-                if ((a_node->content < b_node->content) && (a_node->next->content > b_node->content))
-                {
-                    index = find_index(stack_a, a_node);
-                    if (index < count_node(stack_a) / 2 + 1)
-                        count += index * 2 + 1;
-                    else
-                        count += (count_node(stack_a) - index + 1) * 2 + 1;
-                }
-            } // 중간에 들어올 때
-            else
+            else if (a_node == stack_a->head->prev && a_node->content < b_node->content)
             {
                 count += 2;
                 break;
-            } // 마지막에 들어올 때
+            } // 제일 끝에 들어올 때
+            else
+            {
+                if ((a_node->content > b_node->content) && (a_node->prev->content < b_node->content))
+                {
+                    index = find_index(stack_a, a_node);
+                    if (index <= count_node(stack_a) / 2 + 1)
+                        count += (index - 1) * 2 + 1;
+                    else
+                        count += 2 * (count_node(stack_a) - index) + 4;
+                    break;
+                }
+            }
+            // 중간에 들어올 때
             a_node = a_node->next;
         }
         b_node->tries = count;
-        stack_b->head->prev->next = stack_b->head;
+
         if (count == 1)
-            return; // count가 1이면 볼것도 없기때문에 그냥 종료함
+            break; // count가 1이면 볼것도 없기때문에 그냥 종료함
         b_node = b_node->next;
     }
+    stack_b->head->prev->next = stack_b->head;
 }
 
 t_node *find_min_tries(t_list *stack_b)
