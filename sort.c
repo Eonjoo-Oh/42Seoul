@@ -143,48 +143,55 @@ void do_sort(t_list *stack_a, t_list *stack_b, t_node *node)
     index = find_index(stack_b, min_node);
     if (index <= count_node(stack_b) / 2 + 1)
     {
-        while (min_node == stack_b->head)
+        while (stack_b->head != min_node)
             rb(stack_b);
     }
     else
     {
-        while (min_node == stack_b->head)
+        while (stack_b->head != min_node)
             rrb(stack_b);
     }
     //min_node를 stack_b의 가장 위에 올려줌
-    while(a_node->next != stack_a->head)
+    while (1)
     {
-        if (a_node->content > min_node->content)
+        if (a_node == stack_a->head && a_node->content > min_node->content)
         {
             pa(stack_a, stack_b);
             return ;
-        }
-        else if (min_node->content > a_node->content && min_node->content < a_node->next->content)
+        } // stack_a의 제일 위에 올라올 때
+        else if (a_node->next == stack_a->head && a_node->content < min_node->content)
         {
-            temp = stack_a->head;
-            index = find_index(stack_a, a_node);
-            if (index < count_node(stack_a) / 2 + 1)
-            {
-                while (a_node->next == stack_a->head)
-                    ra(stack_a);
-                pa(stack_a, stack_b);
-                while (stack_a->head == temp)
-                    rra(stack_a);
-                return ;
-            }
-            else
-            {
-                while (a_node->next == stack_a->head)
-                    rra(stack_a);
-                pa(stack_a, stack_b);
-                while (stack_a->head == temp)
-                    ra(stack_a);
-                return ;
-            }
+            put_last(stack_a, stack_b);
+            return;
         }
+        else
+        {
+            if (min_node->content < a_node->content && min_node->content > a_node->prev->content)
+            {
+                temp = stack_a->head;
+                index = find_index(stack_a, a_node);
+                if (index < count_node(stack_a) / 2 + 1)
+                {
+                    while (a_node->next == stack_a->head)
+                        ra(stack_a);
+                    pa(stack_a, stack_b);
+                    while (stack_a->head == temp)
+                        rra(stack_a);
+                    return;
+                }
+                else
+                {
+                    while (a_node->next == stack_a->head)
+                        rra(stack_a);
+                    pa(stack_a, stack_b);
+                    while (stack_a->head == temp)
+                        ra(stack_a);
+                    return;
+                }
+            }
+        } // 중간에 낄 때
         a_node = a_node->next;
     }
-    put_last(stack_a, stack_b);
 }
 
 void sort(t_list *stack_a, t_list *stack_b, int size)
