@@ -181,7 +181,7 @@ void do_sort(t_list *stack_a, t_list *stack_b, t_node *node)
                 }
                 else
                 {
-                    while (a_node->next == stack_a->head)
+                    while (a_node->next != stack_a->head)
                         rra(stack_a);
                     pa(stack_a, stack_b);
                     while (stack_a->head == temp)
