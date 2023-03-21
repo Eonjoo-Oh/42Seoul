@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eonjoo <eonjoo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:27:43 by eoh               #+#    #+#             */
-/*   Updated: 2023/03/17 17:45:14 by eonjoo           ###   ########.fr       */
+/*   Updated: 2023/03/21 15:11:13 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void pa(t_list *stack_a, t_list *stack_b)
     else
     {
         temp = stack_b->head->next;
+        if (temp == stack_b->head)
+            temp = NULL;
         stack_b->head->next->prev = stack_b->head->prev;
         stack_b->head->prev->next = temp;
         stack_b->head->next = stack_a->head;
@@ -60,6 +62,8 @@ void pb(t_list *stack_a, t_list *stack_b)
     else
     {
         temp = stack_a->head->next;
+        if (temp == stack_a->head)
+            temp = NULL;
         stack_a->head->next->prev = stack_a->head->prev;
         stack_a->head->prev->next = temp;
         stack_a->head->next = stack_b->head;
@@ -71,4 +75,4 @@ void pb(t_list *stack_a, t_list *stack_b)
     }
     write(1, "pb\n", 3);
 }//여차하면 맨처음 조건 stack_a->head == NULL을 삭제해버리자;;
-//아니면 함수로 따로 떼어내거나
+//아니면 함수로 따로 떼어내거나->나중에 함수로 따로 떼버리자

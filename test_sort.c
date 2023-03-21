@@ -15,6 +15,7 @@ int main(int argc, char **argv)
     sort(stack_a, stack_b, count_node(stack_a));
 
     printf("\n------ contents ------\n");
+    node_a = stack_a->head;
     while (node_a->next != stack_a->head)
     {
         printf("%d\n", node_a->content);

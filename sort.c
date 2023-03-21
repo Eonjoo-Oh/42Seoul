@@ -120,9 +120,9 @@ void put_last(t_list *stack_a, t_list *stack_b)
 void do_sort(t_list *stack_a, t_list *stack_b, t_node *node)
 {
     int index;
+    int t_index;
     t_node *a_node;
     t_node *b_node;
-    t_node *temp;
     t_node *min_node;
 
     a_node = stack_a->head;
@@ -134,12 +134,13 @@ void do_sort(t_list *stack_a, t_list *stack_b, t_node *node)
         b_node = b_node->next;
     }
     min_node = b_node;
+    //min_node 찾기
 
     if (min_node->tries == 1)
     {
-        pb(stack_a, stack_b);
+        pa(stack_a, stack_b);
         return ;
-    }
+    }//min_node의 tries가 1일 경우 따로 빼줌->이게 굳이 필요할까?
     index = find_index(stack_b, min_node);
     if (index <= count_node(stack_b) / 2 + 1)
     {
@@ -152,6 +153,7 @@ void do_sort(t_list *stack_a, t_list *stack_b, t_node *node)
             rrb(stack_b);
     }
     //min_node를 stack_b의 가장 위에 올려줌
+
     while (1)
     {
         if (a_node == stack_a->head && a_node->content > min_node->content)
@@ -163,28 +165,28 @@ void do_sort(t_list *stack_a, t_list *stack_b, t_node *node)
         {
             put_last(stack_a, stack_b);
             return;
-        }
+        }// stack_a의 제일 마지막에 들어올 때
         else
         {
-            if (min_node->content < a_node->content && min_node->content > a_node->prev->content)
+            if (min_node->content > a_node->content && min_node->content < a_node->next->content)
             {
-                temp = stack_a->head;
                 index = find_index(stack_a, a_node);
+                t_index = index;
                 if (index < count_node(stack_a) / 2 + 1)
                 {
-                    while (a_node->next == stack_a->head)
+                    while (t_index-- > 0)
                         ra(stack_a);
                     pa(stack_a, stack_b);
-                    while (stack_a->head == temp)
+                    while (t_index++ < index - 1)
                         rra(stack_a);
                     return;
                 }
                 else
                 {
-                    while (a_node->next != stack_a->head)
+                    while (t_index-- > 1)
                         rra(stack_a);
                     pa(stack_a, stack_b);
-                    while (stack_a->head == temp)
+                    while (t_index++ < index)
                         ra(stack_a);
                     return;
                 }
