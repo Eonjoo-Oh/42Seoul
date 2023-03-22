@@ -117,7 +117,34 @@ void put_last(t_list *stack_a, t_list *stack_b)
     ra(stack_a);
 }
 
-void do_sort(t_list *stack_a, t_list *stack_b, t_node *node)
+int sort_more(t_list *stack_a, t_list *stack_b)
+{
+    int result;
+    t_node *target;
+    t_node *temp;
+
+    target = NULL;
+    temp = stack_b->head;
+    stack_b->head->prev->next = NULL;
+
+    while (temp != NULL)
+    {
+        if (temp->content < stack_a->head && temp->content > target->content)
+            target = temp;
+        temp = temp->next;
+    }
+    if (target = NULL)
+    {
+        stack_b->head->prev->next = stack_b->head;
+        return (-1);
+    }
+    else
+    {
+        
+    }
+}
+
+void sort_do(t_list *stack_a, t_list *stack_b, t_node *node)
 {
     int index;
     int t_index;
@@ -177,6 +204,8 @@ void do_sort(t_list *stack_a, t_list *stack_b, t_node *node)
                     while (t_index-- > 0)
                         ra(stack_a);
                     pa(stack_a, stack_b);
+                    while (sort_more(stack_a, stack_b) != 1)
+                        sort_more(stack_a, stack_b);
                     while (t_index++ < index - 1)
                         rra(stack_a);
                     return;
@@ -186,6 +215,8 @@ void do_sort(t_list *stack_a, t_list *stack_b, t_node *node)
                     while (t_index-- > 1)
                         rra(stack_a);
                     pa(stack_a, stack_b);
+                    while (sort_more(stack_a, stack_b) != 1)
+                        sort_more(stack_a, stack_b)
                     while (t_index++ < index)
                         ra(stack_a);
                     return;
@@ -205,6 +236,6 @@ void sort(t_list *stack_a, t_list *stack_b, int size)
     {
         count_tries(stack_a, stack_b);
         min_node = find_min_tries(stack_b);
-        do_sort(stack_a, stack_b, min_node);
+        sort_do(stack_a, stack_b, min_node);
     }
 }
