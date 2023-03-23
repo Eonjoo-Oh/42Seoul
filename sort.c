@@ -130,12 +130,141 @@ void push_to_b(t_list *stack_a, t_list *stack_b)
     push_last(stack_a, stack_b);
 }
 
+void count_to_top(t_list *stack_b, t_node *b_node, int size)
+{
+    int index;
+    t_node *temp;
+
+    temp = stack_b->head;
+    index = 0;
+
+    while (temp != NULL)
+    {
+        if (temp->content == b_node->content)
+            break;
+        temp = temp->next;
+        index++;
+    }
+    if (index <= size / 2 + 1)
+        count += (index - 1);
+    else
+        count += size - index + 1;
+    temp->tries = count;
+}
+
+int find_index(t_list *stack, t_node *node)
+{
+    t_node *first;
+    int index;
+
+    index = 1;
+
+    first = stack->head;
+
+    while (first != node)
+    {
+        index++;
+        first = first->next;
+    }
+    return (index);
+}
+
+void count_to_a(t_list *stack_a, t_list *stack_b, t_node* b_node)
+{
+    t_node *a_node;
+    t_node *b_node;
+    int index;
+
+    a_node = stack_a->head;
+    b_node = stack_b->head;
+
+    while (b_node != NULL)
+    {
+        while (1)
+        {
+            if (a_node == a_node->head && b_node->content < a_node->content)
+            {
+                b_node->tries = 1;
+                return ;
+            }//맨 앞에 들어올 때
+            else if (a_node == stack_a->head->prev && a_node->content < b_node->content)
+            {
+                b_node->tries = 2;
+                break;
+            }
+            else
+            {
+                if ((a_node->content > b_node->content) && (a_node->prev->content < b_node->content))
+                {
+                    index = find_index(stack_a, a_node);
+                    if (index <= count_node(stack_a) / 2 + 1);
+                        b_node->tries += (index - 1) * 2 + 1;
+                    else 
+                        b_node->tries += 2 * (count_node(stack_a) - index) + 4;
+                    break;
+                }
+            }
+            a_node = a_node->next;
+        }
+        b_node = b_node->next;
+    }
+}
+
+void count_tries(t_list *stack_a, t_list *stack_b, int size)
+{
+    t_node *b_node;
+    t_node *min_node;
+
+    b_node = stack_b;
+    b_node->prev->next = NULL;
+    while (b_node != NULL)
+    {
+        count_to_top(stack_b, b_node);
+        count_to_a(stack_a, stack_b, b_node);
+        b_node = b_node->next;
+    }
+    stack_b->head->prev->next = stack_b->head;
+}
+
+t_node *find_min_tries(t_list *stack_b)
+{
+    t_node *b_node;
+    t_node *min_node;
+
+    b_node = stack_b->head;
+    min_node = b_node;
+
+    b_node->prev->next = NULL;
+
+    while (b_node != NULL)
+    {
+        if (b_node->tries == 1)
+        {
+            min_node = b_node;
+            break;
+        }
+        if (min_node->tries > b_node ->tries)
+            min_node = b_node;
+        b_node = b_node->next;
+    }
+    stack_b->head->prev->next = stack_b->head;
+    return (min_node);
+}
+
 void sort(t_list *stack_a, t_list *stack_b)
 {    
+    int b_size;
+    t_node *min_node;
+
     push_to_b(stack_a, stack_b);
     while (stack_b != NULL)
     {
-        count_tries(stack_a, stack_b);
-        do_sort(stack_a, stakc_b);
+        b_size = count_node(stack_b);
+        if (stack_a->head != NULL)
+        {
+            count_tries(stack_a, stack_b, size);
+            min_node = (find_min_tries(stack_b));
+        }
+        do_sort(stack_a, stack_b);
     }
 }
