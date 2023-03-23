@@ -1,4 +1,16 @@
+//make_stack, make_lst, first_stack
+
 #include "push_swap.h"
+
+t_list *make_stack(void)
+{
+    t_list *stack;
+
+    stack = (t_list *)malloc(sizeof(t_list));
+    if (!stack)
+        return (0);
+    return (stack);
+}
 
 t_node *make_lst(int data)
 {
@@ -11,3 +23,4 @@ t_node *make_lst(int data)
     new->next = NULL;
     return (new);
 }
+

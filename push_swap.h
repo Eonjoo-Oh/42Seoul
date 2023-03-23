@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:52:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/03/16 14:10:01 by eoh              ###   ########.fr       */
+/*   Updated: 2023/03/23 17:15:52 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,24 +63,13 @@ void rrr(t_list *stack_a, t_list *stack_b);
 int count_node(t_list *stack);
 int check_sorted(t_list *stack);
 void sort_few(t_list *stack_a, int size);
-void sort(t_list *stack_a, t_list *stack_b, int size);
+void sort(t_list *stack_a, t_list *stack_b);
 void do_sort(t_list *stack_a, t_list *stack_b, t_node *node);
 void put_last(t_list *stack_a, t_list *stack_b);
 t_node *find_min_tries(t_list *stack_b);
 void count_tries(t_list *stack_a, t_list *stack_b);
 int find_index(t_list *stack, t_node *node);
+int *make_arr(t_list *stack_a, int size);
+void sort_arr(int *arr, int size);
 
 #endif
-
-/*
-6
-3
-2
-1
-5
-7
-0
-
-7/2 = 3
-
-*/
