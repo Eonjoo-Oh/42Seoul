@@ -41,6 +41,7 @@ void sort_arr(int *arr, int size)
         size--;
     }
 }
+// pivot값을 찾기위해 배열에 잠시 넣는 것
 
 int find_to_push(t_list *stack_a, int pivot)
 {
@@ -62,6 +63,7 @@ int find_to_push(t_list *stack_a, int pivot)
     stack_a->head->prev->next = stack_a->head;
     return (result);
 }
+// pivot보다 작은 값이 없으면 굳이 ra하지않고 break하는 장치
 
 void push_first_pivot(t_list *stack_a, t_list *stack_b, int first_pivot)
 {
@@ -108,6 +110,7 @@ void push_last(t_list *stack_a, t_list *stack_b)
         pb(stack_a, stack_b);
     }
 }
+// 여기까지가 피봇나누기
 
 void push_to_b(t_list *stack_a, t_list *stack_b)
 {
@@ -129,6 +132,7 @@ void push_to_b(t_list *stack_a, t_list *stack_b)
     push_second_pivot(stack_a, stack_b, second_pivot);
     push_last(stack_a, stack_b);
 }
+// do_sort의 역할
 
 void count_to_top(t_list *stack_b, t_node *b_node, int size)
 {
@@ -153,7 +157,8 @@ void count_to_top(t_list *stack_b, t_node *b_node, int size)
         count += size - index;
     temp->tries = count;
 }
-/*
+// stack_b에서 제일 위로 올리는 횟수를 세는 함수 여기까지 테스트완
+
 int find_index(t_list *stack, t_node *node)
 {
     t_node *first;
@@ -184,7 +189,7 @@ void count_to_a(t_list *stack_a, t_list *stack_b, t_node* b_node)
     {
         while (1)
         {
-            if (a_node == a_node->head && b_node->content < a_node->content)
+            if (a_node == stack_a->head && b_node->content < a_node->content)
             {
                 b_node->tries = 1;
                 return ;
@@ -252,21 +257,21 @@ t_node *find_min_tries(t_list *stack_b)
     stack_b->head->prev->next = stack_b->head;
     return (min_node);
 }
-*/
+
 void sort(t_list *stack_a, t_list *stack_b)
 {    
     int b_size;
     t_node *min_node;
 
     push_to_b(stack_a, stack_b);
-    /*while (stack_b != NULL)
+    while (stack_b != NULL)
     {
         b_size = count_node(stack_b);
         if (stack_a->head != NULL)
         {
-            count_tries(stack_a, stack_b, size);
+            count_tries(stack_a, stack_b, b_size);
             min_node = (find_min_tries(stack_b));
         }
-        do_sort(stack_a, stack_b);
-    }*/
+        push_to_b(stack_a, stack_b);
+    }
 }
