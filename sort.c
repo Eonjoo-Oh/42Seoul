@@ -158,7 +158,7 @@ void count_to_top(t_list *stack_b, t_node *b_node, int size)
     temp->tries = count;
 }
 // stack_b에서 제일 위로 올리는 횟수를 세는 함수 여기까지 테스트완
-
+//------------------------------------------------
 int find_index(t_list *stack, t_node *node)
 {
     t_node *first;
