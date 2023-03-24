@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: eonjoo <eonjoo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:52:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/03/23 17:15:52 by eoh              ###   ########.fr       */
+/*   Updated: 2023/03/24 18:24:18 by eonjoo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ void count_tries(t_list *stack_a, t_list *stack_b);
 int find_index(t_list *stack, t_node *node);
 int *make_arr(t_list *stack_a, int size);
 void sort_arr(int *arr, int size);
+void count_to_top(t_list *stack_b, t_node *b_node, int size);
 
 #endif
