@@ -110,7 +110,7 @@ void push_last(t_list *stack_a, t_list *stack_b)
         pb(stack_a, stack_b);
     }
 }
-// 여기까지가 피봇나누기
+// 여기까지가 피봇나누기 실행코드
 
 void push_to_b(t_list *stack_a, t_list *stack_b)
 {
@@ -132,7 +132,7 @@ void push_to_b(t_list *stack_a, t_list *stack_b)
     push_second_pivot(stack_a, stack_b, second_pivot);
     push_last(stack_a, stack_b);
 }
-// do_sort의 역할
+// 제일 초기에 피벗나누고 b에 넘기는 역할 pivot나누기의 main
 
 void count_to_top(t_list *stack_b, int size)
 {
@@ -245,6 +245,52 @@ t_node *find_min_tries(t_list *stack_b)
     return (min_node);
 }
 
+void sort_more(t_list *stack_a, t_list *stack_b, t_node *min_node)
+{
+    t_node *a_node;
+    t_node *b_node;
+    t_node *new_min;
+
+    b_node = stack_b->head;
+    b_node->prev->next = NULL
+    while (b_node != NULL)
+    {
+        if (new_min == NULL && b_node->content < min_node->content)
+        {
+            new_min = b_node;
+        }
+        else if (new_min != NULL && b_node->content < new_min)
+        {
+            new_min = b_node;
+        }
+        b_node = b_node->next;
+    }
+    stack_b->prev->next = stack_b->head;
+    if (new_min == NULL)
+        return;
+    else
+        do_sort(stack_a, stack_b, min_node);//재귀로쓸수있는지 잘 확인해보기, 최솟값이 없을때까지 계속 sort하고 싶다
+}
+
+void do_sort(t_list *stack_a, t_list *stack_b, t_node *target)
+{
+    t_node *a_node;
+    t_node *min_node;
+    
+    a_node = stack_a->head;
+    min_node = stack_b->head;
+    while (min_node->content != target->content)
+    {
+        min_node = min_node->next;
+    }
+    if (min_node->tries == 1)
+    {
+        pa(stack_a, stack_b);
+        sort_more(stack_a, stack_b, min_node);
+    }
+
+}
+
 void sort(t_list *stack_a, t_list *stack_b)
 {    
     int b_size;
@@ -260,6 +306,6 @@ void sort(t_list *stack_a, t_list *stack_b)
         count_to_top(stack_b, b_size);
         count_to_a(stack_a, stack_b, a_size);
         min_node = (find_min_tries(stack_b));
-        push_to_b(stack_a, stack_b);
+        do_sort(stack_a, stack_b, min_node);
     }
 }
