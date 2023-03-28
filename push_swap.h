@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:52:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/03/28 15:43:27 by eoh              ###   ########.fr       */
+/*   Updated: 2023/03/28 16:12:07 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,6 @@ int find_index(t_list *stack, t_node *node);
 int *make_arr(t_list *stack_a, int size);
 void sort_arr(int *arr, int size);
 void count_to_top(t_list *stack_b, int size);
-void count_to_a(t_list *stack_a, t_list *stack_b, t_node* target);
+void count_to_a(t_list *stack_a, t_list *stack_b, int a_size);
 
 #endif
