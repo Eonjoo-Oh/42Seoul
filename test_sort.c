@@ -12,7 +12,7 @@ int main(int argc, char **argv)
     stack_a = first_stack(argv);
     stack_b = make_stack();
     node_a = stack_a->head;
-    sort(stack_a, stack_b, count_node(stack_a));
+    sort(stack_a, stack_b);
 
     printf("\n------ contents ------\n");
     node_a = stack_a->head;

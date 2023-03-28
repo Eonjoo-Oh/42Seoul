@@ -176,7 +176,7 @@ int find_index(t_list *stack, t_node *node)
     return (index);
 }
 
-void count_to_a(t_list *stack_a, t_list *stack_b, t_node* b_node)
+void count_to_a(t_list *stack_a, t_list *stack_b, t_node* target)
 {
     t_node *a_node;
     t_node *b_node;
@@ -184,6 +184,12 @@ void count_to_a(t_list *stack_a, t_list *stack_b, t_node* b_node)
 
     a_node = stack_a->head;
     b_node = stack_b->head;
+    while (1)
+    {
+        if (b_node->content == target->content)
+            break;
+        b_node = b_node->next;
+    }
 
     while (b_node != NULL)
     {
@@ -220,13 +226,12 @@ void count_to_a(t_list *stack_a, t_list *stack_b, t_node* b_node)
 void count_tries(t_list *stack_a, t_list *stack_b, int size)
 {
     t_node *b_node;
-    t_node *min_node;
 
-    b_node = stack_b;
+    b_node = stack_b->head;
     b_node->prev->next = NULL;
     while (b_node != NULL)
     {
-        count_to_top(stack_b, b_node);
+        count_to_top(stack_b, b_node, size);
         count_to_a(stack_a, stack_b, b_node);
         b_node = b_node->next;
     }
