@@ -105,7 +105,7 @@ void push_second_pivot(t_list *stack_a, t_list *stack_b, int second_pivot)
 
 void push_last(t_list *stack_a, t_list *stack_b)
 {
-    while (stack_a->head != NULL)
+    while (count_node(stack_a) > 3)
     {
         pb(stack_a, stack_b);
     }
@@ -134,31 +134,31 @@ void push_to_b(t_list *stack_a, t_list *stack_b)
 }
 // do_sort의 역할
 
-void count_to_top(t_list *stack_b, t_node *b_node, int size)
+void count_to_top(t_list *stack_b, int size)
 {
     int index;
     int count;
-    t_node *temp;
+    t_node *node;
 
-    temp = stack_b->head;
-    count = 0;
     index = 0;
+    node = stack_b->head;
+    node->prev->next = NULL;
 
-    while (temp != NULL)
+    while (node != NULL)
     {
-        if (temp->content == b_node->content)
-            break;
-        temp = temp->next;
+        count = 0;
+        if (index < size / 2 + 1)
+            count += index;
+        else
+            count += size - index;
+        node->tries = count;        
         index++;
+        node = node->next;
     }
-    if (index < size / 2 + 1)
-        count += index;
-    else
-        count += size - index;
-    temp->tries = count;
+    stack_b->head->prev->next = stack_b->head;
 }
-// stack_b에서 제일 위로 올리는 횟수를 세는 함수 여기까지 테스트완
-//------------------------------------------------
+// stack_b에서 제일 위로 올리는 횟수를 세는 함수
+
 int find_index(t_list *stack, t_node *node)
 {
     t_node *first;
@@ -176,7 +176,7 @@ int find_index(t_list *stack, t_node *node)
     return (index);
 }
 
-void count_to_a(t_list *stack_a, t_list *stack_b, t_node* target)
+void count_to_a(t_list *stack_a, t_list *stack_b)
 {
     t_node *a_node;
     t_node *b_node;
@@ -223,21 +223,6 @@ void count_to_a(t_list *stack_a, t_list *stack_b, t_node* target)
     }
 }
 
-void count_tries(t_list *stack_a, t_list *stack_b, int size)
-{
-    t_node *b_node;
-
-    b_node = stack_b->head;
-    b_node->prev->next = NULL;
-    while (b_node != NULL)
-    {
-        count_to_top(stack_b, b_node, size);
-        count_to_a(stack_a, stack_b, b_node);
-        b_node = b_node->next;
-    }
-    stack_b->head->prev->next = stack_b->head;
-}
-
 t_node *find_min_tries(t_list *stack_b)
 {
     t_node *b_node;
@@ -269,14 +254,12 @@ void sort(t_list *stack_a, t_list *stack_b)
     t_node *min_node;
 
     push_to_b(stack_a, stack_b);
-    while (stack_b != NULL)
+    while (stack_b->head != NULL)
     {
         b_size = count_node(stack_b);
-        if (stack_a->head != NULL)
-        {
-            count_tries(stack_a, stack_b, b_size);
-            min_node = (find_min_tries(stack_b));
-        }
+        count_to_top(stack_b, b_size);
+        count_to_a(stack_a, stack_b);
+        min_node = (find_min_tries(stack_b));
         push_to_b(stack_a, stack_b);
     }
 }
