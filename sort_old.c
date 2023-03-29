@@ -1,14 +1,171 @@
 #include "push_swap.h"
 
-void push_to_b(t_list *stack_a, t_list *stack_b, int size)
+void sort_arr(int *arr, int size)
 {
-    while (size > 3)
+    int i;
+    int temp;
+
+    while (size > 1)
     {
-        pb(stack_a, stack_b);
+        i = 0;
+        while (i + 1 < size)
+        {
+            if (arr[i] > arr[i + 1])
+            {
+                temp = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = temp;
+            }
+            i++;
+        }
         size--;
     }
-    sort_few(stack_a, 3);
 }
+// pivot값을 찾기위해 배열에 잠시 넣는 것
+
+/*void indexing(int *arr, t_list *stack_a, int size)
+{
+    t_node *node;
+    int i;
+
+    node = stack_a->head;
+    node->prev->next = NULL;
+
+    while (i < size)
+    {
+        while (node != NULL)
+        {
+            if (arr[i] == node->content)
+            {
+                node->content = i;
+                break;
+            }
+            node = node->next;
+        }
+        i++;
+    }
+    stack_a->head->prev->next = stack_a->head;
+}
+*/
+int find_to_push(t_list *stack_a, int pivot)
+{
+    t_node *node;
+    int result;
+
+    result = -1;
+    node = stack_a->head;
+    node->prev->next = NULL;
+    while (node != NULL)
+    {
+        if (node->content < pivot)
+        {
+            result = 1;
+            break;
+        }
+        node = node->next;
+    }
+    stack_a->head->prev->next = stack_a->head;
+    return (result);
+}
+// pivot보다 작은 값이 없으면 굳이 ra하지않고 break하는 장치
+
+void push_first_pivot(t_list *stack_a, t_list *stack_b, int first_pivot)
+{
+    t_node *node;
+    int size;
+
+    size = count_node(stack_a);
+    while (size > 3)
+    {
+        node = stack_a->head;
+        if (find_to_push(stack_a, first_pivot) == -1)
+            return ;
+        if (node->content < first_pivot)
+        {
+            pb(stack_a, stack_b);
+            rb(stack_b);
+        }
+        else
+            ra(stack_a);
+        size--;
+    }
+}
+
+void push_second_pivot(t_list *stack_a, t_list *stack_b, int second_pivot)
+{
+    t_node *node;
+    int size;
+
+    size = count_node(stack_a);
+    while (size > 3)
+    {
+        node = stack_a->head;
+        if (find_to_push(stack_a, second_pivot) == -1)
+            return ;
+        if (node->content < second_pivot)
+            pb(stack_a, stack_b);
+        else
+            ra(stack_a);
+        size--;
+    }
+}
+
+void push_last(t_list *stack_a, t_list *stack_b)
+{
+    while (count_node(stack_a) > 3)
+    {
+        pb(stack_a, stack_b);
+    }
+}
+// 여기까지가 피봇나누기 실행코드
+
+void push_to_b(t_list *stack_a, t_list *stack_b)
+{
+    int *arr;
+    int first_pivot;
+    int second_pivot;
+    int size;
+
+    size = count_node(stack_a);
+    //if (size < 조건이 있어야할것같다?)
+
+    arr = make_arr(stack_a, size);
+    sort_arr(arr, size);//arr을 만들고 정렬까지함
+    //indexing(arr, stack_a, size);
+
+    first_pivot = arr[size / 3];
+    second_pivot = arr[size / 3 * 2];//피벗설정
+    free(arr);
+    push_first_pivot(stack_a, stack_b, first_pivot);
+    push_second_pivot(stack_a, stack_b, second_pivot);
+    push_last(stack_a, stack_b);
+}
+// 제일 초기에 피벗나누고 b에 넘기는 역할 pivot나누기의 main
+
+void count_to_top(t_list *stack_b, int size)
+{
+    int index;
+    int count;
+    t_node *node;
+
+    index = 0;
+    node = stack_b->head;
+    node->prev->next = NULL;
+
+    while (node != NULL)
+    {
+        count = 0;
+        if (index < size / 2 + 1)
+            count += index;
+        else
+            count += size - index;
+        node->tries = count;        
+        index++;
+        node = node->next;
+    }
+    stack_b->head->prev->next = stack_b->head;
+}
+// stack_b에서 제일 위로 올리는 횟수를 세는 함수
 
 int find_index(t_list *stack, t_node *node)
 {
@@ -27,60 +184,45 @@ int find_index(t_list *stack, t_node *node)
     return (index);
 }
 
-void count_tries(t_list *stack_a, t_list *stack_b)
+void count_to_a(t_list *stack_a, t_list *stack_b, int a_size)
 {
-    t_node *b_node;
     t_node *a_node;
-    int index;
-    int count;
+    t_node *b_node;
+    int a_index;
 
+    a_index = 0;
+    a_node = stack_a->head;
     b_node = stack_b->head;
-
     b_node->prev->next = NULL;
+    
     while (b_node != NULL)
     {
-        a_node = stack_a->head;
-        count = 0;
-        index = find_index(stack_b, b_node);
-        if (index <= count_node(stack_b) / 2 + 1)
-            count += (index - 1);
-        else
-            count += count_node(stack_b) - index + 1;
-        // pb의 가장 위에 올리는것까지 세어주었다. 옆으로 넘기기 위한 작업을 해야함
         while (1)
         {
-            if (a_node == stack_a->head)
+            if (a_index == 0 && a_node->content > b_node->content)
             {
-                if (a_node->content > b_node->content)
-                {
-                    count++;
-                    break;
-                }
-            } // 맨 앞에 들어올 때
-            else if (a_node == stack_a->head->prev && a_node->content < b_node->content)
-            {
-                count += 2;
+                b_node->tries += 1;
                 break;
-            } // 제일 끝에 들어올 때
+            }
+            else if (a_index == a_size - 1 && a_node->content < b_node->content)
+            {
+                b_node->tries += 2;
+                break;
+            }
             else
             {
-                if ((a_node->content > b_node->content) && (a_node->prev->content < b_node->content))
+                if (a_node->content < b_node->content && a_node->next->content > b_node->content)
                 {
-                    index = find_index(stack_a, a_node);
-                    if (index <= count_node(stack_a) / 2 + 1)
-                        count += (index - 1) * 2 + 1;
+                    if (a_index < a_size / 2 + 1)
+                        b_node->tries += a_index +  2;
                     else
-                        count += 2 * (count_node(stack_a) - index) + 4;
+                        b_node->tries += a_size - a_index + 1;
                     break;
                 }
             }
-            // 중간에 들어올 때
+            a_index++;
             a_node = a_node->next;
         }
-        b_node->tries = count;
-
-        if (count == 1)
-            break; // count가 1이면 볼것도 없기때문에 그냥 종료함
         b_node = b_node->next;
     }
     stack_b->head->prev->next = stack_b->head;
@@ -103,7 +245,10 @@ t_node *find_min_tries(t_list *stack_b)
             min_node = b_node;
             break;
         }
-        if (min_node->tries > b_node ->tries)
+        if (min_node->tries > b_node->tries)
+            min_node = b_node;
+        else if (min_node->tries == b_node->tries &&
+         min_node->content < b_node->content)
             min_node = b_node;
         b_node = b_node->next;
     }
@@ -111,131 +256,153 @@ t_node *find_min_tries(t_list *stack_b)
     return (min_node);
 }
 
-void put_last(t_list *stack_a, t_list *stack_b)
-{
-    pa(stack_a, stack_b);
-    ra(stack_a);
-}
-
 int sort_more(t_list *stack_a, t_list *stack_b)
 {
-    int result;
+    t_node *top;
+    t_node *bot;
+    t_node *b_node;
     t_node *target;
-    t_node *temp;
 
+    top = stack_a->head;
+    bot = stack_a->head->prev;
+    b_node = stack_b->head;
     target = NULL;
-    temp = stack_b->head;
-    stack_b->head->prev->next = NULL;
 
-    while (temp != NULL)
+    b_node->prev->next = NULL;
+    while (b_node != NULL)
     {
-        if (temp->content < stack_a->head && temp->content > target->content)
-            target = temp;
-        temp = temp->next;
+        if (b_node->content < top->content && b_node->content < bot->content)
+        {
+            if (target == NULL)
+                target = b_node;
+            else if (target != NULL && target->content < b_node->content)
+                target = b_node;
+        }
+        b_node = b_node->next;
     }
-    if (target = NULL)
-    {
-        stack_b->head->prev->next = stack_b->head;
+    stack_b->head->prev->next = stack_b->head;
+    if (target == NULL)
         return (-1);
-    }
-    else
+    do_sort(stack_a, stack_b, target);
+    return (1);
+}
+
+
+void do_top_b(t_list *stack_b, t_node *target)
+{
+    t_node *min_node;
+    int index;
+    int size;
+
+    min_node = stack_b->head;
+    index = 0;
+    size = count_node(stack_b);
+
+    while (min_node->content != target->content)
     {
-        
+        min_node = min_node->next;
+        index++;
+    }
+
+    while (min_node != stack_b->head)
+    {
+        if (index < size / 2 + 1)
+            rb(stack_b);
+        else
+            rrb(stack_b);
     }
 }
 
-void sort_do(t_list *stack_a, t_list *stack_b, t_node *node)
+void do_sort(t_list *stack_a, t_list *stack_b, t_node *target)
 {
-    int index;
-    int t_index;
     t_node *a_node;
-    t_node *b_node;
-    t_node *min_node;
-
+    t_node *min;
+    int index;
+    int i;
+    
     a_node = stack_a->head;
-    b_node = stack_b->head;
-    while (b_node->next != b_node)
+    min = stack_b->head;
+    index = 0;
+    i = 0;
+    
+    while (min->content != target->content)
     {
-        if (b_node == node)
-            break;
-        b_node = b_node->next;
+        min = min->next;
     }
-    min_node = b_node;
-    //min_node 찾기
-
-    if (min_node->tries == 1)
-    {
-        pa(stack_a, stack_b);
-        return ;
-    }//min_node의 tries가 1일 경우 따로 빼줌->이게 굳이 필요할까?
-    index = find_index(stack_b, min_node);
-    if (index <= count_node(stack_b) / 2 + 1)
-    {
-        while (stack_b->head != min_node)
-            rb(stack_b);
-    }
-    else
-    {
-        while (stack_b->head != min_node)
-            rrb(stack_b);
-    }
-    //min_node를 stack_b의 가장 위에 올려줌
-
+    
+    do_top_b(stack_b, target);//min를 stack_b가장 위에 올려줌
+    
     while (1)
     {
-        if (a_node == stack_a->head && a_node->content > min_node->content)
+        if (a_node == stack_a->head && a_node->content > min->content)
         {
             pa(stack_a, stack_b);
-            return ;
-        } // stack_a의 제일 위에 올라올 때
-        else if (a_node->next == stack_a->head && a_node->content < min_node->content)
+            break ;
+        }
+        else if (a_node->next == stack_a->head && a_node->content < min->content)
         {
-            put_last(stack_a, stack_b);
-            return;
-        }// stack_a의 제일 마지막에 들어올 때
+            pa(stack_a, stack_b);
+            ra(stack_a);
+            break ;
+        }
         else
         {
-            if (min_node->content > a_node->content && min_node->content < a_node->next->content)
+            if (a_node->content < min->content && a_node->next->content > min->content)
             {
-                index = find_index(stack_a, a_node);
-                t_index = index;
                 if (index < count_node(stack_a) / 2 + 1)
                 {
-                    while (t_index-- > 0)
+                    while (i < index + 1)
+                    {
                         ra(stack_a);
-                    pa(stack_a, stack_b);
-                    while (sort_more(stack_a, stack_b) != 1)
-                        sort_more(stack_a, stack_b);
-                    while (t_index++ < index - 1)
-                        rra(stack_a);
-                    return;
+                        i++;
+                    }
+                    pa(stack_a, stack_b);        
                 }
                 else
                 {
-                    while (t_index-- > 1)
+                    while (i < count_node(stack_a) - index)
+                    {
                         rra(stack_a);
+                        i++;
+                    }
                     pa(stack_a, stack_b);
-                    while (sort_more(stack_a, stack_b) != 1)
-                        sort_more(stack_a, stack_b)
-                    while (t_index++ < index)
-                        ra(stack_a);
-                    return;
                 }
+                break ;
             }
-        } // 중간에 낄 때
+        }
+        index++;
         a_node = a_node->next;
     }
 }
 
-void sort(t_list *stack_a, t_list *stack_b, int size)
+/*void sort_fin(t_list *stack_a)
 {
+
+}*/
+
+void sort(t_list *stack_a, t_list *stack_b)
+{    
+    int b_size;
+    int a_size;
     t_node *min_node;
-    
-    push_to_b(stack_a, stack_b, size);
+
+    push_to_b(stack_a, stack_b);
+    sort_few(stack_a, count_node(stack_a));
+
     while (stack_b->head != NULL)
     {
-        count_tries(stack_a, stack_b);
-        min_node = find_min_tries(stack_b);
-        sort_do(stack_a, stack_b, min_node);
+        a_size = count_node(stack_a);
+        b_size = count_node(stack_b);
+        count_to_top(stack_b, b_size);
+        count_to_a(stack_a, stack_b, a_size);
+        min_node = (find_min_tries(stack_b));
+        do_sort(stack_a, stack_b, min_node);
+
+        /*while (sort_more(stack_a, stack_b) != -1)
+        {
+            sort_more(stack_a, stack_b);
+        }*/
+        //do_sort2(stack_a, stack_b);
     }
+    //sort_fin(stack_a);
 }
