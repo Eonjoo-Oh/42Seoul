@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:52:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/03/29 22:44:02 by eoh              ###   ########.fr       */
+/*   Updated: 2023/03/30 01:18:22 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,36 @@ void rra(t_list *stack_a);
 void rrb(t_list *stack_b);
 void rrr(t_list *stack_a, t_list *stack_b);
 
-//sort
-int count_node(t_list *stack);
-int check_sorted(t_list *stack);
-void sort_few(t_list *stack_a, int size);
-void sort(t_list *stack_a, t_list *stack_b);
-void do_sort(t_list *stack_a, t_list *stack_b, t_node *node);
-void put_last(t_list *stack_a, t_list *stack_b);
-t_node *find_min_tries(t_list *stack_b);
-int find_index(t_list *stack, t_node *node);
+//make
+t_list *make_stack(void);
+t_node *make_lst(int data);
 int *make_arr(t_list *stack_a, int size);
+int make_dif(t_node *a_node, t_node *b_node);
+
+//count
+int count_node(t_list *stack);
+void count_to_top(t_list *stack_b);
+void count_to_a(t_list *stack_a, t_list *stack_b);
+
+//find
+t_node *find_close(t_list *stack_a, t_node *b_node);
+t_node *find_min_node(t_list *stack_b);
+int find_index(t_list *stack, t_node *node);
+
+//pivot
 void sort_arr(int *arr, int size);
-void count_to_top(t_list *stack_b, int size);
-void count_to_a(t_list *stack_a, t_list *stack_b, int a_size);
+int find_to_push(t_list *stack_a, int pivot);
+void push_first_pivot(t_list *stack_a, t_list *stack_b, int first_pivot);
+void push_second_pivot(t_list *stack_a, t_list *stack_b, int second_pivot);
+void push_to_b(t_list *stack_a, t_list *stack_b);
+
+//sort
+void do_both(t_list *stack_a, t_list *stack_b, t_node *min);
+void do_top(t_list *stack_b, t_node *min);
+void do_a(t_list *stack_a, t_node *min);
+void do_last(t_list *stack_a);
+void sort(t_list *stack_a, t_list *stack_b);
+void sort_few(t_list *stack_a, int size);
+
 
 #endif

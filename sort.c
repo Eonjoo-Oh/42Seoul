@@ -39,7 +39,7 @@ void do_top(t_list *stack_b, t_node *min)
     }
 }
 
-void do_a(t_list *stack_a, t_list *stack_b, t_node *min)
+void do_a(t_list *stack_a, t_node *min)
 {
     while (min->tries != 0)
     {
@@ -88,7 +88,7 @@ void sort(t_list *stack_a, t_list *stack_b)
         min_node = find_min_node(stack_b);
         do_both(stack_a, stack_b, min_node);
         do_top(stack_b, min_node);
-        do_a(stack_a, stack_b, min_node);
+        do_a(stack_a, min_node);
         pa(stack_a, stack_b);
     }
     do_last(stack_a);

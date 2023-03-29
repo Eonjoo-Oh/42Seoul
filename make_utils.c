@@ -44,7 +44,7 @@ int *make_arr(t_list *stack_a, int size)
     return (arr);
 }
 
-int make_dif(node *a_node, node *b_node)
+int make_dif(t_node *a_node, t_node *b_node)
 {
     int dif;
 

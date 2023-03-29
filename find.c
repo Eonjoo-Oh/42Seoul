@@ -26,12 +26,13 @@ t_node *find_close(t_list *stack_a, t_node *b_node)
             a_node = a_node->next;
     }
     stack_a->head->prev->next = stack_a->head;
+    return (close);
 }
 
 t_node *find_min_node(t_list *stack_b)
 {
     t_node *min_node;
-    t_node *node;
+    t_node *b_node;
     int min_tries;
     int temp;
 
