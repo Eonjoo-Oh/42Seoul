@@ -48,7 +48,7 @@ int make_dif(t_node *a_node, t_node *b_node)
 {
     int dif;
 
-    dif = a_node - b_node;
+    dif = a_node->content - b_node->content;
     if (dif < 0)
         dif *= -1;
     return (dif);

@@ -39,20 +39,36 @@ void do_top(t_list *stack_b, t_node *min)
     }
 }
 
-void do_a(t_list *stack_a, t_node *min)
+void do_a(t_list *stack_a, t_list *stack_b, t_node *min)
 {
-    while (min->tries != 0)
+    t_node *close;
+    int i;
+    int size;
+
+    close = find_close(stack_a, min);
+    i = find_index(stack_a, close);
+    size = count_node(stack_a);
+    if (i == size - 1 && close->content < min->content)
     {
-        if (min->tries > 0)
+        pa(stack_a, stack_b);
+        ra(stack_a);
+    }
+    else
+    {
+        while (min->tries != 0)
         {
-            ra(stack_a);
-            (min->top)--;
+            if (min->tries > 0)
+            {
+                ra(stack_a);
+                (min->tries)--;
+            }
+            else if (min->tries < 0)
+            {
+                rra(stack_a);
+                (min->tries)++;
+            }
         }
-        else if (min->top < 0)
-        {
-            rra(stack_a);
-            (min->top)++;
-        }
+        pa(stack_a, stack_b);
     }
 }
 
@@ -76,7 +92,7 @@ void do_last(t_list *stack_a)
 
 void sort(t_list *stack_a, t_list *stack_b)
 {
-    t_node *min_node;
+    t_node *min_tries;
 
     push_to_b(stack_a, stack_b);
     sort_few(stack_a, count_node(stack_a));
@@ -85,11 +101,10 @@ void sort(t_list *stack_a, t_list *stack_b)
     {
         count_to_top(stack_b);
         count_to_a(stack_a, stack_b);
-        min_node = find_min_node(stack_b);
-        do_both(stack_a, stack_b, min_node);
-        do_top(stack_b, min_node);
-        do_a(stack_a, min_node);
-        pa(stack_a, stack_b);
+        min_tries = find_min_tries(stack_b);
+        do_both(stack_a, stack_b, min_tries);
+        do_top(stack_b, min_tries);
+        do_a(stack_a, stack_b, min_tries);
     }
     do_last(stack_a);
 }

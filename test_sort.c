@@ -22,4 +22,5 @@ int main(int argc, char **argv)
         node_a = node_a->next;
     }
     printf("%d\n", node_a->content);
+
 }

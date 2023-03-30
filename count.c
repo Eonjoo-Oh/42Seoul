@@ -29,7 +29,7 @@ void count_to_top(t_list *stack_b)
 
     while (node != NULL)
     {
-        if (index < size / 2)
+        if (index <= size / 2)
             node->top = index;
         else
             node->top = (size - index) * -1;
@@ -43,27 +43,31 @@ void count_to_a(t_list *stack_a, t_list *stack_b)
 {
     t_node *close;
     t_node *b_node;
-    int close_i;
+    int i;
 
     b_node = stack_b->head;
     b_node->prev->next = NULL;
     while (b_node != NULL)
     {
         close = find_close(stack_a, b_node);
-        close_i = find_index(stack_a, close);
-        if (close_i < count_node(stack_a) / 2)
+        i = find_index(stack_a, close);
+        if (close->content < b_node->content)
         {
-            if (close->content > b_node->content)
-                b_node->tries = close_i;
+            if (i == count_node(stack_a) - 1)
+                b_node->tries = -1;
+            else if (i < count_node(stack_a) / 2)
+                b_node->tries = i + 1;
             else
-                b_node->tries = close_i + 1;
+            {
+                b_node->tries = (count_node(stack_a) - i) * -1;
+            }
         }
         else
         {
-            if (close->content > b_node->content)
-                b_node->tries = (count_node(stack_a) - close_i) * -1;
+            if (i <= count_node(stack_a) / 2)
+                b_node->tries = i;
             else
-                b_node->tries = (count_node(stack_a) - close_i + 1) * -1;
+                b_node->tries = (count_node(stack_a) - i) * -1;
         }
         b_node = b_node->next;
     }

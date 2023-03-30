@@ -34,7 +34,7 @@ int find_to_push(t_list *stack_a, int pivot)
     {
         if (node->content < pivot)
         {
-            result = 1;
+            result = find_index(stack_a, node);
             break;
         }
         node = node->next;
@@ -47,20 +47,27 @@ void push_first_pivot(t_list *stack_a, t_list *stack_b, int first_pivot)
 {
     t_node *node;
     int size;
+    int i;
+    int j;
 
     size = count_node(stack_a);
     while (size > 3)
     {
         node = stack_a->head;
-        if (find_to_push(stack_a, first_pivot) == -1)
-            return ;
-        if (node->content < first_pivot)
-        {
-            pb(stack_a, stack_b);
-            rb(stack_b);
-        }
+        i = find_to_push(stack_a, first_pivot);
+        if (i > size / 2)
+            j = size - i;
         else
-            ra(stack_a);
+            j = i;
+        while (j > 0)
+        {
+            if (i <= size / 2)
+                ra(stack_a);
+            else
+                rra(stack_a);
+            j--;
+        }
+        pb(stack_a, stack_b);
         size--;
     }
 }
@@ -69,17 +76,27 @@ void push_second_pivot(t_list *stack_a, t_list *stack_b, int second_pivot)
 {
     t_node *node;
     int size;
+    int i;
+    int j;
 
     size = count_node(stack_a);
     while (size > 3)
     {
         node = stack_a->head;
-        if (find_to_push(stack_a, second_pivot) == -1)
-            return ;
-        if (node->content < second_pivot)
-            pb(stack_a, stack_b);
+        i = find_to_push(stack_a, second_pivot);
+        if (i > size / 2)
+            j = size - i;
         else
-            ra(stack_a);
+            j = i;
+        while (j > 0)
+        {
+            if (i <= size / 2)
+                ra(stack_a);
+            else
+                rra(stack_a);
+            j--;
+        }
+        pb(stack_a, stack_b);
         size--;
     }
 }

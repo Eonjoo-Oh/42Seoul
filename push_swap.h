@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:52:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/03/30 01:18:22 by eoh              ###   ########.fr       */
+/*   Updated: 2023/03/30 15:27:23 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void count_to_a(t_list *stack_a, t_list *stack_b);
 
 //find
 t_node *find_close(t_list *stack_a, t_node *b_node);
-t_node *find_min_node(t_list *stack_b);
+t_node *find_min_tries(t_list *stack_b);
+t_node *find_min_node(t_list *stack);
 int find_index(t_list *stack, t_node *node);
 
 //pivot
@@ -86,7 +87,7 @@ void push_to_b(t_list *stack_a, t_list *stack_b);
 //sort
 void do_both(t_list *stack_a, t_list *stack_b, t_node *min);
 void do_top(t_list *stack_b, t_node *min);
-void do_a(t_list *stack_a, t_node *min);
+void do_a(t_list *stack_a, t_list *stack_b, t_node *min);
 void do_last(t_list *stack_a);
 void sort(t_list *stack_a, t_list *stack_b);
 void sort_few(t_list *stack_a, int size);
