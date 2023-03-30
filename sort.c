@@ -83,10 +83,10 @@ void do_last(t_list *stack_a)
     min_idx = find_index(stack_a, min);
     while (min != stack_a->head)
     {
-        if (min_idx < size / 2)
-            rra(stack_a);
-        else
+        if (min_idx <= size / 2)
             ra(stack_a);
+        else
+            rra(stack_a);
     }
 }
 
