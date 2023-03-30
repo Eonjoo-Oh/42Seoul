@@ -13,7 +13,7 @@ int main(int argc, char **argv)
     stack_b = make_stack();
     node_a = stack_a->head;
     sort(stack_a, stack_b);
-
+/*
     printf("\n------ contents ------\n");
     node_a = stack_a->head;
     while (node_a->next != stack_a->head)
@@ -22,5 +22,5 @@ int main(int argc, char **argv)
         node_a = node_a->next;
     }
     printf("%d\n", node_a->content);
-
+*/
 }
