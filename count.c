@@ -55,7 +55,7 @@ void count_to_a(t_list *stack_a, t_list *stack_b)
         {
             if (i == count_node(stack_a) - 1)
                 b_node->tries = -1;
-            else if (i <= count_node(stack_a) / 2)
+            else if (i < count_node(stack_a) / 2)
                 b_node->tries = i + 1;
             else
             {

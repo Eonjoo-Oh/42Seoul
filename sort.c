@@ -92,7 +92,8 @@ void do_last(t_list *stack_a)
 
 void sort(t_list *stack_a, t_list *stack_b)
 {
-    t_node *min_tries;
+    t_node	*min_tries;
+	t_node	*close;
 
     push_to_b(stack_a, stack_b);
     sort_few(stack_a, count_node(stack_a));
@@ -102,9 +103,20 @@ void sort(t_list *stack_a, t_list *stack_b)
         count_to_top(stack_b);
         count_to_a(stack_a, stack_b);
         min_tries = find_min_tries(stack_b);
-        do_both(stack_a, stack_b, min_tries);
-        do_top(stack_b, min_tries);
-        do_a(stack_a, stack_b, min_tries);
+		close = find_close(stack_a, min_tries);
+		if (find_index(stack_a, close) == count_node(stack_a) - 1 
+		&& close->content < min_tries->content)
+		{
+			do_top(stack_b, min_tries);
+			pa(stack_a, stack_b);
+			ra(stack_a);
+		}
+		else
+		{
+        	do_both(stack_a, stack_b, min_tries);
+			do_top(stack_b, min_tries);
+			do_a(stack_a, stack_b, min_tries);
+		}
     }
     do_last(stack_a);
 }
