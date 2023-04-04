@@ -16,8 +16,8 @@ void rb(t_list *stack_b)
 
 void rr(t_list *stack_a, t_list *stack_b)
 {
-    ra(stack_a);
-    rb(stack_b);
+    stack_a->head = stack_a->head->next;
+    stack_b->head = stack_b->head->next;
 
     write (1, "rr\n", 3);
 }

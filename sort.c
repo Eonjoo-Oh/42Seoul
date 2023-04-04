@@ -81,7 +81,7 @@ void do_last(t_list *stack_a)
     size = count_node(stack_a);
     min = find_min_node(stack_a);
     min_idx = find_index(stack_a, min);
-    while (min != stack_a->head)
+    while (stack_a->head->content != min->content)
     {
         if (min_idx <= size / 2)
             ra(stack_a);

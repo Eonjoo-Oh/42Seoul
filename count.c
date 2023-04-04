@@ -51,18 +51,18 @@ void count_to_a(t_list *stack_a, t_list *stack_b)
     {
         close = find_close(stack_a, b_node);
         i = find_index(stack_a, close);
-        if (close->content < b_node->content)
+        if (close->content < b_node->content)//close 뒤에 들어올 때
         {
             if (i == count_node(stack_a) - 1)
                 b_node->tries = -1;
-            else if (i < count_node(stack_a) / 2)
+            else if (i <= count_node(stack_a) / 2)
                 b_node->tries = i + 1;
             else
             {
-                b_node->tries = (count_node(stack_a) - i) * -1;
+                b_node->tries = (count_node(stack_a) - i - 1) * -1;
             }
         }
-        else
+        else //close앞에 들어올 때
         {
             if (i <= count_node(stack_a) / 2)
                 b_node->tries = i;

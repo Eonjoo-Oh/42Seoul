@@ -49,7 +49,6 @@ void push_first_pivot(t_list *stack_a, t_list *stack_b, int first_pivot)
     int size;
     int i;
     int j;
-
     size = count_node(stack_a);
     while (size > 3)
     {
