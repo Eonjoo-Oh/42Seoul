@@ -54,7 +54,9 @@ void push_first_pivot(t_list *stack_a, t_list *stack_b, int first_pivot)
     {
         node = stack_a->head;
         i = find_to_push(stack_a, first_pivot);
-        if (i > size / 2)
+        if (i == -1)
+            break ;
+        else if (i > size / 2)
             j = size - i;
         else
             j = i;
@@ -73,16 +75,18 @@ void push_first_pivot(t_list *stack_a, t_list *stack_b, int first_pivot)
 
 void push_second_pivot(t_list *stack_a, t_list *stack_b, int second_pivot)
 {
-    t_node *node;
-    int size;
-    int i;
-    int j;
+    t_node  *node;
+    int     size;
+    int     i;
+    int     j;
 
     size = count_node(stack_a);
     while (size > 3)
     {
         node = stack_a->head;
         i = find_to_push(stack_a, second_pivot);
+        if (i == -1)
+            break ;
         if (i > size / 2)
             j = size - i;
         else

@@ -30,7 +30,7 @@ int *make_arr(t_list *stack_a, int size)
     int i;
     t_node *temp;
 
-    arr = (int *)malloc(sizeof(int));
+    arr = (int *)malloc(sizeof(int) * size);
     if (!arr)
         return (NULL);
     i = 0;
