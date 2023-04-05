@@ -59,23 +59,19 @@ void push_to_b(t_list *stack_a, t_list *stack_b)
 
     while (count_node(stack_a) > 3 && find_to_push(stack_a, second_pivot) == 1)
     {
-		if (node->content <= first_pivot)
+		if (node->content <= second_pivot)
 		{
 			node = node->next;
 			pb(stack_a, stack_b);
-			rb(stack_b);
-		}
-		else if (node->content > first_pivot && node->content <= second_pivot)
-		{
-			node = node->next;
-			pb(stack_a, stack_b);
+			if (stack_b->head->content <= first_pivot)
+				rb(stack_b);
 		}
 		else
 		{
 			ra(stack_a);
 			node = node->next;
 		}
-    }
+	}
     while (count_node(stack_a) > 3)
     {
         pb(stack_a, stack_b);
