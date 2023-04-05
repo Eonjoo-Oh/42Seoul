@@ -27,6 +27,13 @@ t_node *find_close(t_list *stack_a, t_node *b_node)
     return (close);
 }
 
+int get_abs(int a)
+{
+	if (a < 0)
+		a *= -1;
+	return (a);
+}
+
 t_node *find_min_tries(t_list *stack_b)
 {
     t_node *min_node;
@@ -36,8 +43,9 @@ t_node *find_min_tries(t_list *stack_b)
 
     b_node = stack_b->head;
     min_node = b_node;
-	min_tries = min_node->top + min_node->tries;
-    b_node->prev->next = NULL;
+	min_tries = min_node->top + min_node->tries;//여기서도 각각 부호를 따져줘야지?
+    //각각의 절댓값으로 구해줘야됨
+	b_node->prev->next = NULL;
 
     while (b_node != NULL)
     {
