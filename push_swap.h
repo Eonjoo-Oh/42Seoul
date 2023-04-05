@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:52:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/03/30 15:27:23 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/05 14:49:38 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ int find_index(t_list *stack, t_node *node);
 //pivot
 void sort_arr(int *arr, int size);
 int find_to_push(t_list *stack_a, int pivot);
-void push_first_pivot(t_list *stack_a, t_list *stack_b, int first_pivot);
-void push_second_pivot(t_list *stack_a, t_list *stack_b, int second_pivot);
 void push_to_b(t_list *stack_a, t_list *stack_b);
 
 //sort

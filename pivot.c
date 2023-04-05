@@ -34,7 +34,7 @@ int find_to_push(t_list *stack_a, int pivot)
     {
         if (node->content < pivot)
         {
-            result = find_index(stack_a, node);
+            result = 1;
             break;
         }
         node = node->next;
@@ -43,86 +43,42 @@ int find_to_push(t_list *stack_a, int pivot)
     return (result);
 }
 
-void push_first_pivot(t_list *stack_a, t_list *stack_b, int first_pivot)
-{
-    t_node *node;
-    int size;
-    int i;
-    int j;
-    size = count_node(stack_a);
-    while (size > 3)
-    {
-        node = stack_a->head;
-        i = find_to_push(stack_a, first_pivot);
-        if (i == -1)
-            break ;
-        else if (i > size / 2)
-            j = size - i;
-        else
-            j = i;
-        while (j > 0)
-        {
-            if (i <= size / 2)
-                ra(stack_a);
-            else
-                rra(stack_a);
-            j--;
-        }
-        pb(stack_a, stack_b);
-        size--;
-    }
-}
-
-void push_second_pivot(t_list *stack_a, t_list *stack_b, int second_pivot)
-{
-    t_node  *node;
-    int     size;
-    int     i;
-    int     j;
-
-    size = count_node(stack_a);
-    while (size > 3)
-    {
-        node = stack_a->head;
-        i = find_to_push(stack_a, second_pivot);
-        if (i == -1)
-            break ;
-        if (i > size / 2)
-            j = size - i;
-        else
-            j = i;
-        while (j > 0)
-        {
-            if (i <= size / 2)
-                ra(stack_a);
-            else
-                rra(stack_a);
-            j--;
-        }
-        pb(stack_a, stack_b);
-        size--;
-    }
-}
-
 void push_to_b(t_list *stack_a, t_list *stack_b)
 {
-    int *arr;
-    int first_pivot;
-    int second_pivot;
-    int size;
+    int		*arr;
+    int		first_pivot;
+    int		second_pivot;
+	t_node	*node;
 
-    size = count_node(stack_a);
+	node = stack_a->head;
+    arr = make_arr(stack_a, count_node(stack_a));
+    sort_arr(arr, count_node(stack_a));
 
-    arr = make_arr(stack_a, size);
-    sort_arr(arr, size);
+    first_pivot = arr[count_node(stack_a) / 3];
+    second_pivot = arr[count_node(stack_a) / 3 * 2];
 
-    first_pivot = arr[size / 3];
-    second_pivot = arr[size / 3 * 2];
-    free(arr);
-    push_first_pivot(stack_a, stack_b, first_pivot);
-    push_second_pivot(stack_a, stack_b, second_pivot);
+    while (count_node(stack_a) > 3 && find_to_push(stack_a, second_pivot) == 1)
+    {
+		if (node->content <= first_pivot)
+		{
+			node = node->next;
+			pb(stack_a, stack_b);
+			rb(stack_b);
+		}
+		else if (node->content > first_pivot && node->content <= second_pivot)
+		{
+			node = node->next;
+			pb(stack_a, stack_b);
+		}
+		else
+		{
+			ra(stack_a);
+			node = node->next;
+		}
+    }
     while (count_node(stack_a) > 3)
     {
         pb(stack_a, stack_b);
     }
+	free(arr);
 }

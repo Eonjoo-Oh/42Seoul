@@ -9,7 +9,8 @@ void ra(t_list *stack_a)
 
 void rb(t_list *stack_b)
 {
-    stack_b->head = stack_b->head->next;
+	if (count_node(stack_b) > 1)
+    	stack_b->head = stack_b->head->next;
 
     write (1, "rb\n", 3);
 }
