@@ -1,15 +1,23 @@
 #include "push_swap.h"
 
-int is_digit_sp(char *str)
+int is_digit_sp(char **str)
 {
     int i;
+    int j;
 
     i = 0;
+
     while (str[i])
     {
-        if (!((str[i] >= '0' && str[i] <= '9') ||
-              ((str[i] >= 9 && str[i] <= 13) || str[i] == 32) || str[i] == '-'))
-            return (-1);
+        j = 0;
+        while (str[i][j])
+        {
+            if (!((str[i][j] >= '0' && str[i][j] <= '9') ||
+              ((str[i][j] >= 9 && str[i][j] <= 13) || str[i][j] == 32) 
+              || str[i][j] == '+' || str[i][j] == '-'))
+                return (-1);
+            j++;
+        }
         i++;
     }
     return (1);

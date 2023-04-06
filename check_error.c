@@ -6,7 +6,7 @@
 /*   By: eonjoo <eonjoo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 19:35:14 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/06 20:35:22 by eonjoo           ###   ########.fr       */
+/*   Updated: 2023/04/06 21:50:24 by eonjoo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,18 @@ int check_only_sign(char **argv)
 	return (1);
 }
 
+int check_arg(int argc, char **argv)
+{
+	if (argc < 2 || is_digit_sp(argv) == -1)
+	{
+		write(2, "Error\n", 6);
+		return -1;
+	}
+	return (1);
+}//argc의 갯수검사, argv에 문자가 들어있는지 검사
+
+
+/*
 int check_error(int argc, char **argv)
 {
 	t_list *stack;
@@ -112,7 +124,7 @@ int check_error(int argc, char **argv)
 	free(stack);
 	return (result);
 }
-
+*/
 
 /*
 int check_error(int argc, char **argv)

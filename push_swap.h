@@ -6,7 +6,7 @@
 /*   By: eonjoo <eonjoo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:52:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/06 20:11:29 by eonjoo           ###   ########.fr       */
+/*   Updated: 2023/04/06 21:42:29 by eonjoo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_list *first_stack(char **argv);
 void lstadd_back(t_list *lst, t_node *new_node);
 t_node *make_lst(int data);
 long long long_atoi(char *nptr);
-int is_digit_sp(char *str);
+int is_digit_sp(char **str);
 int is_white_space(char *str);
 int is_sign(char *str);
 char **ft_split(char const *s);
