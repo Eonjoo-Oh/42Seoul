@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: eonjoo <eonjoo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 14:12:35 by eoh               #+#    #+#             */
-/*   Updated: 2023/02/27 15:47:29 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/06 20:44:27 by eonjoo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "push_swap.h"
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 
@@ -60,7 +61,7 @@ char	**ft_split(char const *s)
 		if (*s != ' ' && *s != '"')
 		{
 			tmp = s;
-			while (*s && *s != ' ' && *s != '"')
+			while (*s && *s != '"' && *s != ' ')
 				s++;
 			result[i] = (char *)malloc(sizeof(char) * (s - tmp + 1));
 			if (!result[i])

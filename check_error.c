@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: eonjoo <eonjoo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 19:35:14 by eoh               #+#    #+#             */
-/*   Updated: 2023/03/14 19:43:58 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/06 20:35:22 by eonjoo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,24 +72,72 @@ int check_sorted(t_list *stack)
     return (-1);
 }
 
+int check_only_sign(char **argv)
+{
+	int	i;
+	int	cnt;
+
+	i = 1;
+	while (argv[i])
+	{
+		cnt = 0;
+		if (is_white_space(argv[i]) == -1 && is_sign(argv[i]) == -1)
+			cnt++;
+		if (cnt == 0)
+			return (-1);
+		i++;
+	}
+	return (1);
+}
+
 int check_error(int argc, char **argv)
 {
-    t_list  *stack;
-    
-    if (argc <= 2)
-        return (-1);
-    stack = first_stack(argv);
-    if (stack == 0)
-    {
-        write(2, "Error\n", 6);
-        return (-1);
-    }
-    if (check_dup(stack) == -1)
-    {
-        write(2, "Error\n", 6);
-        return (-1);
-    }
-    if (check_sorted(stack) == -1)
-        return (-1);
-    return (1);
+	t_list *stack;
+	int result;
+
+	if (argc <= 2)
+		return (-1);
+	if (check_only_sign(argv) == -1)
+		return (-1);
+	stack = first_stack(argv);
+	if (!stack)
+		return (0);
+	if (check_dup(stack) == -1 || check_sorted(stack) == -1)
+	{
+		write(2, "Error\n", 6);
+		result = -1;
+	}
+	else
+		result = 1;
+	free(stack);
+	return (result);
 }
+
+
+/*
+int check_error(int argc, char **argv)
+{
+	t_list  *stack;
+	int result;
+
+	if (argc <= 2 || check_only_sign(argv) == -1)
+		return (-1);
+	stack = first_stack(argv);
+	if (stack == 0)
+	{
+		write(2, "Error\n", 6);
+		free(stack);
+		return (-1);
+	}
+	if (check_dup(stack) == -1)
+	{
+		write(2, "Error\n", 6);
+		free(stack);
+		return (-1);
+	}
+	if (check_sorted(stack) == -1)
+		free(stack);
+		return (-1);
+	return (1);
+}
+*/

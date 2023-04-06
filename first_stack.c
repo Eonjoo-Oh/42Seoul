@@ -15,9 +15,9 @@ t_list *first_stack(char **argv)
     while (argv[i] != 0)
     {
         if (is_digit_sp(argv[i]) == -1)
-            return (0);
-        splited = ft_split(argv[i]);
-        j = 0;
+			return (0);
+		splited = ft_split(argv[i]);
+		j = 0;
         while (splited[j] != 0)
         {
             if (check_range(long_atoi(splited[j])) == -1)

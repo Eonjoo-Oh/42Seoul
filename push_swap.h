@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: eonjoo <eonjoo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:52:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/05 14:49:38 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/06 20:11:29 by eonjoo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 
 typedef struct s_node
 {
-    struct s_node *prev;
-    struct s_node *next;
-    int content;
-    int top;
-    int tries;
+	struct s_node *prev;
+	struct s_node *next;
+	int content;
+	int top;
+	int tries;
 } t_node;
 
 typedef struct s_list
@@ -36,6 +36,7 @@ int check_sorted(t_list *stack);
 int check_dup(t_list *stack);
 int check_argc(int argc);
 int check_range(long long n);
+int check_only_sign(char **argv);
 
 // parsing
 void push_swap(int argc, char **argv);
@@ -44,6 +45,8 @@ void lstadd_back(t_list *lst, t_node *new_node);
 t_node *make_lst(int data);
 long long long_atoi(char *nptr);
 int is_digit_sp(char *str);
+int is_white_space(char *str);
+int is_sign(char *str);
 char **ft_split(char const *s);
 t_list *make_stack(void);
 

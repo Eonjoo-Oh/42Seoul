@@ -1,12 +1,13 @@
 #include "push_swap.h"
 
-void sa(t_list *stack_a)
+void do_sa(t_list *stack_a)
 {
     t_node *first;
     t_node *second;
     t_node *last;
-
-    if (count_node(stack_a) == 2)
+    if (count_node(stack_a) <= 1)
+        return;
+    else if (count_node(stack_a) == 2)
     {
         stack_a->head = stack_a->head->next;
     }
@@ -25,20 +26,20 @@ void sa(t_list *stack_a)
 
         stack_a->head = second;
     }
-    write(1, "sa\n", 3);
 }
 
-void sb(t_list *stack_b)
+void do_sb(t_list *stack_b)
 {
     t_node *first = stack_b->head;
     t_node *second = stack_b->head->next;
     t_node *last = stack_b->head->prev;
 
+    if (count_node(stack_b) <= 1)
+        return;
     if (count_node(stack_b) == 2)
     {
         stack_b->head = stack_b->head->next;
     }
-
     else
     {
         first = stack_b->head;
@@ -54,14 +55,23 @@ void sb(t_list *stack_b)
 
         stack_b->head = second;
     }
+}
 
+void sa(t_list *stack_a)
+{
+    do_sa(stack_a);
+    write(1, "sa\n", 3);
+}
+
+void sb(t_list *stack_b)
+{
+    do_sb(stack_b);
     write(1, "sb\n", 3);
 }
 
 void ss(t_list *stack_a, t_list *stack_b)
 {
-    sa(stack_a);
-    sb(stack_b);
-
+    do_sa(stack_a);
+    do_sb(stack_b);
     write (1, "ss\n", 3);
 }
