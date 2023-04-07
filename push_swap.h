@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:52:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/07 17:10:00 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/07 20:10:00 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int check_sorted(t_list *stack);
 int check_dup(t_list *stack);
 int check_char(char **argv);
 int check_range(long long n);
+int	check_splited(char *str);
+int	check_only_null(int argc, char **argv);
 
 // parsing
 void push_swap(int argc, char **argv);
@@ -44,7 +46,7 @@ void lstadd_back(t_list *lst, t_node *new_node);
 t_node *make_lst(int data);
 long long long_atoi(char *nptr);
 int is_digit_sp(char **str);
-int is_white_space(char *str);
+int is_white_space(char str);
 int is_sign(char *str);
 char **ft_split(char const *s);
 t_list *make_stack(void);

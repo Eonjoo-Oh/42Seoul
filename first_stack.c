@@ -18,7 +18,7 @@ t_list *first_stack(char **argv)
 		j = 0;
         while (splited[j] != 0)
         {
-            if (check_range(long_atoi(splited[j])) == -1)
+			if (check_splited(splited[j]) == -1 || check_range(long_atoi(splited[j])) == -1)
 			{
 				free_result(splited);
 				free(stack);

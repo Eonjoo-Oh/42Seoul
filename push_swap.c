@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 16:39:01 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/07 17:09:39 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/07 20:34:02 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@ void push_swap(int argc, char **argv)
 {
     t_list	*stack_a;
     t_list	*stack_b;
+
 	if (argc < 2)
 		return ;//a.out만 들어올 경우
-
 	if (check_char(argv) == -1)
 		exit(1);//문자가 들어올 경우
 
     stack_a = first_stack(argv);
     if (!stack_a)
         return ;
-	if (count_node(stack_a) < 2)
-		return ;
 	if (check_error(stack_a) == -1)
+		return ;
+	if (count_node(stack_a) < 2)
 		return ;
     if (count_node(stack_a) < 4)
     {

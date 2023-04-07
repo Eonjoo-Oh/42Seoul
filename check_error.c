@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 19:35:14 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/07 17:09:22 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/07 20:34:02 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,52 @@ int	check_error(t_list *stack)
 	return (1);
 }
 
+int	check_splited(char *str)
+{
+	int i;
+
+	i = 1;
+	
+	if (str[0] == '\0'
+	|| ((str[0] == '+' || str[0] == '-') && str[i] == '\0'))
+	{
+		write(2, "Error\n", 6);
+		return (-1);
+	}// null만있거나 부호만 있을 때
+	while (str[i])
+	{
+		if (str[i] == '+' || str[i] == '-')
+		{
+			write(2, "Error\n", 6);
+			return (-1);
+		}
+		i++;
+	}
+	return (1);
+}
+/*
+int	check_only_null(int argc, char **argv)
+{
+	int i;
+
+	i = 1;
+	if (argv[1] == 0)
+	{
+		write(2, "Error\n", 6);
+		return (-1);
+	}
+	while (argv[i])
+	{
+		if(i != argc - 1 && argv[i] == 0)
+		{
+			write(2, "Error\n", 6);
+			return (-1);
+		}
+		i++;
+	}
+	return (1);
+}
+*/
 /*
 int check_error(int argc, char **argv)
 {
