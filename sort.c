@@ -102,6 +102,7 @@ void sort(t_list *stack_a, t_list *stack_b)
     {
         count_to_top(stack_b);
         count_to_a(stack_a, stack_b);
+		stack_b->head->prev->next = stack_b->head;
         min_tries = find_min_tries(stack_b);
 		close = find_close(stack_a, min_tries);
 		if (find_index(stack_a, close) == count_node(stack_a) - 1 

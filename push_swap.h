@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:52:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/07 20:10:00 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/07 21:24:24 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int check_dup(t_list *stack);
 int check_char(char **argv);
 int check_range(long long n);
 int	check_splited(char *str);
-int	check_only_null(int argc, char **argv);
 
 // parsing
 void push_swap(int argc, char **argv);
@@ -75,6 +74,7 @@ int make_dif(t_node *a_node, t_node *b_node);
 int count_node(t_list *stack);
 void count_to_top(t_list *stack_b);
 void count_to_a(t_list *stack_a, t_list *stack_b);
+void	do_count_to_a(int i, t_list *stack_a, t_list *stack_b, t_node *node);
 
 //find
 t_node *find_close(t_list *stack_a, t_node *b_node);
