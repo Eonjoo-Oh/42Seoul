@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eonjoo <eonjoo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:52:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/07 11:40:31 by eonjoo           ###   ########.fr       */
+/*   Updated: 2023/04/07 17:10:00 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,11 @@ typedef struct s_list
 } t_list;
 
 // check_error
-int check_error(int argc, char **argv);
+int	check_error(t_list *stack);
 int check_sorted(t_list *stack);
 int check_dup(t_list *stack);
-int check_arg(int argc, char **argv);
+int check_char(char **argv);
 int check_range(long long n);
-int check_only_sign(char **argv);
 
 // parsing
 void push_swap(int argc, char **argv);
@@ -49,6 +48,7 @@ int is_white_space(char *str);
 int is_sign(char *str);
 char **ft_split(char const *s);
 t_list *make_stack(void);
+char	**free_result(char **s);
 
 // commands
 void sa(t_list *stack_a);

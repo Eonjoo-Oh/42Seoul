@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eonjoo <eonjoo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 16:39:01 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/07 11:40:50 by eonjoo           ###   ########.fr       */
+/*   Updated: 2023/04/07 17:09:39 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,21 @@
 
 void push_swap(int argc, char **argv)
 {
-    t_list  *stack_a;
-    t_list  *stack_b;
+    t_list	*stack_a;
+    t_list	*stack_b;
+	if (argc < 2)
+		return ;//a.out만 들어올 경우
 
-    if (check_arg(argc, argv) == -1)
-        exit(1);
+	if (check_char(argv) == -1)
+		exit(1);//문자가 들어올 경우
+
     stack_a = first_stack(argv);
     if (!stack_a)
         return ;
+	if (count_node(stack_a) < 2)
+		return ;
+	if (check_error(stack_a) == -1)
+		return ;
     if (count_node(stack_a) < 4)
     {
         sort_few(stack_a, count_node(stack_a));

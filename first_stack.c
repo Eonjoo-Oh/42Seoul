@@ -19,7 +19,11 @@ t_list *first_stack(char **argv)
         while (splited[j] != 0)
         {
             if (check_range(long_atoi(splited[j])) == -1)
-                return (0);
+			{
+				free_result(splited);
+				free(stack);
+				exit(1);
+			}
             node = (make_lst((int)long_atoi(splited[j])));
             lstadd_back(stack, node);
             j++;

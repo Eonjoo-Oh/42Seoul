@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eonjoo <eonjoo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 19:35:14 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/07 11:52:35 by eonjoo           ###   ########.fr       */
+/*   Updated: 2023/04/07 17:09:22 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 int check_range(long long n)
 {
     if (n > 2147483647 || n < -2147483648)
+	{
+		write(2, "Error\n", 6);
         return (-1);
-    return (1);
+    }
+	return (1);
 }
 
 int check_dup(t_list *stack)
@@ -64,17 +67,17 @@ int check_sorted(t_list *stack)
         return (1);
     return (-1);
 }
-
-int check_only_sign(char **argv)
+/*
+int check_only_sign(char *str)
 {
 	int	i;
 	int	cnt;
 
 	i = 1;
-	while (argv[i])
+	while (str[i])
 	{
 		cnt = 0;
-		if (is_white_space(argv[i]) == -1 && is_sign(argv[i]) == -1)
+		if (is_white_space(&str[i]) == -1 && is_sign(&str[i]) == -1)
 			cnt++;
 		if (cnt == 0)
 			return (-1);
@@ -82,17 +85,32 @@ int check_only_sign(char **argv)
 	}
 	return (1);
 }
-
-int check_arg(int argc, char **argv)
+*/
+int check_char(char **argv)
 {
-	if (argc < 2 || is_digit_sp(argv) == -1)
+	if (is_digit_sp(argv) == -1)
 	{
 		write(2, "Error\n", 6);
-		return -1;
+		return (-1);
 	}
 	return (1);
-}//argc의 갯수검사, argv에 문자가 들어있는지 검사
+}//argv에 문자가 들어있는지 검사. 맨 처음 사용
 
+int	check_error(t_list *stack)
+{
+	if (check_sorted(stack) == -1)
+	{
+		free(stack);
+		return (-1);
+	}
+	if (check_dup(stack) == -1)
+	{
+		write(2, "Error\n", 6);
+		free(stack);
+		exit(1);
+	}
+	return (1);
+}
 
 /*
 int check_error(int argc, char **argv)

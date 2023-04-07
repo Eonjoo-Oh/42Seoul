@@ -21,7 +21,7 @@ int is_digit_sp(char **str)
         i++;
     }
     return (1);
-}
+}//숫자, whitespace, 부호가 아닐시 error
 
 int is_white_space(char *str)
 {
@@ -35,12 +35,13 @@ int is_white_space(char *str)
         i++;
     }
     return (-1);
-}
+}//split에서 사용
 
 int is_sign(char *str)
 {
     int i;
 
+	i = 0;
     while (str[i])
     {
         if (str[i] == '+' || str[i] == '-')

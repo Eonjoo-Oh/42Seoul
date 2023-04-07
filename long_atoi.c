@@ -18,7 +18,9 @@ long long long_atoi(char *nptr)
         i++;
     }
 	if (!(nptr[i] >= '0' && nptr[i] <= '9'))
+	{
 		return (0);
+	}
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
         result = 10 * result + nptr[i] - '0';

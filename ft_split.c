@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eonjoo <eonjoo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 14:12:35 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/06 22:04:51 by eonjoo           ###   ########.fr       */
+/*   Updated: 2023/04/07 16:46:47 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static size_t	cnt_word(char const *s)
 	return (cnt);
 }
 
-static char	**free_result(char **s)
+char	**free_result(char **s)
 {
 	size_t	j;
 
