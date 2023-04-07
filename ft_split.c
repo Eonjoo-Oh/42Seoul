@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 14:12:35 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/07 20:16:54 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/07 20:49:49 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,18 @@ char	**ft_split(char const *s)
 	size_t		i;
 	char		**result;
 	char const	*tmp;
+	if (*s == 0)
+	{
+		write(2, "Error\n", 6);
+		return (0);
+	}
 	i = 0;
 	result = (char **)malloc(sizeof(char *) * (cnt_word(s) + 1));
 	if (!result)
 		return (0);
 	while (*s)
 	{
+		
 		if (is_white_space(*s) == -1 && *s != '"')
 		{
 			tmp = s;

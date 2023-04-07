@@ -15,6 +15,11 @@ t_list *first_stack(char **argv)
     while (argv[i] != 0)
     {
 		splited = ft_split(argv[i]);
+		if (splited == 0)
+		{
+			free(stack);
+			exit(1);
+		}
 		j = 0;
         while (splited[j] != 0)
         {

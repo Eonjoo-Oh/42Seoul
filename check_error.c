@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 19:35:14 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/07 20:34:02 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/07 20:51:51 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,16 +98,16 @@ int check_char(char **argv)
 
 int	check_error(t_list *stack)
 {
-	if (check_sorted(stack) == -1)
-	{
-		free(stack);
-		return (-1);
-	}
 	if (check_dup(stack) == -1)
 	{
 		write(2, "Error\n", 6);
 		free(stack);
 		exit(1);
+	}
+	if (check_sorted(stack) == -1)
+	{
+		free(stack);
+		return (-1);
 	}
 	return (1);
 }
@@ -118,8 +118,7 @@ int	check_splited(char *str)
 
 	i = 1;
 	
-	if (str[0] == '\0'
-	|| ((str[0] == '+' || str[0] == '-') && str[i] == '\0'))
+	if ((str[0] == '+' || str[0] == '-') && str[i] == '\0')
 	{
 		write(2, "Error\n", 6);
 		return (-1);
