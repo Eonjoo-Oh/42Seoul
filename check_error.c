@@ -6,7 +6,7 @@
 /*   By: eonjoo <eonjoo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 19:35:14 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/06 21:50:24 by eonjoo           ###   ########.fr       */
+/*   Updated: 2023/04/07 11:52:35 by eonjoo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,6 @@
 int check_range(long long n)
 {
     if (n > 2147483647 || n < -2147483648)
-        return (-1);
-    return (1);
-}
-
-int check_argc(int argc)
-{
-    if (argc <= 2)
         return (-1);
     return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: eonjoo <eonjoo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:52:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/06 21:42:29 by eonjoo           ###   ########.fr       */
+/*   Updated: 2023/04/07 11:40:31 by eonjoo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_list
 int check_error(int argc, char **argv);
 int check_sorted(t_list *stack);
 int check_dup(t_list *stack);
-int check_argc(int argc);
+int check_arg(int argc, char **argv);
 int check_range(long long n);
 int check_only_sign(char **argv);
 

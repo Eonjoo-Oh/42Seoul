@@ -5,7 +5,7 @@ int is_digit_sp(char **str)
     int i;
     int j;
 
-    i = 0;
+    i = 1;
 
     while (str[i])
     {
