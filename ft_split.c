@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 14:12:35 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/07 20:49:49 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/08 17:35:34 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static size_t	cnt_word(char const *s)
 	cnt = 0;
 	while (s[i])
 	{
-		if ((s[i] != ' ' && s[i] != '"') && 
-		(s[i + 1] == ' ' || s[i + 1] == '"' || s[i + 1] == '\0'))
+		if ((s[i] != ' ' && s[i] != '"')
+			&& (s[i + 1] == ' ' || s[i + 1] == '"' || s[i + 1] == '\0'))
 			cnt++;
 		i++;
 	}
@@ -45,24 +45,14 @@ char	**free_result(char **s)
 	free(s);
 	return (0);
 }
-
-char	**ft_split(char const *s)
+/*
+char	**do_split(char const *s, char **result)
 {
-	size_t		i;
-	char		**result;
-	char const	*tmp;
-	if (*s == 0)
-	{
-		write(2, "Error\n", 6);
-		return (0);
-	}
-	i = 0;
-	result = (char **)malloc(sizeof(char *) * (cnt_word(s) + 1));
-	if (!result)
-		return (0);
+	int			i;
+	char const *tmp;
+
 	while (*s)
 	{
-		
 		if (is_white_space(*s) == -1 && *s != '"')
 		{
 			tmp = s;
@@ -77,5 +67,42 @@ char	**ft_split(char const *s)
 			s++;
 	}
 	result[i] = 0;
+	return (result);
+}
+*/
+
+char	**ft_split(char const *s)
+{
+	size_t		i;
+	char		**result;
+	char const	*tmp;
+
+	if (*s == 0)
+	{
+		write(2, "Error\n", 6);
+		return (0);
+	}
+	i = 0;
+	result = (char **)malloc(sizeof(char *) * (cnt_word(s) + 1));
+	if (!result)
+		return (0);
+	//do_split (s, result);
+	while (*s)
+	{
+		if (is_white_space(*s) == -1 && *s != '"')
+		{
+			tmp = s;
+			while (*s && *s != '"' && is_white_space(*s) == -1)
+				s++;
+			result[i] = (char *)malloc(sizeof(char) * (s - tmp + 1));
+			if (!result[i])
+				return (free_result(result));
+			ft_strlcpy(result[i++], tmp, s - tmp + 1);
+		}
+		else
+			s++;
+	}
+	result[i] = 0;
+	//result = do_split(s, result);
 	return (result);
 }
