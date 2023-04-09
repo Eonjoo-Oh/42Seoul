@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:52:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/07 21:24:24 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/09 20:24:58 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int check_dup(t_list *stack);
 int check_char(char **argv);
 int check_range(long long n);
 int	check_splited(char *str);
+void	check_only_null(char const *s, t_list *stack);
 
 // parsing
 void push_swap(int argc, char **argv);
@@ -50,6 +51,7 @@ int is_sign(char *str);
 char **ft_split(char const *s);
 t_list *make_stack(void);
 char	**free_result(char **s);
+size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 
 // commands
 void sa(t_list *stack_a);

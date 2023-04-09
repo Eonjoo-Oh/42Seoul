@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 17:48:07 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/08 17:54:40 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/09 20:19:44 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ int	find_to_push(t_list *stack_a, int pivot)
 	stack_a->head->prev->next = stack_a->head;
 	return (result);
 }
-/*
-void	do_push_to_b(t_list *stack_a, t_list *stack_b, int st, int nd)
+
+void	do_push_to_b(int st, int nd, t_list *stack_a, t_list *stack_b)
 {
 	t_node	*node;
 
@@ -80,7 +80,6 @@ void	do_push_to_b(t_list *stack_a, t_list *stack_b, int st, int nd)
 		pb(stack_a, stack_b);
 	}
 }
-*/
 
 void	push_to_b(t_list *stack_a, t_list *stack_b)
 {
@@ -94,24 +93,6 @@ void	push_to_b(t_list *stack_a, t_list *stack_b)
 	sort_arr(arr, count_node(stack_a));
 	first_pivot = arr[count_node(stack_a) / 3];
 	second_pivot = arr[count_node(stack_a) / 3 * 2];
-	while (count_node(stack_a) > 3 && find_to_push(stack_a, second_pivot) == 1)
-	{
-		if (node->content <= second_pivot)
-		{
-			node = node->next;
-			pb(stack_a, stack_b);
-			if (stack_b->head->content <= first_pivot)
-				rb(stack_b);
-		}
-		else
-		{
-			ra(stack_a);
-			node = node->next;
-		}
-	}
-	while (count_node(stack_a) > 3)
-	{
-		pb(stack_a, stack_b);
-	}
+	do_push_to_b(first_pivot, second_pivot, stack_a, stack_b);
 	free(arr);
 }
