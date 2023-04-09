@@ -7,17 +7,23 @@ SRCS = check_error.c count.c find.c first_stack.c ft_split.c is_utils.c make_uti
 OBJS = ${SRCS:.c=.o}
 #여기까지가 매크로설정부분
 
-all = ${NAME}
+all : $(NAME)
+
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
+
 $(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $^
 
 clean :
-	${RM} ${OBJS}
+	$(RM) $(OBJS)
 
-fclean :
+fclean : clean
+	make clean
+	$(RM) $(NAME)
 
-re : 
+re : all fclean
+	$(MAKE) fclean
+	$(MAKE) all
 
 .PHONY : all clean fclean re
