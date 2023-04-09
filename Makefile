@@ -1,24 +1,22 @@
 NAME = push_swap
-CC = cc
+CC = CC
 CFLAGS = -Wall -Wextra -Werror
-#INCLUDES는 폴더 지정따로 안하면 안넣어도 되는 것?
-SRCS = check_error.c count.c find.c first_stack.c ft_split.c is_utils.c make_utils.c \
-	pivot.c push_swap.c push.c rev_rot.c rotate.c sort_do.c sort_few.c
+#INCLUDES는 헤더파일 폴더 따로 지정안되어있으면 필요없음?
+SRCS = check_error.c count.c find.c first_stack.c ft_split.c is_utils.c make_utils.c pivot.c push_swap.c push.c rev_rot.c rotate.c sort_do.c sort_few.c sort.c swap.c utils.c
 OBJS = ${SRCS:.c=.o}
-#여기까지가 매크로설정구간
+#여기까지가 매크로설정부분
 
-all : $(NAME)
+all = ${NAME}
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 $(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) ${NAME} ${OBJS}
+	$(CC) $(CFLAGS) -o $@ $^
 
 clean :
 	rm -rf ${OBJS}
 
-fclean : clean
-	rm -f ${NAME}
+fclean :
 
-re : clean all
+re : fclean all
 
-.PHONY : clean fclean re
+.PHONY : all clean fclean re
