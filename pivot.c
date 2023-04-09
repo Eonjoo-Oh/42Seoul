@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 17:48:07 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/09 20:19:44 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/10 01:12:53 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,7 @@ void	push_to_b(t_list *stack_a, t_list *stack_b)
 	int		*arr;
 	int		first_pivot;
 	int		second_pivot;
-	t_node	*node;
 
-	node = stack_a->head;
 	arr = make_arr(stack_a, count_node(stack_a));
 	sort_arr(arr, count_node(stack_a));
 	first_pivot = arr[count_node(stack_a) / 3];

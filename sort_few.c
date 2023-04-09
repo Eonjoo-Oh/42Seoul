@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 18:06:51 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/08 18:13:21 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/10 01:13:24 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,6 @@ void	sort_three(t_list *stack_a)
 {
 	int		min;
 	int		max;
-	t_node	*first;
-	t_node	*second;
-	t_node	*last;
 
 	min = find_min(stack_a);
 	max = find_max(stack_a);
