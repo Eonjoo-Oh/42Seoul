@@ -6,15 +6,16 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 15:49:21 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/10 21:54:49 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/11 17:19:14 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef BONUS_PUSH_SWAP_H
+# define BONUS_PUSH_SWAP_H
 
 #include <stdlib.h>
 #include <unistd.h>
+#include "gnl/get_next_line.h"
 
 typedef struct s_node
 {
@@ -75,7 +76,7 @@ void	lstadd_back(t_list *lst, t_node *new_node);
 
 // pivot
 void	sort_arr(int *arr, int size);
-int	find_to_push(t_list *stack_a, int pivot);
+int		find_to_push(t_list *stack_a, int pivot);
 void	do_push_to_b(int st, int nd, t_list *stack_a, t_list *stack_b);
 void	push_to_b(t_list *stack_a, t_list *stack_b);
 void	count_to_top(t_list *stack_b);
@@ -115,6 +116,13 @@ void	sort(t_list *stack_a, t_list *stack_b);
 
 //bonus
 t_list	*checker_error(int argc, char **argv);
+int		check_cmd(char *buf, t_list *stack, t_cmd *cmd);
+t_cmd	*make_stack_cmd(char *buf);
+void	add_buf(t_cmd **stack_cmd, t_cmd *new);
+//int	bonus_strlen(char *str);
+void	checker_sort2(char *temp, t_list *stack_a, t_list *stack_b);
+void	checker_sort(t_cmd *stack_cmd, t_list *stack_a, t_list *stack_b);
+void	checker_sorted(t_list *stack_a, t_list *stack_b);
 void	checker(int argc, char **argv);
 
 #endif

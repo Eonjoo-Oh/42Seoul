@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 15:10:07 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/10 22:09:18 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/11 17:39:36 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,27 +82,16 @@ t_cmd	*make_stack_cmd(char *buf)
 void	add_buf(t_cmd **stack_cmd, t_cmd *new)
 {
 	t_cmd	*temp;
-	t_cmd	*node;
 
 	if (*stack_cmd == 0)
 		*stack_cmd = new;
 	else
 	{
 		temp = *stack_cmd;
-		while ((*temp)->next != 0)
-			(*temp) = (*temp)->next;
-		(*temp)->next = new;
+		while (temp->next != 0)
+			temp = temp->next;
+		temp->next = new;
 	}
-}
-
-int		ft_strlen(char *str)
-{
-	int	len;
-
-	len = 0;
-	while (str[len])
-		len++;
-	return (len);
 }
 
 void	checker_sort2(char *temp, t_list *stack_a, t_list *stack_b)
@@ -170,11 +159,12 @@ void	checker(int argc, char **argv)
 	char	*buf;
 
 	stack_a = checker_error(argc, argv);
-	if (!stack_cmd)
+	if (!stack_a)
 		return ;
-	while (1)
+	while (true)
 	{
 		buf = get_next_line(1);
+		stack_cmd = make_stack_cmd(buf);
 		check_cmd(buf, stack_a, stack_cmd);
 		temp = make_stack_cmd(buf);
 		add_buf(&stack_cmd, temp);
@@ -184,4 +174,9 @@ void	checker(int argc, char **argv)
 	free(stack_cmd);
 	free(temp);
 	checker_sorted(stack_a, stack_b);
+}
+
+int main(int argc, char **argv)
+{
+	checker(argc, argv);
 }
