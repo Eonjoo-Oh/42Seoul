@@ -31,12 +31,11 @@ $(BONUS_NAME) : $(OBJS) $(BONUS_OBJS) $(B_MAIN_OBJS)
 	$(CC) $(CFLAGS) -o $@ $^
 
 clean :
-	$(RM) $(OBJS) $(BONUS_OBJS)
+	$(RM) $(OBJS) $(BONUS_OBJS) $(MAIN_OBJS) $(B_MAIN_OBJS)
 
 fclean : clean
 	$(MAKE) clean
-	$(RM) $(NAME)
-	$(RM) $(BONUS_NAME)
+	$(RM) $(NAME) $(BONUS_NAME)
 
 re : all fclean
 	$(MAKE) fclean
