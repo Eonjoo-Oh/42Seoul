@@ -6,27 +6,23 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 15:10:07 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/12 22:16:07 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/12 22:20:11 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
 
-//pipe통해서 받은 인자는 어떻게받지?
-	//일단 인자가 들어오고 그 인자가 유효하면 표준입력으로 전환해서 명령어들을 받고 
-	//그 명령어대로 스택을 돌려보고 정렬이 됐으면 ok 안됐으면 ko
-
 t_list	*checker_error(int argc, char **argv)
 {
-	t_list *stack_a;
+	t_list	*stack_a;
 
-	if (argc <2)
-		return 0;
+	if (argc < 2)
+		return (0);
 	if (check_char(argv) == -1)
 		exit(1);
 	stack_a = first_stack(argv);
 	if (!stack_a)
-		return 0;
+		return (0);
 	if (check_dup(stack_a) == -1)
 	{
 		write(2, "Error\n", 6);
@@ -58,25 +54,25 @@ int	checker_buf(char *buf, t_list *stack_a, t_list *stack_b)
 {
 	if (ft_strncmp(buf, "pa\n", 3) == 0)
 		pa_bonus(stack_a, stack_b);
-	else if (ft_strncmp(buf, "pb\n",3) == 0)
+	else if (ft_strncmp(buf, "pb\n", 3) == 0)
 		pb_bonus(stack_a, stack_b);
-	else if (ft_strncmp(buf, "sa\n",3) == 0)
+	else if (ft_strncmp(buf, "sa\n", 3) == 0)
 		sa_bonus(stack_a);
-	else if (ft_strncmp(buf, "sb\n",3) == 0)
+	else if (ft_strncmp(buf, "sb\n", 3) == 0)
 		sb_bonus(stack_b);
-	else if (ft_strncmp(buf, "ss\n",3) == 0)
+	else if (ft_strncmp(buf, "ss\n", 3) == 0)
 		ss_bonus(stack_a, stack_b);
-	else if (ft_strncmp(buf, "ra\n",3) == 0)
+	else if (ft_strncmp(buf, "ra\n", 3) == 0)
 		ra_bonus(stack_a);
-	else if (ft_strncmp(buf, "rb\n",3) == 0)
+	else if (ft_strncmp(buf, "rb\n", 3) == 0)
 		rb_bonus(stack_b);
-	else if (ft_strncmp(buf, "rr\n",3) == 0)
+	else if (ft_strncmp(buf, "rr\n", 3) == 0)
 		rr_bonus(stack_a, stack_b);
-	else if (ft_strncmp(buf, "rra\n",3) == 0)
+	else if (ft_strncmp(buf, "rra\n", 3) == 0)
 		rra_bonus(stack_a);
-	else if (ft_strncmp(buf,  "rrb\n",3) == 0)
+	else if (ft_strncmp(buf, "rrb\n", 3) == 0)
 		rrb_bonus(stack_b);
-	else if (ft_strncmp(buf, "rrr\n",3) == 0)
+	else if (ft_strncmp(buf, "rrr\n", 3) == 0)
 		rrr_bonus(stack_a, stack_b);
 	else
 		return (-1);

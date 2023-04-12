@@ -6,13 +6,13 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 16:39:01 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/12 22:10:27 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/12 22:21:04 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int main(int argc, char ** argv)
+int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
 	t_list	*stack_b;
@@ -38,6 +38,5 @@ int main(int argc, char ** argv)
 	{
 		sort(stack_a, stack_b);
 	}
-	system ("leaks push_swap");
 	return (0);
 }

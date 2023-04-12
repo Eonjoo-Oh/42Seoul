@@ -2,9 +2,8 @@ NAME = push_swap
 BONUS_NAME = checker
 
 CC = CC
-CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
-#INCLUDES는 헤더파일 폴더 따로 지정안되어있으면 필요없음?
 SRCS = push_swap.c check_error.c count.c find.c first_stack.c ft_split.c \
 		is_utils.c make_utils.c pivot.c \
 		sort_do.c sort_few.c sort.c utils.c\
@@ -16,7 +15,6 @@ BONUS_SRCS = gnl/get_next_line.c gnl/get_next_line_utils.c\
 			count.c check_error.c first_stack.c ft_split.c is_utils.c make_utils.c\
 			find.c utils.c
 BONUS_OBJS = ${BONUS_SRCS:.c=.o}
-#여기까지가 매크로설정부분
 
 all : $(NAME)
 bonus : $(BONUS_NAME)
