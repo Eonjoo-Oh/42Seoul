@@ -6,17 +6,19 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 21:33:54 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/09 20:33:14 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/12 18:57:47 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 void	free_splited(char **splited, t_list *stack)
 {
 	if (splited == 0)
 	{
-		free(stack);
+		free_result(splited);
+		free_stack(stack);
 		exit(1);
 	}
 }
@@ -33,13 +35,19 @@ void	add_stack(char **splited, t_list *stack)
 			|| check_range(long_atoi(splited[j])) == -1)
 		{
 			free_result(splited);
-			free(stack);
+			free_stack(stack);
 			exit(1);
 		}
 		node = (make_lst((int)long_atoi(splited[j])));
+		if (node == 0)
+		{
+			free_result(splited);
+			free_stack(stack);
+		}
 		lstadd_back(stack, node);
 		j++;
 	}
+	free_result(splited);
 }
 
 t_list	*first_stack(char **argv)

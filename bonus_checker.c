@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 15:10:07 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/11 17:41:04 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/12 19:05:57 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	checker_sort(t_cmd *stack_cmd, t_list *stack_a, t_list *stack_b)
 		temp = stack_cmd->cmd;
 		if (ft_strlen(temp) == 2)
 		{
-			if (temp[0] == 'p' && temp[1] == 'a')
+			if (temp[0] == 'p' && temp[1] == 'a')//strncmp
 				pa(stack_a, stack_b);
 			else if (temp[0] == 'p' && temp[1] == 'b')
 				pb(stack_a, stack_b);
@@ -145,7 +145,7 @@ void	checker_sorted(t_list *stack_a, t_list *stack_b)
 	else if (stack_b->head == 0 && check_sorted(stack_a) == 1)
 		write(1, "OK\n", 3);
 	else if (stack_b->head == 0 && check_sorted(stack_a) == -1)
-		write(1, "Error\n", 6);
+		write(1, "KO\n", 3);
 	free(stack_a);
 	free(stack_b);
 }
@@ -163,7 +163,7 @@ void	checker(int argc, char **argv)
 		return ;
 	while (true)
 	{
-		buf = get_next_line(1);
+		buf = get_next_line(0);
 		stack_cmd = make_stack_cmd(buf);
 		check_cmd(buf, stack_a, stack_cmd);
 		temp = make_stack_cmd(buf);

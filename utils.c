@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 17:36:57 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/08 18:28:12 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/12 17:27:44 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,25 @@ void	lstadd_back(t_list *lst, t_node *new_node)
 		new_node->next = lst->head;
 		lst->head->prev = new_node;
 	}
+}
+
+void	free_stack(t_list *stack)
+{
+	t_node	*node;
+	t_node	*temp;
+	int		cont;
+
+	if (!stack)
+		return ;
+	node = stack->head;
+	temp = node;
+	while (node != NULL)
+	{
+		node->next = temp;
+		cont = node->content;
+		free(&cont);
+		free(node);
+		node = temp;
+	}
+	free(stack);
 }

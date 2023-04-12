@@ -2,7 +2,7 @@ NAME = push_swap
 BONUS_NAME = checker
 
 CC = CC
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
 RM = rm -rf
 #INCLUDES는 헤더파일 폴더 따로 지정안되어있으면 필요없음?
 SRCS = check_error.c count.c find.c first_stack.c ft_split.c \
@@ -22,7 +22,7 @@ all : $(NAME)
 bonus : $(BONUS_NAME)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $^ -o $@
 
 $(NAME) : $(OBJS) $(MAIN_OBJS)
 	$(CC) $(CFLAGS) -o $@ $^
@@ -33,12 +33,12 @@ $(BONUS_NAME) : $(OBJS) $(BONUS_OBJS) $(B_MAIN_OBJS)
 clean :
 	$(RM) $(OBJS) $(BONUS_OBJS) $(MAIN_OBJS) $(B_MAIN_OBJS)
 
-fclean : clean
+fclean :
 	$(MAKE) clean
 	$(RM) $(NAME) $(BONUS_NAME)
 
-re : all fclean
+re :
 	$(MAKE) fclean
 	$(MAKE) all
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re bonus

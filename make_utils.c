@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 17:46:50 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/08 17:48:01 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/12 18:30:27 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_list	*make_stack(void)
 	stack = (t_list *)malloc(sizeof(t_list));
 	if (!stack)
 		return (0);
+	stack->head = NULL;
 	return (stack);
 }
 

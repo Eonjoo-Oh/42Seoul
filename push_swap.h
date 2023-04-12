@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:52:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/09 20:42:09 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/11 22:42:31 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int		count_node(t_list *stack);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 long long	long_atoi(char *nptr);
 void	lstadd_back(t_list *lst, t_node *new_node);
+void	free_stack(t_list *stack);
 
 // pivot
 void	sort_arr(int *arr, int size);
