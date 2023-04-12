@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 15:49:21 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/12 21:33:56 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/12 21:57:36 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,10 @@ void	lstadd_back(t_list *lst, t_node *new_node);
 int		check_dup(t_list *stack);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		checker_buf(char *buf, t_list *stack_a, t_list *stack_b);
-int		make_stack();
+t_list	*make_stack();
 int		check_sorted(t_list *stack);
+int		find_index(t_list *stack, t_node *node);
+int		count_node(t_list *stack);
 void	pa_less_bonus(t_list *stack_a, t_list *stack_b);
 void	pb_less_bonus(t_list *stack_a, t_list *stack_b);
 void	pa_bonus(t_list *stack_a, t_list *stack_b);
@@ -73,12 +75,5 @@ void	rr_bonus(t_list *stack_a, t_list *stack_b);
 void	rra_bonus(t_list *stack_a);
 void	rrb_bonus(t_list *stack_b);
 void	rrr_bonus(t_list *stack_a, t_list *stack_b);
-
-
-
-
-
-
-
 
 #endif

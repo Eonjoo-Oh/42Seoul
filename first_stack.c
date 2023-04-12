@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 21:33:54 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/12 18:57:47 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/12 22:13:03 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,7 @@ void	add_stack(char **splited, t_list *stack)
 	{
 		if (check_splited(splited[j]) == -1
 			|| check_range(long_atoi(splited[j])) == -1)
-		{
-			free_result(splited);
-			free_stack(stack);
 			exit(1);
-		}
 		node = (make_lst((int)long_atoi(splited[j])));
 		if (node == 0)
 		{
