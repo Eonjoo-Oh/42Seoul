@@ -6,12 +6,11 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 21:33:54 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/12 22:13:03 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/18 20:41:52 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 void	free_splited(char **splited, t_list *stack)
 {
@@ -46,6 +45,27 @@ void	add_stack(char **splited, t_list *stack)
 	free_result(splited);
 }
 
+void	check_only_space(char *s, t_list *stack)
+{
+	int	i;
+	int	cnt;
+
+	i = 0;
+	cnt = 0;
+	while (s[i])
+	{
+		if ((s[i] >= 9 && s[i] <= 13) || s[i] == 32)
+			cnt++;
+		i++;
+	}
+	if (i == cnt)
+	{
+		write(2, "Error\n", 6);
+		free(stack);
+		exit(1);
+	}
+}
+
 t_list	*first_stack(char **argv)
 {
 	int		i;
@@ -59,6 +79,7 @@ t_list	*first_stack(char **argv)
 	while (argv[i] != 0)
 	{
 		check_only_null(argv[i], stack);
+		check_only_space(argv[i], stack);
 		splited = ft_split(argv[i]);
 		free_splited(splited, stack);
 		add_stack(splited, stack);

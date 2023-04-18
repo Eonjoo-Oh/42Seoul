@@ -6,11 +6,10 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 14:12:35 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/11 22:55:09 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/18 17:22:53 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "push_swap.h"
 
 int	check_splited(char *str)

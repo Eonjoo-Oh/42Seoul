@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 18:21:24 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/12 21:32:36 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/18 20:47:15 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	do_sa_bonus(t_list *stack_a)
 	t_node	*second;
 	t_node	*last;
 
+	if (stack_a->head == 0)
+		return ;
 	if (count_node(stack_a) <= 1)
 		return ;
 	else if (count_node(stack_a) == 2)
@@ -43,6 +45,8 @@ void	do_sb_bonus(t_list *stack_b)
 	t_node	*second;
 	t_node	*last;
 
+	if (stack_b->head == 0)
+		return ;
 	if (count_node(stack_b) <= 1)
 		return ;
 	else if (count_node(stack_b) == 2)
@@ -76,5 +80,4 @@ void	ss_bonus(t_list *stack_a, t_list *stack_b)
 {
 	do_sa_bonus(stack_a);
 	do_sb_bonus(stack_b);
-	write (1, "ss\n", 3);
 }

@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:52:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/12 22:36:22 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/18 20:39:34 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int			check_dup(t_list *stack);
 int			check_sorted(t_list *stack);
 int			check_char(char **argv);
 int			check_error(t_list *stack);
+void		check_only_space(char *s, t_list *stack);
 
 // find
 t_node		*find_close(t_list *stack_a, t_node *b_node);
