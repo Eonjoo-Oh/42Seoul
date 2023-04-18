@@ -2,17 +2,17 @@
 
 int main(int argc, char **argv, char **envp)
 {
-	char	*infile;
-	char	*outfile;
 	char	*cmd1;
 	char	*cmd2;
+	char	*result_file;
+	int		fd;
 
 	if (argc < 5)
 		return (0);
 
 	cmd1 = find_cmd(envp, argv[2]);
-	do_cmd(argv[1], cmd1);
-	do_pipe(infile, argv[2], envp);
-
-
+	cmd2 = find_cmd(envp, argv[3]);
+	result_file = argv[4];
+	fd = do_cmd(argv[1], cmd1);//이쯤에서 fork를 써야된다.
+	do_pipe(fd, cmd2, argv[4]);
 }
