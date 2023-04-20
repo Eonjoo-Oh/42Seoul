@@ -5,15 +5,15 @@ CC = CC
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 SRCS = push_swap.c check_error.c count.c find.c first_stack.c ft_split.c \
-		is_utils.c make_utils.c pivot.c \
+		is_utils.c make_utils.c pivot.c free.c\
 		sort_do.c sort_few.c sort.c utils.c\
 		push.c rev_rot.c rotate.c swap.c
 OBJS = ${SRCS:.c=.o}
-BONUS_SRCS = gnl/get_next_line.c gnl/get_next_line_utils.c\
+BONUS_SRCS = libft/get_next_line.c libft/get_next_line_utils.c\
 			push_swap_bonus.c \
 			push_bonus.c swap_bonus.c rotate_bonus.c rev_rot_bonus.c\
 			count.c check_error.c first_stack.c ft_split.c is_utils.c make_utils.c\
-			find.c utils.c
+			find.c utils.c free.c
 BONUS_OBJS = ${BONUS_SRCS:.c=.o}
 
 all : $(NAME)

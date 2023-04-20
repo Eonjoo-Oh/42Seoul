@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 15:49:21 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/12 22:29:37 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/20 20:33:34 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include "gnl/get_next_line.h"
+# include "libft/get_next_line.h"
 
 typedef struct s_node
 {

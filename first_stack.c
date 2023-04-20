@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 21:33:54 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/18 20:41:52 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/20 20:25:12 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	check_only_space(char *s, t_list *stack)
 	if (i == cnt)
 	{
 		write(2, "Error\n", 6);
-		free(stack);
+		free_a(stack);
 		exit(1);
 	}
 }

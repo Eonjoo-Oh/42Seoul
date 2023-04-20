@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:52:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/18 20:39:34 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/20 20:42:17 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,11 @@ void		sort_three(t_list *stack_a);
 void		sort_few(t_list *stack_a, int size);
 void		sort_else(t_list *stack_a, t_list *stack_b, t_node *min);
 void		sort(t_list *stack_a, t_list *stack_b);
+void		push_swap(t_list *stack_a, t_list *stack_b);
+
+//free
+void		free_a(t_list *stack_a);
+void		free_b(t_list *stack_b);
+void		free_all(t_list *stack_a, t_list *stack_b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 19:35:14 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/12 22:33:47 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/20 20:21:34 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,11 @@ int	check_error(t_list *stack)
 	if (check_dup(stack) == -1)
 	{
 		write(2, "Error\n", 6);
-		free(stack);
 		exit(1);
 	}
 	if (check_sorted(stack) == -1)
 	{
-		free(stack);
+		free_a(stack);
 		return (-1);
 	}
 	return (1);
