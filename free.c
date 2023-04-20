@@ -6,18 +6,11 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 20:39:14 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/20 20:39:26 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/20 20:57:30 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/*
-1.stack_a node 해제하는것
-2. stack_b node 해제하는것
-3. stack_a 해제
-4. stack_b 해제
-*/
 
 void	free_a(t_list *stack_a)
 {

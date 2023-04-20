@@ -6,16 +6,11 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 16:39:01 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/20 20:45:33 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/20 20:53:41 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	leak_test()
-{
-	system ("leaks push_swap");
-}
 
 void	push_swap(t_list *stack_a, t_list *stack_b)
 {
