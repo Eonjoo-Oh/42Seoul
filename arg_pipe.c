@@ -1,3 +1,5 @@
+#include "pipex.h"
+
 char	**arg_pipe(int fd)
 {
 	char	*temp_arg;

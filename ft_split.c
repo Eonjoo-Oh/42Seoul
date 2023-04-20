@@ -1,3 +1,4 @@
+#include "pipex.h"
 #include <stdlib.h>
 
 static size_t	count_word(char const *s, char c)

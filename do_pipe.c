@@ -1,23 +1,19 @@
+#include "pipex.h"
+
 #include <unistd.h>
 #include <fcntl.h>
 
-int	do_pipe(int fd, char *cmd2, char *filename
+void	do_pipe(int temp_fd, char *cmd2, char *outfile)
 {
-	char		**arg;
 	pid_t		pid;
-	int			fd;
-	const char	*result_file;
+	int			outfile_fd;
 
-	arg = arg_pipe(fd);
-	if (arg == 0)
-		return (0);
+	dup2(0, temp_fd);
+	outfile_fd = open(outfile, O_CREAT | O_RDWR);
 	pid = fork();
- 	result_file = get_resfile(filename);
-	fd = open(result_file, O_CREAT | O_RDWR);
 	if (pid == 1)
 	{
-		dup2(fd, 1);
-		execve(cmd2, arg, NULL);
+		dup2(1, outfile_fd);
+		execve(cmd2, STDIN_FILENO, NULL);
 	}
-
 }

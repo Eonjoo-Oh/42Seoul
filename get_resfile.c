@@ -1,3 +1,5 @@
+#include "pipex.h"
+
 const char	*get_resfile(char *filename)
 {
 	char	*path;

@@ -1,6 +1,6 @@
-#include <stdlib.h>
+#include "pipex.h"
 
-char	*strcon(char *s1, char *s2)
+char	*ft_strcon(char *s1, char *s2)
 {
 	int		s1_len;
 	int		s2_len;

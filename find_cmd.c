@@ -1,3 +1,5 @@
+#include "pipex.h"
+
 char	*find_cmd(char **envp, char *cmd)
 {
 	int		i;
@@ -9,7 +11,7 @@ char	*find_cmd(char **envp, char *cmd)
 	path = find_envp(envp);
 	if (path == 0)
 		return (0);
-	res = strcon(path, cmd);
+	res = ft_strcon(path, cmd);
 
 	return (res);
 }
