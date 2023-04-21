@@ -3,8 +3,8 @@ NAME = pipex
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
-SRCS = pipex.c find_cmd.c find_envp.c ft_strcon.c do_cmd.c do_pipe.c \
-		ft_strncmp.c ft_strlen.c
+SRCS = pipex.c get_cmd.c get_path.c ft_strcon.c do_cmd.c do_pipe.c \
+		ft_strncmp.c ft_strlen.c ft_strjoin.c ft_split.c
 OBJS = ${SRCS:.c=.o}
 
 all : $(NAME)

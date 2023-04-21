@@ -1,6 +1,27 @@
 #include "pipex.h"
 #include <stdlib.h>
 
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+{
+	size_t	i;
+	size_t	l;
+
+	i = 0;
+	l = 0;
+	while (src[l])
+	{
+		l++;
+	}
+	while (i + 1 < size && i < l)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	if (size > 0)
+		dst[i] = '\0';
+	return (l);
+}
+
 static size_t	count_word(char const *s, char c)
 {
 	size_t	i;
