@@ -1,8 +1,27 @@
 #include "pipex.h"
 
-#include <fcntl.h>
-#include <unistd.h>
+void	do_cmd1(t_arg arg)
+{
+	pid_t	pid;
+	int		fd[2];
 
+	pipe(fd);
+	pid = fork();
+
+	if (pid == 0)//자식프로세스 일 때
+	{
+		dup2(fd[1], STDIN_FILENO);
+		dup2(arg.outfile_fd, STDOUT_FILENO);
+		execve(arg.cmd2_path, arg.cmd2, NULL);
+	}
+	else//부모 프로세스 일 때
+	{
+		dup2(arg.infile_fd, 0);
+		dup2(fd[1], STDOUT_FILENO);
+		execve(arg.cmd1_path, arg.cmd1, NULL);
+	}	
+}
+/*
 int	do_cmd(char *infile, char *cmd)
 {
 	int		infile_fd;
@@ -20,4 +39,4 @@ int	do_cmd(char *infile, char *cmd)
 		execve(cmd, STDIN_FILENO, NULL);//이렇게 하면 표준입력은 infile로 받고 표준출력이 fd에 적힐 것 같음
 	}
 	return (temp_fd);
-}
+}*/
