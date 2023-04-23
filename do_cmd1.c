@@ -18,9 +18,14 @@ void	do_cmd1(t_arg arg)
 	{
 		dup2(arg.infile_fd, 0);
 		dup2(fd[1], STDOUT_FILENO);
+		close(arg.infile_fd);
+		close(fd[1]);
 		execve(arg.cmd1_path, arg.cmd1, NULL);
-	}	
+		waitpid(pid, NULL, 0);
+	}
 }
+
+//./pipex infile "ls" "wc -l" outfile
 /*
 int	do_cmd(char *infile, char *cmd)
 {

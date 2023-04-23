@@ -15,7 +15,7 @@ $(NAME) : $(OBJS)
 clean :
 	$(RM) $(OBJS)
 fclean : 
-	clean
+	$(MAKE) clean
 	$(RM) $(NAME)
 re :
 	fclean all
