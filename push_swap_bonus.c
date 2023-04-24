@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 15:10:07 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/20 20:43:52 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/24 12:35:40 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_list	*checker_error(int argc, char **argv)
 	if (check_dup(stack_a) == -1)
 	{
 		write(2, "Error\n", 6);
-		free(stack_a);
 		exit(1);
 	}
 	return (stack_a);
@@ -79,6 +78,15 @@ int	checker_buf(char *buf, t_list *stack_a, t_list *stack_b)
 	return (1);
 }
 
+void	write_result(t_list *stack_a, t_list *stack_b)
+{
+	if (check_sorted(stack_a) == -1 && stack_b->head == 0)
+		write(1, "OK\n", 3);
+	else
+		write (1, "KO\n", 3);
+	free_all(stack_a, stack_b);
+}
+
 int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
@@ -94,16 +102,14 @@ int	main(int argc, char **argv)
 	{
 		if (checker_buf(buf, stack_a, stack_b) == -1)
 		{
-			write(1, "Error\n", 6);
+			write(2, "Error\n", 6);
+			free_all(stack_a, stack_b);
 			free(buf);
 			return (0);
 		}
 		free(buf);
 		buf = get_next_line(0);
 	}
-	if (check_sorted(stack_a) == -1 && stack_b->head == 0)
-		write(1, "OK\n", 3);
-	else
-		write (1, "KO\n", 3);
+	write_result (stack_a, stack_b);
 	return (0);
 }

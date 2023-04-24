@@ -1,7 +1,7 @@
 NAME = push_swap
 BONUS_NAME = checker
 
-CC = CC
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 SRCS = push_swap.c check_error.c count.c find.c first_stack.c ft_split.c \
@@ -31,12 +31,9 @@ $(BONUS_NAME) : $(BONUS_OBJS)
 clean :
 	$(RM) $(OBJS) $(BONUS_OBJS) $(MAIN_OBJS) $(B_MAIN_OBJS)
 
-fclean :
-	$(MAKE) clean
+fclean : clean
 	$(RM) $(NAME) $(BONUS_NAME)
 
-re :
-	$(MAKE) fclean
-	$(MAKE) all
+re : fclean all
 
 .PHONY : all clean fclean re bonus

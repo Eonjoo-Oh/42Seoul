@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 15:49:21 by eoh               #+#    #+#             */
-/*   Updated: 2023/04/20 20:33:34 by eoh              ###   ########.fr       */
+/*   Updated: 2023/04/24 12:35:37 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,9 @@ void		rr_bonus(t_list *stack_a, t_list *stack_b);
 void		rra_bonus(t_list *stack_a);
 void		rrb_bonus(t_list *stack_b);
 void		rrr_bonus(t_list *stack_a, t_list *stack_b);
+void		free_a(t_list *stack_a);
+void		free_b(t_list *stack_b);
+void		free_all(t_list *stack_a, t_list *stack_b);
+void		write_result(t_list *stack_a, t_list *stack_b);
 
 #endif
