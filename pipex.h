@@ -12,6 +12,7 @@ typedef struct s_arg{
 	char	**cmd2;
 	char	*cmd1_path;
 	char	*cmd2_path;
+	int		fd[2];
 	int		infile_fd;
 	int		outfile_fd;
 } t_arg;
@@ -20,9 +21,10 @@ char	**get_cmd(char *cmd);
 char	*get_cmd_path(t_arg arg, int n);
 char	**get_path(char **envp);
 
-void	do_cmd1(t_arg arg);
-void	do_cmd2(t_arg arg);
-//void	do_pipe(int temp_fd, char *cmd2, char *outfile);
+void	do_cmd(t_arg arg);
+void	do_pid1(t_arg arg);
+void	do_pid2(t_arg arg);
+void	print_error(char *message);
 
 //utils
 int		ft_strncmp(const char *s1, const char *s2, size_t n);

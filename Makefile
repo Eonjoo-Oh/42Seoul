@@ -3,7 +3,8 @@ NAME = pipex
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
-SRCS = pipex.c get_cmd.c get_path.c get_cmd_path.c do_cmd1.c do_cmd2.c \
+SRCS = pipex.c get_cmd.c get_path.c get_cmd_path.c \
+		do_cmd.c do_child.c print_error.c\
 		ft_strncmp.c ft_strlen.c ft_strjoin.c ft_split.c
 OBJS = ${SRCS:.c=.o}
 
