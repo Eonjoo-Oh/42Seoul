@@ -17,5 +17,5 @@ void	do_pid2(t_arg arg)
 	dup2(arg.outfile_fd, STDOUT_FILENO);
 	close(arg.fd[0]);
 	close(arg.outfile_fd);
-	execve(arg.cmd2_path, arg.cmd2, NULL);	
+	execve(arg.cmd2_path, arg.cmd2, NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 13:08:03 by eoh               #+#    #+#             */
-/*   Updated: 2023/05/02 18:01:32 by eoh              ###   ########.fr       */
+/*   Updated: 2023/05/03 17:49:03 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	do_cmd(t_arg arg)
 		print_error("fork error");
 	if (pid2 == 0)
 		do_pid2(arg);
+	close(arg.fd[0]);
 	close(arg.fd[1]);
 	waitpid(pid1, 0, 0);
 	waitpid(pid2, 0, 0);
