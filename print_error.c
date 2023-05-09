@@ -3,5 +3,6 @@
 void	print_error(char *message)
 {
 	perror(message);
-	exit(1);
+	exit(errno);
 }
+//exit status 128이 뭔데 자꾸 여기서 틀리지?
