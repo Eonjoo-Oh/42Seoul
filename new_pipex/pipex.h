@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/23 16:58:23 by eoh               #+#    #+#             */
+/*   Updated: 2023/05/24 17:06:53 by eoh              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PIPEX_H
 # define PIPEX_H
 
@@ -8,25 +20,15 @@
 #include <errno.h>
 
 typedef struct s_arg{
-
 	char	**argv;
-	int		argc;
 	char	**path;
-	char	**cmd_path;
 	char	**cmd;
-	int		infile_fd;
-	int		outfile_fd;
-	int		cmd_i;
+	char	*cmd_path;
 	int		fd[2];
+	int		argc;
+	int		order;
+	int		infile_fd;
+}t_arg;
 
-} t_arg;
 
-char	**get_cmd(char **argv, int argc);
-char	**ft_split(char const *s, char c);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	**get_path(char **envp);
-char	**get_cmd_path(int argc, char **argv, t_arg arg);
-int		ft_strlen(char *s);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-
-# endif
+#endif
