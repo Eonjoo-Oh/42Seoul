@@ -1,29 +1,36 @@
 #include "pipex.h"
 
-t_arg init_arg(t_arg *arg, int argc, char **argv)
+t_arg init_arg(t_arg *arg, int argc, char **argv, char **envp)
 {
-	if (pipe(arg->fd) == -1)
-		exit(errno);
-	var->order = 0;
-	var->argc = argc;
+	arg->argv = argv;
+	get_path(envp, arg);
+	arg->cmd = NULL;
+	arg->cmd_path = NULL;
+	close((arg->fd)[0]);
+	close((arg->fd)[1]);
+	arg->argc = argc;
+	arg->order = 0;
+	return (*arg);
 }
 
-int	main(int argc, char **argv, char **envp);
+int	main(int argc, char **argv, char **envp)
 {
 	t_arg	arg;
-	pid_t	pid;
 
 	if (argc != 5)
 		exit(errno);
 
-	arg = init_arg(&arg, argc, argv);
+	arg = init_arg(&arg, argc, argv, envp);
 
 	while (arg.order < argc - 2)
 	{
-		get_cmd(&arg);
-		get_cmd_path(&arg);
+		find_order(&arg);
 		arg.order++;
 	}
-	close(fd[0]);
-	close(fd[1]);
+	close(arg.fd[0]);
+	close(arg.fd[1]);
 }
+
+// < file1 cmd1 | cmd2 > file2
+// ./pipex "file1" "cmd1" "cmd2" "file2"
+// ./pipex "infile" "ls -l" "wc -l" "outfile"

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_cmd.c                                         :+:      :+:    :+:   */
+/*   get_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 17:27:34 by eoh               #+#    #+#             */
-/*   Updated: 2023/05/24 17:35:55 by eoh              ###   ########.fr       */
+/*   Updated: 2023/05/26 20:57:43 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	get_cmd_path(t_arg *arg)
 	int		i;
 
 	path = arg->path;
-	cmd = argv[arg->order + 2];
+	cmd = arg->cmd[0];
 	result = 0;
 	i = 0;
 	while (path[i])
@@ -45,10 +45,47 @@ void	get_cmd(t_arg *arg)
 	char	*cmd;
 	char	**result;
 
-	cmd = argv[arg->order + 2];
+	cmd = arg->argv[arg->order + 2];
 	result = ft_split(cmd, ' ');
 	if (!result)
 		exit(errno);
 	//여기서는 access로 확인해주어야하나? //가능한 옵션인지는 어떻게 확인?
 	arg->cmd = result;
+}
+
+void	add_slash(t_arg *arg)
+{
+	int		i;
+	char	*old_path;
+	i = 0;
+	while ((arg->path)[i])
+	{
+		old_path = (arg->path)[i]; 
+		(arg->path)[i] = ft_strjoin((arg->path)[i], "/");
+		free(old_path);
+		i++;
+	}
+}
+
+void	get_path(char	**envp, t_arg *arg)
+{
+	char	*temp_path;
+	int		i;
+
+	i = 0;
+	temp_path = NULL;
+	while (envp[i] != 0)
+	{
+		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
+		{
+			temp_path = envp[i];
+			break ;
+		}
+		i++;
+	}
+	if (temp_path == 0)
+		exit(errno);//no path
+	temp_path += 5;
+	arg->path = (ft_split(temp_path, ':'));
+	add_slash(arg);
 }
