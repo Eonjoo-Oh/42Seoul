@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 17:27:34 by eoh               #+#    #+#             */
-/*   Updated: 2023/05/26 20:57:43 by eoh              ###   ########.fr       */
+/*   Updated: 2023/05/30 22:09:38 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	get_cmd(t_arg *arg)
 	char	*cmd;
 	char	**result;
 
-	cmd = arg->argv[arg->order + 2];
+	cmd = arg->argv[arg->order];
 	result = ft_split(cmd, ' ');
 	if (!result)
 		exit(errno);

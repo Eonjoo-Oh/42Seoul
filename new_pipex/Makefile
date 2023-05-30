@@ -14,12 +14,15 @@ all : $(NAME)
 	$(CC) $(CFLAGS) -c $^ -o $@
 $(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $^
+
 clean :
 	$(RM) $(OBJS)
-fclean : 
-	$(MAKE) clean
+
+fclean : clean
 	$(RM) $(NAME)
+
 re :
-	fclean all
+	fclean
+	all
 
 .PHONY : all clean fclean re
