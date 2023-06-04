@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 17:27:34 by eoh               #+#    #+#             */
-/*   Updated: 2023/05/30 22:09:38 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/04 02:57:58 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	get_cmd_path(t_arg *arg)
 	}
 	if (access(result, F_OK) != 0)
 	{
+		perror("wrong command path");
 		free(result);
 		exit(errno);
 	}
@@ -48,8 +49,11 @@ void	get_cmd(t_arg *arg)
 	cmd = arg->argv[arg->order];
 	result = ft_split(cmd, ' ');
 	if (!result)
+	{
+		perror("wrong command");
 		exit(errno);
-	//여기서는 access로 확인해주어야하나? //가능한 옵션인지는 어떻게 확인?
+	}
+	//여기서는 access로 확인해주어야하나? //가능한 옵션인지는 어떻게 확인?->그건 execve가 확인해줌
 	arg->cmd = result;
 }
 
@@ -84,7 +88,10 @@ void	get_path(char	**envp, t_arg *arg)
 		i++;
 	}
 	if (temp_path == 0)
+	{
+		perror("no path");
 		exit(errno);//no path
+	}
 	temp_path += 5;
 	arg->path = (ft_split(temp_path, ':'));
 	add_slash(arg);
