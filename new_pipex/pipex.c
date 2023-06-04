@@ -5,7 +5,7 @@ int	main(int argc, char **argv, char **envp)
 	t_arg	arg;
 	int		s;
 	if (argc != 5)
-		exit(errno);
+		exit(1);
 	arg = init_arg(&arg, argc, argv, envp);
 	while (arg.order < argc - 1)
 	{

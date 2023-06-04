@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   do_cmd.c                                           :+:      :+:    :+:   */
+/*   do_cmd_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:44:22 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/04 20:17:56 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/04 18:10:08 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,30 @@ void	do_first(t_arg *arg)
 	//	wait(NULL);
 }
 
+void	do_middle(t_arg *arg)
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == -1)
+	{
+		perror("fork error");
+		exit(errno);
+	}
+	if (pid == 0)
+	{
+		dup2(arg->fd[0], STDIN_FILENO);
+		dup2(arg->fd[1], STDOUT_FILENO);
+		close(arg->fd[0]);
+		close(arg->fd[1]);
+		if (execve(arg->cmd_path, arg->cmd, NULL) == -1)
+		{
+			perror("execve failed");
+			exit(errno);
+		}
+	}
+}
+
 void	do_last(t_arg *arg)
 {
 	pid_t	pid;
@@ -89,31 +113,13 @@ void	do_last(t_arg *arg)
 
 void	find_order(t_arg *arg)
 {
-	arg->cmd = get_cmd(arg->argv[arg->order]);
-	arg->cmd_path = get_cmd_path(arg, arg->cmd[0]);
+	get_cmd(arg);
+	get_cmd_path(arg);
+
 	if (arg->order == 2)
 		do_first(arg);
 	else if (arg->order == 3)
 		do_last(arg);
+	else
+		do_middle(arg);
 }
-
-/*
-//bonus
-else
-{
-	find_cmd(&arg);
-	do_middle;
-}
-
-void	do_middle(t_arg *arg)
-{
-	pid_t = pid;
-
-	dup2(arg->fd[0], STDIN_FILENO);
-	dup2(arg->fd[1], STDOUT_FILENO);
-	close(arg->fd[0]);
-	close(arg->fd[1]);
-	if (execve(arg->cmd_path, arg->cmd, NULL) == -1)
-		print_error("execve failed");
-}
-*/

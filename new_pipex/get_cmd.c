@@ -6,21 +6,19 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 17:27:34 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/04 02:57:58 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/04 23:19:30 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	get_cmd_path(t_arg *arg)
+char	*get_cmd_path(t_arg *arg, char *cmd)
 {
 	char	**path;
-	char	*cmd;
 	char	*result;
 	int		i;
 
 	path = arg->path;
-	cmd = arg->cmd[0];
 	result = 0;
 	i = 0;
 	while (path[i])
@@ -38,15 +36,13 @@ void	get_cmd_path(t_arg *arg)
 		free(result);
 		exit(errno);
 	}
-	arg->cmd_path = result;
+	return (result);
 }
 
-void	get_cmd(t_arg *arg)
+char	**get_cmd(char *cmd)
 {
-	char	*cmd;
 	char	**result;
 
-	cmd = arg->argv[arg->order];
 	result = ft_split(cmd, ' ');
 	if (!result)
 	{
@@ -54,7 +50,7 @@ void	get_cmd(t_arg *arg)
 		exit(errno);
 	}
 	//여기서는 access로 확인해주어야하나? //가능한 옵션인지는 어떻게 확인?->그건 execve가 확인해줌
-	arg->cmd = result;
+	return (result);
 }
 
 void	add_slash(t_arg *arg)
