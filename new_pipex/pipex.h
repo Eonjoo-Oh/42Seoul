@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:58:23 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/05 16:27:59 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/06 01:02:23 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,13 @@ void	do_first(t_arg *arg);
 void	do_last(t_arg *arg);
 
 //utils
-char	**ft_split(char const *s, char c);
+char	**ft_split(char *s, char c);
 //static char	**free_result(char **s);
-//static size_t	count_word(char const *s, char c);
+//static size_t	count_word(char *s, char c);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);//여기까지 split
 char	*ft_strjoin(char const *s1, char const *s2);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
 int	ft_strlen(char *s);
+char	*ft_substr(char *str, int start, int end);
 
 #endif

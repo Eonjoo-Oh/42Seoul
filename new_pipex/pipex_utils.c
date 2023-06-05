@@ -57,5 +57,22 @@ int	ft_strlen(char *s)
 	return (len);
 }
 
+char	*ft_substr(char *str, int start, int end)
+{
+	int		i;
+	char	*result;
 
-//strjoin, ft_split, strncmp, strlen
+	i = 0;
+	result = (char *)malloc(sizeof(char) * (end - start + 2));
+	if (!result)
+		return (0);
+
+	while (i < end - start + 1)
+	{
+		result[i] = str[start + i];
+		i++;
+	}
+	result[i] = '\0';
+	return (result);
+}
+//strjoin, ft_split, strncmp, strlen, ft_substr
