@@ -21,7 +21,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 }
 
-// < file1 cmd1 | cmd2 > file2
+// < file1 cmd1 | cmd2 | cmd3 |> file2
 // ./pipex "file1" "cmd1" "cmd2" "file2"
 // ./pipex "infile" "ls -l" "wc -l" "outfile"
 //14, 25, 28
