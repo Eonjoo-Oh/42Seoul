@@ -3,6 +3,8 @@
 int main(int argc, char **argv, char **envp)
 {
 	t_arg	test;
+	char	**cmd;
+	char	*cmd_path;
 	int		i;
 
 	i = 0;
@@ -11,14 +13,14 @@ int main(int argc, char **argv, char **envp)
 		return (0);
 	test = init_arg(&test, argc, argv, envp);
 	test.order = 1;
-	get_cmd(&test);
-	get_cmd_path(&test);
+	cmd = get_cmd(argv[1]);
+	cmd_path = get_cmd_path(&test, cmd[0]);
 
-	printf("cmd_path : %s\n", test.cmd_path);
+	printf("cmd_path : %s\n", cmd_path);
 	printf("cmd : \n");
-	while (test.cmd[i])
+	while (cmd[i])
 	{
-		printf("%s\n", test.cmd[i]);
+		printf("%s\n", cmd[i]);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 17:27:34 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/04 23:19:30 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/05 16:29:47 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*get_cmd_path(t_arg *arg, char *cmd)
 char	**get_cmd(char *cmd)
 {
 	char	**result;
-
+	
 	result = ft_split(cmd, ' ');
 	if (!result)
 	{

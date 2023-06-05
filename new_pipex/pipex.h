@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:58:23 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/04 23:39:13 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/05 16:27:59 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_arg{
 	int		infile_fd;
 	int		outfile_fd;
 	int		temp_fd;//bonus
-
+	int		bonusout_fd;
 }t_arg;
 
 t_arg	init_arg(t_arg *arg, int argc, char **argv, char **envp);

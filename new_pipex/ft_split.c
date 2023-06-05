@@ -64,10 +64,10 @@ char	**ft_split(char const *s, char c)
 		return (0);
 	while (*s)
 	{
-		if (*s != c && *s != 39)
+		if (*s != c)
 		{
 			tmp = s;
-			while (*s && *s != c && *s != 39)
+			while (*s && *s != c)
 				s++;
 			result[i] = (char *)malloc(sizeof(char) * (s - tmp + 1));
 			if (!result[i])
