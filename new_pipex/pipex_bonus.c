@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 18:14:17 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/04 18:14:21 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/07 02:56:18 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv, char **envp)
 	int		s;
 	
 	if (ft_strncmp(argv[1], "here_doc", 8) == 0)
-		heredoc_bonus(argc, argv, envp);
+		heredoc_main(argc, argv, envp);
 	else
 	{
 		arg = init_arg(&arg, argc, argv, envp);

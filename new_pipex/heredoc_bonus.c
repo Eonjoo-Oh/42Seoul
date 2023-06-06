@@ -74,7 +74,7 @@ t_arg init_heredoc(t_arg *arg, int argc, char **argv, char **envp)
 	return (*arg);
 }
 
-int main(int argc, char **argv, char **envp)
+int heredoc_main(int argc, char **argv, char **envp)
 {
 	t_arg	arg;
 	char	*str;

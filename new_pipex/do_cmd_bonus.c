@@ -6,13 +6,13 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 16:44:22 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/04 18:10:08 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/07 03:02:43 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	do_first(t_arg *arg)
+void	do_first_bonus(t_arg *arg)
 {
 	pid_t	pid;
 
@@ -52,7 +52,7 @@ void	do_first(t_arg *arg)
 	//	wait(NULL);
 }
 
-void	do_middle(t_arg *arg)
+void	do_middle_bonus(t_arg *arg)
 {
 	pid_t	pid;
 
@@ -76,7 +76,7 @@ void	do_middle(t_arg *arg)
 	}
 }
 
-void	do_last(t_arg *arg)
+void	do_last_bonus(t_arg *arg)
 {
 	pid_t	pid;
 	
@@ -111,15 +111,15 @@ void	do_last(t_arg *arg)
 	//	wait(NULL);
 }
 
-void	find_order(t_arg *arg)
+static void	find_order(t_arg *arg)
 {
 	get_cmd(arg);
 	get_cmd_path(arg);
 
 	if (arg->order == 2)
-		do_first(arg);
+		do_first_bonus(arg);
 	else if (arg->order == 3)
-		do_last(arg);
+		do_last_bonus(arg);
 	else
-		do_middle(arg);
+		do_middle_bonus(arg);
 }
