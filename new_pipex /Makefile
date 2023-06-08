@@ -1,5 +1,4 @@
 NAME = pipex
-BONUS_NAME = pipex
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
@@ -10,14 +9,7 @@ SRCS = pipex.c \
 
 OBJS = ${SRCS:.c=.o}
 
-BONUS_SRCS = gnl/get_next_line.c gnl/get_next_line_utils.c \
-			pipex_bonus.c heredoc_bonus.c do_cmd_bonus.c\
-			pipex_utils.c \
-
-BONUS_OBJS = ${BONUS_SRCS:.c=.o}
-
 all : $(NAME)
-bonus : $(BONUS_NAME)
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $^ -o $@
@@ -25,15 +17,12 @@ bonus : $(BONUS_NAME)
 $(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $^
 
-$(BONUS_NAME) : $(BONUS_OBJS)
-	$(CC) $(CFLAGS) -o $@ $^
-
 clean :
-	$(RM) $(OBJS) $(BONUS_OBJS)
+	$(RM) $(OBJS)
 
 fclean : clean
 	$(RM) $(NAME)
 
 re : fclean all
 
-.PHONY : all clean fclean re bonus
+.PHONY : all clean fclean re

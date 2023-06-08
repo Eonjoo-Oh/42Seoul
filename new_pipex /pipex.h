@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:58:23 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/07 03:03:04 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/09 01:39:25 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	get_path(char	**envp, t_arg *arg);
 void	add_slash(t_arg *arg);//path = 을 구하고 slash 붙이는 작업
 char	*get_cmd_path(t_arg *arg, char *cmd); //cmd의 경로를 구하는 작업
 char	**get_cmd(char *cmd); //cmd를 이차원배열로 만들어주는 작업
-void	find_order(t_arg *arg);//명령어 순서에따라 처리과정이 달라 순서먼저 구해줌
+void	find_order(t_arg *arg); //명령어 순서에따라 처리과정이 달라 순서먼저 구해줌
 void	do_first(t_arg *arg);
 void	do_last(t_arg *arg);
 
@@ -56,17 +56,5 @@ char	*ft_strjoin(char const *s1, char const *s2);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
 int	ft_strlen(char *s);
 char	*ft_substr(char *str, int start, int end);
-
-//bonus
-int heredoc_main(int argc, char **argv, char **envp);
-t_arg init_heredoc(t_arg *arg, int argc, char **argv, char **envp);
-void	get_input_heredoc(t_arg *arg);
-void	do_cmd_heredoc(t_arg *arg);
-void	do_pid2_heredoc(t_arg *arg);
-void	do_pid1_heredoc(t_arg *arg);
-void	find_order(t_arg *arg);
-void	do_first_bonus(t_arg *arg);
-void	do_middle_bonus(t_arg *arg);
-void	do_last_bonus(t_arg *arg);
 
 #endif
