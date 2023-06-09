@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 20:32:04 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/09 21:03:30 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/09 22:14:32 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,6 @@ void	init_arg(t_arg *arg, char **argv, char **envp)
 	arg->cmd2_path = get_cmd_path(arg, 2);//여기까지 명령어 파싱부분
 }
 
-//void	free_arg(t_arg *arg)
-//{
-//	int	i;
-
-//	i = 0;
-
-//	while (arg->path[i])
-//	{
-//		free(arg->path[i]);
-//		i++;
-//	}
-//}
-
 int main(int argc, char **argv, char **envp)
 {
 	t_arg	arg;
@@ -61,7 +48,6 @@ int main(int argc, char **argv, char **envp)
 	init_arg(&arg, argv, envp);
 	do_cmd(&arg);
 	free_arg(&arg);
-	//free_arg(&arg);
-	//system("leaks pipex");
+	system("leaks pipex");
 	return (0);
 }

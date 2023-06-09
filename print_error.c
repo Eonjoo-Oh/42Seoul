@@ -15,6 +15,8 @@ void	free_dimension(char **arg)
 
 void	free_arg(t_arg *arg)
 {
+	if (arg == 0)
+		return ;
 	free_dimension(arg->path);
 	free_dimension(arg->cmd1);
 	free_dimension(arg->cmd2);

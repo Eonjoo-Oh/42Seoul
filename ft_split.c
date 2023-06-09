@@ -91,6 +91,7 @@ char	**ft_split(char *s, char c)
 
 	i = 0;
 	result = (char **)malloc(sizeof(char *) * (count_word(s, c) + 1));
+	result[count_word(s, c)] = NULL;
 	if (!result)
 		return (0);
 	while (*s)
@@ -120,4 +121,5 @@ char	**ft_split(char *s, char c)
 			s++;
 	}
 	return (result);
+	//dup해서 넘기고 split데이터는 free
 }

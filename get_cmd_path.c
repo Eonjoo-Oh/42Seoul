@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 10:24:09 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/09 20:56:47 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/09 21:20:22 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*get_cmd_path(t_arg *arg, int n)
 	if (access(result, F_OK) != 0)
 	{
 		free(result);
-		perror("worng command");
+		perror("wrong command");
 		exit(errno);
 	}
 	return (result);
