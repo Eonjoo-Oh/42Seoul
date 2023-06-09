@@ -6,6 +6,9 @@ char	**get_cmd(char *cmd)
 
 	result = ft_split(cmd, ' ');
 	if (result == 0)
-		print_error("blank cmd");
+	{
+		perror("blank cmd");
+		exit (errno);
+	}
 	return (result);
 }

@@ -6,35 +6,52 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 10:24:09 by eoh               #+#    #+#             */
-/*   Updated: 2023/05/24 17:55:16 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/09 20:56:47 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	*get_cmd_path(t_arg arg, int n)
+//void	free_path(t_arg *arg)
+//{
+//	int	i;
+
+//	i = 0;
+//	while (arg->path[i])
+//	{
+//		free(arg->path[i]);
+//		i++;
+//	}
+//	free(arg->path);
+//}
+char	*get_cmd_path(t_arg *arg, int n)
 {
 	int		i;
 	char	**path;
 	char	**cmd;
 	char	*result;
 
-	path = arg.path;
+	path = arg->path;
 	result = 0;
 	if (n == 1)
-		cmd = arg.cmd1;
+		cmd = arg->cmd1;
 	else
-		cmd = arg.cmd2;
+		cmd = arg->cmd2;
 	i = 0;
 	while (path[i])
 	{
 		result = ft_strjoin(path[i], cmd[0]);
 		if (access(result, F_OK) == 0)
 			break ;
+		free(result);
 		i++;
 	}
 	if (access(result, F_OK) != 0)
-		print_error("wrong command");
+	{
+		free(result);
+		perror("worng command");
+		exit(errno);
+	}
 	return (result);
 }
 

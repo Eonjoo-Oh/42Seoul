@@ -1,2 +1,0 @@
-pipe.cmd(strcon에서)
-path찾을때 strjoin / 해주는 부분에서 이전에 malloc해준 /없는 부분은 다 free해주어야하지 않을까 싶음

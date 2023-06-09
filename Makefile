@@ -1,11 +1,11 @@
 NAME = pipex
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -rf
 SRCS = pipex.c get_cmd.c get_path.c get_cmd_path.c \
-		do_cmd.c do_child.c print_error.c\
-		ft_strncmp.c ft_strlen.c ft_strjoin.c ft_split.c
+		do_cmd.c print_error.c\
+		pipex_utils.c ft_split.c
 OBJS = ${SRCS:.c=.o}
 
 all : $(NAME)
@@ -18,7 +18,7 @@ clean :
 fclean : 
 	$(MAKE) clean
 	$(RM) $(NAME)
-re :
-	fclean all
+
+re : fclean all
 
 .PHONY : all clean fclean re

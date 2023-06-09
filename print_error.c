@@ -1,8 +1,30 @@
 #include "pipex.h"
 
-void	print_error(char *message)
+void	free_dimension(char **arg)
 {
+	int	i;
+
+	i = 0;
+	while (arg[i])
+	{
+		free(arg[i]);
+		i++;
+	}
+	free(arg);
+}
+
+void	free_arg(t_arg *arg)
+{
+	free_dimension(arg->path);
+	free_dimension(arg->cmd1);
+	free_dimension(arg->cmd2);
+	free(arg->cmd1_path);
+	free(arg->cmd2_path);
+}
+
+void	print_error(char *message, t_arg *arg)
+{
+	free_arg(arg); 
 	perror(message);
 	exit(errno);
 }
-//exit status 128이 뭔데 자꾸 여기서 틀리지?
