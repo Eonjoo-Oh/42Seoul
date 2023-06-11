@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 19:28:21 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/09 19:32:37 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/12 00:57:55 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ char	*ft_substr(char *str, int start, int end)
 	result = (char *)malloc(sizeof(char) * (end - start + 2));
 	if (!result)
 		return (0);
-
 	while (i < end - start + 1)
 	{
 		result[i] = str[start + i];

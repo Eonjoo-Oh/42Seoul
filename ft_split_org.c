@@ -1,16 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   ft_split_org.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 23:28:52 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/12 00:53:54 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/12 00:44:08 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+int	count_quote(char *s, int i)
+{
+	char	quote;
+	int		end;
+
+	quote = s[i];
+	end = -1;
+	i++;
+	while (s[i])
+	{
+		if (s[i] == quote)
+		{
+			end = i;
+			break ;
+		}
+		i++;
+	}
+	if (end == -1)
+		{
+			perror("wrong quote");
+			exit(errno);
+		}
+	else
+		return (end);
+}
 
 static size_t	count_word(char *s, char c)
 {
@@ -36,6 +62,23 @@ static size_t	count_word(char *s, char c)
 	return (cnt);
 }
 
+char	*split_quote(char *s)
+{
+	char	*result;
+	char	quote;
+	int		end;
+
+	quote = s[0];
+	end = 1;
+
+	while (s[end] != quote)
+	{
+		end++;
+	}
+	result = ft_substr(s, 1, end - 1);
+	return (result); 
+}
+
 static char	**free_result(char **s)
 {
 	size_t	j;
@@ -50,59 +93,44 @@ static char	**free_result(char **s)
 	return (0);
 }
 
-char	**do_split(char *s, char **result, char c)
+char	**ft_split(char *s, char c)
 {
-	int	i;
+	size_t		i;
+	char		**result;
+	char		*tmp;
+	char		*quote;
 
 	i = 0;
+	result = (char **)malloc(sizeof(char *) * (count_word(s, c) + 1));
+	result[count_word(s, c)] = NULL;
+	if (!result)
+		return (0);
 	while (*s)
 	{
 		if (*s == 34 || *s == 39)
 		{
-			result[i] = when_quote(&s);
-			if (result[i] == 0)
+			quote = split_quote(s);
+			result[i] = (char *)malloc(sizeof(char) * (ft_strlen(quote) + 1));
+			if (!result[i])
 				return (free_result(result));
-			i++;
+			ft_strlcpy(result[i++], quote, ft_strlen(quote) + 1);
+			s += (ft_strlen(quote) + 2);
+			free(quote);
 			continue ;
 		}
 		else if (*s != c)
 		{
-			result[i] = when_charset(&s, c);
-			if (!result)
+			tmp = s;
+			while (*s && *s != c)
+				s++;
+			result[i] = (char *)malloc(sizeof(char) * (s - tmp + 1));
+			if (!result[i])
 				return (free_result(result));
-			i++;
+			ft_strlcpy(result[i++], tmp, s - tmp + 1);
 		}
 		else
 			s++;
 	}
 	return (result);
-}
-
-char	*when_charset(char	**s, char c)
-{
-	char	*tmp;
-	char	*result;
-
-	tmp = *s;
-	while (**s && **s != c)
-		*s += 1;
-	result = (char *)malloc(sizeof(char) * (*s - tmp + 1));
-	if (!result)
-		return (0);
-	ft_strlcpy(result, tmp, *s - tmp + 1);
-	return (result);
-}
-
-char	**ft_split(char *s, char c)
-{
-	char		**result;
-
-	result = (char **)malloc(sizeof(char *) * (count_word(s, c) + 1));
-	result[count_word(s, c)] = NULL;
-	if (!result)
-		return (0);
-	result = do_split(s, result, c);
-	if (result == 0)
-		return (0);
-	return (result);
+	//dup해서 넘기고 split데이터는 free
 }

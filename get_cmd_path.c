@@ -6,24 +6,18 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 10:24:09 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/09 21:20:22 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/12 00:56:49 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-//void	free_path(t_arg *arg)
-//{
-//	int	i;
+void	worng_cmd_path(void)
+{
+	perror("wrong command");
+	exit(errno);
+}
 
-//	i = 0;
-//	while (arg->path[i])
-//	{
-//		free(arg->path[i]);
-//		i++;
-//	}
-//	free(arg->path);
-//}
 char	*get_cmd_path(t_arg *arg, int n)
 {
 	int		i;
@@ -47,24 +41,6 @@ char	*get_cmd_path(t_arg *arg, int n)
 		i++;
 	}
 	if (access(result, F_OK) != 0)
-	{
-		free(result);
-		perror("wrong command");
-		exit(errno);
-	}
+		worng_cmd_path();
 	return (result);
 }
-
-
-/*
-int main(int argc, char **argv, char **envp)
-{
-	char *cmd;
-
-	if (argc != 2)
-		return (0);
-	cmd = get_cmd(envp, argv[1]);
-	printf("cmd path : %s\n", cmd);
-
-	return (0);
-}*/

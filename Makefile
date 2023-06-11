@@ -5,7 +5,7 @@ CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -rf
 SRCS = pipex.c get_cmd.c get_path.c get_cmd_path.c \
 		do_cmd.c print_error.c\
-		pipex_utils.c ft_split.c
+		pipex_utils.c ft_split.c ft_split_quote.c
 OBJS = ${SRCS:.c=.o}
 
 all : $(NAME)

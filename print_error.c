@@ -24,9 +24,9 @@ void	free_arg(t_arg *arg)
 	free(arg->cmd2_path);
 }
 
-void	print_error(char *message, t_arg *arg)
+void	print_error(char *message)
 {
-	free_arg(arg); 
+	//free_arg(arg);
 	perror(message);
 	exit(errno);
 }

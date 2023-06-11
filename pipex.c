@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 20:32:04 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/09 22:14:32 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/12 00:58:07 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ int main(int argc, char **argv, char **envp)
 {
 	t_arg	arg;
 
-	atexit(check_leak);
+	//atexit(check_leak);
 	if (argc != 5)
 		exit(1);
 	init_arg(&arg, argv, envp);
 	do_cmd(&arg);
 	free_arg(&arg);
-	system("leaks pipex");
+	//system("leaks pipex");
 	return (0);
 }

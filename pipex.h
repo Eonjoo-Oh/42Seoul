@@ -27,16 +27,21 @@ char	**get_path(char **envp);
 void	do_cmd(t_arg *arg);
 void	do_pid1(t_arg *arg);
 void	do_pid2(t_arg *arg);
-void	print_error(char *message, t_arg *arg);
+void	print_error(char *message);
 
 //utils
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strcon(char *s1, char *s2);
 int		ft_strlen(char *s);
-char	**ft_split(char *s, char c);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_substr(char *str, int start, int end);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+char	**ft_split(char *s, char c);
+char	**do_split(char *s, char **result, char c);
+char	*when_charset(char	**s, char c);
+int	count_quote(char *s, int i);
+char	*split_quote(char *s);
+char	*when_quote(char	**s);
 
 //free
 void	free_dimension(char **arg);
