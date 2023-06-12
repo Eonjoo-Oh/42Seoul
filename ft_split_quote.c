@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 00:50:01 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/12 00:53:43 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/12 12:52:29 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	count_quote(char *s, int i)
 	if (end == -1)
 	{
 		perror("wrong quote");
-		exit(errno);
+		exit(1);
 	}
 	else
 		return (end);

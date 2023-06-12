@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_error.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/12 12:41:48 by eoh               #+#    #+#             */
+/*   Updated: 2023/06/12 13:29:48 by eoh              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 void	free_dimension(char **arg)
@@ -26,7 +38,6 @@ void	free_arg(t_arg *arg)
 
 void	print_error(char *message)
 {
-	//free_arg(arg);
 	perror(message);
-	exit(errno);
+	exit(1);
 }

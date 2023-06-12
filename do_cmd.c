@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 13:08:03 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/11 23:23:15 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/12 18:10:38 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,6 @@ void	do_pid1(t_arg *arg)
 		print_error("execve failed");
 }
 
-//void	do_pid1(t_arg *arg)
-//{
-//	if (close(arg->fd[0]) == -1)
-//		print_error("close error", arg);
-//	if (dup2(arg->infile_fd, STDIN_FILENO) == -1)
-//		print_error("dup error", arg);
-//	if (dup2(arg->fd[1], STDOUT_FILENO) == -1)
-//		print_error("dup error", arg);
-//	if (close(arg->infile_fd) == -1)
-//		print_error("close error", arg);
-//	if (close(arg->fd[1]) == -1)
-//		print_error("close error", arg);
-//	if (execve(arg->cmd1_path, arg->cmd1, NULL) == -1)
-//		print_error("execve failed", arg);
-//}
-
 void	do_cmd(t_arg *arg)
 {
 	pid_t	pid1;
@@ -72,8 +56,6 @@ void	do_cmd(t_arg *arg)
 		print_error("fork error");
 	if (pid1 == 0)
 		do_pid1(arg);
-	if (waitpid(pid1, 0, 0) == -1)
-		print_error("wait error");
 	pid2 = fork();
 	if (pid2 == -1)
 		print_error("fork error");
@@ -83,6 +65,8 @@ void	do_cmd(t_arg *arg)
 		print_error("close error");
 	if (close(arg->fd[1]) == -1)
 		print_error("close error");
+	if (waitpid(pid1, 0, 0) == -1)
+		print_error("wait error");
 	if (waitpid(pid2, 0, 0) == -1)
 		print_error("wait error");
 }

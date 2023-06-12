@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 00:57:02 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/12 00:57:18 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/12 13:30:43 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	**get_cmd(char *cmd)
 {
 	char	**result;
 
-	if (cmd == 0)
+	if (!cmd)
 	{
 		exit(1);
 	}
@@ -24,7 +24,7 @@ char	**get_cmd(char *cmd)
 	if (result == 0)
 	{
 		perror("blank cmd");
-		exit (errno);
+		exit (1);
 	}
 	return (result);
 }
