@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 13:08:03 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/12 18:10:38 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/15 14:02:10 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,4 @@ void	do_cmd(t_arg *arg)
 		print_error("close error");
 	if (close(arg->fd[1]) == -1)
 		print_error("close error");
-	if (waitpid(pid1, 0, 0) == -1)
-		print_error("wait error");
-	if (waitpid(pid2, 0, 0) == -1)
-		print_error("wait error");
 }
