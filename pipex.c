@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 20:32:04 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/15 14:05:00 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/15 15:34:15 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ int	main(int argc, char **argv, char **envp)
 	if (argc != 5)
 		exit(1);
 	if (ft_strlen(argv[2]) == 0 || ft_strlen(argv[3]) == 0)
+	{
+		perror("wrong command");
 		exit(1);
+	}
 	init_arg(&arg, argv, envp);
 	do_cmd(&arg);
 	wait(&s);
