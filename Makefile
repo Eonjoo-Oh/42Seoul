@@ -1,6 +1,6 @@
 NAME = so_long
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 CLIB = -L./mlx/opengl -lmlx -framework OpenGL -framework AppKit
 RM = rm -rf
 SRCS = test.c
