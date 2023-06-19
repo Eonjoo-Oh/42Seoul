@@ -6,13 +6,13 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 23:41:08 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/16 23:47:48 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/19 17:56:38 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_strlen(const char *s)
+/*int	ft_strlen(const char *s)
 {
 	int	i;
 
@@ -22,9 +22,9 @@ int	ft_strlen(const char *s)
 		i++;
 	}
 	return (i);
-}
+}*/
 
-char	*ft_strjoin(char const *s1, char const *s2)
+/*char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int	s1_len;
 	int	s2_len;
@@ -49,7 +49,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	str[i] = '\0';
 	return (str);
-}
+}*/
 
 int	rev_strncmp(char *s1, char *s2, int n)
 {
@@ -73,4 +73,22 @@ int	rev_strncmp(char *s1, char *s2, int n)
 		n--;
 	}
 	return (1);
+}
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	if (n == 0)
+		return (0);
+	while ((i < n) && (s1[i] || s2[i]))
+	{
+		if (s1[i] != s2[i])
+		{
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		}
+		i++;
+	}
+	return (0);
 }

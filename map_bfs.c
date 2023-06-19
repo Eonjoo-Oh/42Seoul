@@ -6,46 +6,20 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 00:15:16 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/18 00:58:38 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/19 21:18:01 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_queue(t_queue *queue)
-{
-	t_bfs	*temp;
-
-	while (queue->front != NULL)
-	{
-		temp = queue->front->next;
-		free(queue->front);
-		queue->front = temp;
-	}
-	free(queue);
-}
-
-void	init_queue(t_queue *queue)
-{
-	t_queue queue;
-
-	queue = (t_queue *)malloc(sizeof(t_queue));
-	if (!queue)
-		return (0);
-	queue->front = 0;
-	queue->rear = 0;
-	queue->visited = 0;
-	queue->collector = 0;
-	queue->exit = 0;
-}
-
 void	init_cur_pos(t_bfs *cur_pos, t_map *map)
 {
 	cur_pos = (t_bfs *)malloc(sizeof(cur_pos));
 	if (!cur_pos)
-		return (0);
+		return ;
+	get_position(map);
 	cur_pos->i = map->p_pos[0];
-	cur_pos->i = map->p_pos[1];
+	cur_pos->i = map->p_pos[1];//맵에 p_pos언제 설정하지?
 	cur_pos->next = 0;
 }
 
@@ -70,30 +44,6 @@ void	mark_visited(t_queue *queue)
 	}
 }
 
-void	enqueue(t_queue *queue, t_bfs *pos)
-{
-	if (queue->front == 0)
-	{
-		queue->front = pos;
-		queue->rear = pos;
-	}
-	else
-	{
-		queue->rear->next = pos;
-		queue->rear = pos;
-	}
-	mark_visited(queue);
-}
-
-void	dequeue(t_queue *queue)
-{
-	t_bfs	*temp;
-
-	temp = queue->front->next;
-	free(queue->front);
-	queue->front = temp;
-}
-
 int	check_visited(t_queue *queue, int i, int j)
 {
 	t_visited *temp;
@@ -110,7 +60,7 @@ int	check_visited(t_queue *queue, int i, int j)
 
 int	check_movable(t_map *map, int i, int j)
 {
-	if (i < map->w && j < map->l && map->form[i][j] != "1")
+	if (i < map->w && j < map->l && map->form[i][j] != '1')
 		return (1);
 	return (-1);
 }

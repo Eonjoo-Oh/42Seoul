@@ -3,6 +3,10 @@
 		"errno.h": "c",
 		"so_long.h": "c",
 		"mlx.h": "c",
-		"sstream": "c"
+		"sstream": "c",
+		"fcntl.h": "c",
+		"stdlib.h": "c",
+		"stdio.h": "c",
+		"get_next_line.h": "c"
 	}
 }
