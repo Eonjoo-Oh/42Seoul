@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:57:50 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/19 21:31:31 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/20 01:59:43 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef	struct s_visited{
 typedef struct s_queue {
 	struct	s_bfs *front;
 	struct	s_bfs *rear;
-	struct	s_visitied *visited;
+	struct	s_visited *visited;
 	int		collector;
 	int		exit;
 }	t_queue;
@@ -57,7 +57,7 @@ typedef struct s_queue {
 typedef struct s_bfs {
 	int	i;
 	int	j;
-	struct t_bfs *next;
+	struct s_bfs *next;
 }	t_bfs;
 
 typedef struct s_img {
@@ -93,6 +93,7 @@ int	check_bfs(t_map *map);
 void	init_cur_pos(t_bfs *cur_pos, t_map *map);
 t_bfs	*get_next_pos(int num, t_bfs *cur_pos, t_queue *q, t_map *map);
 void	get_position(t_map *map);
+void	mark_visited(t_queue *queue);
 //queue
 void	init_queue(t_queue *queue);
 void	enqueue(t_queue *queue, t_bfs *pos);

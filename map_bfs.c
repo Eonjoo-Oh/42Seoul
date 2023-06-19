@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 00:15:16 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/19 21:18:01 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/20 01:57:41 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_cur_pos(t_bfs *cur_pos, t_map *map)
 {
-	cur_pos = (t_bfs *)malloc(sizeof(cur_pos));
+	cur_pos = (t_bfs *)malloc(sizeof(cur_pos) * 1);
 	if (!cur_pos)
 		return ;
 	get_position(map);
@@ -54,8 +54,8 @@ int	check_visited(t_queue *queue, int i, int j)
 		if (temp->i == i && temp->j == j)
 			return (-1);
 		temp = temp->next;
-		return (1);
 	}
+	return (1);
 }
 
 int	check_movable(t_map *map, int i, int j)
@@ -105,14 +105,14 @@ int	check_bfs(t_map *map)
 	init_queue(&q);
 	init_cur_pos(cur_pos, map);
 	enqueue(&q, cur_pos);
-	while (q.front != 0)
+	while (q.front != NULL)
 	{
 		dequeue(&q);
-		if (q.front->i == map->c_pos[0] && q.front->j == map->c_pos[1])
+		if (map->form[q.front->i][q.front->j] == 'C')
 			q.collector++;
-		if (q.front->i == map->e_pos[0] && q.front->j == map->e_pos[1])
+		if (map->form[q.front->i][q.front->j] == 'C')
 			q.exit++;
-		if (q.collector > 0 && q.exit > 0)
+		if (q.collector == map->element[COLLECTOR] && q.exit == 1)
 		{
 			free_queue(&q);
 			return (1);

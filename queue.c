@@ -2,8 +2,6 @@
 
 void	init_queue(t_queue *queue)
 {
-	t_queue queue;
-
 	queue = (t_queue *)malloc(sizeof(t_queue));
 	if (!queue)
 		return ;
@@ -33,6 +31,8 @@ void	dequeue(t_queue *queue)
 {
 	t_bfs	*temp;
 
+	if (queue->front == NULL)
+		return ;
 	temp = queue->front->next;
 	free(queue->front);
 	queue->front = temp;
