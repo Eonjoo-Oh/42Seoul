@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 00:15:16 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/20 16:15:28 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/20 18:55:01 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,33 @@
 t_bfs	*init_cur_pos(t_map *map)
 {
 	t_bfs	*cur_pos;
+	int		i;
+	int		j;
 
-	cur_pos = (t_bfs *)malloc(sizeof(cur_pos) * 1);
+	cur_pos = (t_bfs *)malloc(sizeof(cur_pos));
 	if (!cur_pos)
-		return ;
+		return (0);
 	get_position(map);
-	cur_pos->i = map->p_pos[0];
-	cur_pos->i = map->p_pos[1];//맵에 p_pos언제 설정하지?
+	i = map->p_pos[0];//왜여기안들어감?
+	j = map->p_pos[1];//맵에 p_pos언제 설정하지?
+	cur_pos->i = i;
+	cur_pos->j = j;
 	cur_pos->next = 0;
 	return (cur_pos);
-}
+}//왜 변수에 한번 넣으면 들어감?
 
 void	mark_visited(t_queue *queue)
 {
-	t_visited	*now_visit;
+	t_visited	*now_visit;//선언다시해보기
 	t_visited	*temp;
+	int			i;
+	int			j;
 	
-	now_visit = 0;
-	now_visit->i = queue->rear->i;
-	now_visit->j = queue->rear->j;
+	//now_visit = 0;
+	i = queue->rear->i;
+	j = queue->rear->j;
+	now_visit->i = i;
+	now_visit->j = j;
 	now_visit->next = NULL;
 	if(queue->visited == 0)
 		queue->visited = now_visit;
@@ -109,11 +117,11 @@ int	check_bfs(t_map *map)
 	cur_pos = 0;
 	next_pos = 0;
 	q = init_queue();
-	init_cur_pos(map);
+	cur_pos = init_cur_pos(map);
 	enqueue(q, cur_pos);
 	while (q->front != NULL)
 	{
-		dequeue(&q);
+		dequeue(q);
 		if (map->form[q->front->i][q->front->j] == 'C')
 			q->collector++;
 		if (map->form[q->front->i][q->front->j] == 'C')

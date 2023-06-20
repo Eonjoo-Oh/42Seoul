@@ -6,7 +6,7 @@ t_queue *init_queue(void)
 
 	queue = (t_queue *)malloc(sizeof(t_queue));
 	if (!queue)
-		return ;
+		return (0);
 	queue->front = 0;
 	queue->rear = 0;
 	queue->visited = 0;
@@ -27,7 +27,7 @@ void	enqueue(t_queue *queue, t_bfs *pos)
 		queue->rear->next = pos;
 		queue->rear = pos;
 	}
-	mark_visited(queue);
+	mark_visited(queue);//여기서뭔가 문제. enqueue부터 보기
 }
 
 void	dequeue(t_queue *queue)
