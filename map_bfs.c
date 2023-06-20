@@ -6,14 +6,16 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 00:15:16 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/20 01:57:41 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/20 16:15:28 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	init_cur_pos(t_bfs *cur_pos, t_map *map)
+t_bfs	*init_cur_pos(t_map *map)
 {
+	t_bfs	*cur_pos;
+
 	cur_pos = (t_bfs *)malloc(sizeof(cur_pos) * 1);
 	if (!cur_pos)
 		return ;
@@ -21,6 +23,7 @@ void	init_cur_pos(t_bfs *cur_pos, t_map *map)
 	cur_pos->i = map->p_pos[0];
 	cur_pos->i = map->p_pos[1];//맵에 p_pos언제 설정하지?
 	cur_pos->next = 0;
+	return (cur_pos);
 }
 
 void	mark_visited(t_queue *queue)
@@ -28,6 +31,7 @@ void	mark_visited(t_queue *queue)
 	t_visited	*now_visit;
 	t_visited	*temp;
 	
+	now_visit = 0;
 	now_visit->i = queue->rear->i;
 	now_visit->j = queue->rear->j;
 	now_visit->next = NULL;
@@ -97,32 +101,34 @@ t_bfs	*get_next_pos(int num, t_bfs *cur_pos, t_queue *q, t_map *map)
 
 int	check_bfs(t_map *map)
 {
-	t_queue	q;
+	t_queue	*q;
 	t_bfs	*cur_pos;
 	t_bfs	*next_pos;
 	int		num;
 
-	init_queue(&q);
-	init_cur_pos(cur_pos, map);
-	enqueue(&q, cur_pos);
-	while (q.front != NULL)
+	cur_pos = 0;
+	next_pos = 0;
+	q = init_queue();
+	init_cur_pos(map);
+	enqueue(q, cur_pos);
+	while (q->front != NULL)
 	{
 		dequeue(&q);
-		if (map->form[q.front->i][q.front->j] == 'C')
-			q.collector++;
-		if (map->form[q.front->i][q.front->j] == 'C')
-			q.exit++;
-		if (q.collector == map->element[COLLECTOR] && q.exit == 1)
+		if (map->form[q->front->i][q->front->j] == 'C')
+			q->collector++;
+		if (map->form[q->front->i][q->front->j] == 'C')
+			q->exit++;
+		if (q->collector == map->element[COLLECTOR] && q->exit == 1)
 		{
-			free_queue(&q);
+			free_queue(q);
 			return (1);
 		}
 		num = 0;
 		while (num < 4)
 		{
-			next_pos = get_next_pos(num, cur_pos, &q, map);
+			next_pos = get_next_pos(num, cur_pos, q, map);
 			if (next_pos != 0)
-				enqueue(&q, next_pos);
+				enqueue(q, next_pos);
 			num++;
 		}
 	}

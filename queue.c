@@ -1,7 +1,9 @@
 #include "so_long.h"
 
-void	init_queue(t_queue *queue)
+t_queue *init_queue(void)
 {
+	t_queue *queue;
+
 	queue = (t_queue *)malloc(sizeof(t_queue));
 	if (!queue)
 		return ;
@@ -10,6 +12,7 @@ void	init_queue(t_queue *queue)
 	queue->visited = 0;
 	queue->collector = 0;
 	queue->exit = 0;
+	return (queue);
 }
 
 void	enqueue(t_queue *queue, t_bfs *pos)

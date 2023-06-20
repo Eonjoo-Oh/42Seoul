@@ -6,14 +6,14 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:57:50 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/20 01:59:43 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/20 16:55:37 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG
 #define SO_LONG
 
-//# include "mlx.h"
+# include "mlx.h"
 # include "gnl/get_next_line.h"
 # include <fcntl.h>
 # include <stdlib.h>
@@ -60,6 +60,27 @@ typedef struct s_bfs {
 	struct s_bfs *next;
 }	t_bfs;
 
+/*
+typedef struct s_position
+{
+	int x;
+	int y;
+	int use;
+} t_position;
+t_position* arr = (t_position*)malloc(sizeof(t_position) * size);
+arr[0].x = 10;
+arr[0].y = 5;
+arr[0].use = TRUE;
+arr[1].x = 20;
+
+구조체의 배열 array of struct
+
+while(arr[i].use != FALSE)
+{
+
+}
+*/
+
 typedef struct s_img {
 	void	*player;
 	void	*map;
@@ -90,12 +111,12 @@ void	check_wall(t_map *map);
 
 //bfs
 int	check_bfs(t_map *map);
-void	init_cur_pos(t_bfs *cur_pos, t_map *map);
+t_bfs	*init_cur_pos(t_map *map);
 t_bfs	*get_next_pos(int num, t_bfs *cur_pos, t_queue *q, t_map *map);
 void	get_position(t_map *map);
 void	mark_visited(t_queue *queue);
 //queue
-void	init_queue(t_queue *queue);
+t_queue *init_queue(void);
 void	enqueue(t_queue *queue, t_bfs *pos);
 void	dequeue(t_queue *queue);
 void	free_queue(t_queue *queue);
