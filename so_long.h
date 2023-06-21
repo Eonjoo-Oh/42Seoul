@@ -6,14 +6,14 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:57:50 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/20 17:53:45 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/21 11:13:11 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG
 #define SO_LONG
 
-//# include "mlx.h"
+# include "mlx/opengl/mlx.h"
 # include "gnl/get_next_line.h"
 # include <fcntl.h>
 # include <stdlib.h>
@@ -114,7 +114,7 @@ int		check_bfs(t_map *map);
 t_bfs	*init_cur_pos(t_map *map);
 t_bfs	*get_next_pos(int num, t_bfs *cur_pos, t_queue *q, t_map *map);
 void	get_position(t_map *map);
-void	mark_visited(t_queue *queue);
+void	mark_visited(t_queue *queue, int i, int j);
 //queue
 t_queue	*init_queue(void);
 void	enqueue(t_queue *queue, t_bfs *pos);

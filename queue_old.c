@@ -17,6 +17,9 @@ t_queue *init_queue(void)
 
 void	enqueue(t_queue *queue, t_bfs *pos)
 {
+	int	i;
+	int	j;
+
 	if (queue->front == 0)
 	{
 		queue->front = pos;
@@ -27,7 +30,9 @@ void	enqueue(t_queue *queue, t_bfs *pos)
 		queue->rear->next = pos;
 		queue->rear = pos;
 	}
-	mark_visited(queue);//여기서뭔가 문제. enqueue부터 보기
+	i = queue->rear->i;
+	j = queue->rear->j;
+	mark_visited(queue, i, j);//여기서뭔가 문제. enqueue부터 보기
 }
 
 void	dequeue(t_queue *queue)
