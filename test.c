@@ -22,17 +22,27 @@ int	main(void)
 typedef struct s_vars {
 	void	*mlx;
 	void	*win;
+	void	*img;
 } t_var;
 
-int key_esc(int keycode, t_var *vars)
+int key_esc_test(int keycode, t_var *vars)
 {
 	if (keycode == 53)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
 		exit(0);
 	}
+	if (keycode == 0)
+	{
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 1 * 64, 1 * 64);
+	}
 	return (-1);
 }
+
+/*int	key_main(int keycode, t_var *vars)
+{
+
+}*/
 
 int	main(void)
 {
@@ -65,9 +75,9 @@ int	main(void)
 		j = 0;
 		while (j < 13)
 		{
-			mlx_put_image_to_window(m_ptr, w_ptr, img, i * 64, j * 64);
+			mlx_put_image_to_window(m_ptr, w_ptr, img, j * 64, i * 64);
 			if (map[i][j] == 'P')
-				mlx_put_image_to_window(m_ptr, w_ptr, p_img, i * 64, j * 64);
+				mlx_put_image_to_window(m_ptr, w_ptr, p_img, j * 64, i * 64);
 			j++;;
 		}
 		i++;
@@ -76,10 +86,10 @@ int	main(void)
 		return (0);
 	vars.mlx = m_ptr;
 	vars.win = w_ptr;
-	mlx_key_hook(vars.win, key_esc, &vars);
+	vars.img = p_img;
+	mlx_key_hook(vars.win, key_esc_test, &vars);
 	mlx_loop(m_ptr);
 	return (0);
 } //test rendering image
-
-
-
+//gcc -I ./mlx/opengl -c test.c
+//gcc -L./mlx/opengl -lmlx -framework OpenGL -framework AppKit -o test test.o

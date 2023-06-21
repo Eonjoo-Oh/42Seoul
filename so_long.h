@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:57:50 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/21 14:44:27 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/21 23:35:13 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,11 @@ typedef struct s_img {
 	void	*exit;
 	int		size;
 } t_img;
+
+typedef struct s_all {
+	t_map *map_all;
+	t_img *img_all;
+} t_all;
 /*
 typedef struct s_position
 {
@@ -131,6 +136,17 @@ t_img	*render_img_main(void *mlx, t_map *map);
 void	render_img(void *mlx, void *win, t_img *img, t_map *map);
 t_img	*init_img(void *mlx);
 
+//key hook
+int	check_keycode(int keycode, t_all *all);
+int key_esc(int keycode, t_all *all);
+int	key_w(int keycode, t_all *all);
+int	key_s(int keycode, t_map *map);
+int	key_d(int keycode, t_map *map);
+int	key_a(int keycode, t_map *map);
 
+//key hook utils
+void	key_find_player(t_map *map);
+int	get_collector_num(t_map *map);
+int	key_check_movable(t_map *map, int keycode);
 
 #endif

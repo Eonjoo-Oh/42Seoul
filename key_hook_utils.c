@@ -6,14 +6,15 @@ void	key_find_player(t_map *map)
 	int	j;
 
 	i = 0;
-	while (map->form[i])
+	while (i < map->l)
 	{
-		while (map->form[i][j])
+		j = 0;
+		while (j < map->w)
 		{
 			if (map->form[i][j] == 'P')
 			{
-				map->cur_p_i = i;
-				map->cur_p_j = j;
+				map->p_pos[0] = i;
+				map->p_pos[1] = j;
 				break;
 			}
 			j++;
@@ -22,7 +23,7 @@ void	key_find_player(t_map *map)
 	}
 }
 
-int	get_collector_num(char **form)
+int	get_collector_num(t_map *map)
 {
 	int	i;
 	int	j;
@@ -30,12 +31,12 @@ int	get_collector_num(char **form)
 
 	i = 0;
 	result = 0;
-	while (form[i])
+	while (i < map->l)
 	{
 		j = 0;
-		while (form[i][j])
+		while (j < map->w)
 		{
-			if (form[i][j] == 'C')
+			if (map->form[i][j] == 'C')
 				result++;
 			j++;
 		}
@@ -50,9 +51,9 @@ int	key_check_movable(t_map *map, int keycode)
 	int	new_j;
 	int collection[2];
 
-	new_i = map->cur_p_i;
-	new_j = map->cur_p_j;
-	collection[0] = get_collector_num(map->form);
+	new_i = map->p_pos[0];
+	new_j = map->p_pos[1];
+	collection[0] = get_collector_num(map);
 	collection[1] = 0;
 	if (keycode == 13)//위(w)
 		new_i -= 1;
@@ -62,17 +63,17 @@ int	key_check_movable(t_map *map, int keycode)
 		new_j -= 1;
 	else if (keycode == 0)//왼(a)
 		new_j += 1;
-	if (new_i < 0 || new_i >= map->w || new_j < 0 || new_i >= map->w)
+	if (new_i < 0 || new_i >= map->w || new_j < 0 || new_i >= map->l)
 		return (-1);
 	if (map->form[new_i][new_j] == '1')
 		return (-1);
 	else if (map->form[new_i][new_j] == 'C')
 	{
 		collection[1]++;
-		map->form[map->cur_p_i][map->cur_p_j] = '0';
+		map->form[map->p_pos[0]][map->p_pos[1]] = '0';
 		map->form[new_i][new_j] = 'P';
-		map->cur_p_i = new_i;
-		map->cur_p_j = new_j;
+		map->p_pos[0] = new_i;
+		map->p_pos[1] = new_j;
 	}
 	else if (map->form[new_i][new_j] == 'E')
 	{
@@ -82,11 +83,12 @@ int	key_check_movable(t_map *map, int keycode)
 			exit(0);
 		}
 	}
-	else if (map->form[new_i][new_j] != '0')
+	else if (map->form[new_i][new_j] == '0')
 	{
-		map->form[map->cur_p_i][map->cur_p_j] = '0';
+		map->form[map->p_pos[0]][map->p_pos[1]] = '0';
 		map->form[new_i][new_j] = 'P';
-		map->cur_p_i = new_i;
-		map->cur_p_j = new_j;
+		map->p_pos[0] = new_i;
+		map->p_pos[1] = new_j;
 	}
+	return (1);
 }
