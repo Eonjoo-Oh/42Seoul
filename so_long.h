@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:57:50 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/21 23:35:13 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/22 05:23:12 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,9 +140,9 @@ t_img	*init_img(void *mlx);
 int	check_keycode(int keycode, t_all *all);
 int key_esc(int keycode, t_all *all);
 int	key_w(int keycode, t_all *all);
-int	key_s(int keycode, t_map *map);
-int	key_d(int keycode, t_map *map);
-int	key_a(int keycode, t_map *map);
+int	key_s(int keycode, t_all *all);
+int	key_d(int keycode, t_all *all);
+int	key_a(int keycode, t_all *all);
 
 //key hook utils
 void	key_find_player(t_map *map);

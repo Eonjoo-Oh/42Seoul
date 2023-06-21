@@ -60,9 +60,9 @@ int	key_check_movable(t_map *map, int keycode)
 	else if (keycode == 1)//아래(s)
 		new_i += 1;
 	else if (keycode == 2)//오(d)
-		new_j -= 1;
-	else if (keycode == 0)//왼(a)
 		new_j += 1;
+	else if (keycode == 0)//왼(a)
+		new_j -= 1;
 	if (new_i < 0 || new_i >= map->w || new_j < 0 || new_i >= map->l)
 		return (-1);
 	if (map->form[new_i][new_j] == '1')
