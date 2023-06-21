@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:57:50 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/21 11:13:11 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/21 14:44:27 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define SO_LONG
 
 # include "mlx/opengl/mlx.h"
+# include "ft_printf/ft_printf.h"
 # include "gnl/get_next_line.h"
 # include <fcntl.h>
 # include <stdlib.h>
@@ -60,6 +61,14 @@ typedef struct s_bfs {
 	struct s_bfs *next;
 }	t_bfs;
 
+typedef struct s_img {
+	void	*player;
+	void	*map;
+	void	*wall;
+	void	*collector;
+	void	*exit;
+	int		size;
+} t_img;
 /*
 typedef struct s_position
 {
@@ -81,14 +90,6 @@ while(arr[i].use != FALSE)
 }
 */
 
-typedef struct s_img {
-	void	*player;
-	void	*map;
-	void	*wall;
-	void	*collector;
-	void	*exit;
-	int		size;
-} t_img;
 
 //map
 t_map	*map_main(void *mlx_ptr, char *argv);
@@ -124,6 +125,12 @@ void	free_queue(t_queue *queue);
 //utils
 int	rev_strncmp(char *s1, char *s2, int n);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
+
+//render img
+t_img	*render_img_main(void *mlx, t_map *map);
+void	render_img(void *mlx, void *win, t_img *img, t_map *map);
+t_img	*init_img(void *mlx);
+
 
 
 #endif

@@ -2,7 +2,12 @@ NAME = so_long
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -f
-SRCS = test.c ./gnl/get_next_line.c ./gnl/get_next_line_utils.c
+
+SRCS = ./gnl/get_next_line.c ./gnl/get_next_line_utils.c\
+so_long.c utils.c\
+map_main.c map_validate.c map_utils.c\
+render_image.c 
+
 OBJS = ${SRCS:.c=.o}
 MLX_DIR = ./mlx/opengl
 MLX_C = -L./mlx/opengl -lmlx -framework OpenGL -framework AppKit

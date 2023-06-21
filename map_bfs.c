@@ -41,8 +41,8 @@ t_queue	*init_queue(t_map *map)
 	queue->bfs = (t_bfs *)malloc(sizeof(t_bfs) * (w * l));
 	if (!queue->bfs)
 		return (0);
-	queue->bfs->i = -1;
-	queue->bfs->j = -1;
+	queue->bfs[0]->i = -1;
+	queue->bfs[1]->j = -1;
 	queue->bfs->visited = -1;
 
 	return (queue);

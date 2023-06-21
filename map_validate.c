@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 00:15:49 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/19 21:20:04 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/21 11:22:37 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,6 @@ void	map_validate_main(t_map *map)
 	check_element(map);
 	check_element_num(map->element);
 	check_wall(map);
-	if (check_bfs(map) == -1)//막혀있지 않은지 검사하는 함수
-		exit(1);
+	// if (check_bfs(map) == -1)//막혀있지 않은지 검사하는 함수
+	// 	exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:57:13 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/19 20:37:51 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/21 11:18:03 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,6 @@ t_map	*map_main(void *mlx_ptr, char *argv)
 	map->form = read_map(map);
 	if (map->form == 0)
 		exit(1);
-	map_validate_main(map);
+	//map_validate_main(map);
 	return (map);
 }

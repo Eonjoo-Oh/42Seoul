@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:18:59 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/19 16:36:47 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/21 14:42:55 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,11 @@ int main(int argc, char **argv)
 	if (mlx_ptr == 0)
 		exit(1);
 	map = map_main(mlx_ptr, argv[1]);
+	//printf("%s\n", map->form[2]);
 	img = render_img_main(mlx_ptr, map);
-	key_hook_main(map);
+	if (img == 0)
+		return (0);
+	ft_printf("%s\n", "yeap!");
+	//key_hook_main(map);
 	mlx_loop(mlx_ptr);
 }
