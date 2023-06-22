@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:57:13 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/21 11:18:03 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/22 06:04:04 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ char	**read_map(t_map *map)
 		str = get_next_line(map->fd);
 		res[i] = ft_strdup(str);
 		if (i < map->l - 1 && ft_strlen(res[i]) != (map->w + 1))
-				exit(1);
+				error_msg("map error");
 		if (i == map-> l - 1 && ft_strlen(res[i]) != (map->w))
-				exit(1); //오직 개행만 있는 부분 방어 & 사각형인지 확인
+				error_msg("map_error"); //오직 개행만 있는 부분 방어 & 사각형인지 확인
 		i++;
 	}
 	close(map->fd);
@@ -76,13 +76,11 @@ t_map *init_map(void *m_ptr, char *argv)
 	get_map_length(map->path, map);
 	map->fd = open(map->path, O_RDONLY);
 	if (map->fd == -1)
-	{
-		perror("file open error");
-		exit(1);
-	}
+		error_msg("file open error");
 	map->cur_p_i = -1;
-	map->cur_p_j = -1;//이렇게 해도 되겠지?keyhook에서만 쓸거라?
+	map->cur_p_j = -1;//이렇게 해도 되겠지?keyhook에서만 쓸거라?->이거안쓰는거확인하고 없애기
 	map->move = 0;
+	map->collected = 0;
 	return(map);
 }
 
@@ -93,7 +91,7 @@ t_map	*map_main(void *mlx_ptr, char *argv)
 	map = init_map(mlx_ptr, argv);
 	map->form = read_map(map);
 	if (map->form == 0)
-		exit(1);
-	//map_validate_main(map);
+		error_msg("map error");
+	map_validate_main(map);
 	return (map);
 }

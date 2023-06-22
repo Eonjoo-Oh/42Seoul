@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:57:50 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/22 05:23:12 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/22 06:03:52 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_map{
 	int		cur_p_i;
 	int		cur_p_j;
 	int		move;
+	int		collected;
 }	t_map;
 
 typedef	struct s_visited{
@@ -95,7 +96,6 @@ while(arr[i].use != FALSE)
 }
 */
 
-
 //map
 t_map	*map_main(void *mlx_ptr, char *argv);
 t_map *init_map(void *m_ptr, char *argv);
@@ -130,6 +130,7 @@ void	free_queue(t_queue *queue);
 //utils
 int	rev_strncmp(char *s1, char *s2, int n);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
+void	error_msg(char *message);
 
 //render img
 t_img	*render_img_main(void *mlx, t_map *map);

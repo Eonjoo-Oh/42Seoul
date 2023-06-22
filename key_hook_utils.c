@@ -69,7 +69,7 @@ int	key_check_movable(t_map *map, int keycode)
 		return (-1);
 	else if (map->form[new_i][new_j] == 'C')
 	{
-		collection[1]++;
+		map->collected++;
 		map->form[map->p_pos[0]][map->p_pos[1]] = '0';
 		map->form[new_i][new_j] = 'P';
 		map->p_pos[0] = new_i;
@@ -77,7 +77,7 @@ int	key_check_movable(t_map *map, int keycode)
 	}
 	else if (map->form[new_i][new_j] == 'E')
 	{
-		if (collection[0] == collection[1])
+		if (map->collected == map->element[COLLECTOR])
 		{
 			mlx_destroy_window(map->mlx_ptr, map->win_ptr);//창끄는게맞나?아니면 그냥 플레이어없애기?
 			exit(0);

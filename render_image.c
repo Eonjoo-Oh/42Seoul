@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 01:02:04 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/21 23:18:35 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/22 05:48:25 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,19 @@ t_img	*init_img(void *mlx)
 	img->size = 64;
 	img->player = mlx_xpm_file_to_image(mlx, "./image/player.xpm", &(img->size), &(img->size));
 	if (img->player == 0)
-		exit(1);
+		error_msg("img error");
 	img->wall = mlx_xpm_file_to_image(mlx, "./image/wall.xpm", &(img->size), &(img->size));
 	if (img->wall == 0)
-		exit(1);
+		error_msg("img error");
 	img->map = mlx_xpm_file_to_image(mlx, "./image/map.xpm", &(img->size), &(img->size));
 	if (img->map == 0)
-		exit(1);
+		error_msg("img error");
 	img->collector = mlx_xpm_file_to_image(mlx, "./image/collector.xpm", &(img->size), &(img->size));
 	if (img->collector == 0)
-		exit(1);
+		error_msg("img error");
 	img->exit = mlx_xpm_file_to_image(mlx, "./image/exit.xpm", &(img->size), &(img->size));
 	if (img->exit == 0)
-		exit(1);
+		error_msg("img error");
 	return (img);
 }
 
@@ -73,7 +73,7 @@ t_img	*render_img_main(void *mlx, t_map *map)//map안에 mlxptr들지 않음?
 	w_ptr = mlx_new_window(mlx, map->w * img->size, map->l * img->size, "so_long");
 	map->win_ptr = w_ptr;
 	if (w_ptr == 0)
-		exit(1);
+		error_msg("mlx window error");
 	render_img(mlx, w_ptr, img, map);
 	return (img);
 }

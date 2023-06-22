@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 00:15:49 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/21 11:22:37 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/22 06:02:55 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	get_position(t_map *map)
 		}
 		i++;
 	}
-}
+}//epos랑 cpos쓸모있나? 안쓰는 것 같음
 
 void	check_wall(t_map *map)
 {
@@ -73,18 +73,13 @@ void	check_wall(t_map *map)
 	}
 }
 
-void	check_element_num(int *element)
+/*void	check_element_num(int *element)
 {
-	int	i;
-
-	i = 0;
-	while (element[i])
-	{
-		if (element[i] == 0)
-			exit(1);
-		i++;
-	}
-}//플레이어가 여러명이거나 출구가 여러 개이면?
+	if (element[COLLECTOR] == 0)
+		error_msg("map error");
+	if (element[EXIT] != 1 || element[PLAYERS] != 1)
+		error_msg("map error");
+}//플레이어가 여러명이거나 출구가 여러 개이면?*/
 
 void	check_element(t_map *map)
 {
@@ -111,12 +106,17 @@ void	check_element(t_map *map)
 		}
 		i++;
 	}
+	if (map->element[COLLECTOR] == 0)
+		error_msg("map error");
+	printf("%d, %d\n", map->element[EXIT], map->element[PLAYERS]);
+	if (map->element[EXIT] != 1 || map->element[PLAYERS] != 1)
+		error_msg("map error");
 }
 
 void	map_validate_main(t_map *map)
 {
 	check_element(map);
-	check_element_num(map->element);
+	//check_element_num(map->element);
 	check_wall(map);
 	// if (check_bfs(map) == -1)//막혀있지 않은지 검사하는 함수
 	// 	exit(1);
