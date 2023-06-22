@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 01:17:54 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/23 02:52:49 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/23 03:41:44 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	bfs_main(t_map *map)
 
 	q = init_queue(map);
 	if (!q)
-		error_msg("malloc error");
+		error_msg("malloc error");//malloc에러 이게맞나?
 	get_position(map);
 	enqueue(q, map, map->p_pos[0], map->p_pos[1]);
 	while(queue_empty(q) != 0)

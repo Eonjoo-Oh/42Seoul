@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 00:15:49 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/23 03:19:01 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/23 03:40:06 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ void	check_wall(t_map *map)
 			while (j < map->w)
 			{
 				if (line[j] != '1')
-					exit(1);
+					error_msg("invalid map");
 				j++;
 			}
 		}
 		else
 		{
 			if (line[0] != '1' || line[map->w - 1] != '1')
-				exit(1);
+				error_msg("invalid map");
 		}
 		i++;
 	}
@@ -77,7 +77,7 @@ void	check_element(t_map *map)
 		while (j < map->w)
 		{
 			if (line[j] != '0' && line[j] != '1' && line[j] != 'C' && line[j] != 'E' && line[j] != 'P')
-				exit(1);
+				error_msg("element error");
 			if (line[j] == 'C')
 				map->element[COLLECTOR]++;
 			else if (line[j] == 'E')
@@ -93,9 +93,9 @@ void	check_element(t_map *map)
 void	check_element_num(t_map *map)
 {
 	if (map->element[COLLECTOR] == 0)
-		error_msg("map error");
+		error_msg("element error");
 	if (map->element[EXIT] != 1 || map->element[PLAYERS] != 1)
-		error_msg("map error");
+		error_msg("element error");
 }
 
 void	map_validate_main(t_map *map)
@@ -104,5 +104,5 @@ void	map_validate_main(t_map *map)
 	check_element_num(map);
 	check_wall(map);
 	if (bfs_main(map) == -1)//막혀있지 않은지 검사하는 함수
-		error_msg("Invalid map");
+		error_msg("invalid map");
 }

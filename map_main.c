@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:57:13 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/23 03:18:43 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/23 03:43:12 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	**read_map(t_map *map)
 		if (i < map->l - 1 && ft_strlen(res[i]) != (map->w + 1))
 				error_msg("map error");
 		if (i == map-> l - 1 && ft_strlen(res[i]) != (map->w))
-				error_msg("map_error"); //오직 개행만 있는 부분 방어 & 사각형인지 확인
+				error_msg("invalid map"); //오직 개행만 있는 부분 방어 & 사각형인지 확인
 		i++;
 	}
 	close(map->fd);
