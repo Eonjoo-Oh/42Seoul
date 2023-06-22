@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:57:50 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/23 03:16:53 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/23 03:51:28 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,5 +151,6 @@ int	key_a(int keycode, t_all *all);
 void	key_find_player(t_map *map);
 int	get_collector_num(t_map *map);
 int	key_check_movable(t_map *map, int keycode);
+int	exit_game(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:18:59 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/23 03:34:19 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/23 03:51:35 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 {
 	system("leaks so_long");
 }*/
+int	exit_game(void)
+{
+	exit(0);
+	return (1);
+}
 
 void	perror_msg(void)
 {
@@ -51,5 +56,6 @@ int main(int argc, char **argv)
 	all->map_all = map;
 	all->img_all = img;
 	mlx_key_hook(map->win_ptr, check_keycode, all);
+	mlx_hook(map->win_ptr, 17, 0, exit_game, NULL);
 	mlx_loop(mlx_ptr);
 }//릭 없애기
