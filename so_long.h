@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:57:50 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/22 21:31:27 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/23 01:47:08 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,19 @@ typedef	struct s_visited{
 	struct s_visited *next;
 }	t_visited;
 
-typedef struct s_queue {
-	struct	s_bfs *front;
-	struct	s_bfs *rear;
-	struct	s_visited *visited;
-	int		collector;
-	int		exit;
-}	t_queue;
-
 typedef struct s_bfs {
 	int	i;
 	int	j;
-	struct s_bfs *next;
+	int	visited;
 }	t_bfs;
+
+typedef struct s_queue {
+	int				front;
+	int				rear;
+	int				col;
+	int				exit;
+	struct s_bfs	*bfs;
+}	t_queue;
 
 typedef struct s_img {
 	void	*player;
@@ -112,20 +112,20 @@ void	get_map_length(char *name, t_map *map);
 //map_validate
 void	map_validate_main(t_map *map);
 void	check_element(t_map *map);
-void	check_element_num(int *element);
 void	check_wall(t_map *map);
+void	get_position(t_map *map);
 
 //bfs
-int		check_bfs(t_map *map);
-t_bfs	*init_cur_pos(t_map *map);
-t_bfs	*get_next_pos(int num, t_bfs *cur_pos, t_queue *q, t_map *map);
-void	get_position(t_map *map);
-void	mark_visited(t_queue *queue, int i, int j);
+int		bfs_main(t_map *map);
+t_queue	*init_queue (t_map *map);
+void	enqueue_unvisited(t_queue *queue, t_map *map);
+int		check_visited(t_queue *queue, int x, int y);
+
 //queue
-t_queue	*init_queue(void);
-void	enqueue(t_queue *queue, t_bfs *pos);
+void	enqueue(t_queue *queue, t_map *map, int i, int j);
 void	dequeue(t_queue *queue);
-void	free_queue(t_queue *queue);
+int	queue_full(t_queue *queue, t_map *map);
+int	queue_empty(t_queue *queue);
 
 //utils
 int	rev_strncmp(char *s1, char *s2, int n);

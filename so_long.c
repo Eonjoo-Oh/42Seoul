@@ -6,18 +6,18 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:18:59 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/22 05:58:30 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/23 01:50:32 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	error_msg(char *message)
+/*void	error_msg(char *message)
 {
 	ft_printf("Error\n");
 	ft_printf("%s\n", message);
 	exit(0);
-}
+}*/
 
 int main(int argc, char **argv)
 {
