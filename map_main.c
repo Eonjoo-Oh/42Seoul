@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:57:13 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/23 02:46:38 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/23 03:18:43 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ char	**read_map(t_map *map)
 		i++;
 	}
 	close(map->fd);
-	//delete_n(res, map);//아니면 그냥 이맵을 쓰고 항상 j < map->w 이런식으로 써도 되지 않을까?
-	//굳이 번거롭게 동적할당다시하지말자
 	return (res);
 }
 
@@ -76,7 +74,7 @@ t_map *init_map(void *m_ptr, char *argv)
 	get_map_length(map->path, map);
 	map->fd = open(map->path, O_RDONLY);
 	if (map->fd == -1)
-		error_msg("file open error");
+		perror_msg();
 	map->cur_p_i = -1;
 	map->cur_p_j = -1;//이렇게 해도 되겠지?keyhook에서만 쓸거라?->이거안쓰는거확인하고 없애기
 	map->move = 0;

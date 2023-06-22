@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:57:50 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/23 02:48:56 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/23 03:16:53 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ int	queue_empty(t_queue *queue);
 int	rev_strncmp(char *s1, char *s2, int n);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
 void	error_msg(char *message);
+void	perror_msg(void);
 
 //render img
 t_img	*render_img_main(void *mlx, t_map *map);

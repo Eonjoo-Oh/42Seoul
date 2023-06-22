@@ -5,7 +5,7 @@ RM = rm -f
 
 SRCS = ./gnl/get_next_line.c ./gnl/get_next_line_utils.c\
 so_long.c utils.c\
-map_main.c map_validate.c map_bfs.c map_utils.c\
+map_main.c map_validate.c map_bfs.c queue.c map_utils.c\
 render_image.c\
 key_hook.c key_hook_utils.c
 

@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 00:15:49 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/23 02:48:35 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/23 03:19:01 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,6 @@ void	get_position(t_map *map)
 		j = 0;
 		while (j < map->w)
 		{
-			/*if (map->form[i][j] == 'C')
-			{
-				map->c_pos[0] = i;
-				map->c_pos[1] = j;
-			}
-			else if (map->form[i][j] == 'E')
-			{
-				map->e_pos[0] = i;
-				map->e_pos[1] = j;
-			}*/
 			if (map->form[i][j] == 'P')
 			{
 				map->p_pos[0] = i;

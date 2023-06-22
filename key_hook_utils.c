@@ -74,11 +74,15 @@ int	key_check_movable(t_map *map, int keycode)
 		map->form[new_i][new_j] = 'P';
 		map->p_pos[0] = new_i;
 		map->p_pos[1] = new_j;
+		map->move++;
+		ft_printf("numbers of movement : %d\n", map->move);
 	}
 	else if (map->form[new_i][new_j] == 'E')
 	{
 		if (map->collected == map->element[COLLECTOR])
 		{
+			map->move++;
+			ft_printf("numbers of movement : %d\n", map->move);
 			mlx_destroy_window(map->mlx_ptr, map->win_ptr);//창끄는게맞나?아니면 그냥 플레이어없애기?
 			exit(0);
 		}
@@ -89,6 +93,8 @@ int	key_check_movable(t_map *map, int keycode)
 		map->form[new_i][new_j] = 'P';
 		map->p_pos[0] = new_i;
 		map->p_pos[1] = new_j;
+		map->move++;
+		ft_printf("numbers of movement : %d\n", map->move);
 	}
 	return (1);
 }
