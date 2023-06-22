@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:57:50 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/23 01:47:08 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/23 02:48:56 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void	get_map_length(char *name, t_map *map);
 //map_validate
 void	map_validate_main(t_map *map);
 void	check_element(t_map *map);
+void	check_element_num(t_map *map);
 void	check_wall(t_map *map);
 void	get_position(t_map *map);
 

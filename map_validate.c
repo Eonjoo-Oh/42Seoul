@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 00:15:49 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/23 01:55:30 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/23 02:48:35 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	get_position(t_map *map)
 		j = 0;
 		while (j < map->w)
 		{
-			if (map->form[i][j] == 'C')
+			/*if (map->form[i][j] == 'C')
 			{
 				map->c_pos[0] = i;
 				map->c_pos[1] = j;
@@ -32,8 +32,8 @@ void	get_position(t_map *map)
 			{
 				map->e_pos[0] = i;
 				map->e_pos[1] = j;
-			}
-			else if (map->form[i][j] == 'P')
+			}*/
+			if (map->form[i][j] == 'P')
 			{
 				map->p_pos[0] = i;
 				map->p_pos[1] = j;
@@ -73,14 +73,6 @@ void	check_wall(t_map *map)
 	}
 }
 
-/*void	check_element_num(int *element)
-{
-	if (element[COLLECTOR] == 0)
-		error_msg("map error");
-	if (element[EXIT] != 1 || element[PLAYERS] != 1)
-		error_msg("map error");
-}//플레이어가 여러명이거나 출구가 여러 개이면?*/
-
 void	check_element(t_map *map)
 {
 	int		i;
@@ -106,9 +98,12 @@ void	check_element(t_map *map)
 		}
 		i++;
 	}
+}
+
+void	check_element_num(t_map *map)
+{
 	if (map->element[COLLECTOR] == 0)
 		error_msg("map error");
-	printf("%d, %d\n", map->element[EXIT], map->element[PLAYERS]);
 	if (map->element[EXIT] != 1 || map->element[PLAYERS] != 1)
 		error_msg("map error");
 }
@@ -116,7 +111,7 @@ void	check_element(t_map *map)
 void	map_validate_main(t_map *map)
 {
 	check_element(map);
-	//check_element_num(map->element);
+	check_element_num(map);
 	check_wall(map);
 	if (bfs_main(map) == -1)//막혀있지 않은지 검사하는 함수
 		error_msg("Invalid map");

@@ -6,17 +6,11 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:57:13 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/23 01:50:19 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/23 02:46:38 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	error_msg(char *msg)
-{
-	printf("%s\n", msg);
-	exit(0);
-}
 
 void	free_map(t_map *map, char **map_form)
 {

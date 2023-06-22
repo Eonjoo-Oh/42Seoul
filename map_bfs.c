@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 01:17:54 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/23 02:40:49 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/23 02:49:16 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	dequeue(t_queue *queue)
 		return ;
 	queue->front++;
 }
+
 void	enqueue(t_queue *queue, t_map *map, int i, int j)
 {
 	if (queue_full(queue, map) == 0)
