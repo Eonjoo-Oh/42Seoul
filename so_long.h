@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:57:50 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/22 06:03:52 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/22 21:31:27 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ typedef struct s_map{
 	int		l;
 	int		w;
 	int		fd;
-	int		p_pos[2];
-	int		c_pos[2];
+	int		p_pos[2];//현재 p_pos
+	int		c_pos[2];//현재 p_pos
 	int		e_pos[2];
-	int		cur_p_i;
-	int		cur_p_j;
+	int		cur_p_i;//keyhook렌더링에서 쓰임
+	int		cur_p_j;//keyhook렌더링
 	int		move;
 	int		collected;
 }	t_map;

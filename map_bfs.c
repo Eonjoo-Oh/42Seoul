@@ -34,7 +34,7 @@ void	dequeue(t_queue *queue)
 		return (0);
 	queue->front++;
 }
-void	enqueue(t_queue *queue, t_map *map)
+void	enqueue(t_queue *queue, t_map *map, int i, int j)
 {
 	if (queue_full(queue, map) == 0)
 		return (0);
@@ -42,11 +42,34 @@ void	enqueue(t_queue *queue, t_map *map)
 	queue->bfs[queue->rear].i = map->p_pos[0];
 	queue->bfs[queue->rear].j = map->p_pos[1];
 	queue->bfs[queue->rear].visited = 1;//필요한지 다시 생각해보기. enqueue하는 순간 방문 했다는 의미니까 필요가 없을 수도..?
-}
+}//이렇게하지말고 int i, int j로 받아와야됨
 
-void	enqueue_unvisited(t_queue *queue, t_map, map)
+void	enqueue_unvisited(t_queue *queue, t_map, *map)
 {
+	int	i;
+	int	x;
+	int	y;
 
+	i = 0;
+	x = map->p_pos[0];
+	y = map->p_pos[1];
+	while (i < 4)
+	{
+		if (i == 0)
+			x -= 1;//위
+		else if (i == 1)
+			x += 1;//아래
+		else if (i == 2)
+			y += 1;
+		else
+			y -= 1;
+		if (x > 0 && y > 0 && map->form[x][y] != 'C')
+		{
+
+		}
+
+	}
+	//현재 포지션의p_pos 위아래오왼검사 1이아니면 queue에 넣기
 }
 
 t_queue	*init_queue (t_map *map)
