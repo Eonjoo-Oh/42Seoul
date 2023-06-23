@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 00:15:49 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/23 03:40:06 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/24 01:54:35 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,10 @@ void	check_element(t_map *map)
 		while (j < map->w)
 		{
 			if (line[j] != '0' && line[j] != '1' && line[j] != 'C' && line[j] != 'E' && line[j] != 'P')
+			{
+				free_map(map, map->form);
 				error_msg("element error");
+			}
 			if (line[j] == 'C')
 				map->element[COLLECTOR]++;
 			else if (line[j] == 'E')

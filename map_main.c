@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:57:13 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/23 03:56:13 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/24 02:37:25 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,29 @@ void	free_map(t_map *map, char **map_form)
 	int	i;
 
 	i = 0;
-	free(map->path);
+	if (map == 0)
+		return ;
 	while (map_form[i])
 	{
 		free(map_form[i]);
 		i++;
 	}
-	free(map_form);
+	//free(map_form);
+	//free(map);
+}
+
+void	free_read_map(char **res, t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (res[i])
+	{
+		free(res[i]);
+		i++;
+	}
+	free(res);
+	free(map);
 }
 
 char	**read_map(t_map *map)
@@ -42,9 +58,17 @@ char	**read_map(t_map *map)
 		str = get_next_line(map->fd);
 		res[i] = ft_strdup(str);
 		if (i < map->l - 1 && ft_strlen(res[i]) != (map->w + 1))
+		{
+				free_read_map(res, map);
+				free(map->mlx_ptr);
 				error_msg("invalid map");
+		}//맵이 사각형인지 (모든 행의 길이가 같은지)
 		if (i == map-> l - 1 && ft_strlen(res[i]) != (map->w))
+		{
+				free_read_map(res, map);
 				error_msg("invalid map"); //오직 개행만 있는 부분 방어 & 사각형인지 확인
+		}
+		free(str);
 		i++;
 	}
 	close(map->fd);
@@ -64,8 +88,8 @@ t_map *init_map(void *m_ptr, char *argv)
 	map->form = 0;
 	map->mlx_ptr = m_ptr;
 	map->win_ptr = 0;
-	check_map_name(argv);
-	map->path = ft_strjoin("./map/", argv);
+	check_map_name(argv, map);
+	map->path = argv;
 	while (i < 3)
 	{
 		map->element[i] = 0;

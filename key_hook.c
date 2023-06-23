@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 02:19:10 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/23 03:26:44 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/24 02:37:46 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int key_esc(int keycode, t_all *all)
 	if (keycode == 53)
 	{
 		mlx_destroy_window(map->mlx_ptr, map->win_ptr);
+		free_all(all);
 		exit(0);
 	}
 	return (-1);

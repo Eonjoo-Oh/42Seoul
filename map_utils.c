@@ -6,16 +6,19 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 23:19:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/23 01:49:19 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/24 01:29:53 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_map_name(char *name)
+void	check_map_name(char *name, t_map *map)
 {
 	if (rev_strncmp(name, "reb.", 4) == -1)
+	{
+		free(map);
 		error_msg("wrong map name");
+	}
 }
 
 int	get_map_width(char *str)
