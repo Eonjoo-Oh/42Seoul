@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 23:19:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/24 01:29:53 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/24 04:20:00 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	get_map_width(char *str)
 	{
 		i++;
 	}
-	return (i - 1);//개행때문에 i - 1을 해준다.
+	return (i - 1);
 }
 
 void	get_map_length(char *name, t_map *map)
@@ -53,7 +53,7 @@ void	get_map_length(char *name, t_map *map)
 	{
 		str = get_next_line(fd);
 		if (!str)
-			break;
+			break ;
 		l++;
 		free(str);
 	}

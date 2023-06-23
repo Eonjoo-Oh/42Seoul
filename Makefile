@@ -4,10 +4,10 @@ CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -f
 
 SRCS = ./gnl/get_next_line.c ./gnl/get_next_line_utils.c\
-so_long.c utils.c\
+so_long.c utils.c free.c\
 map_main.c map_validate.c map_bfs.c queue.c map_utils.c\
 render_image.c\
-key_hook.c key_hook_utils.c
+key_hook_main.c key_hook.c key_hook_utils.c
 
 OBJS = ${SRCS:.c=.o}
 MLX_DIR = ./mlx/opengl

@@ -6,41 +6,11 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:57:13 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/24 02:37:25 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/24 03:20:27 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	free_map(t_map *map, char **map_form)
-{
-	int	i;
-
-	i = 0;
-	if (map == 0)
-		return ;
-	while (map_form[i])
-	{
-		free(map_form[i]);
-		i++;
-	}
-	//free(map_form);
-	//free(map);
-}
-
-void	free_read_map(char **res, t_map *map)
-{
-	int	i;
-
-	i = 0;
-	while (res[i])
-	{
-		free(res[i]);
-		i++;
-	}
-	free(res);
-	free(map);
-}
 
 char	**read_map(t_map *map)
 {
@@ -58,16 +28,9 @@ char	**read_map(t_map *map)
 		str = get_next_line(map->fd);
 		res[i] = ft_strdup(str);
 		if (i < map->l - 1 && ft_strlen(res[i]) != (map->w + 1))
-		{
-				free_read_map(res, map);
-				free(map->mlx_ptr);
-				error_msg("invalid map");
-		}//맵이 사각형인지 (모든 행의 길이가 같은지)
+			free_read_map(res, map);
 		if (i == map-> l - 1 && ft_strlen(res[i]) != (map->w))
-		{
-				free_read_map(res, map);
-				error_msg("invalid map"); //오직 개행만 있는 부분 방어 & 사각형인지 확인
-		}
+			free_read_map(res, map);
 		free(str);
 		i++;
 	}
@@ -75,8 +38,7 @@ char	**read_map(t_map *map)
 	return (res);
 }
 
-//check_map_width
-t_map *init_map(void *m_ptr, char *argv)
+t_map	*init_map(void *m_ptr, char *argv)
 {
 	t_map	*map;
 	int		i;
@@ -99,16 +61,14 @@ t_map *init_map(void *m_ptr, char *argv)
 	map->fd = open(map->path, O_RDONLY);
 	if (map->fd == -1)
 		perror_msg();
-	map->cur_p_i = -1;
-	map->cur_p_j = -1;//이렇게 해도 되겠지?keyhook에서만 쓸거라?->이거안쓰는거확인하고 없애기
 	map->move = 0;
 	map->collected = 0;
-	return(map);
+	return (map);
 }
 
 t_map	*map_main(void *mlx_ptr, char *argv)
-{ 
-	t_map *map;
+{
+	t_map	*map;
 
 	map = init_map(mlx_ptr, argv);
 	map->form = read_map(map);

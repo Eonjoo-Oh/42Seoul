@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key_hook_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/24 03:51:33 by eoh               #+#    #+#             */
+/*   Updated: 2023/06/24 04:15:14 by eoh              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	key_find_player(t_map *map)
@@ -15,7 +27,7 @@ void	key_find_player(t_map *map)
 			{
 				map->p_pos[0] = i;
 				map->p_pos[1] = j;
-				break;
+				break ;
 			}
 			j++;
 		}
@@ -45,56 +57,26 @@ int	get_collector_num(t_map *map)
 	return (result);
 }
 
-int	key_check_movable(t_map *map, int keycode)
+int	get_new_i(int keycode, int i)
 {
 	int	new_i;
-	int	new_j;
-	int collection[2];
 
-	new_i = map->p_pos[0];
-	new_j = map->p_pos[1];
-	collection[0] = get_collector_num(map);
-	collection[1] = 0;
-	if (keycode == 13)//위(w)
+	new_i = i;
+	if (keycode == 13)
 		new_i -= 1;
-	else if (keycode == 1)//아래(s)
+	else if (keycode == 1)
 		new_i += 1;
-	else if (keycode == 2)//오(d)
+	return (new_i);
+}
+
+int	get_new_j(int keycode, int j)
+{
+	int	new_j;
+
+	new_j = j;
+	if (keycode == 2)
 		new_j += 1;
-	else if (keycode == 0)//왼(a)
+	else if (keycode == 0)
 		new_j -= 1;
-	if (new_i < 0 || new_i >= map->w || new_j < 0 || new_i >= map->l)
-		return (-1);
-	if (map->form[new_i][new_j] == '1')
-		return (-1);
-	else if (map->form[new_i][new_j] == 'C')
-	{
-		map->collected++;
-		map->form[map->p_pos[0]][map->p_pos[1]] = '0';
-		map->form[new_i][new_j] = 'P';
-		map->p_pos[0] = new_i;
-		map->p_pos[1] = new_j;
-		map->move++;
-		ft_printf("numbers of movement : %d\n", map->move);
-	}
-	else if (map->form[new_i][new_j] == 'E')
-	{
-		if (map->collected == map->element[COLLECTOR])
-		{
-			map->move++;
-			ft_printf("numbers of movement : %d\n", map->move);
-			mlx_destroy_window(map->mlx_ptr, map->win_ptr);//창끄는게맞나?아니면 그냥 플레이어없애기?
-			exit(0);
-		}
-	}
-	else if (map->form[new_i][new_j] == '0')
-	{
-		map->form[map->p_pos[0]][map->p_pos[1]] = '0';
-		map->form[new_i][new_j] = 'P';
-		map->p_pos[0] = new_i;
-		map->p_pos[1] = new_j;
-		map->move++;
-		ft_printf("numbers of movement : %d\n", map->move);
-	}
-	return (1);
+	return (new_j);
 }

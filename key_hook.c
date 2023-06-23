@@ -6,13 +6,13 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 02:19:10 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/24 02:37:46 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/24 03:38:10 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int key_esc(int keycode, t_all *all)
+int	key_esc(int keycode, t_all *all)
 {
 	t_map	*map;
 
@@ -38,11 +38,9 @@ int	key_w(int keycode, t_all *all)
 			return (0);
 		mlx_clear_window(map->mlx_ptr, map->win_ptr);
 		render_img(map->mlx_ptr, map->win_ptr, all->img_all, map);
-		// map->move++;
-		// ft_printf("numbers of movement : %d\n", map->move);
 	}
 	return (1);
-}//안움직여질때는 printf안찍고싶음(exit일때)
+}
 
 int	key_s(int keycode, t_all *all)
 {
@@ -56,8 +54,6 @@ int	key_s(int keycode, t_all *all)
 			return (0);
 		mlx_clear_window(map->mlx_ptr, map->win_ptr);
 		render_img(map->mlx_ptr, map->win_ptr, all->img_all, map);
-		// map->move++;
-		// ft_printf("numbers of movement : %d\n", map->move);
 	}
 	return (1);
 }
@@ -74,8 +70,6 @@ int	key_d(int keycode, t_all *all)
 			return (0);
 		mlx_clear_window(map->mlx_ptr, map->win_ptr);
 		render_img(map->mlx_ptr, map->win_ptr, all->img_all, map);
-		// map->move++;
-		// ft_printf("numbers of movement : %d\n", map->move);
 	}
 	return (1);
 }
@@ -92,23 +86,6 @@ int	key_a(int keycode, t_all *all)
 			return (0);
 		mlx_clear_window(map->mlx_ptr, map->win_ptr);
 		render_img(map->mlx_ptr, map->win_ptr, all->img_all, map);
-		// map->move++;
-		// ft_printf("numbers of movement : %d\n", map->move);
 	}
-	return (1);
-}
-
-int	check_keycode(int keycode, t_all *all)
-{
-	if (keycode == 53)
-		key_esc(keycode, all);
-	if (keycode == 13)
-		key_w(keycode, all);
-	if (keycode == 1)
-		key_s(keycode, all);
-	else if (keycode == 2)
-		key_d(keycode, all);
-	else if (keycode == 0)
-		key_a(keycode, all);
 	return (1);
 }

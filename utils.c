@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 23:41:08 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/24 02:41:31 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/24 04:07:45 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	free_all(t_all *all)
 {
-	free_map(all->map_all, all->map_all->form);
+	free_map(all->map_all);
 	free(all->map_all);
 	free(all->img_all);
-	//free(all);
+	free(all);
 }
 
 int	rev_strncmp(char *s1, char *s2, int n)

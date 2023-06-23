@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:18:59 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/24 02:23:16 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/24 03:38:44 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	error_msg(char *message)
 	exit(0);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	void	*mlx_ptr = 0;
+	void	*mlx_ptr;
 	t_map	*map;
 	t_img	*img;
 	t_all	*all;
@@ -50,8 +50,8 @@ int main(int argc, char **argv)
 	mlx_ptr = mlx_init();
 	if (mlx_ptr == 0)
 		error_msg("mlx init error");
-	map = map_main(mlx_ptr, argv[1]);//if map== 0 if img == 0?
-	img = render_img_main(mlx_ptr, map);
+	map = map_main(mlx_ptr, argv[1]);
+	img = render_img_main(map);
 	all = (t_all *)malloc(sizeof(t_all));
 	if (!all)
 		error_msg("malloc error");
@@ -60,4 +60,4 @@ int main(int argc, char **argv)
 	mlx_key_hook(map->win_ptr, check_keycode, all);
 	mlx_hook(map->win_ptr, 17, 0, exit_game, all);
 	mlx_loop(mlx_ptr);
-}//릭 없애기
+}
