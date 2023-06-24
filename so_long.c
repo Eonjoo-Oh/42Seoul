@@ -6,16 +6,11 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:18:59 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/24 11:14:28 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/24 11:39:46 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	leaks_out(void)
-{
-	system("leaks so_long");
-}
 
 int	exit_game(t_all *all)
 {
@@ -44,7 +39,6 @@ int	main(int argc, char **argv)
 	t_img	*img;
 	t_all	*all;
 
-	atexit(leaks_out);
 	if (argc != 2)
 		error_msg("check the arguments");
 	all = (t_all *)malloc(sizeof(t_all));

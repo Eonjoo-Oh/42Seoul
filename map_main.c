@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:57:13 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/24 10:35:07 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/24 11:30:54 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ char	**read_map(t_map *map)
 		str = get_next_line(map->fd);
 		res[i] = ft_strdup(str);
 		if (i < map->l - 1 && ft_strlen(res[i]) != (map->w + 1))
-			free_read_map(res, map);
+			error_msg("invalid map");
 		if (i == map-> l - 1 && ft_strlen(res[i]) != (map->w))
-			free_read_map(res, map);
+			error_msg("invalid map");
 		free(str);
 		i++;
 	}
