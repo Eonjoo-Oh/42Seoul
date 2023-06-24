@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 03:40:03 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/24 04:15:30 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/24 11:13:51 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,16 @@ void	if_movable(char c, t_map *map, int new_i, int new_j)
 	}
 }
 
-int	key_check_movable(t_map *map, int keycode)
+void	movable_exit_game(t_map *map, t_all *all)
+{
+	map->move++;
+	ft_printf("numbers of movement : %d\n", map->move);
+	mlx_destroy_window(map->mlx_ptr, map->win_ptr);
+	free_all(all);
+	exit(0);
+}
+
+int	key_check_movable(t_map *map, int keycode, t_all *all)
 {
 	int	i;
 	int	j;
@@ -54,12 +63,7 @@ int	key_check_movable(t_map *map, int keycode)
 	else if (map->form[i][j] == 'E')
 	{
 		if (map->collected == map->element[COLLECTOR])
-		{
-			map->move++;
-			ft_printf("numbers of movement : %d\n", map->move);
-			mlx_destroy_window(map->mlx_ptr, map->win_ptr);
-			exit(0);
-		}
+			movable_exit_game(map, all);
 	}
 	return (1);
 }

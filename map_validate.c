@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 00:15:49 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/24 03:21:56 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/24 10:38:04 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,11 @@ void	check_element_num(t_map *map)
 		error_msg("element error");
 }
 
-void	map_validate_main(t_map *map)
+void	map_validate_main(t_map *map, t_all *all)
 {
 	check_element(map);
 	check_element_num(map);
 	check_wall(map);
-	if (bfs_main(map) == -1)
+	if (bfs_main(map, all) == -1)
 		error_msg("invalid map");
 }

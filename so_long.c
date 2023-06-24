@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 17:18:59 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/24 03:38:44 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/24 11:14:28 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ int	main(int argc, char **argv)
 	atexit(leaks_out);
 	if (argc != 2)
 		error_msg("check the arguments");
+	all = (t_all *)malloc(sizeof(t_all));
+	if (!all)
+		return (0);
 	mlx_ptr = mlx_init();
 	if (mlx_ptr == 0)
 		error_msg("mlx init error");
-	map = map_main(mlx_ptr, argv[1]);
+	map = map_main(mlx_ptr, argv[1], all);
 	img = render_img_main(map);
-	all = (t_all *)malloc(sizeof(t_all));
-	if (!all)
-		error_msg("malloc error");
 	all->map_all = map;
 	all->img_all = img;
 	mlx_key_hook(map->win_ptr, check_keycode, all);

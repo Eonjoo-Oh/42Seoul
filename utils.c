@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 23:41:08 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/24 04:07:45 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/24 10:37:34 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	free_all(t_all *all)
 	free_map(all->map_all);
 	free(all->map_all);
 	free(all->img_all);
+	free(all->queue->bfs);
+	free(all->queue);
 	free(all);
 }
 

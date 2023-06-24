@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 02:19:10 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/24 03:38:10 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/24 10:29:24 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	key_w(int keycode, t_all *all)
 	{
 		map = all->map_all;
 		key_find_player(map);
-		if (key_check_movable(map, keycode) == -1)
+		if (key_check_movable(map, keycode, all) == -1)
 			return (0);
 		mlx_clear_window(map->mlx_ptr, map->win_ptr);
 		render_img(map->mlx_ptr, map->win_ptr, all->img_all, map);
@@ -50,7 +50,7 @@ int	key_s(int keycode, t_all *all)
 	{
 		map = all->map_all;
 		key_find_player(map);
-		if (key_check_movable(map, keycode) == -1)
+		if (key_check_movable(map, keycode, all) == -1)
 			return (0);
 		mlx_clear_window(map->mlx_ptr, map->win_ptr);
 		render_img(map->mlx_ptr, map->win_ptr, all->img_all, map);
@@ -66,7 +66,7 @@ int	key_d(int keycode, t_all *all)
 	{
 		map = all->map_all;
 		key_find_player(map);
-		if (key_check_movable(map, keycode) == -1)
+		if (key_check_movable(map, keycode, all) == -1)
 			return (0);
 		mlx_clear_window(map->mlx_ptr, map->win_ptr);
 		render_img(map->mlx_ptr, map->win_ptr, all->img_all, map);
@@ -82,7 +82,7 @@ int	key_a(int keycode, t_all *all)
 	{
 		map = all->map_all;
 		key_find_player(map);
-		if (key_check_movable(map, keycode) == -1)
+		if (key_check_movable(map, keycode, all) == -1)
 			return (0);
 		mlx_clear_window(map->mlx_ptr, map->win_ptr);
 		render_img(map->mlx_ptr, map->win_ptr, all->img_all, map);

@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:57:50 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/24 04:29:20 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/24 11:16:16 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,11 @@ typedef struct s_img {
 typedef struct s_all {
 	t_map	*map_all;
 	t_img	*img_all;
+	t_queue	*queue;
 }	t_all;
 
 //map
-t_map	*map_main(void *mlx_ptr, char *argv);
+t_map	*map_main(void *mlx_ptr, char *argv, t_all *all);
 t_map	*init_map(void *m_ptr, char *argv);
 char	**read_map(t_map *map);
 void	free_map(t_map *map);
@@ -86,16 +87,17 @@ int		get_map_width(char *str);
 void	get_map_length(char *name, t_map *map);
 
 //map_validate
-void	map_validate_main(t_map *map);
+void	map_validate_main(t_map *map, t_all *all);
 void	check_element(t_map *map);
 void	check_element_num(t_map *map);
 void	check_wall(t_map *map);
 void	get_position(t_map *map);
 void	free_check_element(t_map *map, char *msg);
 void	free_read_map(char **res, t_map *map);
+void	check_map_size(t_map *map);
 
 //bfs
-int		bfs_main(t_map *map);
+int		bfs_main(t_map *map, t_all *all);
 t_queue	*init_queue(t_map *map);
 void	enqueue_unvisited(t_queue *queue, t_map *map);
 int		check_visited(t_queue *queue, int x, int y);
@@ -128,7 +130,8 @@ int		key_a(int keycode, t_all *all);
 //key hook utils
 void	key_find_player(t_map *map);
 int		get_collector_num(t_map *map);
-int		key_check_movable(t_map *map, int keycode);
+int		key_check_movable(t_map *map, int keycode, t_all *all);
+void	movable_exit_game(t_map *map, t_all *all);
 int		exit_game(t_all *all);
 void	free_all(t_all *all);
 void	if_movable(char c, t_map *map, int new_i, int new_j);

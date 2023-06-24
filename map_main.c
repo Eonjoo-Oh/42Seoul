@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:57:13 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/24 03:20:27 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/24 10:35:07 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_map	*init_map(void *m_ptr, char *argv)
 	return (map);
 }
 
-t_map	*map_main(void *mlx_ptr, char *argv)
+t_map	*map_main(void *mlx_ptr, char *argv, t_all *all)
 {
 	t_map	*map;
 
@@ -74,6 +74,6 @@ t_map	*map_main(void *mlx_ptr, char *argv)
 	map->form = read_map(map);
 	if (map->form == 0)
 		error_msg("map error");
-	map_validate_main(map);
+	map_validate_main(map, all);
 	return (map);
 }

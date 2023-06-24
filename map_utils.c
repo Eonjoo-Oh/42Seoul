@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 23:19:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/24 04:20:00 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/24 11:16:04 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,15 @@ int	get_map_width(char *str)
 		i++;
 	}
 	return (i - 1);
+}
+
+void	check_map_size(t_map *map)
+{
+	if (map->w > 40 || map->l > 22)
+	{
+		free(map);
+		error_msg("too big map");
+	}
 }
 
 void	get_map_length(char *name, t_map *map)
@@ -59,4 +68,5 @@ void	get_map_length(char *name, t_map *map)
 	}
 	close(fd);
 	map->l = l;
+	check_map_size(map);
 }

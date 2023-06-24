@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 01:17:54 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/24 04:19:25 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/24 10:36:44 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,14 @@ void	enqueue_unvisited(t_queue *queue, t_map *map)
 	}
 }
 
-int	bfs_main(t_map *map)
+int	bfs_main(t_map *map, t_all *all)
 {
 	t_queue	*q;
 
 	q = init_queue(map);
 	if (!q)
 		error_msg("malloc error");
+	all->queue = q;
 	get_position(map);
 	enqueue(q, map, map->p_pos[0], map->p_pos[1]);
 	while (queue_empty(q) != 0)
