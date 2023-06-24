@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 23:19:36 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/24 11:16:04 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/24 13:12:50 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,11 @@ void	get_map_length(char *name, t_map *map)
 
 	fd = open(name, O_RDONLY);
 	if (fd == -1)
-	{
-		perror("file open error");
-		exit(1);
-	}
+		perror_msg();
 	l = 1;
 	str = get_next_line(fd);
+	if (str == 0)
+		error_msg("blank map");
 	map->w = get_map_width(str);
 	free(str);
 	while (1)

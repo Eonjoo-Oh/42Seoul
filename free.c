@@ -6,7 +6,7 @@
 /*   By: eoh <eoh@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 03:20:03 by eoh               #+#    #+#             */
-/*   Updated: 2023/06/24 11:26:48 by eoh              ###   ########.fr       */
+/*   Updated: 2023/06/24 11:45:28 by eoh              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,6 @@ void	free_map(t_map *map)
 	}
 	free(map->form);
 }
-
-//void	free_read_map(char **res, t_map *map)
-//{
-//	int	i;
-
-//	i = 0;
-//	if (map == 0)
-//		return ;
-//	while (res[i])
-//	{
-//		free(res[i]);
-//		i++;
-//	}
-//	//free(res);
-//	//free(map);
-//	error_msg("invalid map");
-//}
 
 void	free_check_element(t_map *map, char *msg)
 {
