@@ -1,7 +1,7 @@
 #include <iostream>
 #define DefaultMessage "* LOUD AND UNBEARABLE FEEDBACK NOISE *"
 
-class CapitalConverter
+class Megaphone
 {
 	public:
 		char	ConvertToCapital(int c)
@@ -15,14 +15,14 @@ class CapitalConverter
 
 int main(int argc, char **argv)
 {
-	CapitalConverter converter;
+	Megaphone Megaphone;
 
 	if (argc == 1)
 		std::cout << DefaultMessage;
 	for(int i = 1; i < argc; i++)
 	{
 		for(int j = 0; argv[i][j] != '\0'; j++)
-			std::cout << converter.ConvertToCapital(argv[i][j]);
+			std::cout << Megaphone.ConvertToCapital(argv[i][j]);
 	}
 	std::cout << std::endl;
 }
