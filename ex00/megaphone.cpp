@@ -17,7 +17,7 @@ char	Megaphone::capitalConverter(int c)
 
 int main(int argc, char **argv)
 {
-	Megaphone Megaphone;
+	Megaphone megaphone;
 
 	if (argc == 1)
 		std::cout << DefaultMessage;
@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 		for(int i = 1; i < argc; i++)
 		{
 			for(int j = 0; argv[i][j] != '\0'; j++)
-				std::cout << Megaphone.capitalConverter(argv[i][j]);
+				std::cout << megaphone.capitalConverter(argv[i][j]);
 		}
 	}
 	std::cout << std::endl;
