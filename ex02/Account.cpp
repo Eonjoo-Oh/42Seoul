@@ -4,6 +4,7 @@
 
 class Account{
 	public:
+		Account(int inital_deposit);
 		void	_displayTimestamp(void);
 };
 
@@ -13,6 +14,11 @@ void	Account::_displayTimestamp(void)
 	char	buffer[16];
 	std::strftime(buffer, 16, "%Y%m%d_%H%M%S", std::localtime(&timestamp));
 	std::cout << "[" << buffer << "]" << std::endl;
+}
+
+Account::Account(int inital_deposit)
+{
+
 }
 
 int main()
