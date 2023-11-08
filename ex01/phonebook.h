@@ -1,5 +1,5 @@
 #include <iostream>
-#include "contact.hpp"
+#include "contact.h"
 #ifndef PHONEBOOK_H
 #define PHONEBOOK_H
 #define UNDEFINED 0

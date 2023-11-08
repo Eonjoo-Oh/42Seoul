@@ -1,6 +1,6 @@
 #include <iostream>
-#include "contact.hpp"
-#include "phonebook.hpp"
+#include "contact.h"
+#include "phonebook.h"
 #define ADD 1
 #define SEARCH 2
 #define EXIT 3
