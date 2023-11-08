@@ -96,17 +96,19 @@ void	PhoneBook::showSelectedContact(int index)
 
 void	PhoneBook::printRightAligned(std::string str)
 {
-	//std::cout << "here: " << str;
-	if (str.length() > 10)
+	std::string	aligned;
+
+	aligned = str;
+	if (aligned.length() > 10)
 	{
-		str.substr(0,9);
-		str.append(".");
+		aligned = aligned.substr(0,9);
+		aligned.append(".");
 	}
-	for(int i = 0; i < 10 - str.length(); i++)
+	for(int i = 0; i < 10 - aligned.length(); i++)
 	{
 		std::cout << " ";
 	}
-	std::cout << str;
+	std::cout << aligned;
 }
 
 #endif
