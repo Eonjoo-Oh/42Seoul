@@ -65,7 +65,7 @@ void	PhoneBook::searchContact()
 	{
 		std::cout << "Enter an index: ";
 		std::cin >> enteredIndex;
-		if (std::cin.fail() || enteredIndex < 0 || enteredIndex > totalSaved) 
+		if (std::cin.fail() || enteredIndex <= 0 || enteredIndex > totalSaved) 
 		{
 			std::cout << "Wrong index. Try again" << std::endl;
 			std::cin.clear();
@@ -110,7 +110,7 @@ void	PhoneBook::printRightAligned(std::string str)
 		aligned = aligned.substr(0,9);
 		aligned.append(".");
 	}
-	for(int i = 0; i < 10 - aligned.length(); i++)
+	for(int i = 0; i < (int)(10 - aligned.length()); i++)
 	{
 		std::cout << " ";
 	}
