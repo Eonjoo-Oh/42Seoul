@@ -61,12 +61,18 @@ void	PhoneBook::searchContact()
 		return ;
 	}
 	showAllContact();
-	std::cout << "Enter the index number" << std::endl;
-	std::cin >> enteredIndex;
-	while (!(enteredIndex > 0 && enteredIndex <= totalSaved))
+	while (1) 
 	{
-		std::cout << "Wrong index. Try again" << std:: endl;
+		std::cout << "Enter an index: ";
 		std::cin >> enteredIndex;
+		if (std::cin.fail() || enteredIndex < 0 || enteredIndex > totalSaved) 
+		{
+			std::cout << "Wrong index. Try again" << std::endl;
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		}
+		else
+			break;
 	}
 	showSelectedContact(enteredIndex - 1);
 }
