@@ -56,11 +56,11 @@ void	PhoneBook::searchContact()
 	{
 		std::cout << "Enter an index: ";
 		std::cin >> enteredIndex;
-		if (std::cin.fail() || enteredIndex <= 0 || enteredIndex > totalSaved) 
+		if (std:: cin.eof() || std::cin.fail() \
+		|| enteredIndex <= 0 || enteredIndex > totalSaved) 
 		{
+			whenEof();
 			std::cout << "Wrong index. Try again" << std::endl;
-			std::cin.clear();
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		}
 		else
 			break;
@@ -109,6 +109,7 @@ void	PhoneBook::whenEof()
 {
 	std::clearerr(stdin);
 	std::cin.clear();
+	std::cout << std::endl;
 }
 
 std::string PhoneBook::whenEofAtADD()
