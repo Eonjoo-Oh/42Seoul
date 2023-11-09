@@ -17,7 +17,7 @@ void	PhoneBook::addContact()
 	std::cout << "Enter first name: " << std::endl;
 	std::cin >> input;
 	if (std::cin.eof())
-		input = whenEofAtADD();//eof가 들어오면 계속 받는 코드를 짤것
+		input = whenEofAtADD();
 	contacts[index].setFirstName(input);
 	std::cout << "Enter last name: " << std::endl;
 	std::cin >> input;
@@ -60,6 +60,7 @@ void	PhoneBook::searchContact()
 		|| enteredIndex <= 0 || enteredIndex > totalSaved) 
 		{
 			whenEof();
+			std::cin.ignore(255, '\n');
 			std::cout << "Wrong index. Try again" << std::endl;
 		}
 		else
