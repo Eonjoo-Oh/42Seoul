@@ -3,10 +3,27 @@
 //#include "Account.hpp"
 
 class Account{
+	private:
+		int	deposit[7];
+		int	index;
+		Account();
 	public:
 		Account(int inital_deposit);
 		void	_displayTimestamp(void);
+		void	displayAccountsInfos(void);
 };
+
+Account::Account()
+{
+	index = 0;
+}
+
+Account::Account(int inital_deposit)
+{
+	deposit[index] = inital_deposit;
+	std::cout << _displayTimestamp() << " " << "index: "
+	index++;
+}
 
 void	Account::_displayTimestamp(void)
 {
@@ -16,14 +33,13 @@ void	Account::_displayTimestamp(void)
 	std::cout << "[" << buffer << "]" << std::endl;
 }
 
-Account::Account(int inital_deposit)
+void	Account::displayAccoutsInfos(void)
 {
 
 }
 
 int main()
 {
-	Account account;
-
+	Account	account();
 	account._displayTimestamp();
 }
