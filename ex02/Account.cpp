@@ -39,7 +39,6 @@ void	Account::displayAccountsInfos(void)
 
 Account::Account(int inital_deposit)
 {
-	//Account();
 	_accountIndex = _nbAccounts;
 	_amount = inital_deposit;
 	_nbAccounts++;
@@ -121,11 +120,3 @@ void	Account::_displayTimestamp(void)
 	std::strftime(buffer, 16, "%Y%m%d_%H%M%S", std::localtime(&timestamp));
 	std::cout << "[" << buffer << "] ";
 }
-
-// Account::Account()
-// {
-// 	_accountIndex = 0;
-// 	_amount = 0;
-// 	_nbDeposits = 0;
-// 	_nbWithdrawals = 0;
-// }
