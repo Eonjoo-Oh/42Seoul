@@ -15,27 +15,27 @@ void	PhoneBook::addContact()
 	if (totalSaved < 8)
 		totalSaved++;
 	std::cout << "Enter first name: " << std::endl;
-	std::cin >> input;
+	std::getline(std::cin >> std::ws, input);
 	if (std::cin.eof())
 		input = whenEofAtADD();
 	contacts[index].setFirstName(input);
 	std::cout << "Enter last name: " << std::endl;
-	std::cin >> input;
+	std::getline(std::cin >> std::ws, input);
 	if (std::cin.eof())
 		input = whenEofAtADD();
 	contacts[index].setLastName(input);
 	std::cout << "Enter nick name: " << std::endl;
-	std::cin >> input;
+	std::getline(std::cin >> std::ws, input);
 	if (std::cin.eof())
 		input = whenEofAtADD();
 	contacts[index].setNickName(input);
 	std::cout << "Enter phone number: " << std::endl;
-	std::cin >> input;
+	std::getline(std::cin >> std::ws, input);
 	if (std::cin.eof())
 		input = whenEofAtADD();
 	contacts[index].setPhoneNumber(input);
 	std::cout << "Enter darkest secret: " << std::endl;
-	std::cin >> input;
+	std::getline(std::cin >> std::ws, input);
 	if (std::cin.eof())
 		input = whenEofAtADD();
 	contacts[index].setDarkestSecret(input);
