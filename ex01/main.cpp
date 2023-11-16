@@ -15,7 +15,6 @@ int main()
 	std::string	name;
 	int			n;
 
-	//atexit(leaks_check);
 	std::cout << "Enter the name of zombie" << std::endl;
 	std::getline(std::cin >> std::ws, name);
 	while (1)
