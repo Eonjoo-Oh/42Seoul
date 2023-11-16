@@ -12,6 +12,7 @@ class	Zombie
 		Zombie();
 		~Zombie();
 		void	setName(std::string name);
+		void	announceInOrder(int n);
 };
 
 #endif

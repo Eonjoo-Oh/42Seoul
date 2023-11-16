@@ -1,16 +1,26 @@
 #include "Zombie.hpp"
 
+Zombie::Zombie()
+{
+	return ;
+}
+
 Zombie::Zombie(std::string _name)
 {
-	this->name = _name;
+	name = _name;
 }
 
 Zombie::~Zombie()
 {
-	std::cout << "name" << ": is gone" << "std::endl";
+	std::cout << name << ": is gone" << std::endl;
 }
 
 void	Zombie::setName(std::string _name)
 {
-	this->name = _name;
+	name = _name;
+}
+
+void	Zombie::announceInOrder(int n)
+{
+	std::cout << name << n << " : BraiiiiiiinnnzzzZ..." << std::endl;
 }
