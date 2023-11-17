@@ -1,5 +1,6 @@
 #include <fstream>
 #include <iostream>
+#include "Sed.hpp"
 
 void	rewrite(std::string& line, std::string oldWord, std::string newWord)
 {
@@ -22,18 +23,15 @@ int main(int argc, char **argv)
 	}
 
 	std::ifstream	inputFile(argv[1]);
-	std::string		inputFileName = argv[1];
-	std::string		oldWord = argv[2];
-	std::string		newWord = argv[3];
-	std::string		line;
-
 	if (!inputFile.is_open())
 	{
 		std::cerr << "The file does not exist" << std::endl;
 		return (1);
 	}
-	std::string tempFileName = inputFileName + "_temp.txt";
-	std::ofstream	tempFile(tempFileName);
+
+	Sed	sed(inputFile, argv[1], argv[2], argv[3]);
+
+	std::ofstream	tempFile(sed.getTempFileName());
 	if (!tempFile.is_open())
 	{
 		std::cerr << "The file does not exist" << std::endl;
