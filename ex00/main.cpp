@@ -7,8 +7,9 @@ int main()
 {
 	std::string	name;
 
-	name = "eoh";
+	std::cout << "enter the zombie name" << std::endl;
+	std::getline(std::cin >> std::ws, name);
 	Zombie *zombie = newZombie(name);
 	randomChump(name);
 	delete zombie;
-}//왜 소멸자가 두번 실행되는것?
+}
