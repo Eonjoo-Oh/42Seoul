@@ -47,7 +47,7 @@ void	Sed::rewriteFile(std::ostream &tempFile)
 		replaceWord();
 		tempFile << readLine << std::endl;
 	}
-}
+}//이것과 istream &inputFile은 그냥 밖으로 뺄까 생각 중
 
 void	Sed::replaceWord()
 {

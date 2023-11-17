@@ -2,11 +2,14 @@
 #define SED_HPP
 
 #include <iostream>
+#include <fstream>
+#include <string>
 
 class	Sed
 {
 	private:
 		std::ifstream inputFile;
+		std::ofstream tempFile;
 		std::string	inputFileName;
 		std::string	tempFileName;
 		std::string	oldWord;
