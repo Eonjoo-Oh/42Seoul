@@ -1,62 +1,91 @@
 #include "Sed.hpp"
 
-void	Sed::setInputFileName(char *name)
+bool	Sed::fileProcess()
 {
-	inputFileName = name;
+	if (openInputFile() == false)
+		return (false);
+	setTempFileName();
+	if (openTempFile() == false)
+		return (false);
+	return (true);
 }
 
-void	Sed::setTempFileName(std::string inputFileName)
+bool	Sed::rewriteProcess()
+{
+	while (std::getline(inputFile, readLine))
+	{
+		rewrite();
+		tempFile << readLine << std::endl;
+	}
+	if (removeInputFile() == false)
+		return (false);
+	if (renameTempFile() == false)
+		return (false);
+	return (true);
+}
+
+bool	Sed::openInputFile()
+{
+	inputFile.open(inputFileName);
+	if (!inputFile.is_open())
+	{
+		std::cerr << "Error: input file open" << std::endl;
+		return (false);
+	}
+	return (true);
+}
+
+bool	Sed::openTempFile()
+{
+	tempFile.open(tempFileName);
+	if (!tempFile.is_open())
+	{
+		std::cerr << "Error: temp file open" << std::endl;
+		inputFile.close();
+		return (false);
+	}
+	return (true);
+}
+
+void	Sed::setTempFileName()
 {
 	tempFileName = inputFileName + "_temp.txt";
 }
 
-void	Sed::setOldWord(char *word)
+void	Sed::rewrite()
 {
-	oldWord = word;
-}
-
-void	Sed::setNewWord(char *word)
-{
-	newWord = word;
-}
-
-std::string	Sed::getInputFileName(void)
-{
-	return (inputFileName);
-}
-
-std::string	Sed::getTempFileName(void)
-{
-	return (tempFileName);
-}
-
-std::string Sed::getOldWord(void)
-{
-	return (oldWord);
-}
-
-std::string Sed::getNewWord(void)
-{
-	return (newWord);
-}
-
-void	Sed::rewriteFile(std::ostream &tempFile)
-{
-	while (std::getline(inputFile, readLine))
-	{
-		replaceWord();
-		tempFile << readLine << std::endl;
-	}
-}//이것과 istream &inputFile은 그냥 밖으로 뺄까 생각 중
-
-void	Sed::replaceWord()
-{
-	size_t	position;
-
+	size_t position;
+	
 	position = readLine.find(oldWord);
 	while (position != std::string::npos)
 	{
 		readLine = readLine.substr(0, position) + newWord + readLine.substr(position + oldWord.length());
 		position = readLine.find(oldWord);
 	}
+}
+
+bool	Sed::removeInputFile()
+{
+	if (std::remove(inputFileName.c_str()) != 0)
+	{
+		std::cerr << "Error: remove input file" << std::endl;
+		return (false);
+	}
+	return (true);
+}
+
+bool	Sed::renameTempFile()
+{
+	if (std::rename(tempFileName.c_str(), inputFileName.c_str()) != 0)
+	{
+		std::cerr << "Error: rename temp file" << std::endl;
+		return (false);
+	}
+	return (true);
+}
+
+void	Sed::closeFiles()
+{
+	inputFile.close();
+	tempFile.close();
 }
