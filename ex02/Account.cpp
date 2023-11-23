@@ -33,7 +33,7 @@ void	Account::displayAccountsInfos(void)
 	std::cout << "accouts:" << _nbAccounts << ";";
 	std::cout << "total:" << _totalAmount << ";";
 	std::cout << "deposits:" << _totalNbDeposits << ";";
-	std::cout << "withdrawals:" << _totalNbWithdrawals << ";";
+	std::cout << "withdrawals:" << _totalNbWithdrawals;
 	std::cout << std::endl;
 }
 
