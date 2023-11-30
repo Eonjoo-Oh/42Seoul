@@ -84,8 +84,7 @@ bool	Sed::renameTempFile()
 	return (true);
 }
 
-void	Sed::closeFiles()
+void	Sed::closeFile()
 {
-	inputFile.close();
 	tempFile.close();
 }

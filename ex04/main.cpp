@@ -15,6 +15,6 @@ int main(int argc, char **argv)
 		return (1);
 	if (sed.rewriteProcess() == false)
 		return (1);
-	sed.closeFiles();
+	sed.closeFile();
 	return (0);
 }

@@ -15,18 +15,18 @@ class	Sed
 		std::string		oldWord;
 		std::string		newWord;
 		std::string		readLine;
-	public:
-		Sed(char *inputFileName, char *oldWord, char *newWord) 
-			: inputFileName(inputFileName), oldWord(oldWord), newWord(newWord) {};
-		bool	fileProcess();
-		bool	rewriteProcess();
 		bool	openInputFile();
 		bool	openTempFile();
 		void	setTempFileName();
 		void	rewrite();
 		bool	removeInputFile();
 		bool	renameTempFile();
-		void	closeFiles();
+	public:
+		Sed(char *inputFileName, char *oldWord, char *newWord) 
+			: inputFileName(inputFileName), oldWord(oldWord), newWord(newWord) {};
+		bool	fileProcess();
+		bool	rewriteProcess();
+		void	closeFile();
 };
 
 #endif
