@@ -81,12 +81,15 @@ void	Harl::complainFilter(std::string level)
 			case 0:
 				(this->*executeComplain[0])();
 				std::cout << std::endl;
+				__attribute__((fallthrough));
 			case 1:
 				(this->*executeComplain[1])();
 				std::cout << std::endl;
+				// INTENTIONAL FALL-THRU
 			case 2:
 				(this->*executeComplain[2])();
 				std::cout << std::endl;
+				// FALLTHROUGH
 			case 3:
 				(this->*executeComplain[3])();
 				std::cout << std::endl;
