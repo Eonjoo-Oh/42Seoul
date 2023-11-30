@@ -32,6 +32,8 @@ int main()
 			break ;
 	}
 	zombies = zombieHorde(n, name);
+	if (zombies == NULL)
+		return (1);
 	for(int i = 1; i <= n; i++)
 	{
 		zombies[i - 1].announceInOrder(i);
