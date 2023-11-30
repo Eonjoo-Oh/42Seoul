@@ -26,7 +26,7 @@ bool	Sed::rewriteProcess()
 
 bool	Sed::openInputFile()
 {
-	inputFile.open(inputFileName);
+	inputFile.open(inputFileName.c_str());
 	if (!inputFile.is_open())
 	{
 		std::cerr << "Error: input file open" << std::endl;
@@ -37,7 +37,7 @@ bool	Sed::openInputFile()
 
 bool	Sed::openTempFile()
 {
-	tempFile.open(tempFileName);
+	tempFile.open(tempFileName.c_str());
 	if (!tempFile.is_open())
 	{
 		std::cerr << "Error: temp file open" << std::endl;
