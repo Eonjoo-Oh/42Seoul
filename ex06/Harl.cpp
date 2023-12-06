@@ -79,6 +79,7 @@ void	Harl::complainFilter(void)
 			// FALLTHROUGH
 		case 3:
 			(this->*executeComplain[3])();
+			std::cout << std::endl;
 			break;
 		default:
 			std::cout << "Wrong complain level input" << std::endl;
