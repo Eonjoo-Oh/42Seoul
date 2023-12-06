@@ -20,8 +20,7 @@ class	Harl
 		~Harl();
 		void	setFilterLevel(std::string input);
 		int		getFilterLevel(void);
-		int		getComplainLevel(std::string input);
-		void	complainFilter(std::string level);
+		void	complainFilter(void);
 };
 
 #endif
