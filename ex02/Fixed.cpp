@@ -59,7 +59,7 @@ int	Fixed::toInt(void) const
 
 float	Fixed::toFloat(void) const
 {
-	return ((float)(fixedValue / 256));
+	return ((float)fixedValue / (1 << fractionalBit));
 }
 
 std::ostream& operator <<(std::ostream& os, const Fixed& fixed)
