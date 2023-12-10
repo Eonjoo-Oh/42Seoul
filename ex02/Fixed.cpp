@@ -87,25 +87,25 @@ bool	Fixed::operator!=(const Fixed &rightFixed)
 
 Fixed	Fixed::operator+(const Fixed &rightFixed)const
 {
-	Fixed	result(fixedValue + rightFixed.getRawBits());
+	Fixed	result(this->toFloat() + rightFixed.toFloat());
 	return (result);
 }
 
 Fixed	Fixed::operator-(const Fixed &rightFixed)const
 {
-	Fixed	result(fixedValue - rightFixed.getRawBits());
+	Fixed	result(this->toFloat() - rightFixed.toFloat());
 	return (result);
 }
 
 Fixed	Fixed::operator*(const Fixed &rightFixed)const
 {
-	Fixed	result(fixedValue * rightFixed.getRawBits());
+	Fixed	result(this->toFloat() * rightFixed.toFloat());
 	return (result);
 }
 
 Fixed	Fixed::operator/(const Fixed &rightFixed)const
 {
-	Fixed	result(fixedValue / rightFixed.getRawBits());
+	Fixed	result(this->toFloat() / rightFixed.toFloat());
 	return (result);
 }
 
