@@ -10,12 +10,12 @@ Fixed::Fixed(const int num)
 {
 	std::cout << "Int constructor called" << std::endl;
 	fixedValue = num << fractionalBit;
-}//들어오는 int value를 부동소수점으로 변환해주는 생성자
+}
 
 Fixed::Fixed(const float num)
 {
 	std::cout << "Float constructor called" << std::endl;
-	fixedValue = roundf(num * 256);
+	fixedValue = roundf(num * (1 << fractionalBit));
 }
 
 Fixed::Fixed(const Fixed &fixed)

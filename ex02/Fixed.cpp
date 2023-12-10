@@ -12,7 +12,7 @@ Fixed::Fixed(const int num)
 
 Fixed::Fixed(const float num)
 {
-	fixedValue = roundf(num * 256);
+	fixedValue = roundf(num * (1 << fractionalBit));
 }
 
 Fixed::Fixed(const Fixed &fixed)
