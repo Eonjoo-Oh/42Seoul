@@ -8,7 +8,7 @@ Fixed::Fixed()
 Fixed::Fixed(const int num)
 {
 	fixedValue = num << fractionalBit;
-}//들어오는 int value를 부동소수점으로 변환해주는 생성자
+}
 
 Fixed::Fixed(const float num)
 {
