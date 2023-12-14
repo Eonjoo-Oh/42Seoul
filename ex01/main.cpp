@@ -1,14 +1,14 @@
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main()
 {
 	ClapTrap mango("mango");
-	ClapTrap berry("berry");
+	ScavTrap apple("apple");
 
-	mango.attack("berry");
-	berry.takeDamage(2);
-	berry.beRepaired(2);
-	berry.attack("mango");
-	mango.takeDamage(11);
+	apple.attack("mango");
+	mango.takeDamage(20);
+	mango.attack("apple");
+	apple.guardGate();
 	mango.beRepaired(5);
 }
