@@ -1,16 +1,12 @@
-#include "ClapTrap.hpp"
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main()
 {
-	ClapTrap mango("mango");
-	ClapTrap melon("melon");
-	FragTrap banana("banana");
-
-	banana.attack("mango");
-	mango.takeDamage(30);
-	melon.attack("banana");
-	banana.highFivesGuys();
-	mango.beRepaired(5);
-	melon.beRepaired(5);
+	DiamondTrap	dia("Dia");
+	ScavTrap	cake("Cake");
+	dia.getAllInfo();
+	dia.whoAmI();
+	dia.attack("Cake");
+	dia.guardGate();
+	dia.highFivesGuys();
 }

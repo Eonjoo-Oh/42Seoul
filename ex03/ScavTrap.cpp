@@ -5,8 +5,8 @@ ScavTrap::ScavTrap()
 	std::cout << "ScavTrap Default Constructor called" << std::endl;
 	_name = "default";
 	_hitPoints = 100;
-	_hitPoints = 50;
-	_hitPoints = 29;
+	_energyPoints = 50;
+	_attackDamage = 20;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &scavTrap)
