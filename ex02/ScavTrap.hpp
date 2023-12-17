@@ -5,6 +5,7 @@
 
 class ScavTrap : public ClapTrap{
 	public:
+		ScavTrap();
 		ScavTrap(std::string name) : ClapTrap(name) {
 			std::cout << "ScavTrap constructor called" << std::endl;
 			_hitPoints = 100;

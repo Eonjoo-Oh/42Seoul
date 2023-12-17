@@ -1,5 +1,14 @@
 #include "ScavTrap.hpp"
 
+ScavTrap::ScavTrap()
+{
+	std::cout << "ScavTrap Default Constructor called" << std::endl;
+	_name = "default";
+	_hitPoints = 100;
+	_hitPoints = 50;
+	_hitPoints = 29;
+}
+
 ScavTrap::ScavTrap(const ScavTrap &scavTrap)
 {
 	std::cout << "ScavTrap Copy Constructor called" << std::endl;

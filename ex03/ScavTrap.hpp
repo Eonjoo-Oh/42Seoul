@@ -3,8 +3,9 @@
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap{
+class ScavTrap : virtual public ClapTrap{
 	public:
+		ScavTrap();
 		ScavTrap(std::string name) : ClapTrap(name) {
 			std::cout << "ScavTrap constructor called" << std::endl;
 			_hitPoints = 100;
