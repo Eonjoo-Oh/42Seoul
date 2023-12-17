@@ -6,6 +6,7 @@
 
 class FragTrap : virtual public ClapTrap {
 	public:
+		static const int defaultAttackDamage = 30;
 		FragTrap();
 		FragTrap(std::string name) : ClapTrap(name) {
 			std::cout << "FragTrap constructor called" << std:: endl;
