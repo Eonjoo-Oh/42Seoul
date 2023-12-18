@@ -4,7 +4,7 @@ DiamondTrap::DiamondTrap() : FragTrap(), ScavTrap()
 {
 	std:: cout << "DiamondTrap Default Constructor Called";
 	_name = "default";
-	ClapTrap::_name = ClapTrap::_name + "_clap_name";
+	ClapTrap::_name = _name + "_clap_name";
 	_energyPoints = ScavTrap::getDefaultEnergyPoints();
 	_hitPoints = FragTrap::getDefaultHitPoints();
 	_attackDamage = FragTrap::getDefaultAttackDamage();
@@ -12,12 +12,9 @@ DiamondTrap::DiamondTrap() : FragTrap(), ScavTrap()
 
 DiamondTrap::DiamondTrap(std::string name) : FragTrap(), ScavTrap()
 {
-	int	attackDamage;
-
-	attackDamage = FragTrap::_attackDamage;
 	std:: cout << "DiamondTrap Constructor Called" << std::endl;
 	_name = name;
-	ClapTrap::_name = name + "_clap_name";
+	ClapTrap::_name = _name + "_clap_name";
 	_energyPoints = ScavTrap::getDefaultEnergyPoints();
 	_hitPoints = FragTrap::getDefaultHitPoints();
 	_attackDamage = FragTrap::getDefaultAttackDamage();
