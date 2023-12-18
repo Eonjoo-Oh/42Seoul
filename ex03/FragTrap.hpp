@@ -7,7 +7,7 @@
 class FragTrap : virtual public ClapTrap {
 	private:
 		static const int	defaultAttackDamage = 30;
-		static const int	defaultHitPoints = 20;
+		static const int	defaultHitPoints = 100;
 	public:
 		FragTrap();
 		FragTrap(std::string name);
