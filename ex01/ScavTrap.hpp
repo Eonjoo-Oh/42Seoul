@@ -3,15 +3,10 @@
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap{
+class ScavTrap : public ClapTrap {
 	public:
 		ScavTrap();
-		ScavTrap(std::string name) : ClapTrap(name) {
-			std::cout << "ScavTrap constructor called" << std::endl;
-			_hitPoints = 100;
-			_energyPoints = 50;
-			_attackDamage = 20;
-		}
+		ScavTrap(std::string name);
 		ScavTrap(const ScavTrap &scavtrap);
 		ScavTrap& operator=(const ScavTrap &scavtrap);
 		~ScavTrap();
