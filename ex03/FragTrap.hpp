@@ -5,20 +5,18 @@
 #include "ScavTrap.hpp"
 
 class FragTrap : virtual public ClapTrap {
+	private:
+		static const int	defaultAttackDamage = 30;
+		static const int	defaultHitPoints = 20;
 	public:
-		static const int defaultAttackDamage = 30;
 		FragTrap();
-		FragTrap(std::string name) : ClapTrap(name) {
-			std::cout << "FragTrap constructor called" << std:: endl;
-			_name = name;
-			_hitPoints = 100;
-			_energyPoints = 100;
-			_attackDamage = 30;
-		};
+		FragTrap(std::string name);
 		FragTrap(const FragTrap &fragTrap);
 		FragTrap& operator=(const FragTrap &fragTrap);
 		~FragTrap();
 		void	highFivesGuys(void);
+		int		getDefaultAttackDamage(void);
+		int		getDefaultHitPoints(void);
 };
 
 #endif

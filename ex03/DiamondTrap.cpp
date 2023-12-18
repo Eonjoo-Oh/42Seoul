@@ -1,22 +1,13 @@
-
 #include "DiamondTrap.hpp"
+
 DiamondTrap::DiamondTrap() : FragTrap(), ScavTrap()
 {
-	int	attackDamage;
-	//int	energyPoints;
-	//int	hitpoints;
-
 	std:: cout << "DiamondTrap Default Constructor Called";
 	_name = "default";
-	attackDamage = FragTrap::_attackDamage;
 	ClapTrap::_name = ClapTrap::_name + "_clap_name";
-	_energyPoints = ScavTrap::_energyPoints;
-	_hitPoints = FragTrap::_hitPoints;
-	_attackDamage = attackDamage;
-	_hitPoints = 100;
-	_attackDamage = 30;
-	_energyPoints = 50;
-	_attackDamage = attackDamage;
+	_energyPoints = ScavTrap::getDefaultEnergyPoints();
+	_hitPoints = FragTrap::getDefaultHitPoints();
+	_attackDamage = FragTrap::getDefaultAttackDamage();
 }
 
 DiamondTrap::DiamondTrap(std::string name) : FragTrap(), ScavTrap()
@@ -27,13 +18,9 @@ DiamondTrap::DiamondTrap(std::string name) : FragTrap(), ScavTrap()
 	std:: cout << "DiamondTrap Constructor Called" << std::endl;
 	_name = name;
 	ClapTrap::_name = name + "_clap_name";
-	_energyPoints = ScavTrap::_energyPoints;
-	_hitPoints = FragTrap::_hitPoints;
-	_attackDamage = FragTrap::_attackDamage;
-	std::cout << "!! : " << attackDamage << std::endl;
-	std::cout << "!! : " << FragTrap::_attackDamage << std::endl;
-	_attackDamage = attackDamage;
-	_attackDamage = FragTrap::defaultAttackDamage;
+	_energyPoints = ScavTrap::getDefaultEnergyPoints();
+	_hitPoints = FragTrap::getDefaultHitPoints();
+	_attackDamage = FragTrap::getDefaultAttackDamage();
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap &diamondTrap)
@@ -67,7 +54,7 @@ void	DiamondTrap::whoAmI()
 	std::cout << "DiamondTrap name is " << _name << ", ClapTrap name is " << ClapTrap::_name << std::endl;
 }
 
-void	DiamondTrap::getAllInfo()
+void	DiamondTrap::printAllInfo()
 {
 	std::cout << "name : " << _name << std::endl;
 	std::cout << "hitpoints : " << _hitPoints << std::endl;

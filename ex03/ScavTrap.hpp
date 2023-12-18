@@ -4,19 +4,17 @@
 #include "ClapTrap.hpp"
 
 class ScavTrap : virtual public ClapTrap{
+	private:
+		static const int	defaultEnergyPoints = 100;
 	public:
 		ScavTrap();
-		ScavTrap(std::string name) : ClapTrap(name) {
-			std::cout << "ScavTrap constructor called" << std::endl;
-			_hitPoints = 100;
-			_attackDamage = 20;
-			_energyPoints = 50;
-		}
+		ScavTrap(std::string name);
 		ScavTrap(const ScavTrap &scavTrap);
 		ScavTrap& operator=(const ScavTrap &scavTrap);
 		~ScavTrap();
 		void	guardGate();
 		void	attack(const std::string &target);
+		int		getDefaultEnergyPoints(void);
 };
 
 #endif
