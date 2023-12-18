@@ -2,7 +2,7 @@
 
 ClapTrap::ClapTrap()
 {
-	std::cout << "ClapTrap Default Constructor called" << std::endl;
+	std::cout << "ClapTrap Default Default Constructor called" << std::endl;
 	_name = "default";
 	_hitPoints = 10;
 	_energyPoints = 10;
@@ -73,7 +73,7 @@ void	ClapTrap::takeDamage(unsigned int amount)
 		}
 	}
 	else
-		std::cout << "ClapTrap " << _name << " was already died" << std::endl;
+		std::cout << "ClapTrap " << _name << " already died" << std::endl;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
@@ -88,8 +88,8 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		std::cout << "ClapTrap " << _name << "'s energy point is ZERO" << std::endl;
 		return ;
 	}
-	_hitPoints++;
+	_hitPoints += amount;
 	_energyPoints--;
 	std::cout << "ClapTrap " << _name << " is repaired and get " << amount << " of hitpoints!" << std::endl;
-	std::cout << "ClapTrap " << _name << "'s remaining hit point : " << _hitPoints << " energy point : " << _energyPoints << std::endl;
+	std::cout << "ClapTrap " << _name << "'s remaining hit point : " << _hitPoints << ", energy point : " << _energyPoints << std::endl;
 }
