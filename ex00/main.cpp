@@ -13,29 +13,38 @@ void	leaks()
 int main()
 {
 	atexit(leaks);
-	const Animal* meta = new Animal();
+
+	const Animal* animal = new Animal();
 	const Animal* dog = new Dog();
 	const Animal* cat = new Cat();
-	std::cout << dog->getType() << " " << std::endl;
-	std::cout << cat->getType() << " " << std::endl;
-	std::cout << "What Animals Saying?" << std::endl;
+	std::cout << std::endl;
+	std::cout << "<< What Animals Type? >>" << std::endl;
+	std::cout << "dog type is : " << dog->getType() << " " << std::endl;
+	std::cout << "cat type is : " << cat->getType() << " " << std::endl;
+	std::cout << "animal type is : " << animal->getType() << " " << std::endl;
+	std::cout << "<< What Animals Saying? >>" << std::endl;
 	cat->makeSound(); //will output the cat sound!
 	dog->makeSound();
-	meta->makeSound();
+	animal->makeSound();
+	std::cout << std::endl;
 
-	const WrongAnimal* wrongMeta = new WrongAnimal();
+	const WrongAnimal* wrongAnimal = new WrongAnimal();
 	const WrongAnimal* wrongDog = new WrongDog();
 	const WrongAnimal* wrongCat = new WrongCat();
-	std::cout << wrongDog->getType() << " " << std::endl;
-	std::cout << wrongCat->getType() << " " << std::endl;
-	std::cout << "What 'Wrong' Animals Saying?" << std::endl;
+	std::cout << std::endl;
+	std::cout << "<< What Wrong Animals Type? >>" << std::endl;
+	std::cout << "wrong dog type is "<< wrongDog->getType() << " " << std::endl;
+	std::cout << "wrong cat type is "<< wrongCat->getType() << " " << std::endl;
+	std::cout << "wrong animal type is "<< wrongAnimal->getType() << " " << std::endl;
+	std::cout << "<< What 'Wrong' Animals Saying? >>" << std::endl;
 	wrongCat->makeSound();
 	wrongDog->makeSound();
-	wrongMeta->makeSound();
-	delete meta;
+	wrongAnimal->makeSound();
+	std::cout << std::endl;
+	delete animal;
 	delete dog;
 	delete cat;
-	delete wrongMeta;
+	delete wrongAnimal;
 	delete wrongDog;
 	delete wrongCat;
 	return 0;
