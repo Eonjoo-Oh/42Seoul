@@ -7,8 +7,13 @@
 class	MateriaSource : public IMateriaSource
 {
 	private :
-		AMateria	*_materiaList;
+		AMateria	*_learnedMaterias;
+		AMateria	*_createdMaterias;
 	public :
+		MateriaSource();
+		MateriaSource(const MateriaSource &obj);
+		MateriaSource &operator=(const MateriaSource &obj);
+		~MateriaSource();
 		void		learnMateria(AMateria *materia);
 		AMateria*	createMateria(std::string const & type);
 };
