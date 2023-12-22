@@ -26,10 +26,11 @@ Cure::~Cure()
 
 AMateria* Cure::clone() const
 {
-
+	AMateria* newCure = new Cure;
+	return (newCure);
 }
 
 void	Cure::use(ICharacter& target)
 {
-
+	std:: cout << "* heals " << target.getName() << "'s wounds *";
 }
