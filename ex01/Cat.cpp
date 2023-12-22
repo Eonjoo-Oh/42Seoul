@@ -21,7 +21,11 @@ Cat &Cat::operator=(const Cat &obj)
 {
 	std::cout << "Cat Class Assignment Operator Called" << std::endl;
 	_type = obj._type;
-	_brain = new Brain(*obj._brain);
+	_brain = new Brain();
+	for(int i = 0; i < 100; i++)
+	{
+		_brain->setIdea(i, obj.getIdea(i));
+	}
 	return (*this);
 }
 
