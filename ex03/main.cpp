@@ -32,7 +32,7 @@ int main()
 	AMateria	*cureMateria = new Cure();
 	iceMateria->use(*ari);
 	cureMateria->use(*karry);
-	//AMateria use test
+	// //AMateria use test
 
 	AMateria	*copiedIce = iceMateria->clone();
 	AMateria	*copiedCure = cureMateria->clone();
@@ -43,7 +43,7 @@ int main()
 	std::cout << "iceMateria type: " << iceMateria->getType() << std::endl;
 	std::cout << "copiedIce type: " << copiedIce->getType() << std::endl;
 	//iceMateria->setType("newType");
-	//AMateria clone test
+	// //AMateria clone test
 
 	ari->equip(iceMateria);
 	ari->use(0, *karry);
@@ -56,11 +56,13 @@ int main()
 	ari->unequip(0);
 	ari->unequip(8);
 	ari->use(0, *karry);
-	//Character equip, unequip test
+	// //Character equip, unequip test
 
 	delete src;
 	delete ari;
 	delete karry;
+	delete iceMateria;
+	delete cureMateria;
 	delete copiedIce;
 	delete copiedCure;
 }

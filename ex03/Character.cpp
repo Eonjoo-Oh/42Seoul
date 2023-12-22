@@ -44,11 +44,7 @@ Character &Character::operator=(const Character &obj)
 Character::~Character()
 {
 	std::cout << "Character Destructor Called" << std::endl;
-	std::cout << "unequipedInedx : " << _unequipedIndex << std::endl;
-	for(int i = 0; i < _unequipedIndex; i++)
-	{
-		delete _unequipedMaterias[i];
-	}
+	//std::cout << "unequipedInedx : " << _unequipedIndex << std::endl;
 }
 
 std::string const &Character::getName() const
