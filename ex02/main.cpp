@@ -10,7 +10,7 @@ void	leaks()
 }
 
 int main() {
-	atexit(leaks);
+	//atexit(leaks);
 	//const Animal* animal = new Animal();
 	const Animal* dog = new Dog();
 	const Animal* cat = new Cat();
