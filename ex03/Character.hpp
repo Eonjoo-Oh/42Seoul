@@ -7,10 +7,13 @@
 class Character : public ICharacter
 {
 	private :
-		AMateria	*slot;
+		std::string	_name;
+		int			_numOfEquiped;
+		AMateria	*_slot[4];
 		AMateria	*unequipedMaterias;
 	public :
 		Character();
+		Character(std::string name);
 		Character(const Character &obj);
 		Character &operator=(const Character &obj);
 		~Character();

@@ -16,7 +16,7 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &obj)
 {
 	std::cout << "MateriaSource Assignment Operator Called" << std::endl;
 	_learnedIdx = obj._learnedIdx;
-	//learnedMaterias가 어떻게 복사되는지는 모르겠다. 텅 빈 배열로 복사되어야한다.
+	//learnedMaterias가 어떻게 복사되는지는 모르겠다. 텅 빈 배열로 복사되어야한다. (과연?)
 	return (*this);
 }
 
