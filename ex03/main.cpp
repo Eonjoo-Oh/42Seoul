@@ -13,27 +13,27 @@ void	leaks()
 int main()
 {
 	atexit(leaks);
-	IMateriaSource* src = new MateriaSource();
-	src->learnMateria(new Ice());
-	src->learnMateria(new Cure());
-	std::cout << src->createMateria("ice")->getType() << std::endl;
-	std::cout << src->createMateria("cure")->getType() << std::endl;
-	std::cout << "hi" << std::endl;
-	src->createMateria("kkk"); //create unavailable materia
-	//MateriaSource class learnMateria, createMateria test
+	IMateriaSource* met = new MateriaSource();
+	std::cout << "<< MateriaSource class Test >>" << std::endl;
+	met->learnMateria(new Ice());
+	met->learnMateria(new Cure());
+	std::cout << met->createMateria("ice")->getType() << std::endl;
+	std::cout << met->createMateria("cure")->getType() << std::endl;
+	met->createMateria("kkk");
 
+	std::cout << std::endl << "<< Character class getName test >>" << std::endl;
 	Character	*ari = new Character("Ari");
 	std::cout << "New character name is " << ari->getName() << std::endl;
 	Character	*karry = new Character("Karry");
 	std::cout << "New character name is " << karry->getName() << std::endl;
-	//Character getName test
 
+	std::cout << std::endl << "<< AMateria class use test >>" << std::endl;
 	AMateria	*iceMateria = new Ice();
 	AMateria	*cureMateria = new Cure();
 	iceMateria->use(*ari);
 	cureMateria->use(*karry);
-	// //AMateria use test
 
+	std::cout << std::endl << "<< AMateria class clone test >>" << std::endl;
 	AMateria	*copiedIce = iceMateria->clone();
 	AMateria	*copiedCure = cureMateria->clone();
 	std::cout << "iceMateria address : " << &iceMateria << std::endl;
@@ -42,9 +42,8 @@ int main()
 	copiedCure->use(*karry);
 	std::cout << "iceMateria type: " << iceMateria->getType() << std::endl;
 	std::cout << "copiedIce type: " << copiedIce->getType() << std::endl;
-	//iceMateria->setType("newType");
-	// //AMateria clone test
 
+	std::cout << std::endl << "<< Character class equip, unequip test >>" << std::endl;
 	ari->equip(iceMateria);
 	ari->use(0, *karry);
 	ari->use(1, *karry);
@@ -56,15 +55,32 @@ int main()
 	ari->unequip(0);
 	ari->unequip(8);
 	ari->use(0, *karry);
-	// //Character equip, unequip test
 
-	delete src;
+	delete met;
 	delete ari;
 	delete karry;
 	delete iceMateria;
 	delete cureMateria;
 	delete copiedIce;
 	delete copiedCure;
+
+	std::cout << std:: endl << "------------------ subject test -------------------" << std::endl;
+	IMateriaSource* src = new MateriaSource();
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+	ICharacter* me = new Character("me");
+	AMateria* tmp;
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("cure");
+	me->equip(tmp);
+	ICharacter* bob = new Character("bob");
+	me->use(0, *bob);
+	me->use(1, *bob);
+	delete bob;
+	delete me;
+	delete src;
+	return 0;
 }
 
 

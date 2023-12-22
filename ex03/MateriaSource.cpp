@@ -24,7 +24,6 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &obj)
 	{
 		_learnedMaterias[i] = obj._learnedMaterias[i];
 	}
-	//learnedMaterias가 어떻게 복사되는지는 모르겠다. 텅 빈 배열로 복사되어야한다? (과연?)
 	return (*this);
 }
 
@@ -43,7 +42,6 @@ void	MateriaSource::learnMateria(AMateria *materia)
 		std::cout << "Learned Materia Slot is FUll!" << std::endl;
 	else
 	{
-		//std::cout << "_learnedIdx:" << _learnedIdx << std::endl;
 		_learnedMaterias[_learnedIdx] = materia;
 		_learnedIdx++;
 	}

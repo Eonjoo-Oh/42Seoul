@@ -44,7 +44,6 @@ Character &Character::operator=(const Character &obj)
 Character::~Character()
 {
 	std::cout << "Character Destructor Called" << std::endl;
-	//std::cout << "unequipedInedx : " << _unequipedIndex << std::endl;
 }
 
 std::string const &Character::getName() const
@@ -63,20 +62,19 @@ void	Character::equip(AMateria* m)
 	{
 		if (_slot[i] == NULL)
 		{
-			//std::cout << i << " " << m->getType() << " ";
-			_slot[i] = m;//얘의 포인터 그 자체를 넣어야하니까 복사하지 않고 넣는다?
+			_slot[i] = m;
 			break;
 		}
 	}
-	//std::cout << "_num of equiped " << _numOfEquiped <<std::endl;
 	_numOfEquiped++;
+	std::cout << "Successfully equipped " << m->getType() << std::endl;
 }
 
 void	Character::unequip(int idx)
 {
 	if (_unequipedIndex >= 100)
 	{
-		std::cout << "You can't unequip anymore!" << std::endl;
+		std::cout << "You can't unequipped anymore!" << std::endl;
 		return ;
 	}
 	if (idx >= 4)
@@ -90,11 +88,10 @@ void	Character::unequip(int idx)
 		return ;
 	}
 	_unequipedMaterias[_unequipedIndex] = _slot[idx];
-	std::cout << "address: " << _unequipedMaterias[_unequipedIndex] ;
 	_unequipedIndex++;
 	_slot[idx] = NULL;
-	std::cout << " address2: " << _unequipedMaterias[_unequipedIndex - 1] << std::endl;
 	_numOfEquiped--;
+	std::cout << "Successfully unequipped " << std::endl;
 }
 
 void	Character::use(int idx, ICharacter& target)
