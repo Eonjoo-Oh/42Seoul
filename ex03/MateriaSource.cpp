@@ -31,6 +31,10 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &obj)
 MateriaSource::~MateriaSource()
 {
 	std::cout << "MateriaSource Destructor Called" << std::endl;
+	for (int i = 0; i < _learnedIdx; i++)
+	{
+		delete _learnedMaterias[i];
+	}
 }
 
 void	MateriaSource::learnMateria(AMateria *materia)
@@ -39,7 +43,7 @@ void	MateriaSource::learnMateria(AMateria *materia)
 		std::cout << "Learned Materia Slot is FUll!" << std::endl;
 	else
 	{
-		std::cout << "_learnedIdx:" << _learnedIdx << std::endl;
+		//std::cout << "_learnedIdx:" << _learnedIdx << std::endl;
 		_learnedMaterias[_learnedIdx] = materia;
 		_learnedIdx++;
 	}
@@ -53,7 +57,6 @@ AMateria*	MateriaSource::createMateria(std::string const &type)
 	sameTypeFlag = 0;
 	i = 0;
 	
-	std::cout << "learned idx: " << _learnedIdx << std::endl;
 	while (i < _learnedIdx)
 	{
 		if (type.compare(_learnedMaterias[i]->getType()) == 0)
@@ -68,6 +71,5 @@ AMateria*	MateriaSource::createMateria(std::string const &type)
 		std::cout << "There's no right type!" << std::endl;
 		return 0;
 	}
-	std::cout << "createMateria index : " << i << std::endl;
 	return (_learnedMaterias[i]);
 }

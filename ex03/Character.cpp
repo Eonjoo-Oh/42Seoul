@@ -44,6 +44,11 @@ Character &Character::operator=(const Character &obj)
 Character::~Character()
 {
 	std::cout << "Character Destructor Called" << std::endl;
+	std::cout << "unequipedInedx : " << _unequipedIndex << std::endl;
+	for(int i = 0; i < _unequipedIndex; i++)
+	{
+		delete _unequipedMaterias[i];
+	}
 }
 
 std::string const &Character::getName() const
@@ -62,11 +67,12 @@ void	Character::equip(AMateria* m)
 	{
 		if (_slot[i] == NULL)
 		{
-			std::cout << "i is " << i << std::endl;
+			//std::cout << i << " " << m->getType() << " ";
 			_slot[i] = m;//얘의 포인터 그 자체를 넣어야하니까 복사하지 않고 넣는다?
 			break;
 		}
 	}
+	//std::cout << "_num of equiped " << _numOfEquiped <<std::endl;
 	_numOfEquiped++;
 }
 
@@ -85,10 +91,13 @@ void	Character::unequip(int idx)
 	if (_slot[idx] == NULL)
 	{
 		std::cout << "no materia in this slot!" << std::endl;
+		return ;
 	}
 	_unequipedMaterias[_unequipedIndex] = _slot[idx];
+	std::cout << "address: " << _unequipedMaterias[_unequipedIndex] ;
 	_unequipedIndex++;
 	_slot[idx] = NULL;
+	std::cout << " address2: " << _unequipedMaterias[_unequipedIndex - 1] << std::endl;
 	_numOfEquiped--;
 }
 
@@ -102,6 +111,7 @@ void	Character::use(int idx, ICharacter& target)
 	if (_slot[idx] == NULL)
 	{
 		std::cout << "no materia in this slot!" << std::endl;
+		return ;
 	}
 	_slot[idx]->use(target);
 }
