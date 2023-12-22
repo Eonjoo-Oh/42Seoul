@@ -9,8 +9,9 @@ class Character : public ICharacter
 	private :
 		std::string	_name;
 		int			_numOfEquiped;
+		int			_unequipedIndex;
 		AMateria	*_slot[4];
-		AMateria	*unequipedMaterias;
+		AMateria	*_unequipedMaterias[100];
 	public :
 		Character();
 		Character(std::string name);

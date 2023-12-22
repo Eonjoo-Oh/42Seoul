@@ -4,6 +4,10 @@ MateriaSource::MateriaSource()
 {
 	std::cout << "MateriaSource Default Constructor Called" << std::endl;
 	_learnedIdx = 0;
+	for(int i = 0; i < 4; i++)
+	{
+		_learnedMaterias[i] = NULL;
+	}
 }
 
 MateriaSource::MateriaSource(const MateriaSource &obj)
@@ -16,7 +20,11 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &obj)
 {
 	std::cout << "MateriaSource Assignment Operator Called" << std::endl;
 	_learnedIdx = obj._learnedIdx;
-	//learnedMaterias가 어떻게 복사되는지는 모르겠다. 텅 빈 배열로 복사되어야한다. (과연?)
+	for(int i = 0; i < 4; i++)
+	{
+		_learnedMaterias[i] = obj._learnedMaterias[i];
+	}
+	//learnedMaterias가 어떻게 복사되는지는 모르겠다. 텅 빈 배열로 복사되어야한다? (과연?)
 	return (*this);
 }
 
