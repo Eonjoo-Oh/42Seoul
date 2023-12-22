@@ -2,7 +2,6 @@
 
 MateriaSource::MateriaSource()
 {
-	std::cout << "MateriaSource Default Constructor Called" << std::endl;
 	_learnedIdx = 0;
 	for(int i = 0; i < 4; i++)
 	{
@@ -12,13 +11,11 @@ MateriaSource::MateriaSource()
 
 MateriaSource::MateriaSource(const MateriaSource &obj)
 {
-	std::cout << "MateriaSource Copy Constructor Called" << std::endl;
 	*this = obj;
 }
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &obj)
 {
-	std::cout << "MateriaSource Assignment Operator Called" << std::endl;
 	_learnedIdx = obj._learnedIdx;
 	for(int i = 0; i < 4; i++)
 	{
@@ -29,7 +26,6 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &obj)
 
 MateriaSource::~MateriaSource()
 {
-	std::cout << "MateriaSource Destructor Called" << std::endl;
 	for (int i = 0; i < _learnedIdx; i++)
 	{
 		delete _learnedMaterias[i];

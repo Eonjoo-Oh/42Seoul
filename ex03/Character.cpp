@@ -2,7 +2,6 @@
 
 Character::Character()
 {
-	std::cout << "Character Default Constructor Called" << std::endl;
 	_name = "default";
 	_numOfEquiped = 0;
 	_unequipedIndex = 0;
@@ -14,7 +13,6 @@ Character::Character()
 
 Character::Character(std::string name)
 {
-	std::cout << "Character Constructor Called" << std::endl;
 	_name = name;
 	_numOfEquiped = 0;
 	_unequipedIndex = 0;
@@ -25,13 +23,11 @@ Character::Character(std::string name)
 }
 Character::Character(const Character &obj)
 {
-	std::cout << "Character Copy Constructor Called" << std::endl;
 	*this = obj;
 }
 
 Character &Character::operator=(const Character &obj)
 {
-	std::cout << "Character Assignment Operator Called" << std::endl;
 	_name = obj._name;
 	_numOfEquiped = obj._numOfEquiped;
 	for(int i = 0; i < 4; i++)
@@ -41,10 +37,7 @@ Character &Character::operator=(const Character &obj)
 	return (*this);
 }
 
-Character::~Character()
-{
-	std::cout << "Character Destructor Called" << std::endl;
-}
+Character::~Character() {}
 
 std::string const &Character::getName() const
 {
