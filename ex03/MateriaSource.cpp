@@ -52,9 +52,9 @@ AMateria*	MateriaSource::createMateria(std::string const &type)
 	sameTypeFlag = 0;
 	i = 0;
 	
-	while (i <= _learnedIdx)
+	while (i < _learnedIdx)
 	{
-
+		//std::cout << "here" <<std::endl;
 		if (type.compare(_learnedMaterias[i]->getType()) == 0)
 		{
 			sameTypeFlag = 1;

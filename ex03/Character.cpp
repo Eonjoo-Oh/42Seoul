@@ -61,7 +61,11 @@ void	Character::equip(AMateria* m)
 	for(int i = 0; i < 4; i++)
 	{
 		if (_slot[i] == NULL)
+		{
+			std::cout << "i is " << i << std::endl;
 			_slot[i] = m;//얘의 포인터 그 자체를 넣어야하니까 복사하지 않고 넣는다?
+			break;
+		}
 	}
 	_numOfEquiped++;
 }
