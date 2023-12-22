@@ -78,7 +78,7 @@ void	Character::unequip(int idx)
 		std::cout << "wrong index!" << std::endl;
 		return ;
 	}
-	if (_slot[idx] = NULL)
+	if (_slot[idx] == NULL)
 	{
 		std::cout << "no materia in this slot!" << std::endl;
 	}
@@ -95,7 +95,7 @@ void	Character::use(int idx, ICharacter& target)
 		std::cout << "wrong index!" << std::endl;
 		return ;
 	}
-	if (_slot[idx] = NULL)
+	if (_slot[idx] == NULL)
 	{
 		std::cout << "no materia in this slot!" << std::endl;
 	}

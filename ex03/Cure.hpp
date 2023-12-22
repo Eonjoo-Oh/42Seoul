@@ -5,12 +5,13 @@
 
 class Cure : public AMateria
 {
-	Cure();
-	Cure(const Cure &obj);
-	Cure &operator=(const Cure &obj);
-	~Cure();
-	AMateria*	clone()	const;
-	void		use(ICharacter& target);
+	public:
+		Cure();
+		Cure(const Cure &obj);
+		Cure &operator=(const Cure &obj);
+		~Cure();
+		AMateria*	clone()	const;
+		void		use(ICharacter& target);
 };
 
 #endif
