@@ -1,7 +1,7 @@
 #include "Animal.hpp"
-#include "WrongAnimal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
+#include "WrongAnimal.hpp"
 #include "WrongDog.hpp"
 #include "WrongCat.hpp"
 
@@ -12,7 +12,7 @@ void	leaks()
 
 int main()
 {
-	atexit(leaks);
+	//atexit(leaks);
 
 	const Animal* animal = new Animal();
 	const Animal* dog = new Dog();
@@ -23,9 +23,13 @@ int main()
 	std::cout << "cat type is : " << cat->getType() << " " << std::endl;
 	std::cout << "animal type is : " << animal->getType() << " " << std::endl;
 	std::cout << "<< What Animals Saying? >>" << std::endl;
-	cat->makeSound(); //will output the cat sound!
+	cat->makeSound();
 	dog->makeSound();
 	animal->makeSound();
+	std::cout << std::endl;
+	delete animal;
+	delete dog;
+	delete cat;
 	std::cout << std::endl;
 
 	const WrongAnimal* wrongAnimal = new WrongAnimal();
@@ -41,11 +45,8 @@ int main()
 	wrongDog->makeSound();
 	wrongAnimal->makeSound();
 	std::cout << std::endl;
-	delete animal;
-	delete dog;
-	delete cat;
 	delete wrongAnimal;
 	delete wrongDog;
 	delete wrongCat;
 	return 0;
-}//잘되는 케이스와 잘못된 케이스를 비교해보아라
+}
