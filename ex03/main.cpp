@@ -4,6 +4,18 @@
 #include "Ice.hpp"
 #include "Cure.hpp"
 
+
+int main()
+{
+	IMateriaSource* src = new MateriaSource();
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+	std::cout << src->createMateria("ice")->getType() << std::endl;
+	std::cout << src->createMateria("cure")->getType() << std::endl;
+	src->createMateria("kkk"); //create unavailable materia
+	//std::cout << src->createMateria("no") ->getType() << std::endl; //
+}
+/*
 int main()
 {
 	IMateriaSource* src = new MateriaSource();
@@ -23,3 +35,4 @@ int main()
 	delete src;
 	return 0;
 }
+*/

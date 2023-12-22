@@ -3,7 +3,7 @@
 Cure::Cure()
 {
 	std::cout << "Cure Default Constructor Called" << std::endl;
-	_type = "Cure";
+	_type = "cure";
 }
 
 Cure::Cure(const Cure &obj)
