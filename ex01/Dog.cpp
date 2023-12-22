@@ -21,6 +21,7 @@ Dog &Dog::operator=(const Dog &obj)
 {
 	std::cout << "Dog Class Assignment Operator Called" << std::endl;
 	_type = obj._type;
+	_brain = new Brain();
 	return (*this);
 }
 

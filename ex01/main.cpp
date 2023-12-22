@@ -48,6 +48,7 @@ int main() {
 	}
 	delete dog;
 	delete cat;
-
+// 깊은 복사 테스트  original dog, copy dog
+// 얕은 복사 차이 테스트
 	return 0;
 }
