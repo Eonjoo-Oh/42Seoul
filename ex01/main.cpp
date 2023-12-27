@@ -2,11 +2,6 @@
 
 int  main()
 {
-	//form exception test
-	//form << test
-	//besigned test
-	// sign form test
-
 	std::cout << std::endl << "<< Constructor Exception Test >> " << std::endl;
 	Form	taskA("A", 4, 4);
 	Form	taskB("B", -1, 2);
