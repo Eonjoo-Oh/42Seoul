@@ -13,10 +13,9 @@ class	Bureaucrat
 		Bureaucrat(std::string name, int grade);
 		Bureaucrat(const Bureaucrat &obj);
 		Bureaucrat &operator =(const Bureaucrat &obj);
-		Bureaucrat &operator <<(const Bureaucrat &obj);
 		~Bureaucrat();
-		std::string	get_name();
-		int			get_grade();
+		std::string	get_name() const;
+		int			get_grade() const;
 		void		increase_grade();
 		void		decrease_grade();
 		class		GradeTooHighException : public std::exception
@@ -24,7 +23,7 @@ class	Bureaucrat
 			public :
 				const char *what(void) const throw()
 				{
-					return ("Grade is Too High!\n");
+					return ("Grade is Too High!");
 				}
 		};
 		class		GradeTooLowException : public std::exception
@@ -32,9 +31,11 @@ class	Bureaucrat
 			public :
 				const char *what(void) const throw()
 				{
-					return ("Grade is Too Low!\n");
+					return ("Grade is Too Low!");
 				}
 		};
 };
+
+std::ostream& operator << (std::ostream &os, const Bureaucrat &obj);
 
 #endif
