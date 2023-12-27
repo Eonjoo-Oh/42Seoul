@@ -21,7 +21,7 @@ class	AForm
 		virtual ~AForm();
 		std::string	getName() const;
 		int			getGradeRequiredToSign() const;
-		int			getGradeRequiredtoExecure() const;
+		int			getGradeRequiredtoExecute() const;
 		bool		getIsSigned() const;
 		void		beSigned(const Bureaucrat &bureaucrat);
 		virtual bool		execute(Bureaucrat const &executor) const = 0;

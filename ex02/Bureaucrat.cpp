@@ -81,7 +81,15 @@ void	Bureaucrat::executeForm(AForm const &form)
 {
 	try {
 		if (form.getIsSigned() == false)
-			throw ()
+			throw std::runtime_error("Form is not signed!");
+		if (_grade > form.getGradeRequiredToSign() || _grade > form.getGradeRequiredtoExecute())
+			throw (Bureaucrat::GradeTooLowException());
+		if (form.execute(*this) == false)
+			throw std::runtime_error("Execute Fail");
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Error: " << e.what() << std::endl;
 	}
 }
 

@@ -35,7 +35,7 @@ std::ostream& operator << (std::ostream &os, const AForm &obj)
 {
 	std::cout << "AForm name : " << obj.getName() << std::endl;
 	std::cout << "Grade Required to Sign : " << obj.getGradeRequiredToSign() << std::endl;
-	std::cout << "Grade Required to Execute : " << obj.getGradeRequiredtoExecure() << std::endl;
+	std::cout << "Grade Required to Execute : " << obj.getGradeRequiredtoExecute() << std::endl;
 	std::cout << "Signed : " << obj.getIsSigned() << std::endl;
 	return (os);
 }
@@ -52,7 +52,7 @@ int	AForm::getGradeRequiredToSign() const
 	return (_gradeRequiredToSign);
 }
 
-int	AForm::getGradeRequiredtoExecure() const
+int	AForm::getGradeRequiredtoExecute() const
 {
 	return (_gradeRequiredtoExecute);
 }
