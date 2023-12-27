@@ -8,7 +8,7 @@ class	Form
 {
 	private :
 		const std::string	_name;
-		bool	isSigned;
+		bool				_isSigned;
 		const int			_gradeRequiredToSign;
 		const int			_gradeRequiredtoExecute; 
 	public :
@@ -17,27 +17,27 @@ class	Form
 		Form(const Form &obj);
 		Form &operator=(const Form &obj);
 		~Form();
-		void	getName();
-		void	getGradeRequiredToSign();
-		void	getGradeRequiredtoExecure();
-		void	beSigned();
+		std::string	getName() const;
+		int			getGradeRequiredToSign() const;
+		int			getGradeRequiredtoExecure() const;
+		bool		getIsSigned() const;
+		void		beSigned(const Bureaucrat &bureaucrat);
 		class	GradeTooHighException : public std::exception
 		{
 			public :
 				const char *what(void) const throw()
 				{
-				
+					return ("Bureaucrat's Grade is Too High To Sign!");
 				}
-		}
+		};
 		class	GradeTooLowException : public std::exception
 		{
 			public :
 				const char *what(void) const throw()
 				{
-				
+					return ("Bureaucrat's Grade is Too Low! To Sign");
 				}
-		}
-
+		};
 };
 
 std::ostream& operator << (std::ostream &os, const Form &obj);
