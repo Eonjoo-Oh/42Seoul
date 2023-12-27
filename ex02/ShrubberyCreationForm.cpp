@@ -7,11 +7,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &obj) :
 	*this = obj;
 };
 
-//ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &obj)
-//{
-//	t = obj;
-//	return (*this);
-//}
+//ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &obj) {}
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {};
 
@@ -26,7 +22,7 @@ bool	ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 		outFile.open(outFileName);
 		if (!outFile.is_open())
 			throw std::runtime_error("outFile open error");
-    	outFile << "       ^  ^  ^   ^           ___I_       ^    ^   ^   ^   ^    ^   ^\n"
+    	outFile << "       ^  ^  ^   ^      ___I_      ^  ^   ^  ^  ^   ^  ^\n"
     	           "      /|\\/|\\/|\\ /|\\    /\\-_--\\    /|\\/|\\ /|\\/|\\/|\\ /|\\/|\\\n"
     	           "      /|\\/|\\/|\\ /|\\   /  \\_-__\\   /|\\/|\\ /|\\/|\\/|\\ /|\\/|\\\n"
     	           "      /|\\/|\\/|\\ /|\\   |[]| [] |   /|\\/|\\ /|\\/|\\/|\\ /|\\/|\\\n";
