@@ -21,3 +21,4 @@ Form::Form(std::string name, int gradeRequiredToSign, int gradeRequiredtoExecute
 		std::cerr << "Error! : " << e.what() << std::endl;
 	}
 }
+
