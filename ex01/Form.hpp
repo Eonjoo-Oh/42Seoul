@@ -29,7 +29,7 @@ class	Form
 			public :
 				const char *what(void) const throw()
 				{
-					return ("Bureaucrat's Grade is Too High To Sign!");
+					return ("Bureaucrat's Grade is Too High");
 				}
 		};
 		class	GradeTooLowException : public std::exception
@@ -37,9 +37,9 @@ class	Form
 			public :
 				const char *what(void) const throw()
 				{
-					return ("Bureaucrat's Grade is Too Low! To Sign");
+					return ("Bureaucrat's Grade is Too Low!");
 				}
-		};
+		};//cpp 파일로 분리하기
 };
 
 std::ostream& operator << (std::ostream &os, const Form &obj);

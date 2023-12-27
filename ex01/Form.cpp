@@ -64,18 +64,11 @@ bool	Form::getIsSigned() const
 
 void	Form::beSigned(const Bureaucrat &bureaucrat)
 {
-	try
+	if (bureaucrat.getGrade() > _gradeRequiredToSign)
+		throw GradeTooLowException();
+	else
 	{
-		if (bureaucrat.getGrade() < _gradeRequiredToSign)
-			throw GradeTooLowException();
-		else
-		{
-			_isSigned = true;
-			std::cout << bureaucrat.getName() << "can sign this Form!" << std::endl;
-		}
-	}
-	catch(GradeTooLowException& e)
-	{
-		std::cerr << e.what() << std::endl;
+		_isSigned = true;
+		std::cout << bureaucrat.getName() << " can sign this Form!" << std::endl;
 	}
 }
