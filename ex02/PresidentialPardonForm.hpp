@@ -1,16 +1,16 @@
 #ifndef PRESIDENTIALPARDONFORM
 #define PRESIDENTIALPARDONFORM
 
-class	PresidentialPardonForm
+#include "AForm.hpp"
+
+class	PresidentialPardonForm : public AForm
 {
-	private :
-		const int	_gradeRequiredToSign;
-		const int	_gradeRequiredtoExecute;
 	public :
 		PresidentialPardonForm();
 		PresidentialPardonForm(const PresidentialPardonForm &obj);
 		PresidentialPardonForm &operator=(const PresidentialPardonForm &obj);
 		~PresidentialPardonForm();
+		bool	execute(Bureaucrat const &executor) const;
 };
 
 #endif

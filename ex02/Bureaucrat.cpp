@@ -77,6 +77,14 @@ void	Bureaucrat::signForm(AForm &form)
 	}
 }
 
+void	Bureaucrat::executeForm(AForm const &form)
+{
+	try {
+		if (form.getIsSigned() == false)
+			throw ()
+	}
+}
+
 const char	*Bureaucrat::GradeTooHighException::what(void) const throw()
 {
 	return ("Bureaucrat's Grade is Too High");
