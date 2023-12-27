@@ -7,6 +7,9 @@ int  main()
 	Bureaucrat Lim(choi);
 	std::cout << choi;
 	std::cout << Lim;
+	Bureaucrat kang("Kang", 124);
+	kang = choi;
+	std::cout << kang;
 
 	std::cout << std::endl << "<< Constructor Exception Test >> " << std::endl;
 	Bureaucrat lee("Lee", -1);
