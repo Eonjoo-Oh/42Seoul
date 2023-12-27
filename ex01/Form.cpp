@@ -1,9 +1,9 @@
 #include "Form.hpp"
 
-Form::Form() : _name("default"), _gradeRequiredToSign(1), _gradeRequiredtoExecute(1), _isSigned(false) {};
+Form::Form() : _name("default"), _isSigned(false), _gradeRequiredToSign(1), _gradeRequiredtoExecute(1) {};
 
 Form::Form(std::string name, int gradeRequiredToSign, int gradeRequiredtoExecute) 
-: _name(name), _gradeRequiredToSign(gradeRequiredToSign), _gradeRequiredtoExecute(gradeRequiredtoExecute), _isSigned(false)
+: _name(name), _isSigned(false), _gradeRequiredToSign(gradeRequiredToSign), _gradeRequiredtoExecute(gradeRequiredtoExecute)
 {
 	try 
 	{
@@ -23,10 +23,11 @@ Form::Form(std::string name, int gradeRequiredToSign, int gradeRequiredtoExecute
 }
 
 Form::Form(const Form &obj)
-: _name(obj._name), _gradeRequiredToSign(obj._gradeRequiredToSign), _gradeRequiredtoExecute(obj._gradeRequiredtoExecute) {}
+: _name(obj._name), _isSigned(false), _gradeRequiredToSign(obj._gradeRequiredToSign), _gradeRequiredtoExecute(obj._gradeRequiredtoExecute) {}
 
 Form &Form::operator = (const Form &obj)
 {
+	_isSigned = obj._isSigned;
 	return (*this);
 }
 
@@ -36,6 +37,7 @@ std::ostream& operator << (std::ostream &os, const Form &obj)
 	std::cout << "Grade Required to Sign : " << obj.getGradeRequiredToSign() << std::endl;
 	std::cout << "Grade Required to Execute : " << obj.getGradeRequiredtoExecure() << std::endl;
 	std::cout << "Signed : " << obj.getIsSigned() << std::endl;
+	return (os);
 }
 
 Form::~Form() {};
@@ -74,6 +76,6 @@ void	Form::beSigned(const Bureaucrat &bureaucrat)
 	}
 	catch(GradeTooLowException& e)
 	{
-		std::cerr << "Error! : " << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 }

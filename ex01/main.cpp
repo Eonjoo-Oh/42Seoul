@@ -2,6 +2,10 @@
 
 int  main()
 {
+	//form exception test
+	//form << test
+	//besigned test
+	// sign form test
 	std::cout << "<< Copy Constructor Test >> " << std::endl;
 	Bureaucrat choi("choi", 3);
 	Bureaucrat Lim(choi);

@@ -63,3 +63,15 @@ void	Bureaucrat::decrease_grade()
 	else
 		_grade++;
 }
+
+void	Bureaucrat::signForm(Form &form)
+{
+	try
+	{
+		form.beSigned(*this);
+	}
+	catch (GradeTooLowException& e)
+	{
+		std::cerr << _name << " coulnd't sign " << form.getName() << "because ";
+	}
+}
