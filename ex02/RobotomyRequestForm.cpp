@@ -18,7 +18,7 @@ RobotomyRequestForm::~RobotomyRequestForm() {};
 
 bool	RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
-	std::srand(static_cast<unsigned>(std::time(nullptr)));
+	std::srand(static_cast<unsigned>(std::time(0)));
 	int	randNum = 0;
 	std::cout << "Drillllllllllll........." << std::endl;
 	std::cout << "with a 50% chance..." << std::endl;

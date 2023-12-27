@@ -24,7 +24,7 @@ bool	ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 	try
 	{
 		outFileName = executor.getName().append("_shruberry");
-		outFile.open(outFileName);
+		outFile.open(outFileName.c_str());
 		if (!outFile.is_open())
 			throw std::runtime_error("outFile open error");
     	outFile << "       ^  ^  ^   ^      ___I_      ^  ^   ^  ^  ^   ^  ^\n"
