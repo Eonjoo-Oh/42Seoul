@@ -1,16 +1,18 @@
 #ifndef ROBOTOMYREQUESTFORM
 #define ROBOTOMYREQUESTFORM
 
-class	RobotomyRequestForm
+#include "AForm.hpp"
+#include <cstdlib>
+#include <random>
+
+class	RobotomyRequestForm : public AForm
 {
-	private :
-		const int	_gradeRequiredToSign;
-		const int	_gradeRequiredtoExecute;
 	public :
 		RobotomyRequestForm();
 		RobotomyRequestForm(const RobotomyRequestForm &obj);
 		RobotomyRequestForm &operator=(const RobotomyRequestForm &obj);
 		~RobotomyRequestForm();
+		bool	execute(Bureaucrat const &executor) const;
 };
 
 #endif

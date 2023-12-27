@@ -5,7 +5,7 @@ ShrubberyCreationForm::ShrubberyCreationForm() : AForm("shrubbery", 145, 137) {}
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &obj) : AForm("shrubbery", 145, 137) 
 {
 	*this = obj;
-};
+}
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &obj)
 {
@@ -32,7 +32,7 @@ bool	ShrubberyCreationForm::execute(Bureaucrat const &executor) const
     	           "      /|\\/|\\/|\\ /|\\   /  \\_-__\\   /|\\/|\\ /|\\/|\\/|\\ /|\\/|\\\n"
     	           "      /|\\/|\\/|\\ /|\\   |[]| [] |   /|\\/|\\ /|\\/|\\/|\\ /|\\/|\\\n";
 		outFile.close();
-	}
+	}//openfile예외처리를 조금 더 해야하지 않을까? 이미 있는 파일명, 이미 있는 파일명 + 권한문제
 	catch (const std::exception &e)
 	{
 		std::cerr << "Error: " << e.what() << std::endl;
