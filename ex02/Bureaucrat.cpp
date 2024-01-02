@@ -86,6 +86,7 @@ void	Bureaucrat::executeForm(AForm const &form)
 			throw (Bureaucrat::GradeTooLowException());
 		if (form.execute(*this) == false)
 			throw std::runtime_error("Execute Fail");
+		std::cout << getName() << " executed " << form.getName() << std::endl;
 	}
 	catch (std::exception &e)
 	{
