@@ -32,9 +32,15 @@ int main()
 	dorae.signForm(robotomy);
 	dorae.signForm(pardon);
 
-	std::cout << std::endl << "-------------------- execute Shrubbery test -------------------" << std::endl;
+	std::cout << std::endl << "-------------------- execute SHRUBBERY test -------------------" << std::endl;
 	elle.executeForm(shrubbery);
 	amy.executeForm(shrubbery);
+
+	std::cout << std::endl << "-------------------- execute ROBOTOMY test -------------------" << std::endl;
+	amy.executeForm(robotomy);
+	bella.executeForm(robotomy);
+	coco.executeForm(robotomy);
+	dorae.executeForm(robotomy);
 /*
 	ShrubberyCreationForm berry;
 	Bureaucrat	karry("karry", 3);
