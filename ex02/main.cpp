@@ -39,6 +39,7 @@ int main()
 	amy.executeForm(robotomy);
 	bella.executeForm(robotomy);
 	coco.executeForm(robotomy);
+	std::cout << std::endl;
 	std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 	dorae.executeForm(robotomy);
 	

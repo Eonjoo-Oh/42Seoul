@@ -23,7 +23,7 @@ bool	RobotomyRequestForm::execute(Bureaucrat const &executor) const
 	std::cout << "Drillllllllllll........." << std::endl;
 	std::cout << "with a 50% chance..." << std::endl;
 	randNum = rand();
-	std::cout << "randNum: " << randNum << std::endl;
+	//std::cout << "randNum: " << randNum << std::endl;
 	if (randNum % 2  == 0)
 	{
 		std::cout << executor.getName() << " has been robotomized!" << std::endl;
