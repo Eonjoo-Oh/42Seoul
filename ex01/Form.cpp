@@ -82,4 +82,3 @@ const char	*Form::GradeTooLowException::what(void) const throw()
 {
 	return ("Bureaucrat's Grade is Too Low to sign");
 }
-

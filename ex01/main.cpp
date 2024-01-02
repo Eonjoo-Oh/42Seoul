@@ -18,4 +18,9 @@ int  main()
 	han.signForm(taskA);
 	han.signForm(taskD);
 	kim.signForm(taskA);
+	std::cout << std::endl;
+	std::cout << "A signed : " << taskA.getIsSigned() << std::endl;
+	std::cout << "B signed : " << taskB.getIsSigned() << std::endl;
+	std::cout << "C signed : " << taskC.getIsSigned() << std::endl;
+	std::cout << "D signed : " << taskD.getIsSigned() << std::endl;
 }
