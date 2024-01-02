@@ -1,6 +1,14 @@
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm("shrubbery", 145, 137) {};
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("shrubbery", 145, 137) 
+{
+	_target = "default";
+}
+
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("shrubbery", 145, 137) 
+{
+	_target = target;
+}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &obj) : AForm("shrubbery", 145, 137) 
 {
@@ -9,8 +17,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &obj) :
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &obj)
 {
-	if (this != &obj)
-		AForm::operator=(obj);
+	_target = obj.getTarget();
 	return (*this);
 }
 
@@ -39,4 +46,9 @@ bool	ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 		return (false);
 	}
 	return (true);
+}
+
+std::string	ShrubberyCreationForm::getTarget() const
+{
+	return (_target);
 }

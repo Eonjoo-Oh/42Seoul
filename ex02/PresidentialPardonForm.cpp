@@ -1,6 +1,14 @@
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm() : AForm("presidential", 25, 5) {};
+PresidentialPardonForm::PresidentialPardonForm() : AForm("presidential", 25, 5) 
+{
+	_target = "default";
+}
+
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("presidential", 25, 5) 
+{
+	_target = target;
+}
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &obj) : AForm("presidential", 25, 5)
 {
@@ -9,12 +17,16 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &obj
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &obj)
 {
-	if (this != &obj)
-		AForm::operator=(obj);
+	_target = obj.getTarget();
 	return (*this);
 }
 
 PresidentialPardonForm::~PresidentialPardonForm() {};
+
+std::string PresidentialPardonForm::getTarget() const
+{
+	return (_target);
+};
 
 bool	PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {

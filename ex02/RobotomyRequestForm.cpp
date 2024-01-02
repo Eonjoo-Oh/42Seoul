@@ -1,6 +1,14 @@
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm("robotomy", 72, 45) {};
+RobotomyRequestForm::RobotomyRequestForm() : AForm("robotomy", 72, 45) 
+{
+	_target = "default";
+}
+
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("robotomy", 72, 45) 
+{
+	_target = target;
+}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &obj) : AForm("robotomy", 72, 45) 
 {
@@ -9,12 +17,16 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &obj) : AForm
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &obj)
 {
-	if (this != &obj)
-		AForm::operator=(obj);
+	_target = obj.getTarget();
 	return (*this);
 }
 
 RobotomyRequestForm::~RobotomyRequestForm() {};
+
+std::string	RobotomyRequestForm::getTarget() const
+{
+	return (_target);
+}
 
 bool	RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
@@ -23,7 +35,6 @@ bool	RobotomyRequestForm::execute(Bureaucrat const &executor) const
 	std::cout << "Drillllllllllll........." << std::endl;
 	std::cout << "with a 50% chance..." << std::endl;
 	randNum = rand();
-	//std::cout << "randNum: " << randNum << std::endl;
 	if (randNum % 2  == 0)
 	{
 		std::cout << executor.getName() << " has been robotomized!" << std::endl;

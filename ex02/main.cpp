@@ -6,9 +6,9 @@
 
 int main()
 {
-	ShrubberyCreationForm	shrubbery;
-	RobotomyRequestForm		robotomy;
-	PresidentialPardonForm	pardon;
+	ShrubberyCreationForm	shrubbery("home");
+	RobotomyRequestForm		robotomy("robot");
+	PresidentialPardonForm	pardon("president");
 
 	Bureaucrat				amy("Amy", 130); //only can shrubbery
 	Bureaucrat				bella("Bella", 70); //can shrubbery, robotomy sign
@@ -16,7 +16,12 @@ int main()
 	Bureaucrat				dorae("Dorae", 2); // can do anything
 	Bureaucrat				elle("Elle", 150); //can't do anything
 
-	std::cout << "-------------------- execute unsigned form test -------------------" << std::endl;
+	std::cout << "-------------------- get target test -------------------" << std::endl;
+	std::cout << "shrubbery target : " << shrubbery.getTarget() << std::endl;
+	std::cout << "robotomy target : " << robotomy.getTarget() << std::endl;
+	std::cout << "pardon target : " << pardon.getTarget() << std::endl;
+
+	std::cout << std::endl << "-------------------- execute unsigned form test -------------------" << std::endl;
 	amy.executeForm(shrubbery);
 	coco.executeForm(robotomy);
 	dorae.executeForm(pardon);
