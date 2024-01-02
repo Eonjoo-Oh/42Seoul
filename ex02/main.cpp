@@ -3,6 +3,7 @@
 #include "PresidentialPardonForm.hpp"
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
+#include <thread>
 
 //s 145/137
 //r 72/45
@@ -38,6 +39,7 @@ int main()
 	amy.executeForm(robotomy);
 	bella.executeForm(robotomy);
 	coco.executeForm(robotomy);
+	std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 	dorae.executeForm(robotomy);
 	
 	std::cout << std::endl << "-------------------- execute PARDON test -------------------" << std::endl;
