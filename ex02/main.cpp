@@ -3,11 +3,6 @@
 #include "PresidentialPardonForm.hpp"
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
-#include <thread>
-
-//s 145/137
-//r 72/45
-//p 25/5
 
 int main()
 {
@@ -22,7 +17,7 @@ int main()
 	Bureaucrat				elle("Elle", 150); //can't do anything
 
 	std::cout << "-------------------- execute unsigned form test -------------------" << std::endl;
-	amy.executeForm(shrubbery); //she is qualified but form is not signed
+	amy.executeForm(shrubbery);
 	coco.executeForm(robotomy);
 	dorae.executeForm(pardon);
 
@@ -39,9 +34,6 @@ int main()
 	amy.executeForm(robotomy);
 	bella.executeForm(robotomy);
 	coco.executeForm(robotomy);
-	std::cout << std::endl;
-	std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-	dorae.executeForm(robotomy);
 	
 	std::cout << std::endl << "-------------------- execute PARDON test -------------------" << std::endl;
 	amy.executeForm(pardon);
