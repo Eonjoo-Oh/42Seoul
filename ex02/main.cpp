@@ -10,9 +10,6 @@
 
 int main()
 {
-	//AForm	*shrubbery = new ShrubberyCreationForm();
-	//AForm	*robotomy = new RobotomyRequestForm();
-	//AForm	*pardon = new PresidentialPardonForm();
 	ShrubberyCreationForm	shrubbery;
 	RobotomyRequestForm		robotomy;
 	PresidentialPardonForm	pardon;
@@ -35,18 +32,15 @@ int main()
 	std::cout << std::endl << "-------------------- execute SHRUBBERY test -------------------" << std::endl;
 	elle.executeForm(shrubbery);
 	amy.executeForm(shrubbery);
+	coco.executeForm(shrubbery);
 
 	std::cout << std::endl << "-------------------- execute ROBOTOMY test -------------------" << std::endl;
 	amy.executeForm(robotomy);
 	bella.executeForm(robotomy);
 	coco.executeForm(robotomy);
 	dorae.executeForm(robotomy);
-/*
-	ShrubberyCreationForm berry;
-	Bureaucrat	karry("karry", 3);
-	berry.execute(karry);
-
-	RobotomyRequestForm robota;
-	robota.execute(karry);
-*/
+	
+	std::cout << std::endl << "-------------------- execute PARDON test -------------------" << std::endl;
+	amy.executeForm(pardon);
+	dorae.executeForm(pardon);
 }
