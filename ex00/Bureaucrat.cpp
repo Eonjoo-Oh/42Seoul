@@ -4,23 +4,13 @@ Bureaucrat::Bureaucrat() : _name("defualt"), _grade(150) {};
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name) 
 {
-	try {
 		if (grade < 1)
 			throw GradeTooHighException();
 		else if (grade > 150)
 			throw GradeTooLowException();
 		else
 			_grade = grade;
-	}
-	catch (GradeTooHighException &e)
-	{
-		std::cerr << "Error! : " << e.what() << std::endl;
-	}
-	catch (GradeTooLowException &e)
-	{
-		std::cerr << "Error! : " << e.what() << std::endl;
-	}
-};
+}
 
 Bureaucrat::Bureaucrat(const Bureaucrat &obj) : _name(obj._name), _grade(obj._grade) {};
 
