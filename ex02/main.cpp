@@ -7,8 +7,9 @@
 int main()
 {
 	ShrubberyCreationForm	shrubbery("home");
-	RobotomyRequestForm		robotomy("robot");
-	PresidentialPardonForm	pardon("president");
+	ShrubberyCreationForm	shrubbery2("garden");
+	RobotomyRequestForm		robotomy("ToTo");
+	PresidentialPardonForm	pardon("Flora");
 
 	Bureaucrat				amy("Amy", 130); //only can shrubbery
 	Bureaucrat				bella("Bella", 70); //can shrubbery, robotomy sign
@@ -27,13 +28,14 @@ int main()
 	dorae.executeForm(pardon);
 
 	dorae.signForm(shrubbery);
+	dorae.signForm(shrubbery2);
 	dorae.signForm(robotomy);
 	dorae.signForm(pardon);
 
 	std::cout << std::endl << "-------------------- execute SHRUBBERY test -------------------" << std::endl;
 	elle.executeForm(shrubbery);
 	amy.executeForm(shrubbery);
-	coco.executeForm(shrubbery);
+	coco.executeForm(shrubbery2);
 
 	std::cout << std::endl << "-------------------- execute ROBOTOMY test -------------------" << std::endl;
 	amy.executeForm(robotomy);
