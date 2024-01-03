@@ -14,9 +14,7 @@ class	PresidentialPardonForm : public AForm
 		PresidentialPardonForm &operator=(const PresidentialPardonForm &obj);
 		~PresidentialPardonForm();
 		std::string	getTarget() const;
-		void		setTarget(std::string target);
 		bool		execute(Bureaucrat const &executor) const;
-		AForm		*makeNew();
 };
 
 #endif

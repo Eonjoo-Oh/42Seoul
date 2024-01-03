@@ -23,23 +23,19 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
 
 PresidentialPardonForm::~PresidentialPardonForm() {};
 
-std::string	PresidentialPardonForm::getTarget() const
+std::string PresidentialPardonForm::getTarget() const
 {
 	return (_target);
 };
 
-void	PresidentialPardonForm::setTarget(std::string target)
-{
-	_target = target;
-}
-
 bool	PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
-	std::cout << executor.getName() << " has been pardoned by Zaphod Beeblebrox" << std::endl;
-	return (true);
-}
 
-AForm	*PresidentialPardonForm::makeNew()
-{
-	return (new PresidentialPardonForm(*this));
+	if (getIsSigned() == false)
+		throw (AForm::UnsignedException());
+	if (executor.getGrade() > getGradeRequiredToSign() || executor.getGrade() > getGradeRequiredtoExecute())
+		throw (Bureaucrat::GradeTooLowException());
+
+	std::cout << getTarget() << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+	return (true);
 }

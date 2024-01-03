@@ -23,29 +23,18 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {};
 
-std::string	ShrubberyCreationForm::getTarget() const
-{
-	return (_target);
-}
-
-void	ShrubberyCreationForm::setTarget(std::string target)
-{
-	_target = target;
-}
-
-AForm	*ShrubberyCreationForm::makeNew()
-{
-	return (new ShrubberyCreationForm(*this));
-}
-
 bool	ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
 	std::string		outFileName;
 	std::ofstream	outFile;
 
+	if (getIsSigned() == false)
+		throw (AForm::UnsignedException());
+	if (executor.getGrade() > getGradeRequiredToSign() || executor.getGrade() > getGradeRequiredtoExecute())
+		throw (Bureaucrat::GradeTooLowException());
 	try
 	{
-		outFileName = executor.getName().append("_shruberry");
+		outFileName = getTarget().append("_shruberry");
 		outFile.open(outFileName.c_str());
 		if (!outFile.is_open())
 			throw std::runtime_error("outFile open error");
@@ -61,4 +50,9 @@ bool	ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 		return (false);
 	}
 	return (true);
+}
+
+std::string	ShrubberyCreationForm::getTarget() const
+{
+	return (_target);
 }

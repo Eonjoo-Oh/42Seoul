@@ -28,20 +28,13 @@ std::string	RobotomyRequestForm::getTarget() const
 	return (_target);
 }
 
-void	RobotomyRequestForm::setTarget(std::string target)
-{
-	_target = target;
-}
-
-AForm	*RobotomyRequestForm::makeNew()
-{
-	AForm	*newForm = new RobotomyRequestForm();
-
-	return (newForm);
-}
-
 bool	RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
+	if (getIsSigned() == false)
+		throw (AForm::UnsignedException());
+	if (executor.getGrade() > getGradeRequiredToSign() || executor.getGrade() > getGradeRequiredtoExecute())
+		throw (Bureaucrat::GradeTooLowException());
+
 	std::srand(static_cast<unsigned>(std::time(0)));
 	int	randNum = 0;
 	std::cout << "Drillllllllllll........." << std::endl;
@@ -49,11 +42,11 @@ bool	RobotomyRequestForm::execute(Bureaucrat const &executor) const
 	randNum = rand();
 	if (randNum % 2  == 0)
 	{
-		std::cout << executor.getName() << " has been robotomized!" << std::endl;
+		std::cout << getTarget() << " has been robotomized!" << std::endl;
 	}
 	else
 	{
-		std::cout << executor.getName() << " robotomized is failed!" << std::endl;
+		std::cout << getTarget() << " robotomized is failed!" << std::endl;
 	}
 	return (true);
 }
