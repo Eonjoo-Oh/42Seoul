@@ -35,6 +35,11 @@ class	AForm
 			public :
 				const char *what(void) const throw();
 		};
+		class	UnsignedException : public std::exception
+		{
+			public :
+				const char *what(void) const throw();
+		};
 };
 
 std::ostream& operator << (std::ostream &os, const AForm &obj);

@@ -29,7 +29,7 @@ bool	ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 	std::ofstream	outFile;
 
 	if (getIsSigned() == false)
-		throw std::runtime_error("Form is not signed!");
+		throw (AForm::UnsignedException());
 	if (executor.getGrade() > getGradeRequiredToSign() || executor.getGrade() > getGradeRequiredtoExecute())
 		throw (Bureaucrat::GradeTooLowException());
 	try

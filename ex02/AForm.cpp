@@ -82,3 +82,8 @@ const char	*AForm::GradeTooLowException::what(void) const throw()
 {
 	return ("Bureaucrat's Grade is Too Low to sign");
 }
+
+const char	*AForm::UnsignedException::what(void) const throw()
+{
+	return ("Form is not signed");
+}

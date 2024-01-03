@@ -32,7 +32,7 @@ bool	PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
 
 	if (getIsSigned() == false)
-		throw std::runtime_error("Form is not signed!");
+		throw (AForm::UnsignedException());
 	if (executor.getGrade() > getGradeRequiredToSign() || executor.getGrade() > getGradeRequiredtoExecute())
 		throw (Bureaucrat::GradeTooLowException());
 
