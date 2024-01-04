@@ -13,7 +13,8 @@ class	ConverterUtil
 		static std::string	deleteWhiteSpace(const std::string &input);
 		static bool			isValidChar(int num);
 		static bool			isDisplayableChar(int num);
-		class	charRangeException : public std::exception
+		static bool			isValidInt(float num);
+		class	RangeException : public std::exception
 		{
 			public :
 			const char *what(void) const throw();

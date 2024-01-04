@@ -38,7 +38,15 @@ bool	ConverterUtil::isDisplayableChar(int num)
 		return (false);
 	return (true);
 }
-const char	*ConverterUtil::charRangeException::what(void) const throw()
+
+bool	ConverterUtil::isValidInt(float num)
+{
+	if (num < -2147483648 || num > 2147483647)
+		return (false);
+	return (true);
+}
+
+const char	*ConverterUtil::RangeException::what(void) const throw()
 {
 	return ("impossible");
 }

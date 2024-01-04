@@ -36,7 +36,7 @@ void	ScalarConverter::convert(std::string input)
 			throw	std::invalid_argument("impossible");
 			
 		if (ConverterUtil::isValidChar(tempInt) == false)
-			throw	ConverterUtil::charRangeException();
+			throw	ConverterUtil::RangeException();
 		if (ConverterUtil::isDisplayableChar(tempInt) == false)
 			throw	ConverterUtil::charDisplayException();
 
@@ -51,11 +51,15 @@ void	ScalarConverter::convert(std::string input)
 	try
 	{
 		std::istringstream	iss(joinedInput);
+		float				tempFloat;
 
 		std::cout << "int : ";
-		iss >> intConverted;
+		iss >> tempFloat;
 		if (iss.fail() || !iss.eof() || joinedInput.empty())
 			throw	std::invalid_argument("impossible");
+		if (ConverterUtil::isValidInt(tempFloat) == false)
+			throw	std::invalid_argument("impossible");
+		intConverted = static_cast<int>(tempFloat);
 		std::cout << intConverted << std::endl;
 	}
 	catch (std::exception &e)
