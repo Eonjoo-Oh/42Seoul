@@ -53,9 +53,13 @@ void	ScalarConverter::convert(std::string input)
 		std::istringstream	iss(joinedInput);
 		float				tempFloat;
 
+		if (joinedInput[joinedInput.length() - 1] == 'f')
+			joinedInput.erase(joinedInput.length() - 1);
+		//std::cout << "joinedInput: " << joinedInput << std::endl;
 		std::cout << "int : ";
 		iss >> tempFloat;
-		if (iss.fail() || !iss.eof() || joinedInput.empty())
+		//if (iss.fail() || !iss.eof() || joinedInput.empty())
+		if (iss.fail() || !iss.eof())
 			throw	std::invalid_argument("impossible");
 		if (ConverterUtil::isValidInt(tempFloat) == false)
 			throw	std::invalid_argument("impossible");
@@ -66,4 +70,4 @@ void	ScalarConverter::convert(std::string input)
 	{
 		std::cout << e.what() << std::endl;
 	}
-}
+}//+부호 처리는?
