@@ -3,12 +3,26 @@
 int  main()
 {
 	std::cout << std::endl << "<< Constructor Exception Test >> " << std::endl;
-	Form	taskA("A", 4, 4);
-	Form	taskB("B", -1, 2);
-	Form	taskC("C", 67, 160);
-	Form	taskD("D", 120, 150);
+	try {
+		Form	taskA("A", 4, 4);
+		Form	taskB("B", -1, 2);
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Form error! : " << e.what() << std::endl;
+	}
+	try {
+		Form	taskA("A", 4, 4);
+		Form	taskB("B", 10, 170);
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Form error! : " << e.what() << std::endl;
+	}
 
 	std::cout << std::endl << "<< Operator << Overloading Test >> " << std::endl;
+	Form	taskA("A", 4, 4);
+	Form	taskD("D", 120, 150);
 	std::cout << taskA;
 	std::cout << taskD;
 
@@ -16,11 +30,14 @@ int  main()
 	Bureaucrat kim("Kim", 1);
 	Bureaucrat han("Han", 100);
 	han.signForm(taskA);
-	han.signForm(taskD);
-	kim.signForm(taskA);
-	std::cout << std::endl;
 	std::cout << "A signed : " << taskA.getIsSigned() << std::endl;
-	std::cout << "B signed : " << taskB.getIsSigned() << std::endl;
-	std::cout << "C signed : " << taskC.getIsSigned() << std::endl;
+	std::cout << std::endl;
+
+	han.signForm(taskD);
 	std::cout << "D signed : " << taskD.getIsSigned() << std::endl;
+	std::cout << std::endl;
+	
+	kim.signForm(taskA);
+	std::cout << "A signed : " << taskA.getIsSigned() << std::endl;
+	std::cout << std::endl;
 }
