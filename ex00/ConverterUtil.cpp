@@ -46,6 +46,43 @@ bool	ConverterUtil::isValidInt(float num)
 	return (true);
 }
 
+bool	ConverterUtil::isFloat(std::string str)
+{
+	int		pointCnt = 0;
+	size_t	length = str.length();
+
+	if (length < 4)
+		return (false);
+	for(size_t i = 0; i < length; i++)
+	{
+		if (!(str[i] >= 48 && str[i] <= 57) && str[i] != '.' && str[i] != 'f')
+			return (false);
+		if (str[i] == 'f' && i != length - 1)
+			return (false);
+		if (str[i] == '.' && !(i > 0 && i < length - 2))
+			return (false);
+		else if (str[i] == '.')
+			pointCnt++;
+	}
+	if (str[length - 1] != 'f' || pointCnt != 1)
+		return (false);
+	return (true);
+}
+
+int	ConverterUtil::floatToInt(std::string str)
+{
+	if (str[str.length() - 1] == 'f')
+		str.erase(str.length() - 1);
+
+	float				floatConverted;
+	std::istringstream	iss(str);
+
+	iss >> floatConverted;
+	if (isValidInt(floatConverted) == false)
+		throw RangeException();
+	return (static_cast<int>(floatConverted));
+}
+
 const char	*ConverterUtil::RangeException::what(void) const throw()
 {
 	return ("impossible");

@@ -2,6 +2,7 @@
 #define CONVERTERUTIL_HPP
 
 #include <iostream>
+#include <sstream>
 
 class	ConverterUtil
 {
@@ -14,6 +15,8 @@ class	ConverterUtil
 		static bool			isValidChar(int num);
 		static bool			isDisplayableChar(int num);
 		static bool			isValidInt(float num);
+		static bool			isFloat(std::string str);
+		static int			floatToInt(std::string str);
 		class	RangeException : public std::exception
 		{
 			public :
