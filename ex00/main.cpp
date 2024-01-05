@@ -8,7 +8,7 @@ int	main()
 	std::cout << std::endl;
 	ScalarConverter::convert("2147");
 	std::cout << std::endl;
-	ScalarConverter::convert("2147483649");
+	ScalarConverter::convert("-99999990");
 	std::cout << std::endl;
 	ScalarConverter::convert("-12");
 	std::cout << std::endl;
@@ -28,7 +28,7 @@ int	main()
 	std::cout << std::endl;
 	ScalarConverter::convert("32.8fdkjlkj");
 	std::cout << std::endl;
-	ScalarConverter::convert("32jkkjl");
+	ScalarConverter::convert("-9,223,372,036,854,775,808");
 	std::cout << std::endl;
 	
 }
