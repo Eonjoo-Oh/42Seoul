@@ -17,6 +17,8 @@ class	ConverterUtil
 		static bool			isValidInt(float num);
 		static bool			isFloat(std::string str);
 		static int			floatToInt(std::string str);
+		static bool			isDouble(std::string str);
+		static int			doubleToInt(std::string str);
 		class	RangeException : public std::exception
 		{
 			public :

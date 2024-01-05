@@ -54,9 +54,10 @@ void	ScalarConverter::convert(std::string input)
 		std::cout << "int : ";
 		if (ConverterUtil::isFloat(joinedInput) == true)
 			intConverted = ConverterUtil::floatToInt(joinedInput);
+		else if (ConverterUtil::isDouble(joinedInput) == true)
+			intConverted = ConverterUtil::doubleToInt(joinedInput);
 		else
 		{
-			//std::cout << "is not Float" << std::endl;
 			std::istringstream	iss(joinedInput);
 			iss >> intConverted;
 			if (iss.fail() || !iss.eof() || joinedInput.empty())

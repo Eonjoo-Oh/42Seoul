@@ -83,6 +83,38 @@ int	ConverterUtil::floatToInt(std::string str)
 	return (static_cast<int>(floatConverted));
 }
 
+bool	ConverterUtil::isDouble(std::string str)
+{
+	int		pointCnt = 0;
+	size_t	length = str.length();
+
+	if (length < 3)
+		return (false);
+	for(size_t i = 0; i < length; i++)
+	{
+		if (!(str[i] >= 48 && str[i] <= 57) && str[i] != '.')
+			return (false);
+		if (str[i] == '.' && (i > 0 && i < length - 2))
+			return (false);
+		else if (str[i] == '.')
+			pointCnt++;
+	}
+	if (pointCnt != 1)
+		return (false);
+	return (true);
+}
+
+int	ConverterUtil::doubleToInt(std::string str)
+{
+	double				doubleonverted;
+	std::istringstream	iss(str);
+
+	iss >> doubleonverted;
+	if (isValidInt(doubleonverted) == false)
+		throw RangeException();
+	return (static_cast<int>(doubleonverted));
+}
+
 const char	*ConverterUtil::RangeException::what(void) const throw()
 {
 	return ("impossible");

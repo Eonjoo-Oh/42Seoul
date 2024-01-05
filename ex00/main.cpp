@@ -16,11 +16,19 @@ int	main()
 	std::cout << std::endl;
 	ScalarConverter::convert("42.0");
 	std::cout << std::endl;
+	ScalarConverter::convert("42.3");
+	std::cout << std::endl;
 	ScalarConverter::convert("42.0f");
 	std::cout << std::endl;
-	ScalarConverter::convert("21474.34");
+	ScalarConverter::convert("21474.34f");
 	std::cout << std::endl;
-	//ScalarConverter::convert("32.8f");
-	//ScalarConverter::convert("32jkkjl");
+	ScalarConverter::convert("2147836490.34f");
+	std::cout << std::endl;
+	ScalarConverter::convert("2147836490.34f");
+	std::cout << std::endl;
+	ScalarConverter::convert("32.8fdkjlkj");
+	std::cout << std::endl;
+	ScalarConverter::convert("32jkkjl");
+	std::cout << std::endl;
 	
 }
