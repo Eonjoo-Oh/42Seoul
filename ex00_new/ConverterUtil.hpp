@@ -17,9 +17,9 @@ class	ConverterUtil
 		static bool			isValidRangeChar(int num);
 		static bool			isDisplayableChar(int num);
 		static bool			isInt(const std::string &input);
+		static bool			isFloat(std::string input);
 
 		static bool			isValidInt(float num);
-		static bool			isFloat(std::string str);
 		static int			floatToInt(std::string str);
 		static bool			isDouble(std::string str);
 		static int			doubleToInt(std::string str);
