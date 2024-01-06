@@ -24,21 +24,21 @@ std::string	ConverterUtil::deleteWhiteSpace(const std::string &input)
 	return (joinedInput);
 }
 
-int	ConverterUtil::determineType(const std::string &input)
-{
-	if (isChar(input) == true)
-		return (CHAR);
-	else if (isInt(input) == true)
-		return (INT);
-	else if (isFloat(input) == true)
-		return (FLOAT);
-	else if (isDouble(intput) == true)
-		return (DOUBLE);
-	else
-		return (OTHER);
-}
+// int	ConverterUtil::determineType(const std::string &input)
+// {
+// 	if (isChar(input) == true)
+// 		return (CHAR);
+// 	// else if (isInt(input) == true)
+// 	// 	return (INT);
+// 	// else if (isFloat(input) == true)
+// 	// 	return (FLOAT);
+// 	// else if (isDouble(intput) == true)
+// 	// 	return (DOUBLE);
+// 	// else
+// 	// 	return (OTHER);
+// }
 
-bool	isChar(std::string input)
+bool	ConverterUtil::isChar(const std::string &input)
 {
 	int					intValue;
 	std::istringstream	iss(input);
@@ -46,8 +46,8 @@ bool	isChar(std::string input)
 	iss >> intValue;
 	if (iss.fail() || !iss.eof())
 		return (false);
-	if (ConverterUtil::isValidRangeChar(intValue) \
-		&& ConverterUtil::isDisplayableChar(intValue))
+	if (isValidRangeChar(intValue) \
+		&& isDisplayableChar(intValue))
 		return (true);
 	return (false);
 }

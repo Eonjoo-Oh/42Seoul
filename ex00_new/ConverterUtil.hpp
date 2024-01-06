@@ -13,9 +13,11 @@ class	ConverterUtil
 		~ConverterUtil();
 		static std::string	deleteWhiteSpace(const std::string &input);
 		static int			determineType(const std::string &input);
-		
+		static bool			isChar(const std::string &input);
 		static bool			isValidRangeChar(int num);
 		static bool			isDisplayableChar(int num);
+
+
 		static bool			isValidInt(float num);
 		static bool			isFloat(std::string str);
 		static int			floatToInt(std::string str);
@@ -36,7 +38,7 @@ class	ConverterUtil
 			FLOAT,
 			DOUBLE,
 			OTHER
-		}
+		};
 };
 
 #endif
