@@ -18,10 +18,10 @@ class	ConverterUtil
 		static bool			isDisplayableChar(int num);
 		static bool			isInt(const std::string &input);
 		static bool			isFloat(std::string input);
+		static bool			isDouble(const std::string &input);
 
 		static bool			isValidInt(float num);
 		static int			floatToInt(std::string str);
-		static bool			isDouble(std::string str);
 		static int			doubleToInt(std::string str);
 		class	RangeException : public std::exception
 		{

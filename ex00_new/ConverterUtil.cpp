@@ -92,6 +92,17 @@ bool	ConverterUtil::isFloat(std::string input)
 	return (true);
 }
 
+bool	ConverterUtil::isDouble(const std::string &input)
+{
+	std::istringstream	iss(input);
+	double				doubleValue;
+
+	iss >> doubleValue;
+	if (iss.fail() || !iss.eof())
+		return (false);
+	return (true);
+}
+
 bool	ConverterUtil::isValidInt(float num)
 {
 	if (num < -2147483648 || num > 2147483647)
@@ -122,6 +133,7 @@ bool	ConverterUtil::isValidInt(float num)
 // 	return (true);
 // }
 
+
 int	ConverterUtil::floatToInt(std::string str)
 {
 	if (str[str.length() - 1] == 'f')
@@ -136,26 +148,26 @@ int	ConverterUtil::floatToInt(std::string str)
 	return (static_cast<int>(floatConverted));
 }
 
-bool	ConverterUtil::isDouble(std::string str)
-{
-	int		pointCnt = 0;
-	size_t	length = str.length();
+// bool	ConverterUtil::isDouble(std::string str)
+// {
+// 	int		pointCnt = 0;
+// 	size_t	length = str.length();
 
-	if (length < 3)
-		return (false);
-	for(size_t i = 0; i < length; i++)
-	{
-		if (!(str[i] >= 48 && str[i] <= 57) && str[i] != '.')
-			return (false);
-		if (str[i] == '.' && (i > 0 && i < length - 2))
-			return (false);
-		else if (str[i] == '.')
-			pointCnt++;
-	}
-	if (pointCnt != 1)
-		return (false);
-	return (true);
-}
+// 	if (length < 3)
+// 		return (false);
+// 	for(size_t i = 0; i < length; i++)
+// 	{
+// 		if (!(str[i] >= 48 && str[i] <= 57) && str[i] != '.')
+// 			return (false);
+// 		if (str[i] == '.' && (i > 0 && i < length - 2))
+// 			return (false);
+// 		else if (str[i] == '.')
+// 			pointCnt++;
+// 	}
+// 	if (pointCnt != 1)
+// 		return (false);
+// 	return (true);
+// }
 
 int	ConverterUtil::doubleToInt(std::string str)
 {
