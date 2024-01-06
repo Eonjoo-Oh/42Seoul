@@ -1,5 +1,10 @@
 #include "ScalarConverter.hpp"
+int	main()
+{
+	ScalarConverter::convert("42");
+}
 
+/*
 int	main()
 {
 	ScalarConverter::convert("42");
@@ -30,5 +35,5 @@ int	main()
 	std::cout << std::endl;
 	ScalarConverter::convert("-9,223,372,036,854,775,808");
 	std::cout << std::endl;
-	
 }
+*/

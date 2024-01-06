@@ -23,21 +23,12 @@ void	ScalarConverter::convert(std::string input)
 	joinedInput = ConverterUtil::deleteWhiteSpace(input);
 	type = ConverterUtil::determineType(joinedInput);
 
-	try
+	switch(type)
 	{
-		char	result;
-
-		std::cout << "char: ";
-		result = ConverterUtil::convertToChar(joinedInput, type);
-		std::cout << result << std::endl;
+		case (INT):
+			ConverterUtil::printConvertedFromInt(joinedInput);
+			break;
+		default:
+			std::cout << "default";
 	}
-	catch(std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-	// switch(type)
-	// {
-	// 	case (ConverterUtil::INT)
-	// 		ConverterUtil::printConvertFromInt();
-	// }
 }

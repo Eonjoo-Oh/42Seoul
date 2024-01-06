@@ -24,19 +24,19 @@ std::string	ConverterUtil::deleteWhiteSpace(const std::string &input)
 	return (joinedInput);
 }
 
-// int	ConverterUtil::determineType(const std::string &input)
-// {
-// 	if (isChar(input) == true)
-// 		return (CHAR);
-// 	else if (isInt(input) == true)
-// 		return (INT);
-// 	else if (isFloat(input) == true)
-// 		return (FLOAT);
-// 	else if (isDouble(intput) == true)
-// 		return (DOUBLE);
-// 	else
-// 		return (OTHER);
-// }
+int	ConverterUtil::determineType(const std::string &input)
+{
+	// if (isChar(input) == true)
+	// 	return (CHAR);
+	if (isInt(input) == true)
+		return (INT);
+	else if (isFloat(input) == true)
+		return (FLOAT);
+	else if (isDouble(input) == true)
+		return (DOUBLE);
+	else
+		return (OTHER);
+}
 
 bool	ConverterUtil::isChar(const std::string &input)
 {
