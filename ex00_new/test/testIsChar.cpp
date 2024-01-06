@@ -27,7 +27,7 @@ int main()
 {
 	try
 	{
-		std::cout << ConverterUtil::isChar("78") << std::endl;
+		std::cout << ConverterUtil::isChar("-78") << std::endl;
 	}
 	catch (std::exception &e)
 	{
