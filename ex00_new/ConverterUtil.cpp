@@ -46,8 +46,7 @@ bool	ConverterUtil::isChar(const std::string &input)
 	iss >> intValue;
 	if (iss.fail() || !iss.eof())
 		return (false);
-	if (isValidRangeChar(intValue) \
-		&& isDisplayableChar(intValue))
+	if (isValidRangeChar(intValue))
 		return (true);
 	return (false);
 }
@@ -102,6 +101,45 @@ bool	ConverterUtil::isDouble(const std::string &input)
 		return (false);
 	return (true);
 }
+
+void	ConverterUtil::printConvertedFromInt(std::string input)
+{
+	std::istringstream	iss(input);
+	int	value;
+
+	iss >> value;
+	try
+	{
+		std::cout << "char: ";
+		if (isValidRangeChar(value) == false)
+			throw(ConverterUtil::RangeException());
+		if (isDisplayableChar(value) == false)
+			throw(ConverterUtil::charDisplayException());
+		std::cout << static_cast<char>(value) << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	std::cout << "int: " << value << std::endl;
+	std::cout << "float: " << static_cast<float>(value) << ".0f" << std::endl;
+	std::cout << "double: " << static_cast<double>(value) << ".0" << std::endl;
+}
+
+// char	ConverterUtil::convertToChar(std::string input, int type)
+// {
+// 	if (type == INT)
+// 	{
+// 		std::istringstream	iss(input);
+// 		int	value;
+// 		if (isValidRangeChar(value) == false)
+// 			throw(ConverterUtil::RangeException());
+// 		if (isDisplayableChar(value) == false)
+// 			throw(ConverterUtil::charDisplayException());
+// 	}
+// }
+//---------------------------------------
 
 bool	ConverterUtil::isValidInt(float num)
 {
