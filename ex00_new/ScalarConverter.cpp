@@ -36,6 +36,7 @@ void	ScalarConverter::convert(std::string input)
 			break;
 		case (SPECIAL) :
 			ConverterUtil::printSpecial(joinedInput);
+			break;
 		default:
 			ConverterUtil::printDefault();
 	}

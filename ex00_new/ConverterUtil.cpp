@@ -197,7 +197,7 @@ void	ConverterUtil::printConvertedFromFloat(std::string input)
 		std::cout << std::endl;
 	
 	std::cout << "double: " << static_cast<double>(floatValue);
-	if (floatValue > -999999 && floatValue < 999999)
+	if (floatValue > -999999 && floatValue < 999999 && onlyZeroBelowPoint(input) == true)
 		std::cout << ".0" << std::endl;
 	else
 		std::cout << std::endl;
