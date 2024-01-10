@@ -125,21 +125,79 @@ void	ConverterUtil::printConvertedFromInt(std::string input)
 	}
 
 	std::cout << "int: " << value << std::endl;
-	std::cout << "float: " << static_cast<float>(value) << ".0f" << std::endl;
-	std::cout << "double: " << static_cast<double>(value) << ".0" << std::endl;
+	std::cout << "float: " << static_cast<float>(value);
+	if (value > -999999 && value < 999999)
+		std::cout << ".0f" << std::endl;
+	else
+		std::cout << std::endl;
+	std::cout << "double: " << static_cast<double>(value);
+	if (value > -999999 && value < 999999)
+		std::cout << ".0" << std::endl;
+	else
+		std::cout << std::endl;
 }
 
 void	ConverterUtil::printConvertedFromFloat(std::string input)
 {
-	std::cout << input;
 	input.erase(input.length() - 1);
 
 	std::istringstream	iss(input);
 	float				floatValue;
 	int					intValue;
+
+	iss >> floatValue;
+	intValue = static_cast<int>(floatValue);
+	std::cout << "floatValue: "<< floatValue << std::endl;
+	try
+	{
+		std::cout << "char: ";
+		if (floatValue < std::numeric_limits<int>::min() || floatValue > std::numeric_limits<int>::max())
+			throw (ConverterUtil::RangeException());
+		if (onlyZeroBelowPoint(input) == false)
+			throw (ConverterUtil::RangeException());
+		if (isValidRangeChar(intValue) == false)
+			throw(ConverterUtil::RangeException());
+		if (isDisplayableChar(intValue) == false)
+			throw(ConverterUtil::charDisplayException());
+		std::cout << static_cast<char>(intValue) << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 	
-	if (onlyZeroBelowPoint(input) == true)
+	try
+	{
+		std::cout << "int: ";
+		int					intValue;
+
+		if (floatValue < std::numeric_limits<int>::min() || floatValue > std::numeric_limits<int>::max())
+			throw (ConverterUtil::RangeException());
+		intValue = static_cast<int>(floatValue);
+		std::cout << intValue << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	std::cout << "float: " << floatValue;
+	if (floatValue > -999999 && floatValue < 999999)
+	{
+		if (onlyZeroBelowPoint(input) == true)
+			std::cout << ".0f" << std::endl;
+		else
+			std::cout << "f" << std::endl;
+	}
+	else
+		std::cout << std::endl;
 	
+	std::cout << "double: " << static_cast<double>(floatValue);
+	if (floatValue > -999999 && floatValue < 999999)
+		std::cout << ".0" << std::endl;
+	else
+		std::cout << std::endl;
+
 }
 
 bool	ConverterUtil::onlyZeroBelowPoint(std::string input)
