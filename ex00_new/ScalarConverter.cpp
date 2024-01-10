@@ -23,7 +23,6 @@ void	ScalarConverter::convert(std::string input)
 	joinedInput = ConverterUtil::deleteWhiteSpace(input);
 	type = ConverterUtil::determineType(joinedInput);
 	std::cout << "type : " << type << std::endl;
-
 	switch(type)
 	{
 		case (INT):
@@ -35,6 +34,8 @@ void	ScalarConverter::convert(std::string input)
 		case (DOUBLE) :
 			ConverterUtil::printConvertedFromDouble(joinedInput);
 			break;
+		case (SPECIAL) :
+			ConverterUtil::printSpecial(joinedInput);
 		default:
 			ConverterUtil::printDefault();
 	}

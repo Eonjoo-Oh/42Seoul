@@ -28,7 +28,10 @@ int	ConverterUtil::determineType(const std::string &input)
 {
 	// if (isChar(input) == true)
 	// 	return (CHAR);
-	if (isInt(input) == true)
+	if (input == "+inf" || input == "-inf" \
+			|| input == "+inff" || input == "-inff" || input == "nan")
+		return (SPECIAL);
+	else if (isInt(input) == true)
 		return (INT);
 	else if (isFloat(input) == true)
 		return (FLOAT);
@@ -281,6 +284,27 @@ void	ConverterUtil::printConvertedFromDouble(std::string input)
 	else
 		std::cout << std::endl;
 	std::cout.precision(originalPrecision);
+}
+
+void	ConverterUtil::printSpecial(std::string input)
+{
+	float	floatValue;
+	double	doubleValue;
+
+	floatValue = atof((input).c_str());
+	doubleValue = atof((input).c_str());
+
+	std::cout << "char: " << "impossible" << std::endl;
+	std::cout << "int: " << "impossible" << std::endl;
+	std::cout << "float: ";
+	if (input[0] == '+')
+		std::cout << "+";
+	std::cout << floatValue << "f" << std::endl;
+	
+	std::cout << "double: ";
+	if (input[0] == '+')
+		std::cout << "+";
+	std::cout << doubleValue << std::endl;
 }
 
 void	ConverterUtil::printDefault(void)

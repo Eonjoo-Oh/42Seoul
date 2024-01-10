@@ -1,7 +1,7 @@
 #include "ScalarConverter.hpp"
 int	main()
 {
-	ScalarConverter::convert("2143.0123fsdf");
+	ScalarConverter::convert("+inff");
 }
 
 /*
