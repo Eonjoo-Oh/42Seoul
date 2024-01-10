@@ -1,7 +1,7 @@
 #include "ScalarConverter.hpp"
 int	main()
 {
-	ScalarConverter::convert("2147483.0f");
+	ScalarConverter::convert("2143.0123f");
 }
 
 /*

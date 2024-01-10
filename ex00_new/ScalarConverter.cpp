@@ -32,6 +32,9 @@ void	ScalarConverter::convert(std::string input)
 		case (FLOAT):
 			ConverterUtil::printConvertedFromFloat(joinedInput);
 			break;
+		case (DOUBLE) :
+			ConverterUtil::printConvertedFromDouble(joinedInput);
+			break;
 		default:
 			std::cout << "default";
 	}

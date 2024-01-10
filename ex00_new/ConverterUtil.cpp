@@ -146,6 +146,7 @@ void	ConverterUtil::printConvertedFromFloat(std::string input)
 	int					intValue;
 
 	iss >> floatValue;
+	//floatValue = static_cast<float>((atof(input.c_str())));
 	intValue = static_cast<int>(floatValue);
 	std::cout << "floatValue: "<< floatValue << std::endl;
 	try
@@ -197,7 +198,6 @@ void	ConverterUtil::printConvertedFromFloat(std::string input)
 		std::cout << ".0" << std::endl;
 	else
 		std::cout << std::endl;
-
 }
 
 bool	ConverterUtil::onlyZeroBelowPoint(std::string input)
@@ -219,6 +219,68 @@ bool	ConverterUtil::onlyZeroBelowPoint(std::string input)
 		i++;
 	}
 	return (true);
+}
+
+void	ConverterUtil::printConvertedFromDouble(std::string input)
+{
+	std::istringstream	iss(input);
+	double				doubleValue;
+	int					intValue;
+
+	iss >> doubleValue;
+	std::cout << "double : " << doubleValue << std::endl;
+	intValue = static_cast<int>(doubleValue);
+	try
+	{
+		std::cout << "char: ";
+		if (doubleValue < std::numeric_limits<int>::min() || doubleValue > std::numeric_limits<int>::max())
+			throw (ConverterUtil::RangeException());
+		if (onlyZeroBelowPoint(input) == false)
+			throw (ConverterUtil::RangeException());
+		if (isValidRangeChar(intValue) == false)
+			throw(ConverterUtil::RangeException());
+		if (isDisplayableChar(intValue) == false)
+			throw(ConverterUtil::charDisplayException());
+		std::cout << static_cast<char>(intValue) << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	
+	try
+	{
+		std::cout << "int: ";
+		int					intValue;
+
+		if (doubleValue < std::numeric_limits<int>::min() || doubleValue > std::numeric_limits<int>::max())
+			throw (ConverterUtil::RangeException());
+		intValue = static_cast<int>(doubleValue);
+		std::cout << intValue << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	std::cout << "float: " << static_cast<float>(doubleValue);
+	if (doubleValue > -999999 && doubleValue < 999999)
+	{
+		if (onlyZeroBelowPoint(input) == true)
+			std::cout << ".0f" << std::endl;
+		else
+			std::cout << "f" << std::endl;
+	}
+	else
+		std::cout << std::endl;
+	
+	std::cout << "double: " << doubleValue;
+	std::streamsize originalPrecision = std::cout.precision();
+	if (doubleValue > -999999 && doubleValue < 999999 && onlyZeroBelowPoint(input) == true)
+		std::cout << ".0" << std::endl;
+	else
+		std::cout << std::endl;
+	std::cout.precision(originalPrecision);
 }
 // char	ConverterUtil::convertToChar(std::string input, int type)
 // {

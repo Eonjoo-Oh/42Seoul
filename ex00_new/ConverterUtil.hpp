@@ -22,6 +22,7 @@ class	ConverterUtil
 		static void			printConvertedFromInt(std::string input);
 		static void			printConvertedFromFloat(std::string input);
 		static bool			onlyZeroBelowPoint(std::string input);
+		static void			printConvertedFromDouble(std::string input);
 		//static char			convertToChar(std::string input, int type);
 //----------------
 		static bool			isValidInt(float num);
