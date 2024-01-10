@@ -22,11 +22,15 @@ void	ScalarConverter::convert(std::string input)
 
 	joinedInput = ConverterUtil::deleteWhiteSpace(input);
 	type = ConverterUtil::determineType(joinedInput);
+	std::cout << "type : " << type << std::endl;
 
 	switch(type)
 	{
 		case (INT):
 			ConverterUtil::printConvertedFromInt(joinedInput);
+			break;
+		case (FLOAT):
+			ConverterUtil::printConvertedFromFloat(joinedInput);
 			break;
 		default:
 			std::cout << "default";

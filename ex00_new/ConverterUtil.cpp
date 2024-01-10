@@ -79,7 +79,9 @@ bool	ConverterUtil::isInt(const std::string &input)
 
 bool	ConverterUtil::isFloat(std::string input)
 {
-	if (input[input.length() - 1] == 'f')
+	if (input[input.length() - 1] != 'f')
+		return (false);
+	else
 		input.erase(input.length() - 1);
 
 	std::istringstream	iss(input);
@@ -127,6 +129,39 @@ void	ConverterUtil::printConvertedFromInt(std::string input)
 	std::cout << "double: " << static_cast<double>(value) << ".0" << std::endl;
 }
 
+void	ConverterUtil::printConvertedFromFloat(std::string input)
+{
+	std::cout << input;
+	input.erase(input.length() - 1);
+
+	std::istringstream	iss(input);
+	float				floatValue;
+	int					intValue;
+	
+	if (onlyZeroBelowPoint(input) == true)
+	
+}
+
+bool	ConverterUtil::onlyZeroBelowPoint(std::string input)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < input.length())
+	{
+		if (input[i] == '.')
+			break;
+		i++;
+	}
+	i++;
+	while (i < input.length())
+	{
+		if (input[i] != '0')
+			return (false);
+		i++;
+	}
+	return (true);
+}
 // char	ConverterUtil::convertToChar(std::string input, int type)
 // {
 // 	if (type == INT)
