@@ -282,6 +282,14 @@ void	ConverterUtil::printConvertedFromDouble(std::string input)
 		std::cout << std::endl;
 	std::cout.precision(originalPrecision);
 }
+
+void	ConverterUtil::printDefault(void)
+{
+	std::cout << "char: " << "impossible" << std::endl;
+	std::cout << "int: " << "impossible" << std::endl;
+	std::cout << "float: " << "impossible" << std::endl;
+	std::cout << "double: " << "impossible" << std::endl;
+}
 // char	ConverterUtil::convertToChar(std::string input, int type)
 // {
 // 	if (type == INT)

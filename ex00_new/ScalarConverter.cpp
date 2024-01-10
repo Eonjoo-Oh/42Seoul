@@ -36,6 +36,6 @@ void	ScalarConverter::convert(std::string input)
 			ConverterUtil::printConvertedFromDouble(joinedInput);
 			break;
 		default:
-			std::cout << "default";
+			ConverterUtil::printDefault();
 	}
 }
