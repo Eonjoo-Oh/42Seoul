@@ -26,8 +26,10 @@ std::string	ConverterUtil::deleteWhiteSpace(const std::string &input)
 
 int	ConverterUtil::determineType(const std::string &input)
 {
+	std::cout << "input: " << input << std::endl;
 	if (input == "+inf" || input == "-inf" \
-			|| input == "+inff" || input == "-inff" || input == "nan")
+			|| input == "+inff" || input == "-inff" || \
+			input == "nan" || input == "+nan" || input == "-nan")
 		return (SPECIAL);
 	else if (isChar(input) == true)
 		return (CHAR);
@@ -164,7 +166,6 @@ void	ConverterUtil::printConvertedFromFloat(std::string input)
 
 	iss >> floatValue;
 	intValue = static_cast<int>(floatValue);
-	std::cout << "floatValue: "<< floatValue << std::endl;
 	try
 	{
 		std::cout << "char: ";
@@ -244,7 +245,6 @@ void	ConverterUtil::printConvertedFromDouble(std::string input)
 	int					intValue;
 
 	iss >> doubleValue;
-	std::cout << "double : " << doubleValue << std::endl;
 	intValue = static_cast<int>(doubleValue);
 	try
 	{
@@ -310,12 +310,12 @@ void	ConverterUtil::printSpecial(std::string input)
 	std::cout << "char: " << "impossible" << std::endl;
 	std::cout << "int: " << "impossible" << std::endl;
 	std::cout << "float: ";
-	if (input[0] == '+')
+	if (input[0] == '+' && input != "+nan" && input != "-nan")
 		std::cout << "+";
 	std::cout << floatValue << "f" << std::endl;
 	
 	std::cout << "double: ";
-	if (input[0] == '+')
+	if (input[0] == '+' && input != "+nan" && input != "-nan")
 		std::cout << "+";
 	std::cout << doubleValue << std::endl;
 }
@@ -337,4 +337,3 @@ const char	*ConverterUtil::charDisplayException::what(void) const throw()
 {
 	return ("Non displayable");
 }
-//4로 들어오면 문자로 잡힘 -> 숫자범위일때의 예외처리해야됨
