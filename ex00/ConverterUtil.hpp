@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <cctype>
 
 class	ConverterUtil
 {
@@ -12,12 +13,24 @@ class	ConverterUtil
 		ConverterUtil &operator=(const ConverterUtil &obj);
 		~ConverterUtil();
 		static std::string	deleteWhiteSpace(const std::string &input);
-		static bool			isValidChar(int num);
+		static int			determineType(const std::string &input);
+		static bool			isChar(const std::string &input);
+		static bool			isValidRangeChar(int num);
 		static bool			isDisplayableChar(int num);
+		static bool			isInt(const std::string &input);
+		static bool			isFloat(std::string input);
+		static bool			isDouble(const std::string &input);
+		static void			printConvertedFromChar(std::string input);
+		static void			printConvertedFromInt(std::string input);
+		static void			printConvertedFromFloat(std::string input);
+		static bool			onlyZeroBelowPoint(std::string input);
+		static void			printConvertedFromDouble(std::string input);
+		static void			printSpecial(std::string input);
+		static void			printDefault(void);
+		//static char			convertToChar(std::string input, int type);
+//----------------
 		static bool			isValidInt(float num);
-		static bool			isFloat(std::string str);
 		static int			floatToInt(std::string str);
-		static bool			isDouble(std::string str);
 		static int			doubleToInt(std::string str);
 		class	RangeException : public std::exception
 		{
@@ -27,6 +40,14 @@ class	ConverterUtil
 		class	charDisplayException : public std::exception
 		{
 			const char *what(void) const throw();
+		};
+		enum type{
+			CHAR = 0,
+			INT,
+			FLOAT,
+			DOUBLE,
+			SPECIAL,
+			OTHER
 		};
 };
 

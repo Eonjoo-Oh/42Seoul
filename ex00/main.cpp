@@ -1,5 +1,18 @@
 #include "ScalarConverter.hpp"
+int	main(int argc, char **argv)
+{
+//	std::string	input;
 
+	if (argc != 2)
+	{
+		std::cout << "check num of argv" << std::endl;
+		return (1);
+	}
+//	input = argv[1];
+	ScalarConverter::convert(argv[1]);
+}
+
+/*
 int	main()
 {
 	ScalarConverter::convert("42");
@@ -30,5 +43,5 @@ int	main()
 	std::cout << std::endl;
 	ScalarConverter::convert("-9,223,372,036,854,775,808");
 	std::cout << std::endl;
-	
 }
+*/

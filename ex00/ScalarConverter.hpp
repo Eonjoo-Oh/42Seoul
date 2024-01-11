@@ -8,6 +8,15 @@
 
 class	ConverterUtil;
 
+enum type{
+	CHAR = 0,
+	INT,
+	FLOAT,
+	DOUBLE,
+	SPECIAL,
+	OTHER
+};
+
 class	ScalarConverter
 {
 	public :
