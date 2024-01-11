@@ -1,36 +1,24 @@
 #include <iostream>
 #include <sstream>
 #include "../ConverterUtil.hpp"
-/*
-int main()
-{
-	char				c;
-	int					i;
-	std::string			a = "++42";
-	std::istringstream	iss(a);
 
-	iss >> i;
-	try
-	{
-		if (iss.fail() || !iss.eof())
-			throw	std::invalid_argument("impossible");
-		std::cout << i;
-	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
+bool	isChar(const std::string &input)
+{
+	char				charValue;
+	int					intValue;
+	std::istringstream	iss(input);
+	
+	if (input.length() != 1)
+		return (false);
+	iss >> intValue;
+	if (ConverterUtil::isValidRangeChar(intValue) == true)
+		return true;
+	else
+		return (false);
 }
-*/
 
 int main()
 {
-	try
-	{
-		std::cout << ConverterUtil::isChar("-78") << std::endl;
-	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
+	std::string	c = "a";
+	std::cout << isChar(c) << std::endl;
 }

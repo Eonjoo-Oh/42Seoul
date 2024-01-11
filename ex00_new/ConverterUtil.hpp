@@ -19,6 +19,7 @@ class	ConverterUtil
 		static bool			isInt(const std::string &input);
 		static bool			isFloat(std::string input);
 		static bool			isDouble(const std::string &input);
+		static void			printConvertedFromChar(std::string input);
 		static void			printConvertedFromInt(std::string input);
 		static void			printConvertedFromFloat(std::string input);
 		static bool			onlyZeroBelowPoint(std::string input);
@@ -40,7 +41,8 @@ class	ConverterUtil
 			const char *what(void) const throw();
 		};
 		enum type{
-			INT = 0,
+			CHAR = 0,
+			INT,
 			FLOAT,
 			DOUBLE,
 			SPECIAL,

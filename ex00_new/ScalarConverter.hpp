@@ -9,7 +9,8 @@
 class	ConverterUtil;
 
 enum type{
-	INT = 0,
+	CHAR = 0,
+	INT,
 	FLOAT,
 	DOUBLE,
 	SPECIAL,

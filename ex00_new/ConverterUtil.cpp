@@ -31,6 +31,8 @@ int	ConverterUtil::determineType(const std::string &input)
 	if (input == "+inf" || input == "-inf" \
 			|| input == "+inff" || input == "-inff" || input == "nan")
 		return (SPECIAL);
+	else if (isChar(input) == true)
+		return (CHAR);
 	else if (isInt(input) == true)
 		return (INT);
 	else if (isFloat(input) == true)
@@ -43,15 +45,17 @@ int	ConverterUtil::determineType(const std::string &input)
 
 bool	ConverterUtil::isChar(const std::string &input)
 {
-	int					intValue;
-	std::istringstream	iss(input);
-
-	iss >> intValue;
-	if (iss.fail() || !iss.eof())
+	char	charValue;
+	
+	if (input.length() != 1)
 		return (false);
-	if (isValidRangeChar(intValue))
-		return (true);
-	return (false);
+	
+	charValue = static_cast<char>(input[0]);
+	std::cout << "charValue2: " << charValue << std::endl;
+	if (ConverterUtil::isValidRangeChar(static_cast<int>(charValue)) == true)
+		return true;
+	else
+		return (false);
 }
 
 bool	ConverterUtil::isValidRangeChar(int num)
@@ -105,6 +109,17 @@ bool	ConverterUtil::isDouble(const std::string &input)
 	if (iss.fail() || !iss.eof())
 		return (false);
 	return (true);
+}
+
+void	ConverterUtil::printConvertedFromChar(std::string input)
+{
+	char	charValue;
+
+	charValue = static_cast<char>(input[0]);
+	std::cout << "char: " << static_cast<char>(charValue) << std::endl;
+	std::cout << "int: " << static_cast<int>(charValue) << std::endl;
+	std::cout << "float: " << static_cast<float>(charValue) << ".0f" << std::endl;
+	std::cout << "double: " << static_cast<double>(charValue) << ".0" << std::endl;
 }
 
 void	ConverterUtil::printConvertedFromInt(std::string input)
