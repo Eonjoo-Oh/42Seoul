@@ -2,8 +2,8 @@
 
 int main()
 {
-	Data	data1;
-	Data	*data2 = NULL;
+	Data		data1;
+	Data		*data2 = NULL;
 	uintptr_t	uintptr;
 
 	data1.name = "bokdong";
@@ -12,10 +12,10 @@ int main()
 	std::cout << "data2 : " << data2 << std::endl;
 	
 	uintptr = Serializer::serialize(&data1);
-	std::cout << "uintptr: " << uintptr << std::endl;
+	std::cout << "serialize data to uintptr: " << uintptr << std::endl;
 	
 	data2 = Serializer::deserialize(uintptr);
-	std::cout << "deserialized data2: " << data2 << std::endl;
-	std::cout << "deserialized data2 name: " << data2->name << std::endl;
-	std::cout << "deserialized data2 age: " << data2->age << std::endl;
+	std::cout << "deserialize uintptr to data2: " << data2 << std::endl;
+	std::cout << "data2 name: " << data2->name << std::endl;
+	std::cout << "data2 age: " << data2->age << std::endl;
 }
