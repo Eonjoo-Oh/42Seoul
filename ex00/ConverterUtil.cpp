@@ -42,6 +42,42 @@ int	ConverterUtil::determineType(const std::string &input)
 		return (OTHER);
 }
 
+bool	ConverterUtil::isValidRangeChar(int num)
+{
+	if (num < 0 || num > 127)
+		return (false);
+	return (true);
+}
+
+bool	ConverterUtil::isDisplayableChar(int num)
+{
+	if ((num >= 0 && num <= 8) || \
+		(num >= 14 && num <= 31) || num == 127)
+		return (false);
+	return (true);
+}
+
+bool	ConverterUtil::onlyZeroBelowPoint(std::string input)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < input.length())
+	{
+		if (input[i] == '.')
+			break;
+		i++;
+	}
+	i++;
+	while (i < input.length())
+	{
+		if (input[i] != '0')
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
 bool	ConverterUtil::isChar(const std::string &input)
 {
 	char	charValue;
@@ -56,21 +92,6 @@ bool	ConverterUtil::isChar(const std::string &input)
 		return (true);
 	else
 		return (false);
-}
-
-bool	ConverterUtil::isValidRangeChar(int num)
-{
-	if (num < 0 || num > 127)
-		return (false);
-	return (true);
-}
-
-bool	ConverterUtil::isDisplayableChar(int num)
-{
-	if ((num >= 0 && num <= 8) || \
-		(num >= 14 && num <= 31) || num == 127)
-		return (false);
-	return (true);
 }
 
 bool	ConverterUtil::isInt(const std::string &input)
@@ -214,27 +235,6 @@ void	ConverterUtil::printConvertedFromFloat(std::string input)
 		std::cout << ".0" << std::endl;
 	else
 		std::cout << std::endl;
-}
-
-bool	ConverterUtil::onlyZeroBelowPoint(std::string input)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < input.length())
-	{
-		if (input[i] == '.')
-			break;
-		i++;
-	}
-	i++;
-	while (i < input.length())
-	{
-		if (input[i] != '0')
-			return (false);
-		i++;
-	}
-	return (true);
 }
 
 void	ConverterUtil::printConvertedFromDouble(std::string input)
