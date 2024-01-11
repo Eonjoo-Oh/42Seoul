@@ -12,7 +12,7 @@ class	Serializer
 		Serializer &operator=(const Serializer &obj);
 		~Serializer();
 		static uintptr_t	serialize(Data *ptr);
-		static Data	*deserialize(uintptr_t raw);
+		static Data			*deserialize(uintptr_t raw);
 };
 
 #endif
