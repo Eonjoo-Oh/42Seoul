@@ -27,7 +27,7 @@ std::string	ConverterUtil::deleteWhiteSpace(const std::string &input)
 int	ConverterUtil::determineType(const std::string &input)
 {
 	std::cout << "input: " << input << std::endl;
-	if (input == "+inf" || input == "-inf" \
+	if (input == "+inf" || input == "-inf" || input == "inf"\
 			|| input == "+inff" || input == "-inff" || \
 			input == "nan" || input == "+nan" || input == "-nan")
 		return (SPECIAL);
