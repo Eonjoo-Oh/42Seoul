@@ -40,12 +40,14 @@ void	identify(Base &p)
 		std::cout << "type: A" << std::endl;
 	}
 	catch (const std::bad_cast &e){}
+
 	try
 	{
 		Base base = dynamic_cast<B&>(p);
 		std::cout << "type: B" << std::endl;
 	}
 	catch (const std::bad_cast &e){}
+
 	try
 	{
 		Base base = dynamic_cast<C&>(p);
