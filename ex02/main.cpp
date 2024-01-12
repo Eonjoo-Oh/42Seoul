@@ -9,7 +9,7 @@ int main()
 
 	//usleep(2000000);
 	Base	*base2 = generate();
-	identify(base2);
+	identify(*base2);
 
 	delete base;
 	delete base2;
