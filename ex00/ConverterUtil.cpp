@@ -168,7 +168,7 @@ void	ConverterUtil::printConvertedFromInt(std::string input)
 	if (value > -999999 && value < 999999)
 		std::cout << ".0f" << std::endl;
 	else
-		std::cout << std::endl;
+		std::cout << "f" << std::endl;
 	std::cout << "double: " << static_cast<double>(value);
 	if (value > -999999 && value < 999999)
 		std::cout << ".0" << std::endl;
@@ -226,7 +226,7 @@ void	ConverterUtil::printConvertedFromFloat(std::string input)
 			std::cout << "f" << std::endl;
 	}
 	else
-		std::cout << std::endl;
+		std::cout << "f" << std::endl;
 	
 	std::cout << "double: " << static_cast<double>(floatValue);
 	if (floatValue > -999999 && floatValue < 999999 && onlyZeroBelowPoint(input) == true)
@@ -274,7 +274,12 @@ void	ConverterUtil::printConvertedFromDouble(std::string input)
 		std::cerr << e.what() << std::endl;
 	}
 
-	std::cout << "float: " << static_cast<float>(doubleValue);
+	try
+	{
+	std::cout << "float: ";
+	if (doubleValue < std::numeric_limits<float>::min() || doubleValue > std::numeric_limits<float>::max())
+		throw(ConverterUtil::RangeException());
+	std::cout << static_cast<float>(doubleValue);
 	if (doubleValue > -999999 && doubleValue < 999999)
 	{
 		if (onlyZeroBelowPoint(input) == true)
@@ -283,13 +288,19 @@ void	ConverterUtil::printConvertedFromDouble(std::string input)
 			std::cout << "f" << std::endl;
 	}
 	else
-		std::cout << std::endl;
-	
+		std::cout << "f" << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
 	std::cout << "double: " << doubleValue;
 	if (doubleValue > -999999 && doubleValue < 999999 && onlyZeroBelowPoint(input) == true)
 		std::cout << ".0" << std::endl;
 	else
 		std::cout << std::endl;
+
 }
 
 void	ConverterUtil::printSpecial(std::string input)
