@@ -27,8 +27,8 @@ std::string	ConverterUtil::deleteWhiteSpace(const std::string &input)
 int	ConverterUtil::determineType(const std::string &input)
 {
 	if (input == "+inf" || input == "-inf" || input == "inf"\
-			|| input == "+inff" || input == "-inff" || \
-			input == "nan" || input == "+nan" || input == "-nan")
+			|| input == "+inff" || input == "-inff" || input == "inff"\
+			|| input == "nan" || input == "+nan" || input == "-nan")
 		return (SPECIAL);
 	else if (isChar(input) == true)
 		return (CHAR);
@@ -207,11 +207,9 @@ void	ConverterUtil::printConvertedFromFloat(std::string input)
 	try
 	{
 		std::cout << "int: ";
-		int	intValue;
 
 		if (floatValue < std::numeric_limits<int>::min() || floatValue > std::numeric_limits<int>::max())
 			throw (ConverterUtil::RangeException());
-		intValue = static_cast<int>(floatValue);
 		std::cout << intValue << std::endl;
 	}
 	catch (std::exception &e)
@@ -266,11 +264,9 @@ void	ConverterUtil::printConvertedFromDouble(std::string input)
 	try
 	{
 		std::cout << "int: ";
-		int					intValue;
 
 		if (doubleValue < std::numeric_limits<int>::min() || doubleValue > std::numeric_limits<int>::max())
 			throw (ConverterUtil::RangeException());
-		intValue = static_cast<int>(doubleValue);
 		std::cout << intValue << std::endl;
 	}
 	catch (std::exception &e)
@@ -290,12 +286,10 @@ void	ConverterUtil::printConvertedFromDouble(std::string input)
 		std::cout << std::endl;
 	
 	std::cout << "double: " << doubleValue;
-	std::streamsize originalPrecision = std::cout.precision();
 	if (doubleValue > -999999 && doubleValue < 999999 && onlyZeroBelowPoint(input) == true)
 		std::cout << ".0" << std::endl;
 	else
 		std::cout << std::endl;
-	std::cout.precision(originalPrecision);
 }
 
 void	ConverterUtil::printSpecial(std::string input)
