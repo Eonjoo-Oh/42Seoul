@@ -22,7 +22,6 @@ void	ScalarConverter::convert(std::string input)
 
 	joinedInput = ConverterUtil::deleteWhiteSpace(input);
 	type = ConverterUtil::determineType(joinedInput);
-	std::cout << type << std::endl;
 	switch(type)
 	{
 		case (CHAR):
