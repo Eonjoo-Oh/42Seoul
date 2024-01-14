@@ -63,7 +63,4 @@ int main()
 	{
 		std::cout << e.what() << std::endl;
 	}
-
-
-	//occftest, size test, []test, over index []test
 }
