@@ -5,6 +5,7 @@
 #include <sstream>
 #include <cctype>
 #include <limits>
+#include <cstdlib>
 
 class	ConverterUtil
 {
