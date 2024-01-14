@@ -9,11 +9,12 @@
 
 class	ConverterUtil
 {
-	public :
+	private :
 		ConverterUtil();
 		ConverterUtil(const ConverterUtil &obj);
 		ConverterUtil &operator=(const ConverterUtil &obj);
 		~ConverterUtil();
+	public :
 		static std::string	deleteWhiteSpace(const std::string &input);
 		static int			determineType(const std::string &input);
 		static bool			isValidRangeChar(int num);
