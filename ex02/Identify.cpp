@@ -39,19 +39,19 @@ void	identify(Base &p)
 		Base base = dynamic_cast<A&>(p);
 		std::cout << "type: A" << std::endl;
 	}
-	catch (const std::bad_cast &e){}
+	catch (const std::exception &e){}
 
 	try
 	{
 		Base base = dynamic_cast<B&>(p);
 		std::cout << "type: B" << std::endl;
 	}
-	catch (const std::bad_cast &e){}
+	catch (const std::exception &e){}
 
 	try
 	{
 		Base base = dynamic_cast<C&>(p);
 		std::cout << "type: C" << std::endl;
 	}
-	catch (const std::bad_cast &e){}
+	catch (const std::exception &e){}
 }
