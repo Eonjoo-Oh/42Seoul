@@ -10,8 +10,6 @@ void	swap(T &a, T &b)
 	b = temp;
 }
 
-//클래스안에서도 템플릿쓰는함수있으면 hpp파일에 선언&정의까지 해야됨
-
 template <typename T>
 T	min(T a, T b)
 {
