@@ -31,7 +31,7 @@ Array<T>::Array(unsigned int n) : _arr(NULL), _n(n)
 		_arr = new T[n];
 		for (unsigned int i = 0; i < n; i++)
 		{
-			_arr[n] = 0;
+			_arr[i] = 0;
 		}
 	}
 }

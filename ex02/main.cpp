@@ -1,4 +1,6 @@
 #include "Array.hpp"
+#include <cstdlib>
+#include <ctime>
 
 int main()
 {
@@ -69,8 +71,9 @@ int main()
 	std::cout << arr[0] << std::endl;
 }
 
+
 /*
-#define MAX_VAL 750
+#define MAX_VAL 5
 int main(int, char**)
 {
     Array<int> numbers(MAX_VAL);
