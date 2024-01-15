@@ -13,7 +13,8 @@ class	Array
 		Array(unsigned int	n);
 		Array(const Array &obj);
 		Array &operator=(const Array &obj);
-		T &operator[](int index);
+		T &operator[](int const index);
+		const T &operator[](int const index) const;
 		~Array();
 		unsigned int	size();
 		T 				*getArrAddr();
@@ -59,7 +60,15 @@ Array<T> &Array<T>::operator=(const Array<T> &obj)
 }
 
 template <typename T>
-T &Array<T>::operator[](int index)
+T &Array<T>::operator[](int const index)
+{
+	if (index < 0 || index >= static_cast<int>(_n))
+		throw (std::out_of_range("index out of range"));
+	return (_arr[index]);
+}
+
+template <typename T>
+const T &Array<T>::operator[](int const index) const
 {
 	if (index < 0 || index >= static_cast<int>(_n))
 		throw (std::out_of_range("index out of range"));
