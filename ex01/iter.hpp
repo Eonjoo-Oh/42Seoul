@@ -3,7 +3,7 @@
 #include <iostream>
 
 template<typename T>
-void	iter(T *arrayAdd, size_t arrayLength, void (*f)(const T&))
+void	iter(T *arrayAdd, size_t arrayLength, void (*f)(T&))
 {
 	for(size_t i = 0; i < arrayLength; i++)
 	{
@@ -16,7 +16,7 @@ void	iter(T *arrayAdd, size_t arrayLength, void (*f)(const T&))
 }
 
 template<typename T>
-void	printEveryElementOfArray(const T &element)
+void	printEveryElementOfArray(T &element)
 {
 	std::cout << element;
 }
