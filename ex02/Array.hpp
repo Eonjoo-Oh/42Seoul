@@ -16,7 +16,7 @@ class	Array
 		T &operator[](int const index);
 		const T &operator[](int const index) const;
 		~Array();
-		unsigned int	size();
+		unsigned int	size() const;
 		T 				*getArrAddr();
 };
 
@@ -83,7 +83,7 @@ Array<T>::~Array()
 }
 
 template <typename T>
-unsigned int	Array<T>::size()
+unsigned int	Array<T>::size() const
 {
 	return (_n);
 }
