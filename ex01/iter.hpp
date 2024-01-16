@@ -2,12 +2,12 @@
 
 #include <iostream>
 
-template<typename T>
-void	iter(T *arrayAdd, size_t arrayLength, void (*f)(T&))
+template<typename T, typename F>
+void	iter(T *arrayAdd, size_t arrayLength, F func)
 {
 	for(size_t i = 0; i < arrayLength; i++)
 	{
-		f(arrayAdd[i]);
+		func(arrayAdd[i]);
 		if (i < arrayLength - 1)
 			std::cout << ", ";
 		else
