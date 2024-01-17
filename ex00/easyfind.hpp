@@ -5,12 +5,12 @@
 template <typename T>
 typename T::iterator	easyfind(T& container, int value)
 {
-	template<typename T>T::iterator	iter;
+	typename T::iterator	iter;
 	iter = std::find(container.begin(), container.end(), value);
 	//auto iter = std::find(container.begin(), container.end(), value);
 	if (iter == container.end())
 	{
-		throw std::logic_error("value not found in the container");
+		throw std::logic_error("value not found in the container!");
 	}
 	return (iter);
 }
