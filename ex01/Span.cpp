@@ -38,8 +38,13 @@ unsigned int	Span::shortestSpan()
 
 unsigned int	Span::longestSpan()
 {
+	int	maxElement;
+	int	minElement;
+
 	if (_v.empty() || _v.size() == 1)
 		throw(std::logic_error("no span can be found!"));
-
+	maxElement = *(std::max_element(_v.begin(), _v.end()));
+	minElement = *(std::min_element(_v.begin(), _v.end()));
+	return (abs(maxElement - minElement));
 }
 //longest span은 최댓값과 최댓값의 차, shortest span은 최솟값과 그 다음 최솟값의 차이
