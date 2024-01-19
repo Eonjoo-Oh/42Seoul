@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <exception>
 #include <vector>
 #include <algorithm>
 #include <cstdlib>
@@ -20,4 +21,14 @@ class	Span
 		void			addNumbers(std::vector<int> v);
 		unsigned int	shortestSpan();
 		unsigned int	longestSpan();
+		class	spanExistException : public std::exception
+		{
+			public :
+				const char	*what(void) const throw();
+		};
+		class	spanFullException : public std::exception
+		{
+			public :
+				const char	*what(void) const throw();
+		};
 }
