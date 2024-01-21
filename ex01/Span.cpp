@@ -13,16 +13,27 @@ Span &Span::operator=(const Span &obj)
 {
 	_v = obj._v;//std::vector의 복사 대입연산자에서 깊은 복사를 수행
 	N = obj.N;
+	return (*this);
 }
 
 Span::~Span() {}
 
 void	Span::addNumber(int n)
 {
-	if (_v.size() < n)
+	if (static_cast<unsigned int>(_v.size()) < N)
 		_v.push_back(n);
 	else
 		throw (spanFullException());
+}
+
+const char	*Span::spanExistException::what() const throw()
+{
+	return ("no span can be found!");
+}
+
+const char	*Span::spanFullException::what() const throw()
+{
+	return ("span is Full!");
 }
 
 void	Span::addNumbers(std::vector<int> toBePutV)
@@ -54,12 +65,13 @@ unsigned int	Span::longestSpan()
 }
 //longest span은 최댓값과 최댓값의 차, shortest span은 최솟값과 그 다음 최솟값의 차이
 
-const char	*Span::spanExistException::what() const throw()
+void	Span::printAllElement()
 {
-	std::cout << "no span can be found!";
-}
-
-const char	*Span::spanFullException::what() const throw()
-{
-	std::cout << "span is Full!";
+	for(size_t	i = 0; i < _v.size(); i++)
+	{
+		std::cout << _v[i];
+		if (i < _v.size() - 1)
+			std::cout << ", ";
+	}
+	std::cout << std::endl;
 }
