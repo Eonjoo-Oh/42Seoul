@@ -46,10 +46,19 @@ void	Span::addNumbers(std::vector<int> toBePutV)
 
 unsigned int	Span::shortestSpan()
 {
+	int	shortestSpan;
+
 	if (_v.empty() || _v.size() == 1)
 		throw(spanExistException());
 	sort(_v.begin(), _v.end());
-	return (abs(_v[0] - _v[1]));
+
+	shortestSpan = abs(_v[0] - _v[1]);
+	for (size_t i = 1; i < _v.size() - 1; i++)
+	{
+		if (shortestSpan > abs(_v[i] - _v[i + 1]))
+			shortestSpan = abs(_v[i] - _v[i + 1]);
+	}
+	return (static_cast<unsigned int>(shortestSpan));
 }
 
 unsigned int	Span::longestSpan()

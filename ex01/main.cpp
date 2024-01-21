@@ -1,10 +1,5 @@
 #include "Span.hpp"
 
-void	printSeperator()
-{
-	std::cout << ", ";
-}
-
 int main()
 {
 	std::vector<int>	v;
@@ -33,7 +28,7 @@ int main()
 		int					arr[] = {2, 3, 4, 5, 6, 7, 8, 9, 10};
 		std::vector<int>	v(arr, arr + sizeof(arr) / sizeof(arr[0]));
 
-		std::cout << "<< add numbers test>>" << std::endl;
+		std::cout << std::endl << "<< add numbers test>>" << std::endl;
 		span.addNumber(1);
 		span.addNumbers(v);
 		span.printAllElement();
@@ -49,7 +44,7 @@ int main()
 		Span				span(100);
 		std::vector<int>	v;
 
-		std::cout << "<< valid short and long span test" << std::endl;
+		std::cout << std::endl << "<< valid short and long span test >>" << std::endl;
 		for (int i = 0; i < 100; i++)
 		{
 			v.push_back(i);
@@ -68,7 +63,7 @@ int main()
 	{
 		Span	span(10);
 
-		std::cout << "invalid short span test" << std::endl;
+		std::cout << std::endl << "invalid short span test" << std::endl;
 		std::cout << "short span: " << span.shortestSpan() << std::endl;
 	}
 	catch(std::exception &e)
@@ -91,7 +86,7 @@ int main()
 	{
 		Span	span(10);
 
-		std::cout << "invalid long span test" << std::endl;
+		std::cout << std::endl << "invalid long span test" << std::endl;
 		std::cout << "long span: " << span.longestSpan() << std::endl;
 	}
 	catch(std::exception &e)
@@ -110,3 +105,16 @@ int main()
 		std::cout << e.what() << std::endl;
 	}
 }
+
+/*
+int main() {
+  Span sp = Span(5);
+  sp.addNumber(6);
+  sp.addNumber(3);
+  sp.addNumber(17);
+  sp.addNumber(9);
+  sp.addNumber(11);
+  std::cout << sp.shortestSpan() << std::endl;
+  std::cout << sp.longestSpan() << std::endl;
+return 0; }
+*/
