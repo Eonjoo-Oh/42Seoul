@@ -26,7 +26,6 @@ int main()
 	++it;
 	}
 	std::stack<int> s(mstack);
-	return 0;
 
 	std::cout << std::endl << "---------------------------------------" << std::endl;
 	std::list<int> mlist;
@@ -40,17 +39,19 @@ int main()
 	mlist.push_back(737);
 	//[...]
 	mlist.push_back(0);
-	std::list<int>::iterator it = mlist.begin();
-	std::list<int>::iterator ite = mlist.end();
-	++it;
-	--it;
-	while (it != ite)
+	std::list<int>::iterator lit = mlist.begin();
+	std::list<int>::iterator lite = mlist.end();
+	++lit;
+	--lit;
+	while (lit != lite)
 	{
-	std::cout << *it << std::endl;
-	++it;
+	std::cout << *lit << std::endl;
+	++lit;
 	}
-	std::list<int> s(mlist);
+	std::list<int> ls(mlist);
 	return 0;
 }
 // MutantStack<int>ㅇㅣ걸 list로 바꾸는 것과 똑같이 작동해야한다는 것이지?
 //push, pop이 없는데 어떻게 
+
+
