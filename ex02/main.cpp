@@ -1,10 +1,10 @@
-//#include "MutantStack.hpp"
+#include "MutantStack.hpp"
 #include <list>
 #include <iostream>
 
 int main()
 {
-/*
+
 	MutantStack<int> mstack;
 	mstack.push(5);
 	mstack.push(17);
@@ -27,21 +27,21 @@ int main()
 	}
 	std::stack<int> s(mstack);
 	return 0;
-*/
+
 	std::cout << std::endl << "---------------------------------------" << std::endl;
-	std::list<int> mstack;
-	mstack.push_back(5);
-	mstack.push_back(17);
-	std::cout << mstack.front() << std::endl;
-	mstack.pop_back();
-	std::cout << mstack.size() << std::endl;
-	mstack.push_back(3);
-	mstack.push_back(5);
-	mstack.push_back(737);
+	std::list<int> mlist;
+	mlist.push_back(5);
+	mlist.push_back(17);
+	std::cout << mlist.front() << std::endl;
+	mlist.pop_back();
+	std::cout << mlist.size() << std::endl;
+	mlist.push_back(3);
+	mlist.push_back(5);
+	mlist.push_back(737);
 	//[...]
-	mstack.push_back(0);
-	std::list<int>::iterator it = mstack.begin();
-	std::list<int>::iterator ite = mstack.end();
+	mlist.push_back(0);
+	std::list<int>::iterator it = mlist.begin();
+	std::list<int>::iterator ite = mlist.end();
 	++it;
 	--it;
 	while (it != ite)
@@ -49,7 +49,7 @@ int main()
 	std::cout << *it << std::endl;
 	++it;
 	}
-	std::list<int> s(mstack);
+	std::list<int> s(mlist);
 	return 0;
 }
 // MutantStack<int>ㅇㅣ걸 list로 바꾸는 것과 똑같이 작동해야한다는 것이지?

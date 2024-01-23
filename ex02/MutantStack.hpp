@@ -11,8 +11,9 @@ class	MutantStack : public std::stack<T>
 		MutantStack &operator=(const MutantStack &obj);
 		~MutantStack();
 
-		typedef typename MutantStack<T>::stack::container_type::iterator;
-
+		typedef typename MutantStack<T>::stack::container_type::iterator	iterator;
+		iterator	begin();
+		iterator	end();
 };
 
 template <typename T>
@@ -35,3 +36,14 @@ template <typename T>
 MutantStack<T>::~MutantStack() {}
 
 
+template <typename T>
+MutantStack<T> iterator::begin()
+{
+
+}
+
+template <typename T>
+MutantStack<T> iterator:: end()
+{
+
+}
