@@ -23,7 +23,7 @@ class	BitcoinExchange
 		class	fileOpenError : public std::exception
 		{
 			void	what();
-		}
+		};
 
 		void	readCsvFile();
 

@@ -38,5 +38,8 @@ void	BitcoinExchange::readCsvFile()
 	_csvFileStream.open(_csvFileName.c_str());
 	if (!_csvFileStream.is_open())
 		throw fileOpenError();
-	
+	while (!_csvFileStream.eof())
+	{
+		
+	}
 }
