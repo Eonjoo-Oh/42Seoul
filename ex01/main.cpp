@@ -44,7 +44,7 @@ int main()
 		Span				span(100);
 		std::vector<int>	v;
 
-		std::cout << std::endl << "<< valid short and long span test >>" << std::endl;
+		std::cout << std::endl << "<< valid short and long span test1 >>" << std::endl;
 		for (int i = 0; i < 100; i++)
 		{
 			v.push_back(i);
@@ -53,6 +53,23 @@ int main()
 		span.addNumbers(v);
 		std::cout << "short span: " << span.shortestSpan() << std::endl;
 		std::cout << "long span: " << span.longestSpan() << std::endl;
+	}
+	catch(std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	try
+	{
+		Span				span(10);
+		int					arr[] = {-100, 1, 8, 11, 20, 30, 40, 60};
+		std::vector<int>	v(arr, arr + sizeof(arr) / sizeof(arr[0]));
+
+		std::cout << std::endl << "<< valid short and long span test2 >>" << std::endl;
+
+		span.addNumbers(v);
+		span.printAllElement();
+		std::cout << "shortest span: " << span.shortestSpan() << std::endl;
+		std::cout << "longest span: " << span.longestSpan() << std::endl;
 	}
 	catch(std::exception &e)
 	{

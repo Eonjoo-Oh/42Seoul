@@ -49,7 +49,6 @@ unsigned int	Span::shortestSpan()
 
 	if (_v.empty() || _v.size() == 1)
 		throw(spanExistException());
-	sort(_v.begin(), _v.end());
 
 	shortestSpan = abs(_v[0] - _v[1]);
 	for (size_t i = 1; i < _v.size() - 1; i++)
