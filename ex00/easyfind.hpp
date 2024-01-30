@@ -1,6 +1,7 @@
 #pragma once
 #include <algorithm>
 #include <exception>
+#include <stdexcept>
 
 template <typename T>
 typename T::iterator	easyfind(T& container, int value)
