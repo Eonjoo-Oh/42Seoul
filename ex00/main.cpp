@@ -1,7 +1,6 @@
 #include "easyfind.hpp"
 #include <iostream>
 #include <vector>
-#include <deque>
 #include <list>
 
 int	main()
@@ -35,6 +34,8 @@ int	main()
 	{
 		std::cout << e.what() << std::endl;
 	}
+
+	std::cout << std::endl;
 	try
 	{
 		std::list<int>::iterator iter;
