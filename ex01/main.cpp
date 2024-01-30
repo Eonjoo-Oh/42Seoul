@@ -63,7 +63,7 @@ int main()
 	{
 		Span	span(10);
 
-		std::cout << std::endl << "invalid short span test" << std::endl;
+		std::cout << std::endl << "<< invalid short span test >>" << std::endl;
 		std::cout << "short span: " << span.shortestSpan() << std::endl;
 	}
 	catch(std::exception &e)
@@ -86,7 +86,7 @@ int main()
 	{
 		Span	span(10);
 
-		std::cout << std::endl << "invalid long span test" << std::endl;
+		std::cout << std::endl << "<< invalid long span test >>" << std::endl;
 		std::cout << "long span: " << span.longestSpan() << std::endl;
 	}
 	catch(std::exception &e)
@@ -98,6 +98,25 @@ int main()
 		Span	span(10);
 
 		span.addNumber(1);
+		std::cout << "long span: " << span.longestSpan() << std::endl;
+	}
+	catch(std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
+	try
+	{
+		Span				span(20000);
+		std::vector<int>	v;
+
+		std::cout << std::endl << "<< 20000 span test >>" << std::endl;
+		for(int i = 0; i < 20000; i++)
+		{
+			v.push_back(i);
+		}
+		span.addNumbers(v);
+		std::cout << "short span: " << span.shortestSpan() << std::endl;
 		std::cout << "long span: " << span.longestSpan() << std::endl;
 	}
 	catch(std::exception &e)

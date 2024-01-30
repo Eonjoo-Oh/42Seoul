@@ -9,7 +9,7 @@ class	Span
 {
 	private :
 		std::vector<int>	_v;
-		unsigned int		N; //저장할 수 있는 정수의 갯수
+		unsigned int		N;
 	public :
 		Span();
 		Span(unsigned int N);
