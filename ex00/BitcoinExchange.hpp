@@ -2,6 +2,9 @@
 
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <sstream>
+#include <cstdlib>
 #include <map>
 
 class	BitcoinExchange
@@ -12,9 +15,10 @@ class	BitcoinExchange
 		std::ifstream			_csvFileStream;
 		std::string				_infileName;
 		std::string				_csvFileName;
-		std::map<int, float>	csvContent;
+		std::map<int, float>	_csvMap;
 
-		void	openInfile();
+		void	readCsvFile();
+		int		sDatetoiDate(std::string sDate);
 	public :
 		BitcoinExchange(std::string infileName);
 		BitcoinExchange(const BitcoinExchange &obj);
@@ -24,8 +28,6 @@ class	BitcoinExchange
 		{
 			void	what();
 		};
-
-		void	readCsvFile();
 
 
 };
