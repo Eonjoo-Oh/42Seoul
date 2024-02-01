@@ -43,30 +43,34 @@ void	BitcoinExchange::readCsvFile()
 	{
 		std::getline(_csvFileStream, line);
 		std::istringstream	iss(line);
-		std::string	sDate;
+		std::string	sYear;
+		std::string	sMonth;
+		std::string	sDay;
 		std::string	sRate;
 		int			iDate;
 		float		fRate;
 
-		std::getline(iss, sDate, ',');
+		std::getline(iss, sYear, '-');
+		std::getline(iss, sMonth, '-');
+		std::getline(iss, sDay, ',');
 		std::getline(iss, sRate);
-		iDate = sDatetoiDate(sDate);
-		fRate = static_cast<float>(std::strtod(sRate.c_str(), NULL));		
+		iDate = sDatetoiDate(sYear, sMonth, sDay);
+		fRate = static_cast<float>(std::strtod(sRate.c_str(), NULL));
 		_csvMap[iDate] = fRate;
 	}
 	_csvFileStream.close();
 }
 
-int	BitcoinExchange::sDatetoiDate(std::string sDate)
+int	BitcoinExchange::sDatetoiDate(std::string sYear, std::string sMonth, std::string sDay)
 {
 	int	year;
 	int	month;
 	int day;
 	int	convertedDate;
 
-	year = static_cast<int>(std::strtod(sDate.substr(0, 4).c_str(), NULL));
-	month = static_cast<int>(std::strtod(sDate.substr(4, 2).c_str(), NULL));
-	day = static_cast<int>(std::strtod(sDate.substr(6, 2).c_str(), NULL));
+	year = static_cast<int>(std::strtod(sYear.c_str(), NULL));
+	month = static_cast<int>(std::strtod(sMonth.c_str(), NULL));
+	day = static_cast<int>(std::strtod(sDay.c_str(), NULL));
 	convertedDate = year * 1000 + month * 100 + day;
 	return (convertedDate);
 }
