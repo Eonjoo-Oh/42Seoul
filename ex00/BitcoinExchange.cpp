@@ -59,7 +59,7 @@ void	BitcoinExchange::readCsvFile()
 		//std::cout << iDate << std::endl;
 		fRate = static_cast<float>(std::strtod(sRate.c_str(), NULL));
 		//std::cout << fRate << std::endl;
-		_csvMap.insert(std::make_pair(iDate, fRate));
+		_csvMap[iDate] = fRate;
 	}
 	_csvFileStream.close();
 }
