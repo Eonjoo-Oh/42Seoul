@@ -19,15 +19,17 @@ class	BitcoinExchange
 
 		void	readCsvFile();
 		int		sDatetoiDate(std::string sYear, std::string sMonth, std::string sDay);
+		bool	isOnlyWhitespace(std::string);
 	public :
 		BitcoinExchange(std::string infileName);
 		BitcoinExchange(const BitcoinExchange &obj);
 		BitcoinExchange &operator=(const BitcoinExchange &obj);
 		~BitcoinExchange();
-		class	fileOpenError : public std::exception
+		class	fileOpenException : public std::exception
 		{
-			void	what();
+			public :
+				const char *what(void) const throw();
 		};
-
+		void	testPrintAllMapElement();
 
 };
