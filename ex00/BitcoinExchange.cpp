@@ -113,7 +113,7 @@ void	BitcoinExchange::readInputFile()
 
 void	BitcoinExchange::displayResult()
 {
-	void;
+	return ;
 }
 //-----------------------utils
 bool	BitcoinExchange::isOnlyWhitespace(std::string stdstr)
@@ -128,11 +128,10 @@ bool	BitcoinExchange::isOnlyWhitespace(std::string stdstr)
 
 bool	BitcoinExchange::isRightForm(std::string line)
 {
-	size_t	i;
 	std::string	date;
 	std::string	seperator;
 	std::string	rate;
-	i = 0;
+
 	if (line.length() <= 12)
 		return (false);
 	date = line.substr(0, 10);
@@ -186,6 +185,7 @@ bool	BitcoinExchange::isValidDate()
 		if (day > 31)
 			return (false);
 	}
+	return (true);
 }
 
 bool	BitcoinExchange::isLeapYear(int year)
