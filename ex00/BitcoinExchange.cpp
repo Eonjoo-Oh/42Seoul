@@ -78,6 +78,43 @@ int	BitcoinExchange::sDatetoiDate(std::string sYear, std::string sMonth, std::st
 	return (convertedDate);
 }
 
+void	BitcoinExchange::readInputFile()
+{
+	std::string	line;
+
+	std::getline(_infileStream, line);
+	while (!_infileStream.eof())
+	{
+		if (line == "date | value")
+			std::getline(_infileStream, line);
+		if (isOnlyWhitespace(line) == true)
+		{
+			std::getline(_infileStream, line);
+			continue ;
+		}
+		else if (isRightForm(line) == false)
+		{
+			std::cout << "Error : wrong form => " << line << std::endl;
+		}
+		else if (isValidDate() == false)
+		{
+			std::cout << "Error : invalid date => " << _sDate << std::endl;
+		}
+		else if (!(_fRate >= 0 && _fRate <= 1000))
+		{
+			std::cout << "Error : invalid rate => " << _fRate << std::endl;
+		}
+		else
+			displayResult();
+		std::getline(_infileStream, line);
+		
+	}
+}
+
+void	BitcoinExchange::displayResult()
+{
+	void;
+}
 //-----------------------utils
 bool	BitcoinExchange::isOnlyWhitespace(std::string stdstr)
 {
@@ -87,6 +124,76 @@ bool	BitcoinExchange::isOnlyWhitespace(std::string stdstr)
 			return (false);
 	}
 	return (true);
+}
+
+bool	BitcoinExchange::isRightForm(std::string line)
+{
+	size_t	i;
+	std::string	date;
+	std::string	seperator;
+	std::string	rate;
+	i = 0;
+	if (line.length() <= 12)
+		return (false);
+	date = line.substr(0, 10);
+	seperator = line.substr(10, 3);
+	rate = line.substr(13, line.length());
+
+	if (date[4] != '-' || date[7] != '-')
+		return (false);
+
+	if (seperator != " | ")
+		return (false);
+
+	std::istringstream	iss(rate);
+	float				fRate;
+	iss >> fRate;
+	if (iss.fail() || !iss.eof())
+		return (false);
+
+	_sDate = date;
+	_fRate = fRate;
+	return (true);
+}
+
+bool	BitcoinExchange::isValidDate()
+{
+	int	year;
+	int	month;
+	int	day;
+	
+	year = static_cast<int>(strtod((_sDate.substr(0, 4)).c_str(), NULL));
+	month = static_cast<int>(strtod((_sDate.substr(5, 2)).c_str(), NULL));
+	day = static_cast<int>(strtod((_sDate.substr(8, 2)).c_str(), NULL));
+
+	if (year <= 0 || month <= 0 || month > 12 || day <= 0)
+		return (false);
+	if (month == 2)
+	{
+		if (isLeapYear(year) && day > 29)
+			return (false);
+		if (!isLeapYear(year) && day > 28)
+			return (false);
+		//윤년계산
+	}
+	if (month == 4 || month == 6 || month == 9 || month == 11)
+	{
+		if (day > 30)
+			return (false);
+	}
+	else
+	{
+		if (day > 31)
+			return (false);
+	}
+}
+
+bool	BitcoinExchange::isLeapYear(int year)
+{
+	if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
+		return (true); // 윤년
+	else
+		return (false); // 윤년이 아님
 }
 
 //---------------------------------------
