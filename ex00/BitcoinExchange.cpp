@@ -120,7 +120,12 @@ void	BitcoinExchange::readInputFile()
 
 void	BitcoinExchange::displayResult()
 {
-	return ;
+
+	std::map<int, float>::iterator it = _csvMap.lower_bound(_iDate);
+	if (it == _csvMap.end())
+		std::cout << "Error: no date matched" << std::endl;
+	else
+		std::cout << _sDate << " => " << _fRate << " = " << _fRate * it->second << std::endl;
 }
 //-----------------------utils
 bool	BitcoinExchange::isOnlyWhitespace(std::string stdstr)
@@ -192,6 +197,7 @@ bool	BitcoinExchange::isValidDate()
 		if (day > 31)
 			return (false);
 	}
+	_iDate = year * 1000 + month * 100 + day;
 	return (true);
 }
 

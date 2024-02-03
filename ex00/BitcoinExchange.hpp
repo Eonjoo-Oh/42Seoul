@@ -18,6 +18,7 @@ class	BitcoinExchange
 		std::map<int, float>	_csvMap;
 		std::string				_sDate;
 		float					_fRate;
+		int						_iDate;
 
 		void	readCsvFile();
 		int		sDatetoiDate(std::string sYear, std::string sMonth, std::string sDay);
