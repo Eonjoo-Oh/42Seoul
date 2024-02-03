@@ -12,6 +12,7 @@ int main(int argc, char **argv)
 	{
 		BitcoinExchange	bitcoin(argv[1]);
 		//bitcoin.testPrintAllMapElement();
+		bitcoin.readInputFile();
 	
 	}
 	catch (std::exception &e)

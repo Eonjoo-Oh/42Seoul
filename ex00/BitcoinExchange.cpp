@@ -54,11 +54,8 @@ void	BitcoinExchange::readCsvFile()
 		std::getline(iss, sMonth, '-');
 		std::getline(iss, sDay, ',');
 		std::getline(iss, sRate);
-		//std::cout << sYear << sMonth << sDay << std::endl;
 		iDate = sDatetoiDate(sYear, sMonth, sDay);
-		//std::cout << iDate << std::endl;
 		fRate = static_cast<float>(std::strtod(sRate.c_str(), NULL));
-		//std::cout << fRate << std::endl;
 		_csvMap[iDate] = fRate;
 	}
 	_csvFileStream.close();
@@ -82,32 +79,42 @@ void	BitcoinExchange::readInputFile()
 {
 	std::string	line;
 
-	std::getline(_infileStream, line);
-	while (!_infileStream.eof())
+	//std::getline(_infileStream, line);
+	// if (line == "date | value")
+	// 	std::getline(_infileStream, line);
+	//std::cout << "first line : " << line << std::endl;
+	while (std::getline(_infileStream, line))
 	{
 		if (line == "date | value")
-			std::getline(_infileStream, line);
+			continue ;
 		if (isOnlyWhitespace(line) == true)
 		{
-			std::getline(_infileStream, line);
+			//std::cout << "Error : only white space" << std::endl;
 			continue ;
+			// std::getline(_infileStream, line);
+			// continue ;
 		}
 		else if (isRightForm(line) == false)
 		{
-			std::cout << "Error : wrong form => " << line << std::endl;
+			std::cout << "Error : bad input => " << line << std::endl;
 		}
 		else if (isValidDate() == false)
 		{
 			std::cout << "Error : invalid date => " << _sDate << std::endl;
 		}
-		else if (!(_fRate >= 0 && _fRate <= 1000))
+		else if (_fRate < 0)
 		{
-			std::cout << "Error : invalid rate => " << _fRate << std::endl;
+			std::cout << "Error : not a poistive number" << std::endl;
+		}
+		else if (_fRate > 1000)
+		{
+			std::cout << "Error : too large a number" << std::endl;
 		}
 		else
 			displayResult();
-		std::getline(_infileStream, line);
-		
+		//std::cout << "fRate: " << _fRate << std::endl;
+		//std::getline(_infileStream, line);
+		//std::cout << "line : " << line;
 	}
 }
 
