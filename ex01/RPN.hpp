@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <stack>
+#include <exception>
+#include <stdexcept>
 
 class	RPN
 {
@@ -12,6 +14,8 @@ class	RPN
 		int				_rightValue;
 		int				_leftValue;
 		int				_result;
+
+		bool			isOperator(char c);
 	public :
 		RPN();
 		~RPN();
