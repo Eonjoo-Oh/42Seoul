@@ -35,7 +35,7 @@ void	RPN::calculate(std::string argv)
 			_rpnStack.push(num);
 		}
 		else
-			throw (std::runtime_error("Error"))
+			throw (std::runtime_error("Error"));
 	}
 }
 
