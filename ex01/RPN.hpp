@@ -16,6 +16,7 @@ class	RPN
 		int				_result;
 
 		bool			isOperator(char c);
+		int				operate(int rightValue, int leftValue, char anOperator);
 	public :
 		RPN();
 		~RPN();
