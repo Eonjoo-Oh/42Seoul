@@ -4,7 +4,7 @@ int main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		std::cout << "Error : too few argument" << std::endl;
+		std::cout << "Error : wrong argument numbers" << std::endl;
 		return (1);
 	}
 

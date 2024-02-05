@@ -1,6 +1,9 @@
 #include "RPN.hpp"
 
-RPN::RPN() {}
+RPN::RPN() 
+{
+	_operatorCnt = 0;
+}
 
 RPN::~RPN() {}
 
@@ -12,7 +15,8 @@ void	RPN::calculate(std::string argv)
 			continue ;
 		else if (isOperator(argv[i]) == true)
 		{
-			if (_rpnStack.size() != 2)
+			_operatorCnt++;
+			if (_rpnStack.size() < 2)
 				throw(std::runtime_error("Error"));
 			if (_rpnStack.empty())
 				throw(std::runtime_error("Error")); 
@@ -32,6 +36,7 @@ void	RPN::calculate(std::string argv)
 			int	num;
 
 			num = argv[i] - 48;
+			//std::cout << "num : " << num << std::endl;
 			_rpnStack.push(num);
 		}
 		else
@@ -43,7 +48,9 @@ void	RPN::printResult()
 {
 	if (_rpnStack.size() != 1)
 		throw (std::runtime_error("Error"));
-	std::cout << _result << std::endl;
+	if (_operatorCnt == 0)
+		throw (std::runtime_error("Error"));
+	std::cout << _rpnStack.top() << std::endl;
 }
 
 bool	RPN::isOperator(char c)
@@ -55,6 +62,7 @@ bool	RPN::isOperator(char c)
 
 int	RPN::operate(int rightValue, int leftValue, char anOperator)
 {
+	//std::cout << rightValue << leftValue << anOperator << std::endl;
 	if (anOperator == '+')
 		return (rightValue + leftValue);
 	else if (anOperator == '-')

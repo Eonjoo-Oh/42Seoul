@@ -13,7 +13,8 @@ class	RPN
 		std::stack<int>	_rpnStack;
 		int				_rightValue;
 		int				_leftValue;
-		int				_result;
+		int				_operatorCnt;
+		//int				_result;
 
 		bool			isOperator(char c);
 		int				operate(int rightValue, int leftValue, char anOperator);
