@@ -43,32 +43,35 @@ void	Span::addNumbers(std::vector<int> toBePutV)
 	_v.insert(_v.end(), toBePutV.begin(), toBePutV.end());
 }
 
-unsigned int	Span::shortestSpan()
+long long	Span::shortestSpan()
 {
-	int	shortestSpan;
-
+	long long	shortestSpan;
+	long long	temp;
 	if (_v.empty() || _v.size() == 1)
 		throw(spanExistException());
 
-	shortestSpan = abs(_v[0] - _v[1]);
+	shortestSpan = abs(static_cast<long long>(_v[0]) - static_cast<long long>(_v[1]));
 	for (size_t i = 1; i < _v.size() - 1; i++)
 	{
-		if (shortestSpan > abs(_v[i] - _v[i + 1]))
-			shortestSpan = abs(_v[i] - _v[i + 1]);
+		temp = abs(static_cast<long long>(_v[i]) - static_cast<long long>(_v[i + 1]));
+		if (shortestSpan > temp)
+			shortestSpan = temp;
 	}
-	return (static_cast<unsigned int>(shortestSpan));
+	return (shortestSpan);
 }
 
-unsigned int	Span::longestSpan()
+long long	Span::longestSpan()
 {
-	int	maxElement;
-	int	minElement;
+	long long	maxElement;
+	long long	minElement;
+	long long	longestSpan;
 
 	if (_v.empty() || _v.size() == 1)
 		throw(spanExistException());
 	maxElement = *(std::max_element(_v.begin(), _v.end()));
 	minElement = *(std::min_element(_v.begin(), _v.end()));
-	return (abs(maxElement - minElement));
+	longestSpan = maxElement - minElement;
+	return (longestSpan);
 }
 
 void	Span::printAllElement()

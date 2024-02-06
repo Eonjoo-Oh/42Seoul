@@ -29,7 +29,7 @@ class	Span
 
 		void			addNumber(int n);
 		void			addNumbers(std::vector<int> v);
-		unsigned int	shortestSpan();
-		unsigned int	longestSpan();
+		long long		shortestSpan();
+		long long		longestSpan();
 		void			printAllElement();
 };

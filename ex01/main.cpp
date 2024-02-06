@@ -61,7 +61,7 @@ int main()
 	try
 	{
 		Span				span(10);
-		int					arr[] = {-100, 1, 8, 11, 20, 30, 40, 60};
+		int					arr[] = {-100, 1, 8, 11, 20, 30, 40, 100};
 		std::vector<int>	v(arr, arr + sizeof(arr) / sizeof(arr[0]));
 
 		std::cout << std::endl << "<< valid short and long span test2 >>" << std::endl;
