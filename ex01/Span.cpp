@@ -50,10 +50,11 @@ long long	Span::shortestSpan()
 	if (_v.empty() || _v.size() == 1)
 		throw(spanExistException());
 
-	shortestSpan = abs(static_cast<long long>(_v[0]) - static_cast<long long>(_v[1]));
+	std::sort(_v.begin(), _v.end());
+	shortestSpan = static_cast<long long>(_v[1]) - static_cast<long long>(_v[0]);
 	for (size_t i = 1; i < _v.size() - 1; i++)
 	{
-		temp = abs(static_cast<long long>(_v[i]) - static_cast<long long>(_v[i + 1]));
+		temp = static_cast<long long>(_v[i + 1]) - static_cast<long long>(_v[i]);
 		if (shortestSpan > temp)
 			shortestSpan = temp;
 	}
