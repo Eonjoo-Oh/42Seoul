@@ -12,7 +12,8 @@ int main(int argc, char **argv)
 	try
 	{
 		PmergeMe pmerge(argv);
-		pmerge.printAllElementVInput();
+		pmerge.printBefore();
+		//pmerge.printAllElementVInput();
 	}
 	catch (const std::exception &e)
 	{

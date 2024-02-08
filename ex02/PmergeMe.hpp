@@ -16,10 +16,17 @@ class	PmergeMe
 		PmergeMe(const PmergeMe &obj);
 		PmergeMe &operator=(const PmergeMe &obj);
 		~PmergeMe();
+		//------------------utils
 		bool			fillInputV(char **argv);
 		bool			checkOnlyPositive();
+
+		//-----------------getters
 		unsigned int	getInputLength();
 
+		//-----------------printFuncs
+		void			printBefore();
+
 		//------------------ test
-		void	printAllElementVInput();
+		void printAllElementVInput(std::vector<int> v);
+	
 };

@@ -57,20 +57,36 @@ bool	PmergeMe::checkOnlyPositive()
 	return (true);
 }
 
-//---------------------- get functions
+//---------------------- getters
 unsigned int	PmergeMe::getInputLength()
 {
 	return (_inputLength);
 }
 
-//---------------------- test
-void PmergeMe::printAllElementVInput()
+//-----------------printFuncs
+void	PmergeMe::printBefore()
 {
-	for(unsigned int i = 0; i < _inputLength; i++)
+	std::cout << "Before : ";
+	printAllElementVInput(_vInput);
+	std::cout << std::endl;
+}
+//---------------------- test
+void PmergeMe::printAllElementVInput(std::vector<int> v)
+{
+	for(unsigned int i = 0; i < v.size(); i++)
 	{
 		std::cout << _vInput[i];
 		if (i < _inputLength - 1)
-			std::cout << ", ";
+			std::cout << " ";
 	}
-	std::cout << std::endl;
 }
+
+//void PmergeMe::printAllElementVInput(vector<int> v)
+//{
+//	for(unsigned int i = 0; i < v.length(); i++)
+//	{
+//		std::cout << _vInput[i];
+//		if (i < _inputLength - 1)
+//			std::cout << " ";
+//	}
+//}
