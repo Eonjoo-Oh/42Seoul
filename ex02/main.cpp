@@ -8,12 +8,16 @@ int main(int argc, char **argv)
 	//	return (1);
 	//}
 	(void) argc;
-	PmergeMe pmerge(argv);
-	std::cout << pmerge.getInputLength() << std::endl;
-	if (pmerge.getInputLength() <= 1)
+
+	try
 	{
-		std::cout << "Error: input must be at least two" << std::endl;
-		return (1);
+		PmergeMe pmerge(argv);
+		pmerge.printAllElementVInput();
 	}
+	catch (const std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	//std::cout << pmerge.getInputLength() << std::endl;
 
 }

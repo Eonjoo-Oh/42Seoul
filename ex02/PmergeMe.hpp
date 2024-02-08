@@ -16,6 +16,10 @@ class	PmergeMe
 		PmergeMe(const PmergeMe &obj);
 		PmergeMe &operator=(const PmergeMe &obj);
 		~PmergeMe();
-		void			fillInputV(char **argv);
+		bool			fillInputV(char **argv);
+		bool			checkOnlyPositive();
 		unsigned int	getInputLength();
+
+		//------------------ test
+		void	printAllElementVInput();
 };
