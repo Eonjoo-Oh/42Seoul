@@ -2,6 +2,8 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
+#include <exception>
+#include <stdexcept>
 
 class	PmergeMe
 {
@@ -14,5 +16,6 @@ class	PmergeMe
 		PmergeMe(const PmergeMe &obj);
 		PmergeMe &operator=(const PmergeMe &obj);
 		~PmergeMe();
-		void	getVInput(char **argv);
+		void			fillInputV(char **argv);
+		unsigned int	getInputLength();
 };
