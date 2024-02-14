@@ -8,10 +8,6 @@ PmergeMe::PmergeMe(char **argv)
 		throw std::runtime_error("Error: invalid argument input");
 	if (!checkOnlyPositive())
 		throw std::runtime_error("Error: only positive number can be entered");
-	if (_vInput.size() <= 1)
-		throw std::runtime_error("Error: input must be at least two");
-	else
-		_inputLength = _vInput.size();
 }
 
 PmergeMe::PmergeMe(const PmergeMe &obj) 
@@ -27,6 +23,7 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &obj)
 
 PmergeMe::~PmergeMe() {}
 
+//---------------------consturctor utils
 bool	PmergeMe::fillInputV(char **argv)
 {
 	for(int i = 1; argv[i]; i++)
@@ -38,9 +35,9 @@ bool	PmergeMe::fillInputV(char **argv)
 		{
 			int					num;
 			std::istringstream	tokenStream(token);
+
 			if (!(tokenStream >> num))
 				return (false);
-			//std::cout << "num : " << num << std::endl;
 			_vInput.push_back(num);
 		}
 	}
@@ -57,36 +54,43 @@ bool	PmergeMe::checkOnlyPositive()
 	return (true);
 }
 
-//---------------------- getters
-unsigned int	PmergeMe::getInputLength()
+//------------------------sortVector
+void	PmergeMe::SortVector()
 {
-	return (_inputLength);
+	_vStartTime = clock();
+	vFillPendingChain();
+	vGroupAndCompare();
+	vRecursiveSortLargeElement();
+	vBinaryInsertSort();
+	_vEndTime = clock();
 }
 
-//-----------------printFuncs
-void	PmergeMe::printBefore()
+//------------------------sortDeque
+void	PmergeMe::SortDeque()
+{
+	_dStartTime = clock();
+	dFillPendingChain();
+	dGroupAndCompare();
+	dRecursiveSortLargeElement();
+	dBinaryInsertSort();
+	_dEndTime = clock();
+}
+
+//---------------------Display
+void	PmergeMe::DisplayResult()
 {
 	std::cout << "Before : ";
-	printAllElementVInput(_vInput);
+	printAllElement(_vInput);
 	std::cout << std::endl;
-}
-//---------------------- test
-void PmergeMe::printAllElementVInput(std::vector<int> v)
-{
-	for(unsigned int i = 0; i < v.size(); i++)
-	{
-		std::cout << _vInput[i];
-		if (i < _inputLength - 1)
-			std::cout << " ";
-	}
+
+	std::cout << "After : ";
+	printAllElement(_vMainChain);
+	std::cout << std::endl;
+
+	std::cout << "Time to process a range of"  << _vInput.size() << " elements with std::vector : ";
+	std::cout << (_vStartTime - _vEndTime) * 1000 << " us" << std::endl;
+	std::cout << "Time to process a range of"  << _vInput.size() << " elements with std::deque : ";
+	std::cout << (_dStartTime - _dEndTime) * 1000 << " us" << std::endl;
 }
 
-//void PmergeMe::printAllElementVInput(vector<int> v)
-//{
-//	for(unsigned int i = 0; i < v.length(); i++)
-//	{
-//		std::cout << _vInput[i];
-//		if (i < _inputLength - 1)
-//			std::cout << " ";
-//	}
-//}
+//-------------------Utils
