@@ -70,7 +70,11 @@ int	RPN::operate(int rightValue, int leftValue, char anOperator)
 	else if (anOperator == '*')
 		return (rightValue * leftValue);
 	else if (anOperator == '/')
+	{
+		if (leftValue == 0)
+			throw(std::runtime_error("Error : can't divide by 0"));
 		return (rightValue / leftValue);
+	}
 	else
 		throw(std::runtime_error("Error"));//이렇게 작성가능?
 }
