@@ -73,6 +73,22 @@ void	PmergeMe::vFillPendingChain()
 	}
 }
 
+void	PmergeMe::vGroupAndCompare()
+{
+	for(size_t i = 0; i < _vPendingChain.size(); i + 2)
+	{
+		int	temp;
+
+		if (i + 1 == _vPendingChain.size())
+			break ;
+		if (_vPendingChain[i] > _vPendingChain[i + 1])
+		{
+			temp = _vPendingChain[i];
+			_vPendingChain[i] = _vPendingChain[i + 1];
+			_vPendingChain[i + 1] = temp;
+		}//이걸 함수로 빼려면 레퍼런스? 굳이 안빼는게 더 직관적인것 같기도 일단 구현해보기?
+	}
+}
 //------------------------sortDeque
 void	PmergeMe::SortDeque()
 {
