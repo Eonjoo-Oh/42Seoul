@@ -61,7 +61,12 @@ void	PmergeMe::SortVector()
 	vFillChain(_vPendingChain, _vInput, 0, 1);
 	vGroupAndCompare();
 	vFillChain(_vMainChain, _vPendingChain, 1, 2);
-	//vRecursiveSortLargeElement();`
+	printvPendingChain();
+	std::cout << std::endl;
+	printvMainChain();
+	recursiveSortLargeElement(_vMainChain, 0, static_cast<int>(_vMainChain.size()) - 1);
+	std::cout << std::endl;
+	printvMainChain();
 	//vBinaryInsertSort();
 	_vEndTime = clock();
 }
@@ -89,6 +94,42 @@ void	PmergeMe::vGroupAndCompare()
 			_vPendingChain[i] = _vPendingChain[i + 1];
 			_vPendingChain[i + 1] = temp;
 		}//이걸 함수로 빼려면 레퍼런스? 굳이 안빼는게 더 직관적인것 같기도 일단 구현해보기?
+	}
+}
+
+void PmergeMe::recursiveSortLargeElement(std::vector<int>& v, int start, int end)
+{
+	if (start >= end) 
+		return ;
+
+	int mid = (start + end) / 2;
+
+	recursiveSortLargeElement(v, start, mid);
+	recursiveSortLargeElement(v, mid + 1, end);
+
+	std::vector<int> temp(end + 1);
+	int tempIndex;
+	int i, j;
+	tempIndex = 0;
+	i = start;
+	j = mid + 1;
+
+	while(i <= mid && j <= end)
+	{
+		if(v[i] < v[j])
+			temp[tempIndex++] = v[i++];
+		else
+			temp[tempIndex++] = v[j++];
+	}
+
+	while(i <= mid)
+		temp[tempIndex++] = v[i++];
+	while(j <= end)
+		temp[tempIndex++] = v[j++];
+
+	for(int k = start, tempIndex = 0 ; k <= end ; k++, tempIndex++)
+	{
+		v[k] = temp[tempIndex];
 	}
 }
 

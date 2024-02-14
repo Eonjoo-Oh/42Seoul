@@ -30,7 +30,7 @@ class	PmergeMe
 		void				vFillChain(std::vector<int> &target, const std::vector<int> &origin, size_t index, size_t span);
 		void				vFillPendingChain();
 		void				vGroupAndCompare();
-		void				vRecursiveSortLargeElement();
+		void				recursiveSortLargeElement(std::vector<int> &v, int start, int end);
 		//void				vBinaryInsertSort();
 
 		//void				dFillPendingChain();

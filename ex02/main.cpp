@@ -13,9 +13,6 @@ int main(int argc, char **argv)
 		PmergeMe pmerge(argv);
 		//pmerge.printvInput();
 		pmerge.SortVector();
-		pmerge.printvPendingChain();
-		std::cout << std::endl;
-		pmerge.printvMainChain();
 
 		//pmerge.SortDeque();
 		//pmerge.DisplayResult();
