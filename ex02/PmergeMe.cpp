@@ -59,7 +59,7 @@ void	PmergeMe::SortVector()
 {
 	_vStartTime = clock();
 	vFillPendingChain();
-	//vGroupAndCompare();
+	vGroupAndCompare();
 	//vRecursiveSortLargeElement();
 	//vBinaryInsertSort();
 	_vEndTime = clock();
