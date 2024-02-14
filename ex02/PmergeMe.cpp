@@ -59,9 +59,9 @@ void	PmergeMe::SortVector()
 {
 	_vStartTime = clock();
 	vFillPendingChain();
-	vGroupAndCompare();
-	vRecursiveSortLargeElement();
-	vBinaryInsertSort();
+	//vGroupAndCompare();
+	//vRecursiveSortLargeElement();
+	//vBinaryInsertSort();
 	_vEndTime = clock();
 }
 
@@ -69,13 +69,14 @@ void	PmergeMe::vFillPendingChain()
 {
 	for(size_t i = 0; i < _vInput.size(); i++)
 	{
-		_vPendingChain[i] = _vInput[i];
+		_vPendingChain.push_back(_vInput[i]);
+		//_vPendingChain[i] = _vInput[i];
 	}
 }
 
 void	PmergeMe::vGroupAndCompare()
 {
-	for(size_t i = 0; i < _vPendingChain.size(); i + 2)
+	for(size_t i = 0; i < _vPendingChain.size(); i += 2)
 	{
 		int	temp;
 
@@ -90,6 +91,7 @@ void	PmergeMe::vGroupAndCompare()
 	}
 }
 //------------------------sortDeque
+/*
 void	PmergeMe::SortDeque()
 {
 	_dStartTime = clock();
@@ -99,7 +101,7 @@ void	PmergeMe::SortDeque()
 	dBinaryInsertSort();
 	_dEndTime = clock();
 }
-
+*/
 //---------------------Display
 void	PmergeMe::DisplayResult()
 {
@@ -123,7 +125,7 @@ void	PmergeMe::printAllElement(std::vector<int> v)
 {
 	for(size_t i = 0; i < v.size(); i++)
 	{
-		std::cout << "v[i]";
+		std::cout << v[i];
 		if (i < v.size() - 1)
 			std::cout << " ";
 	}

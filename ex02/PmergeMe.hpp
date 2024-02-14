@@ -29,15 +29,15 @@ class	PmergeMe
 
 		void				vFillPendingChain();
 		void				vGroupAndCompare();
-		void				vRecursiveSortLargeElement();
-		void				vBinaryInsertSort();
+		//void				vRecursiveSortLargeElement();
+		//void				vBinaryInsertSort();
 
-		void				dFillPendingChain();
-		void				dGroupAndCompare();
-		void				dRecursiveSortLargeElement();
-		void				dBinaryInsertSort();
-
+		//void				dFillPendingChain();
+		//void				dGroupAndCompare();
+		//void				dRecursiveSortLargeElement();
+		//void				dBinaryInsertSort();
 		void				printAllElement(std::vector<int> v);
+
 	public :
 		PmergeMe();
 		PmergeMe(char **argv);
@@ -48,4 +48,13 @@ class	PmergeMe
 		void	SortVector();
 		void	SortDeque();
 		void	DisplayResult();
+		//test
+		void	printvInput() 
+		{
+			printAllElement(_vInput);
+		};
+		void	printvPendingChain() 
+		{
+			printAllElement(_vPendingChain);
+		};
 };
