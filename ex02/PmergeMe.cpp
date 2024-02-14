@@ -58,13 +58,22 @@ bool	PmergeMe::checkOnlyPositive()
 void	PmergeMe::SortVector()
 {
 	_vStartTime = clock();
-	vFillPendingChain();
+	vFillChain(_vPendingChain, _vInput, 0, 1);
 	vGroupAndCompare();
+	vFillChain(_vMainChain, _vPendingChain, 1, 2);
 	//vRecursiveSortLargeElement();
 	//vBinaryInsertSort();
 	_vEndTime = clock();
 }
 
+void	PmergeMe::vFillChain(std::vector<int> &target, const std::vector<int> &origin, size_t index, size_t span)
+{
+	while (index < origin.size())
+	{
+		target.push_back(origin[index]);
+		index += span;
+	}
+}
 void	PmergeMe::vFillPendingChain()
 {
 	for(size_t i = 0; i < _vInput.size(); i++)
@@ -90,6 +99,16 @@ void	PmergeMe::vGroupAndCompare()
 		}//이걸 함수로 빼려면 레퍼런스? 굳이 안빼는게 더 직관적인것 같기도 일단 구현해보기?
 	}
 }
+
+//void	PmergeMe::vRecursiveSortLargeElement()
+//{
+//	for (int i = 1; i < _vPendingChain.size(); i += 2)
+//	{
+//		_vMainChain.push_back(_vPendingChain[i]);
+//	}
+
+
+//}
 //------------------------sortDeque
 /*
 void	PmergeMe::SortDeque()

@@ -27,9 +27,10 @@ class	PmergeMe
 		bool				fillInputV(char **argv);
 		bool				checkOnlyPositive();
 
+		void				vFillChain(std::vector<int> &target, const std::vector<int> &origin, size_t index, size_t span);
 		void				vFillPendingChain();
 		void				vGroupAndCompare();
-		//void				vRecursiveSortLargeElement();
+		void				vRecursiveSortLargeElement();
 		//void				vBinaryInsertSort();
 
 		//void				dFillPendingChain();
