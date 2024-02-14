@@ -94,3 +94,13 @@ void	PmergeMe::DisplayResult()
 }
 
 //-------------------Utils
+
+void	PmergeMe::printAllElement(std::vector<int> v)
+{
+	for(size_t i = 0; i < v.size(); i++)
+	{
+		std::cout << "v[i]";
+		if (i < v.size() - 1)
+			std::cout << " ";
+	}
+}
