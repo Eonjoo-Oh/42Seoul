@@ -61,7 +61,7 @@ void	PmergeMe::SortVector()
 	vFillChain(_vPendingChain, _vInput, 0, 1);
 	vGroupAndCompare();
 	vFillChain(_vMainChain, _vPendingChain, 1, 2);
-	//vRecursiveSortLargeElement();
+	//vRecursiveSortLargeElement();`
 	//vBinaryInsertSort();
 	_vEndTime = clock();
 }
@@ -72,14 +72,6 @@ void	PmergeMe::vFillChain(std::vector<int> &target, const std::vector<int> &orig
 	{
 		target.push_back(origin[index]);
 		index += span;
-	}
-}
-void	PmergeMe::vFillPendingChain()
-{
-	for(size_t i = 0; i < _vInput.size(); i++)
-	{
-		_vPendingChain.push_back(_vInput[i]);
-		//_vPendingChain[i] = _vInput[i];
 	}
 }
 

@@ -58,4 +58,8 @@ class	PmergeMe
 		{
 			printAllElement(_vPendingChain);
 		};
+		void	printvMainChain() 
+		{
+			printAllElement(_vMainChain);
+		};
 };
