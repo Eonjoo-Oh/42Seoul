@@ -65,6 +65,14 @@ void	PmergeMe::SortVector()
 	_vEndTime = clock();
 }
 
+void	PmergeMe::vFillPendingChain()
+{
+	for(size_t i = 0; i < _vInput.size(); i++)
+	{
+		_vPendingChain[i] = _vInput[i];
+	}
+}
+
 //------------------------sortDeque
 void	PmergeMe::SortDeque()
 {
