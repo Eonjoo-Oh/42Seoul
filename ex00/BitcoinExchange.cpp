@@ -122,10 +122,19 @@ void	BitcoinExchange::displayResult()
 {
 
 	std::map<int, float>::iterator it = _csvMap.lower_bound(_iDate);
-	if (it == _csvMap.end())
-		std::cout << "Error: no date matched" << std::endl;
-	else
-		std::cout << _sDate << " => " << _fRate << " = " << _fRate * it->second << std::endl;
+	if (it->first != _iDate)
+	{
+		if (it == _csvMap.begin())
+		{
+			std::cout << "Error: no date matched" << std::endl;
+			return ;
+		}
+		it--;
+	}
+	//같은날짜면 반환, 같은 날짜가 아니면 -- 한걸 반환 and
+	//if (it == _csvMap.end())
+	//	std::cout << "Error: no date matched" << std::endl;
+	std::cout << _sDate << " => " << _fRate << " = " << _fRate * it->second << std::endl;
 }
 //-----------------------utils
 bool	BitcoinExchange::isOnlyWhitespace(std::string stdstr)
