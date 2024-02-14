@@ -58,20 +58,23 @@ bool	PmergeMe::checkOnlyPositive()
 void	PmergeMe::SortVector()
 {
 	_vStartTime = clock();
-	vFillChain(_vPendingChain, _vInput, 0, 1);
-	vGroupAndCompare();
-	vFillChain(_vMainChain, _vPendingChain, 1, 2);
+	FillChain(_vPendingChain, _vInput, 0, 1);
+	GroupAndCompare(_vPendingChain);
+	FillChain(_vMainChain, _vPendingChain, 1, 2);
+
 	printvPendingChain();
 	std::cout << std::endl;
 	printvMainChain();
+	
 	recursiveSortLargeElement(_vMainChain, 0, static_cast<int>(_vMainChain.size()) - 1);
+	
 	std::cout << std::endl;
 	printvMainChain();
-	//vBinaryInsertSort();
+	BinaryInsertSort();
 	_vEndTime = clock();
 }
 
-void	PmergeMe::vFillChain(std::vector<int> &target, const std::vector<int> &origin, size_t index, size_t span)
+void	PmergeMe::FillChain(std::vector<int> &target, const std::vector<int> &origin, size_t index, size_t span)
 {
 	while (index < origin.size())
 	{
@@ -80,19 +83,19 @@ void	PmergeMe::vFillChain(std::vector<int> &target, const std::vector<int> &orig
 	}
 }
 
-void	PmergeMe::vGroupAndCompare()
+void	PmergeMe::GroupAndCompare(std::vector<int> &pendingChain)
 {
-	for(size_t i = 0; i < _vPendingChain.size(); i += 2)
+	for(size_t i = 0; i < pendingChain.size(); i += 2)
 	{
 		int	temp;
 
-		if (i + 1 == _vPendingChain.size())
+		if (i + 1 == pendingChain.size())
 			break ;
-		if (_vPendingChain[i] > _vPendingChain[i + 1])
+		if (pendingChain[i] > pendingChain[i + 1])
 		{
-			temp = _vPendingChain[i];
-			_vPendingChain[i] = _vPendingChain[i + 1];
-			_vPendingChain[i + 1] = temp;
+			temp = pendingChain[i];
+			pendingChain[i] = pendingChain[i + 1];
+			pendingChain[i + 1] = temp;
 		}//이걸 함수로 빼려면 레퍼런스? 굳이 안빼는게 더 직관적인것 같기도 일단 구현해보기?
 	}
 }
@@ -110,6 +113,7 @@ void PmergeMe::recursiveSortLargeElement(std::vector<int>& v, int start, int end
 	std::vector<int> temp(end + 1);
 	int tempIndex;
 	int i, j;
+
 	tempIndex = 0;
 	i = start;
 	j = mid + 1;
@@ -131,6 +135,11 @@ void PmergeMe::recursiveSortLargeElement(std::vector<int>& v, int start, int end
 	{
 		v[k] = temp[tempIndex];
 	}
+}
+
+void	PmergeMe::BinaryInsertSort(std::vector<int> &mainChain, std::vector<int> &pendingChain)
+{
+
 }
 
 //void	PmergeMe::vRecursiveSortLargeElement()
