@@ -7,7 +7,7 @@
 #include <stdexcept>
 #include <sstream>
 #include <ctime>
-#include <uitlity>
+#include <utility>
 
 class	PmergeMe
 {
@@ -20,7 +20,7 @@ class	PmergeMe
 		std::deque<int>		_dMainChain;
 		std::deque<int>		_dPendingChain;
 
-		std::pair<int, int>	_pendingPair;
+		std::vector<std::pair<int, int> >	_vPendingPair;
 	
 		clock_t				_vStartTime;
 		clock_t				_vEndTime;

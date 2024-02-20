@@ -54,36 +54,49 @@ bool	PmergeMe::checkOnlyPositive()
 	return (true);
 }
 
+// void	printPair(std::pair<int, int> &p)
+// {
+// 	for(size_t i = 0; i < 5; i++)
+// 	{
+// 		std::cout << "pair[" << i << "]" << std::endl;
+// 		std::cout << p[i].first << ", " p[i].second << std::endl;
+// 	}
+// }
 //------------------------sortVector
 void	PmergeMe::SortVector()
 {
 	_vStartTime = clock();
 	fillChain(_vPendingChain, _vInput, 0, 1);
 	groupAndCompare(_vPendingChain);
-	recursiveSortLargeElement(_pendingPair, 0, (_vPendingChain.size() / 2) - 1);
+	std::cout << "pending : " << std::endl;
+	for(size_t i = 0; i < _vPendingPair.size(); i++)
+	{
+		std::cout << i << ": " << _vPendingPair[i].first << ", " << _vPendingPair[i].second << std::endl;
+	}
+	
+	//printPair(_vPendingPair);
+	//recursiveSortLargeElement(_pendingPair, 0, (_vPendingChain.size() / 2) - 1);
 	
 	
 	
-	//fillChain(_vMainChain, _vPendingChain, 1, 2);
+	// //fillChain(_vMainChain, _vPendingChain, 1, 2);
 
-	std::cout << "first pending: ";
-	printvPendingChain();
 
-	std::cout << std::endl << "first main: ";
-	printvMainChain();
+	// std::cout << std::endl << "first main: ";
+	// printvMainChain();
 	
-	recursiveSortLargeElement(_vMainChain, 0, static_cast<int>(_vMainChain.size()) - 1);
+	// recursiveSortLargeElement(_vMainChain, 0, static_cast<int>(_vMainChain.size()) - 1);
 	
-	std::cout << std::endl <<"after recursive main: ";
-	printvMainChain();
+	// std::cout << std::endl <<"after recursive main: ";
+	// printvMainChain();
 
-	std::cout << std::endl << "pending: ";
-	printvPendingChain();
+	// std::cout << std::endl << "pending: ";
+	// printvPendingChain();
 
-	binaryInsertSort(_vMainChain, _vPendingChain);
-	std::cout << std::endl;
-	printvMainChain();
-	_vEndTime = clock();
+	// binaryInsertSort(_vMainChain, _vPendingChain);
+	// std::cout << std::endl;
+	// printvMainChain();
+	// _vEndTime = clock();
 }
 
 void	PmergeMe::fillChain(std::vector<int> &target, const std::vector<int> &origin, size_t index, size_t span)
@@ -97,58 +110,56 @@ void	PmergeMe::fillChain(std::vector<int> &target, const std::vector<int> &origi
 
 void	PmergeMe::groupAndCompare(std::vector<int> &pendingChain)
 {
-	std::pair<int, int>	pendingPair[pendingChain.size / 2];
 
 	if (pendingChain.size() % 2  == 1)
 		_lastElement = pendingChain.back();
+	pendingChain.erase(pendingChain.end() - 1);
 
-	for(size_t i = 0; i < pendingChaing.size(); i += 2)
+	for(size_t i = 0; i < pendingChain.size(); i += 2)
 	{
 		if (pendingChain[i] < pendingChain[i + 1])
 			std::swap(pendingChain[i], pendingChain[i + 1]);
-		pendingPair.push_back(std::make_pair(pendingChain[i], pendingChain[i + 1]));
-	}
-	_pendingPair = pendingPair;
-}
-
-void PmergeMe::recursiveSortLargeElement(std::pair<int, int>& p, int start, int end)
-{
-
-
-	if (start >= end) 
-		return ;
-
-	int mid = (start + end) / 2;
-
-	recursiveSortLargeElement(p, start, mid);
-	recursiveSortLargeElement(p, mid + 1, end);
-
-	std::pair<int, int>	pair(end + 1);
-	int					tempIndex;
-	int					i, j;
-
-	tempIndex = 0;
-	i = start;
-	j = mid + 1;
-
-	while(i <= mid && j <= end)
-	{
-		if(p[i].first < p[j].first)
-			temp[tempIndex++] = p[i++];
-		else
-			temp[tempIndex++] = p[j++];
-	}
-
-	while(i <= mid)
-		temp[tempIndex++] = p[i++];
-	while(j <= end)
-		temp[tempIndex++] = p[j++];
-
-	for(int k = start, tempIndex = 0 ; k <= end ; k++, tempIndex++)
-	{
-		p[k] = temp[tempIndex];
+		_vPendingPair.push_back(std::make_pair(pendingChain[i], pendingChain[i + 1]));
 	}
 }
+
+// void PmergeMe::recursiveSortLargeElement(std::pair<int, int>& p, int start, int end)
+// {
+
+// 	if (start >= end) 
+// 		return ;
+
+// 	int mid = (start + end) / 2;
+
+// 	recursiveSortLargeElement(p, start, mid);
+// 	recursiveSortLargeElement(p, mid + 1, end);
+
+// 	std::pair<int, int>	pair(end + 1);
+// 	int					tempIndex;
+// 	int					i, j;
+
+// 	tempIndex = 0;
+// 	i = start;
+// 	j = mid + 1;
+
+// 	while(i <= mid && j <= end)
+// 	{
+// 		if(p[i].first < p[j].first)
+// 			temp[tempIndex++] = p[i++];
+// 		else
+// 			temp[tempIndex++] = p[j++];
+// 	}
+
+// 	while(i <= mid)
+// 		temp[tempIndex++] = p[i++];
+// 	while(j <= end)
+// 		temp[tempIndex++] = p[j++];
+
+// 	for(int k = start, tempIndex = 0 ; k <= end ; k++, tempIndex++)
+// 	{
+// 		p[k] = temp[tempIndex];
+// 	}
+// }
 
 int PmergeMe::jacobsthal(int n) {
     if (n == 0)
