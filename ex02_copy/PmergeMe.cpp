@@ -73,6 +73,7 @@ void	PmergeMe::SortVector()
 	{
 		std::cout << i << ": " << _vPendingPair[i].first << ", " << _vPendingPair[i].second << std::endl;
 	}
+	
 	recursiveSortLargeElement(_vPendingPair, 0, (_vPendingPair.size() - 1));
 	std::cout << "pending2 : " << std::endl;
 	for(size_t i = 0; i < _vPendingPair.size(); i++)
@@ -80,7 +81,9 @@ void	PmergeMe::SortVector()
 		std::cout << i << ": " << _vPendingPair[i].first << ", " << _vPendingPair[i].second << std::endl;
 	}
 	
-	
+	fillMainChain();
+	std::cout << "main: " << std::endl;
+	printvMainChain();
 	
 	// //fillChain(_vMainChain, _vPendingChain, 1, 2);
 
@@ -100,6 +103,14 @@ void	PmergeMe::SortVector()
 	// std::cout << std::endl;
 	// printvMainChain();
 	// _vEndTime = clock();
+}
+
+void	PmergeMe::fillMainChain()
+{
+	for(size_t i = 0; i < _vPendingPair.size(); i++)
+	{
+		_vMainChain.push_back(_vPendingPair[i].first);
+	}
 }
 
 void	PmergeMe::fillChain(std::vector<int> &target, const std::vector<int> &origin, size_t index, size_t span)

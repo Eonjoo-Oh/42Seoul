@@ -33,6 +33,7 @@ class	PmergeMe
 		bool				checkOnlyPositive();
 
 		void				fillChain(std::vector<int> &target, const std::vector<int> &origin, size_t index, size_t span);
+		void				fillMainChain();
 		void				groupAndCompare(std::vector<int> &pendinChain);
 		void				recursiveSortLargeElement(std::vector<std::pair<int, int> > &v, int start, int end);
 		void				binaryInsertSort(std::vector<int> &mainChain, std::vector<int> &pendinChain);
