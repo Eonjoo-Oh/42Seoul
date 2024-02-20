@@ -37,8 +37,10 @@ class	PmergeMe
 		void				groupAndCompare(std::vector<int> &pendinChain);
 		void				recursiveSortLargeElement(std::vector<std::pair<int, int> > &v, int start, int end);
 		void				binaryInsertSort(std::vector<int> &mainChain, std::vector<int> &pendinChain);
+		void				binaryInsertSort();
 		int					jacobsthal(int n);
 		void				binaryInsert(std::vector<int> &mainChain, std::vector<int> &pendingChain, int targetIdx);
+		void				binaryInsert(std::vector<int> &mainChain, std::vector<std::pair <int, int> > &pendingPair, int targetIdx);
 		//void				dFillPendingChain();
 		//void				dGroupAndCompare();
 		//void				dRecursiveSortLargeElement();

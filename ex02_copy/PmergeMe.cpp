@@ -85,6 +85,9 @@ void	PmergeMe::SortVector()
 	std::cout << "main: " << std::endl;
 	printvMainChain();
 	
+	binaryInsertSort();
+	std::cout << std::endl << "sorted main: " << std::endl;
+	printvMainChain();
 	// //fillChain(_vMainChain, _vPendingChain, 1, 2);
 
 
@@ -200,13 +203,12 @@ void	PmergeMe::removePendingChain(std::vector<int> &pendingChain)
 	printvPendingChain();
 }
 
-void	PmergeMe::binaryInsertSort(std::vector<int> &mainChain, std::vector<int> &pendingChain)
+void	PmergeMe::binaryInsertSort()
 {
 
-	removePendingChain(pendingChain);
-	mainChain.insert(mainChain.begin(), pendingChain[0]);//pendingChain의 0번째를 mainChain의 첫번째에 넣음
+	_vMainChain.insert(_vMainChain.begin(), _vPendingPair[0].second);//pendingChain의 0번째를 mainChain의 첫번째에 넣음
 	
-	int	size = static_cast<int>(pendingChain.size() - 1);
+	int	size = static_cast<int>(_vPendingChain.size() - 1);
 	int	cnt = 1;
 	int	beforeJacobsthalNum = 1;
 	int	nowJacobsthalNum = 1;
@@ -230,14 +232,15 @@ void	PmergeMe::binaryInsertSort(std::vector<int> &mainChain, std::vector<int> &p
 				targetIdx = nowJacobsthalNum;
 			}
 		}
-		binaryInsert(mainChain, pendingChain, targetIdx);
-		std::cout << std::endl;
-		std::cout << cnt << "main: ";
-		printvMainChain();
+		std::cout << std::endl << "target Idx: " << targetIdx;
+		binaryInsert(_vMainChain, _vPendingPair, targetIdx);
+		//std::cout << std::endl;
+
 		cnt++;
 	}
 }
 
+/*
 void	PmergeMe::binaryInsert(std::vector<int> &mainChain, std::vector<int> &pendingChain, int targetIdx)
 {
 	int	targetValue = pendingChain[targetIdx];
@@ -248,7 +251,7 @@ void	PmergeMe::binaryInsert(std::vector<int> &mainChain, std::vector<int> &pendi
 
 	while (left < right)
 	{
-		int mid = left + (right - left) / 2;
+		int mid = (left + right) / 2;
 
 		if (mainChain[mid] <= targetValue)
 		{
@@ -261,6 +264,32 @@ void	PmergeMe::binaryInsert(std::vector<int> &mainChain, std::vector<int> &pendi
 	}
 
 	// 삽입 위치를 찾은 후에 targetValue를 삽입합니다.
+	mainChain.insert(mainChain.begin() + left, targetValue);
+}
+*/
+void	PmergeMe::binaryInsert(std::vector<int> &mainChain, std::vector<std::pair <int, int> > &pendingPair, int targetIdx)
+{
+	int	targetValue = pendingPair[targetIdx].second;
+
+	std::vector<int>::iterator	it = std::find(mainChain.begin(), mainChain.end(), pendingPair[targetIdx].first);
+	int	right = std::distance(mainChain.begin(), it);
+	int	left = 0;
+
+	std::cout << std::endl << "right : " << right;
+	std::cout << std::endl << "target: " << targetValue << std::endl;
+	while (left < right)
+	{
+		int mid = (left + right) / 2;
+
+		if (mainChain[mid] <= targetValue)
+		{
+			left += mid;
+		}
+		else
+		{
+			right = mid;
+		}
+	}
 	mainChain.insert(mainChain.begin() + left, targetValue);
 }
 
