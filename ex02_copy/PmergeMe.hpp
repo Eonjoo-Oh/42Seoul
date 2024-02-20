@@ -7,6 +7,7 @@
 #include <stdexcept>
 #include <sstream>
 #include <ctime>
+#include <uitlity>
 
 class	PmergeMe
 {
@@ -19,10 +20,14 @@ class	PmergeMe
 		std::deque<int>		_dMainChain;
 		std::deque<int>		_dPendingChain;
 
+		std::pair<int, int>	_pendingPair;
+	
 		clock_t				_vStartTime;
 		clock_t				_vEndTime;
 		clock_t				_dStartTime;
 		clock_t				_dEndTime;
+		
+		int					_lastElement;
 		
 		bool				fillInputV(char **argv);
 		bool				checkOnlyPositive();

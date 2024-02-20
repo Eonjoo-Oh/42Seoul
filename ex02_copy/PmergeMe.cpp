@@ -60,7 +60,11 @@ void	PmergeMe::SortVector()
 	_vStartTime = clock();
 	fillChain(_vPendingChain, _vInput, 0, 1);
 	groupAndCompare(_vPendingChain);
-	fillChain(_vMainChain, _vPendingChain, 1, 2);
+	recursiveSortLargeElement(_pendingPair, 0, (_vPendingChain.size() / 2) - 1);
+	
+	
+	
+	//fillChain(_vMainChain, _vPendingChain, 1, 2);
 
 	std::cout << "first pending: ";
 	printvPendingChain();
@@ -93,34 +97,35 @@ void	PmergeMe::fillChain(std::vector<int> &target, const std::vector<int> &origi
 
 void	PmergeMe::groupAndCompare(std::vector<int> &pendingChain)
 {
-	for(size_t i = 0; i < pendingChain.size(); i += 2)
-	{
-		int	temp;
+	std::pair<int, int>	pendingPair[pendingChain.size / 2];
 
-		if (i + 1 == pendingChain.size())
-			break ;
-		if (pendingChain[i] > pendingChain[i + 1])
-		{
-			temp = pendingChain[i];
-			pendingChain[i] = pendingChain[i + 1];
-			pendingChain[i + 1] = temp;
-		}//이걸 함수로 빼려면 레퍼런스? 굳이 안빼는게 더 직관적인것 같기도 일단 구현해보기?
+	if (pendingChain.size() % 2  == 1)
+		_lastElement = pendingChain.back();
+
+	for(size_t i = 0; i < pendingChaing.size(); i += 2)
+	{
+		if (pendingChain[i] < pendingChain[i + 1])
+			std::swap(pendingChain[i], pendingChain[i + 1]);
+		pendingPair.push_back(std::make_pair(pendingChain[i], pendingChain[i + 1]));
 	}
+	_pendingPair = pendingPair;
 }
 
-void PmergeMe::recursiveSortLargeElement(std::vector<int>& v, int start, int end)
+void PmergeMe::recursiveSortLargeElement(std::pair<int, int>& p, int start, int end)
 {
+
+
 	if (start >= end) 
 		return ;
 
 	int mid = (start + end) / 2;
 
-	recursiveSortLargeElement(v, start, mid);
-	recursiveSortLargeElement(v, mid + 1, end);
+	recursiveSortLargeElement(p, start, mid);
+	recursiveSortLargeElement(p, mid + 1, end);
 
-	std::vector<int> temp(end + 1);
-	int tempIndex;
-	int i, j;
+	std::pair<int, int>	pair(end + 1);
+	int					tempIndex;
+	int					i, j;
 
 	tempIndex = 0;
 	i = start;
@@ -128,20 +133,20 @@ void PmergeMe::recursiveSortLargeElement(std::vector<int>& v, int start, int end
 
 	while(i <= mid && j <= end)
 	{
-		if(v[i] < v[j])
-			temp[tempIndex++] = v[i++];
+		if(p[i].first < p[j].first)
+			temp[tempIndex++] = p[i++];
 		else
-			temp[tempIndex++] = v[j++];
+			temp[tempIndex++] = p[j++];
 	}
 
 	while(i <= mid)
-		temp[tempIndex++] = v[i++];
+		temp[tempIndex++] = p[i++];
 	while(j <= end)
-		temp[tempIndex++] = v[j++];
+		temp[tempIndex++] = p[j++];
 
 	for(int k = start, tempIndex = 0 ; k <= end ; k++, tempIndex++)
 	{
-		v[k] = temp[tempIndex];
+		p[k] = temp[tempIndex];
 	}
 }
 
