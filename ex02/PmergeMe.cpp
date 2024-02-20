@@ -137,9 +137,47 @@ void PmergeMe::recursiveSortLargeElement(std::vector<int>& v, int start, int end
 	}
 }
 
+int jacobsthal(int n) {
+    if (n == 0)
+        return 0;
+    else if (n == 1)
+        return 1;
+    else
+        return jacobsthal(n - 1) + 2 * jacobsthal(n - 2);
+}
+
 void	PmergeMe::BinaryInsertSort(std::vector<int> &mainChain, std::vector<int> &pendingChain)
 {
 
+	mainChain.insert(mainChain.begin(), pendingChain[0]);//pendingChain의 0번째를 mainChain의 첫번째에 넣음
+	
+	int	size = static_cast<int>(pendingChain.size() - 1);
+	int	cnt = 1;
+	int	beforeJacobsthalNum = 1;
+	int	nowJacobsthalNum = 1;
+	int	jacobsthalN = 2;
+	int	targetIdx = 1;
+
+	while (cnt < size)
+	{
+		if (cnt == 1)
+		{
+			targetIdx = 1;
+		}
+		else
+		{
+			targetIdx--;
+			if (targetIdx <= beforeJacobsthalNum)
+			{
+				jacobsthalN++;
+				beforeJacobsthalNum = nowJacobsthalNum;
+				nowJacobsthalNum = jacobsthal(jacobsthalN);
+				targetIdx = nowJacobsthalNum;
+			}
+		}
+		//binaryInsert(mainChain, pendingChain, targetIdx);
+		cnt++;
+	}
 }
 
 //void	PmergeMe::vRecursiveSortLargeElement()
