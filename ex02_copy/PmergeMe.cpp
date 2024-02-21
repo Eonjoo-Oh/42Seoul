@@ -295,7 +295,7 @@ void	PmergeMe::sortDeque()
 	if (_dPendingChain.size() == 1)
 	{
 		_dMainChain.push_back(_dPendingChain[0]);
-		_vEndTime = clock();
+		_dEndTime = clock();
 		return ;
 	}
 	std::cout << "first pendingChain: ";
