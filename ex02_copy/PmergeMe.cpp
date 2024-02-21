@@ -493,4 +493,12 @@ void	PmergeMe::printAllElement(std::vector<int> v)
 	}
 }
 
-//ㅇㅖ오ㅣ케이스 5 4 3 2 1₩
+void	PmergeMe::printAllElement(std::deque<int> d)
+{
+	for(size_t i = 0; i < d.size(); i++)
+	{
+		std::cout << d[i];
+		if (i < d.size() - 1)
+			std::cout << " ";
+	}
+}
