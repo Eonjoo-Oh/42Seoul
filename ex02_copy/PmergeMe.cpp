@@ -112,7 +112,9 @@ void	PmergeMe::SortVector()
 	// binaryInsertSort(_vMainChain, _vPendingChain);
 	// std::cout << std::endl;
 	// printvMainChain();
-	// _vEndTime = clock();
+	_vEndTime = clock();
+
+	std::cout << std::endl << "time: " << _vEndTime << " - " << _vStartTime << " = " << _vEndTime - _vStartTime << std::endl;
 }
 
 void	PmergeMe::fillMainChain()
