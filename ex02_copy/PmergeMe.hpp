@@ -21,6 +21,7 @@ class	PmergeMe
 		std::deque<int>		_dPendingChain;
 
 		std::vector<std::pair<int, int> >	_vPendingPair;
+		std::deque<std::pair<int, int> >	_dPendingPair;
 	
 		clock_t				_vStartTime;
 		clock_t				_vEndTime;
@@ -33,16 +34,21 @@ class	PmergeMe
 		bool				checkOnlyPositive();
 
 		void				fillChain(std::vector<int> &target, const std::vector<int> &origin, size_t index, size_t span);
-		void				fillMainChain();
+		void				fillMainChain(std::vector<int> &mainChain, std::vector<std::pair<int, int> >pendingPair);
 		void				groupAndCompare(std::vector<int> &pendinChain);
 		void				recursiveSortLargeElement(std::vector<std::pair<int, int> > &v, int start, int end);
 		void				binaryInsertSort(std::vector<int> &mainChain, std::vector<int> &pendinChain);
-		void				binaryInsertSortUsingJacobsthal();
+		void				binaryInsertSortUsingJacobsthal(std::vector<int> &mainChain, std::vector<std::pair<int, int> > &pendingPair);
 		void				binaryInsertSort(std::vector<int> &mainChain, int target);
 
 		int					jacobsthal(int n);
 		void				binaryInsert(std::vector<int> &mainChain, std::vector<int> &pendingChain, int targetIdx);
 		void				binaryInsert(std::vector<int> &mainChain, std::vector<std::pair <int, int> > &pendingPair, int targetIdx);
+		
+		
+		//--------------deque
+		void				fillChain(std::deque<int> &target, const std::vector<int> &origin, size_t index, size_t span);
+		void				groupAndCompare(std::deque<int> &pendingChain);
 		//void				dFillPendingChain();
 		//void				dGroupAndCompare();
 		//void				dRecursiveSortLargeElement();
@@ -57,8 +63,8 @@ class	PmergeMe
 		PmergeMe &operator=(const PmergeMe &obj);
 		~PmergeMe();
 
-		void	SortVector();
-		void	SortDeque();
+		void	sortVector();
+		void	sortDeque();
 		void	DisplayResult();
 		//test
 		void	printvInput() 
@@ -73,4 +79,12 @@ class	PmergeMe
 		{
 			printAllElement(_vMainChain);
 		};
+		void	printAllDequeElement(std::deque<int> &d)
+		{
+			for(size_t i = 0; i < d.size(); i++)
+			{
+				std::cout << d[i] << " ";
+			}
+		}
+		
 };

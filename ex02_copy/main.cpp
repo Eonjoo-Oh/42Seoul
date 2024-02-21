@@ -12,7 +12,8 @@ int main(int argc, char **argv)
 	{
 		PmergeMe pmerge(argv);
 		//pmerge.printvInput();
-		pmerge.SortVector();
+		//pmerge.sortVector();
+		pmerge.sortDeque();
 
 		//pmerge.SortDeque();
 		//pmerge.DisplayResult();

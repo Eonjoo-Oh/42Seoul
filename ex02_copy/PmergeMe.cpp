@@ -64,7 +64,7 @@ bool	PmergeMe::checkOnlyPositive()
 // 	}
 // }
 //------------------------sortVector
-void	PmergeMe::SortVector()
+void	PmergeMe::sortVector()
 {
 	_vStartTime = clock();
 	fillChain(_vPendingChain, _vInput, 0, 1);
@@ -82,11 +82,11 @@ void	PmergeMe::SortVector()
 		std::cout << i << ": " << _vPendingPair[i].first << ", " << _vPendingPair[i].second << std::endl;
 	}
 	
-	fillMainChain();
+	fillMainChain(_vMainChain, _vPendingPair);
 	std::cout << "main: " << std::endl;
 	printvMainChain();
 	
-	binaryInsertSortUsingJacobsthal();
+	binaryInsertSortUsingJacobsthal(_vMainChain, _vPendingPair);
 	std::cout << std::endl << "sorted main: " << std::endl;
 	printvMainChain();
 
@@ -97,17 +97,6 @@ void	PmergeMe::SortVector()
 	printvMainChain();
 
 	_vEndTime = clock();
-
-	std::cout << std::endl << "time: " << _vEndTime << " - " << _vStartTime << " = " << _vEndTime - _vStartTime << std::endl;
-	DisplayResult();
-}
-
-void	PmergeMe::fillMainChain()
-{
-	for(size_t i = 0; i < _vPendingPair.size(); i++)
-	{
-		_vMainChain.push_back(_vPendingPair[i].first);
-	}
 }
 
 void	PmergeMe::fillChain(std::vector<int> &target, const std::vector<int> &origin, size_t index, size_t span)
@@ -118,6 +107,15 @@ void	PmergeMe::fillChain(std::vector<int> &target, const std::vector<int> &origi
 		index += span;
 	}
 }
+
+void	PmergeMe::fillMainChain(std::vector<int> &mainChain, std::vector<std::pair<int, int> >pendingPair)
+{
+	for(size_t i = 0; i < pendingPair.size(); i++)
+	{
+		mainChain.push_back(pendingPair[i].first);
+	}
+}
+
 
 void	PmergeMe::groupAndCompare(std::vector<int> &pendingChain)
 {
@@ -172,21 +170,21 @@ void PmergeMe::recursiveSortLargeElement(std::vector<std::pair<int, int> >& v, i
 }
 
 int PmergeMe::jacobsthal(int n) {
-    if (n == 0)
-        return 0;
-    else if (n == 1)
-        return 1;
-    else
-        return jacobsthal(n - 1) + 2 * jacobsthal(n - 2);
+	if (n == 0)
+		return 0;
+	else if (n == 1)
+		return 1;
+	else
+		return jacobsthal(n - 1) + 2 * jacobsthal(n - 2);
 }
 
 
-void	PmergeMe::binaryInsertSortUsingJacobsthal()
+void	PmergeMe::binaryInsertSortUsingJacobsthal(std::vector<int> &mainChain, std::vector<std::pair<int, int> > &pendingPair)
 {
 
-	_vMainChain.insert(_vMainChain.begin(), _vPendingPair[0].second);//pendingChain의 0번째를 mainChain의 첫번째에 넣음
+	mainChain.insert(mainChain.begin(), pendingPair[0].second);//pendingChain의 0번째를 mainChain의 첫번째에 넣음
 	
-	int	size = static_cast<int>(_vPendingPair.size() - 1);
+	int	size = static_cast<int>(pendingPair.size() - 1);
 	int	cnt = 1;
 	int	beforeJacobsthalNum = 1;
 	int	nowJacobsthalNum = 1;
@@ -208,42 +206,44 @@ void	PmergeMe::binaryInsertSortUsingJacobsthal()
 				beforeJacobsthalNum = nowJacobsthalNum;
 				nowJacobsthalNum = jacobsthal(jacobsthalN);
 				targetIdx = nowJacobsthalNum;
-				if (targetIdx >= static_cast<int>(_vPendingPair.size()))
+				if (targetIdx >= static_cast<int>(pendingPair.size()))
 				{
-					targetIdx = static_cast<int>(_vPendingPair.size() - 1);
+					targetIdx = static_cast<int>(pendingPair.size() - 1);
 				}
 			}
 		}
 		std::cout << std::endl << "target Idx: " << targetIdx;
-		binaryInsert(_vMainChain, _vPendingPair, targetIdx);
+		binaryInsert(mainChain, pendingPair, targetIdx);
 		cnt++;
 	}
 }
 
 void	PmergeMe::binaryInsertSort(std::vector<int> &mainChain, int target)
 {
-    int left = 0;
-    int right = mainChain.size() - 1;
-    int insertPosition = -1;
+	int left = 0;
+	int right = mainChain.size() - 1;
+	int insertPosition = -1;
 
-    while (left <= right) {
-        int mid = left + (right - left) / 2;
-
-        if (mainChain[mid] == target) {
-            // 중복된 값이 있을 경우 mid의 왼쪽에 삽입합니다.
-            insertPosition = mid;
-            break;
-        } else if (mainChain[mid] < target) {
-            left = mid + 1;
-        } else {
-            insertPosition = mid;
-            right = mid - 1;
-        }
-    }
-
-    // target을 삽입합니다.
+	while (left <= right)
+	{
+		int mid = left + (right - left) / 2;
+		if (mainChain[mid] == target)
+		{
+			insertPosition = mid;
+			break;
+		}
+		else if (mainChain[mid] < target)
+		{
+			left = mid + 1;
+		}
+		else
+		{
+			insertPosition = mid;
+			right = mid - 1;
+		}
+	}
 	std::cout << "insertPosition: " << insertPosition << std::endl;
-    mainChain.insert(mainChain.begin() + insertPosition, target);
+	mainChain.insert(mainChain.begin() + insertPosition, target);
 }
 
 void	PmergeMe::binaryInsert(std::vector<int> &mainChain, std::vector<std::pair <int, int> > &pendingPair, int targetIdx)
@@ -267,27 +267,37 @@ void	PmergeMe::binaryInsert(std::vector<int> &mainChain, std::vector<std::pair <
 	_vMainChain.insert(_vMainChain.begin() + left, targetValue);
 }
 
-//void	PmergeMe::vRecursiveSortLargeElement()
-//{
-//	for (int i = 1; i < _vPendingChain.size(); i += 2)
-//	{
-//		_vMainChain.push_back(_vPendingChain[i]);
-//	}
 
-
-//}
 //------------------------sortDeque
-/*
-void	PmergeMe::SortDeque()
+
+void	PmergeMe::sortDeque()
 {
 	_dStartTime = clock();
-	dFillPendingChain();
-	dGroupAndCompare();
-	dRecursiveSortLargeElement();
-	dBinaryInsertSort();
+
+	fillChain(_dPendingChain, _vInput, 0, 1);
+	std::cout << "first pendingChain: ";
+	printAllDequeElement(_dPendingChain);
+
+	//dGroupAndCompare();
+	//dRecursiveSortLargeElement();
+	//dBinaryInsertSort();
 	_dEndTime = clock();
 }
-*/
+
+void	PmergeMe::fillChain(std::deque<int> &target, const std::vector<int> &origin, size_t index, size_t span)
+{
+	while (index < origin.size())
+	{
+		target.push_back(origin[index]);
+		index += span;
+	}
+}
+
+void	PmergeMe::groupAndCompare(std::deque<int> &pendingChain)
+{
+
+}
+
 //---------------------Display
 void	PmergeMe::DisplayResult()
 {
@@ -302,7 +312,7 @@ void	PmergeMe::DisplayResult()
 	std::cout << "Time to process a range of "  << _vInput.size() << " elements with std::vector : ";
 	std::cout << (_vStartTime - _vEndTime) * 1000 << " us" << std::endl;
 	std::cout << "Time to process a range of "  << _vInput.size() << " elements with std::deque : ";
-	//std::cout << (_dStartTime - _dEndTime) * 0.0001 << " us" << std::endl;
+	std::cout << (_dStartTime - _dEndTime) * 0.0001 << " us" << std::endl;
 }
 
 //-------------------Utils
