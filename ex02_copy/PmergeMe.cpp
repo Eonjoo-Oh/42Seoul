@@ -277,11 +277,10 @@ void	PmergeMe::binaryInsert(std::vector<int> &mainChain, std::vector<std::pair <
 
 	std::vector<int>::iterator	it = std::find(mainChain.begin(), mainChain.end(), pendingPair[targetIdx].first);
 	int	right = std::distance(mainChain.begin(), it);
-
+	int	left = 0;
 	std::cout << std::endl << "right : " << right;
 	std::cout << std::endl << "target: " << targetValue << std::endl;
     for (int i = 1; i <= right; ++i) {
-        int left = 0;
 
         // 이진 탐색을 통해 key가 삽입될 위치를 찾습니다.
         while (left <= right) {
@@ -293,14 +292,14 @@ void	PmergeMe::binaryInsert(std::vector<int> &mainChain, std::vector<std::pair <
         }
 
         // key를 삽입될 위치에 삽입합니다.
-		_vMainChain.insert(_vMainChain.begin() + left, targetValue);
-		std::cout << "targetValue : " << targetValue;
+		//std::cout << "targetValue : " << targetValue;
         //for (int j = i - 1; j >= left; --j) {
         //    _vMainChain[j + 1] = _vMainChain[j];
         //}
         //_vMainChain[left] = key;
 		//std::cout << "left : " << left << std::endl;
     }
+	_vMainChain.insert(_vMainChain.begin() + left, targetValue);
 }
 
 //void	PmergeMe::vRecursiveSortLargeElement()
