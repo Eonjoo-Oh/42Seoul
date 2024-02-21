@@ -11,12 +11,9 @@ int main(int argc, char **argv)
 	try
 	{
 		PmergeMe pmerge(argv);
-		//pmerge.printvInput();
-		//pmerge.sortVector();
+		pmerge.sortVector();
 		pmerge.sortDeque();
-
-		//pmerge.SortDeque();
-		//pmerge.DisplayResult();
+		pmerge.DisplayResult();
 	}
 	catch (const std::exception &e)
 	{
