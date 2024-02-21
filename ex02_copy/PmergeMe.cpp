@@ -95,26 +95,11 @@ void	PmergeMe::SortVector()
 		binaryInsertSort(_vMainChain, _lastElement);
 	std::cout << std::endl << "sorted main2: " << std::endl;
 	printvMainChain();
-	// //fillChain(_vMainChain, _vPendingChain, 1, 2);
 
-
-	// std::cout << std::endl << "first main: ";
-	// printvMainChain();
-	
-	// recursiveSortLargeElement(_vMainChain, 0, static_cast<int>(_vMainChain.size()) - 1);
-	
-	// std::cout << std::endl <<"after recursive main: ";
-	// printvMainChain();
-
-	// std::cout << std::endl << "pending: ";
-	// printvPendingChain();
-
-	// binaryInsertSort(_vMainChain, _vPendingChain);
-	// std::cout << std::endl;
-	// printvMainChain();
 	_vEndTime = clock();
 
 	std::cout << std::endl << "time: " << _vEndTime << " - " << _vStartTime << " = " << _vEndTime - _vStartTime << std::endl;
+	DisplayResult();
 }
 
 void	PmergeMe::fillMainChain()
@@ -239,7 +224,7 @@ void	PmergeMe::binaryInsertSort(std::vector<int> &mainChain, int target)
 {
     int left = 0;
     int right = mainChain.size() - 1;
-    int insertPosition = -1; // target이 삽입될 위치
+    int insertPosition = -1;
 
     while (left <= right) {
         int mid = left + (right - left) / 2;
@@ -251,7 +236,6 @@ void	PmergeMe::binaryInsertSort(std::vector<int> &mainChain, int target)
         } else if (mainChain[mid] < target) {
             left = mid + 1;
         } else {
-            // mid의 왼쪽에 삽입되어야 하므로 insertPosition을 갱신합니다.
             insertPosition = mid;
             right = mid - 1;
         }
@@ -261,33 +245,7 @@ void	PmergeMe::binaryInsertSort(std::vector<int> &mainChain, int target)
 	std::cout << "insertPosition: " << insertPosition << std::endl;
     mainChain.insert(mainChain.begin() + insertPosition, target);
 }
-/*
-void	PmergeMe::binaryInsert(std::vector<int> &mainChain, std::vector<int> &pendingChain, int targetIdx)
-{
-	int	targetValue = pendingChain[targetIdx];
 
-	int left = 0;
-	int right = mainChain.size();
-	//int insertPosition = -1; // targetValue가 삽입될 위치
-
-	while (left < right)
-	{
-		int mid = (left + right) / 2;
-
-		if (mainChain[mid] <= targetValue)
-		{
-			left = mid + 1;
-		}
-		else
-		{
-			right = mid;
-		}
-	}
-
-	// 삽입 위치를 찾은 후에 targetValue를 삽입합니다.
-	mainChain.insert(mainChain.begin() + left, targetValue);
-}
-*/
 void	PmergeMe::binaryInsert(std::vector<int> &mainChain, std::vector<std::pair <int, int> > &pendingPair, int targetIdx)
 {
 	int	targetValue = pendingPair[targetIdx].second;
@@ -341,10 +299,10 @@ void	PmergeMe::DisplayResult()
 	printAllElement(_vMainChain);
 	std::cout << std::endl;
 
-	std::cout << "Time to process a range of"  << _vInput.size() << " elements with std::vector : ";
+	std::cout << "Time to process a range of "  << _vInput.size() << " elements with std::vector : ";
 	std::cout << (_vStartTime - _vEndTime) * 1000 << " us" << std::endl;
-	std::cout << "Time to process a range of"  << _vInput.size() << " elements with std::deque : ";
-	std::cout << (_dStartTime - _dEndTime) * 1000 << " us" << std::endl;
+	std::cout << "Time to process a range of "  << _vInput.size() << " elements with std::deque : ";
+	//std::cout << (_dStartTime - _dEndTime) * 0.0001 << " us" << std::endl;
 }
 
 //-------------------Utils
