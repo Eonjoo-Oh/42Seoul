@@ -278,7 +278,12 @@ void	PmergeMe::sortDeque()
 	std::cout << "first pendingChain: ";
 	printAllDequeElement(_dPendingChain);
 
-	//dGroupAndCompare();
+	groupAndCompare(_dPendingChain);
+	std::cout << std::endl << "dPendingChain : " << std::endl;
+	for(size_t i = 0; i < _dPendingPair.size(); i++)
+	{
+		std::cout << i << ": " << _dPendingPair[i].first << ", " << _dPendingPair[i].second << std::endl;
+	}
 	//dRecursiveSortLargeElement();
 	//dBinaryInsertSort();
 	_dEndTime = clock();
@@ -295,7 +300,16 @@ void	PmergeMe::fillChain(std::deque<int> &target, const std::vector<int> &origin
 
 void	PmergeMe::groupAndCompare(std::deque<int> &pendingChain)
 {
+	if (pendingChain.size() % 2  == 1)
+		_lastElement = pendingChain.back();
+	pendingChain.erase(pendingChain.end() - 1);
 
+	for(size_t i = 0; i < pendingChain.size(); i += 2)
+	{
+		if (pendingChain[i] < pendingChain[i + 1])
+			std::swap(pendingChain[i], pendingChain[i + 1]);
+		_dPendingPair.push_back(std::make_pair(pendingChain[i], pendingChain[i + 1]));
+	}
 }
 
 //---------------------Display
