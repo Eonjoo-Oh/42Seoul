@@ -8,6 +8,7 @@ PmergeMe::PmergeMe(char **argv)
 		throw std::runtime_error("Error: invalid argument input");
 	if (!checkOnlyPositive())
 		throw std::runtime_error("Error: only positive number can be entered");
+	_lastElement = -1;
 }
 
 PmergeMe::PmergeMe(const PmergeMe &obj) 
@@ -85,8 +86,14 @@ void	PmergeMe::SortVector()
 	std::cout << "main: " << std::endl;
 	printvMainChain();
 	
-	binaryInsertSort();
+	binaryInsertSortUsingJacobsthal();
 	std::cout << std::endl << "sorted main: " << std::endl;
+	printvMainChain();
+
+	std::cout << "_lastElement: " << _lastElement << std::endl;
+	if (_lastElement != -1)
+		binaryInsertSort(_vMainChain, _lastElement);
+	std::cout << std::endl << "sorted main2: " << std::endl;
 	printvMainChain();
 	// //fillChain(_vMainChain, _vPendingChain, 1, 2);
 
@@ -186,24 +193,8 @@ int PmergeMe::jacobsthal(int n) {
         return jacobsthal(n - 1) + 2 * jacobsthal(n - 2);
 }
 
-void	PmergeMe::removePendingChain(std::vector<int> &pendingChain)
-{
-	std::vector<int>	newPendingChain;
 
-	for(size_t i = 0; i < pendingChain.size(); i++)
-	{
-
-		if (i % 2 == 0)
-		{
-			newPendingChain.push_back(pendingChain[i]);
-		}
-	}
-	_vPendingChain = newPendingChain;
-	std::cout << std::endl << "new pending: ";
-	printvPendingChain();
-}
-
-void	PmergeMe::binaryInsertSort()
+void	PmergeMe::binaryInsertSortUsingJacobsthal()
 {
 
 	_vMainChain.insert(_vMainChain.begin(), _vPendingPair[0].second);//pendingChain의 0번째를 mainChain의 첫번째에 넣음
@@ -238,12 +229,36 @@ void	PmergeMe::binaryInsertSort()
 		}
 		std::cout << std::endl << "target Idx: " << targetIdx;
 		binaryInsert(_vMainChain, _vPendingPair, targetIdx);
-		//std::cout << std::endl;
-
 		cnt++;
 	}
 }
 
+void	PmergeMe::binaryInsertSort(std::vector<int> &mainChain, int target)
+{
+    int left = 0;
+    int right = mainChain.size() - 1;
+    int insertPosition = -1; // target이 삽입될 위치
+
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+
+        if (mainChain[mid] == target) {
+            // 중복된 값이 있을 경우 mid의 왼쪽에 삽입합니다.
+            insertPosition = mid;
+            break;
+        } else if (mainChain[mid] < target) {
+            left = mid + 1;
+        } else {
+            // mid의 왼쪽에 삽입되어야 하므로 insertPosition을 갱신합니다.
+            insertPosition = mid;
+            right = mid - 1;
+        }
+    }
+
+    // target을 삽입합니다.
+	std::cout << "insertPosition: " << insertPosition << std::endl;
+    mainChain.insert(mainChain.begin() + insertPosition, target);
+}
 /*
 void	PmergeMe::binaryInsert(std::vector<int> &mainChain, std::vector<int> &pendingChain, int targetIdx)
 {
@@ -280,25 +295,15 @@ void	PmergeMe::binaryInsert(std::vector<int> &mainChain, std::vector<std::pair <
 	int	left = 0;
 	std::cout << std::endl << "right : " << right;
 	std::cout << std::endl << "target: " << targetValue << std::endl;
-    for (int i = 1; i <= right; ++i) {
-
-        // 이진 탐색을 통해 key가 삽입될 위치를 찾습니다.
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            if (_vMainChain[mid] > targetValue)
-                right = mid - 1;
-            else
-                left = mid + 1;
-        }
-
-        // key를 삽입될 위치에 삽입합니다.
-		//std::cout << "targetValue : " << targetValue;
-        //for (int j = i - 1; j >= left; --j) {
-        //    _vMainChain[j + 1] = _vMainChain[j];
-        //}
-        //_vMainChain[left] = key;
-		//std::cout << "left : " << left << std::endl;
-    }
+	for (int i = 1; i <= right; ++i) {
+		while (left <= right) {
+			int mid = left + (right - left) / 2;
+			if (_vMainChain[mid] > targetValue)
+				right = mid - 1;
+			else
+				left = mid + 1;
+		}
+	}
 	_vMainChain.insert(_vMainChain.begin() + left, targetValue);
 }
 
