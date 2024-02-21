@@ -16,13 +16,12 @@ class	PmergeMe
 
 		std::vector<int>	_vMainChain;
 		std::vector<int>	_vPendingChain;
+		std::vector<std::pair<int, int> >	_vPendingPair;
 
 		std::deque<int>		_dMainChain;
 		std::deque<int>		_dPendingChain;
-
-		std::vector<std::pair<int, int> >	_vPendingPair;
 		std::deque<std::pair<int, int> >	_dPendingPair;
-	
+
 		clock_t				_vStartTime;
 		clock_t				_vEndTime;
 		clock_t				_dStartTime;
@@ -32,18 +31,19 @@ class	PmergeMe
 		
 		bool				fillInputV(char **argv);
 		bool				checkOnlyPositive();
+		int					jacobsthal(int n);
+		void				printAllElement(std::vector<int> v);
 
 		void				fillChain(std::vector<int> &target, const std::vector<int> &origin, size_t index, size_t span);
-		void				fillMainChain(std::vector<int> &mainChain, std::vector<std::pair<int, int> >pendingPair);
 		void				groupAndCompare(std::vector<int> &pendinChain);
 		void				recursiveSortLargeElement(std::vector<std::pair<int, int> > &v, int start, int end);
-		void				binaryInsertSort(std::vector<int> &mainChain, std::vector<int> &pendinChain);
+		void				fillMainChain(std::vector<int> &mainChain, std::vector<std::pair<int, int> >pendingPair);
 		void				binaryInsertSortUsingJacobsthal(std::vector<int> &mainChain, std::vector<std::pair<int, int> > &pendingPair);
+		void				binaryInsert(std::vector<int> &mainChain, std::vector<std::pair <int, int> > &pendingPair, int targetIdx);
+		//void				binaryInsertSort(std::vector<int> &mainChain, std::vector<int> &pendinChain);
 		void				binaryInsertSort(std::vector<int> &mainChain, int target);
 
-		int					jacobsthal(int n);
 		//void				binaryInsert(std::vector<int> &mainChain, std::vector<int> &pendingChain, int targetIdx);
-		void				binaryInsert(std::vector<int> &mainChain, std::vector<std::pair <int, int> > &pendingPair, int targetIdx);
 		
 		
 		//--------------deque
@@ -58,8 +58,7 @@ class	PmergeMe
 		//void				dGroupAndCompare();
 		//void				dRecursiveSortLargeElement();
 		//void				dBinaryInsertSort();
-		void				printAllElement(std::vector<int> v);
-		void				removePendingChain(std::vector<int> &pendingChain);
+		//void				removePendingChain(std::vector<int> &pendingChain);
 
 	public :
 		PmergeMe();
