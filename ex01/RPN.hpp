@@ -11,10 +11,9 @@ class	RPN
 		RPN(const RPN &obj);
 		RPN &operator=(const RPN &obj);
 		std::stack<int>	_rpnStack;
-		int				_rightValue;
-		int				_leftValue;
+		//int				_rightValue;
+		//int				_leftValue;
 		int				_operatorCnt;
-		//int				_result;
 
 		bool			isOperator(char c);
 		int				operate(int rightValue, int leftValue, char anOperator);

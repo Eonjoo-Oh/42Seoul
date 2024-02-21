@@ -8,10 +8,9 @@ int main(int argc, char **argv)
 		return (1);
 	}
 
-	RPN rpn;
-	//argv를 하나로 다 이어서 std::string으로 만드는 함수 -> 인자는 묶어서 하나로만 들어옴
 	try
 	{
+		RPN rpn;
 		rpn.calculate(argv[1]);
 		rpn.printResult();
 	}

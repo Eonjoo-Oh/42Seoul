@@ -5,6 +5,17 @@ RPN::RPN()
 	_operatorCnt = 0;
 }
 
+RPN::RPN(const RPN &obj) 
+{
+	*this = obj;
+}
+
+RPN &RPN::operator=(const RPN &obj) 
+{
+	(void) obj;
+	return (*this);
+}
+
 RPN::~RPN() {}
 
 void	RPN::calculate(std::string argv)
@@ -20,7 +31,6 @@ void	RPN::calculate(std::string argv)
 				throw(std::runtime_error("Error"));
 			if (_rpnStack.empty())
 				throw(std::runtime_error("Error")); 
-				//size로 확인하는데 size가 0이면 0이라고 나오면 굳이 확인할 필요 없지않을까?
 
 			int	rightValue;
 			int	leftValue;
@@ -36,7 +46,6 @@ void	RPN::calculate(std::string argv)
 			int	num;
 
 			num = argv[i] - 48;
-			//std::cout << "num : " << num << std::endl;
 			_rpnStack.push(num);
 		}
 		else
@@ -62,7 +71,6 @@ bool	RPN::isOperator(char c)
 
 int	RPN::operate(int rightValue, int leftValue, char anOperator)
 {
-	//std::cout << rightValue << leftValue << anOperator << std::endl;
 	if (anOperator == '+')
 		return (rightValue + leftValue);
 	else if (anOperator == '-')
@@ -76,5 +84,5 @@ int	RPN::operate(int rightValue, int leftValue, char anOperator)
 		return (rightValue / leftValue);
 	}
 	else
-		throw(std::runtime_error("Error"));//이렇게 작성가능?
+		throw(std::runtime_error("Error"));
 }
