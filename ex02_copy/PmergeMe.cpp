@@ -24,7 +24,7 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &obj)
 
 PmergeMe::~PmergeMe() {}
 
-//---------------------consturctor utils
+//---------------------utils
 bool	PmergeMe::fillInputV(char **argv)
 {
 	for(int i = 1; argv[i]; i++)
@@ -55,14 +55,35 @@ bool	PmergeMe::checkOnlyPositive()
 	return (true);
 }
 
-// void	printPair(std::pair<int, int> &p)
-// {
-// 	for(size_t i = 0; i < 5; i++)
-// 	{
-// 		std::cout << "pair[" << i << "]" << std::endl;
-// 		std::cout << p[i].first << ", " p[i].second << std::endl;
-// 	}
-// }
+int PmergeMe::jacobsthal(int n) {
+	if (n == 0)
+		return 0;
+	else if (n == 1)
+		return 1;
+	else
+		return jacobsthal(n - 1) + 2 * jacobsthal(n - 2);
+}
+
+void	PmergeMe::printAllElement(std::vector<int> v)
+{
+	for(size_t i = 0; i < v.size(); i++)
+	{
+		std::cout << v[i];
+		if (i < v.size() - 1)
+			std::cout << " ";
+	}
+}
+
+void	PmergeMe::printAllElement(std::deque<int> d)
+{
+	for(size_t i = 0; i < d.size(); i++)
+	{
+		std::cout << d[i];
+		if (i < d.size() - 1)
+			std::cout << " ";
+	}
+}
+
 //------------------------sortVector
 void	PmergeMe::sortVector()
 {
@@ -174,16 +195,6 @@ void PmergeMe::recursiveSortLargeElement(std::vector<std::pair<int, int> >& v, i
 		v[k] = temp[tempIndex];
 	}
 }
-
-int PmergeMe::jacobsthal(int n) {
-	if (n == 0)
-		return 0;
-	else if (n == 1)
-		return 1;
-	else
-		return jacobsthal(n - 1) + 2 * jacobsthal(n - 2);
-}
-
 
 void	PmergeMe::binaryInsertSortUsingJacobsthal(std::vector<int> &mainChain, std::vector<std::pair<int, int> > &pendingPair)
 {
@@ -491,26 +502,4 @@ void	PmergeMe::DisplayResult()
 	std::cout << (_vStartTime - _vEndTime) << " us" << std::endl;
 	std::cout << "Time to process a range of "  << _vInput.size() << " elements with std::deque : ";
 	std::cout << (_dStartTime - _dEndTime) << " us" << std::endl;
-}
-
-//-------------------Utils
-
-void	PmergeMe::printAllElement(std::vector<int> v)
-{
-	for(size_t i = 0; i < v.size(); i++)
-	{
-		std::cout << v[i];
-		if (i < v.size() - 1)
-			std::cout << " ";
-	}
-}
-
-void	PmergeMe::printAllElement(std::deque<int> d)
-{
-	for(size_t i = 0; i < d.size(); i++)
-	{
-		std::cout << d[i];
-		if (i < d.size() - 1)
-			std::cout << " ";
-	}
 }
