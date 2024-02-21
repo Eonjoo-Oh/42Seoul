@@ -354,7 +354,7 @@ void	PmergeMe::fillMainChain(std::deque<int> &mainChain, std::deque<std::pair<in
 void	PmergeMe::binaryInsertSortUsingJacobsthal(std::deque<int> &mainChain, std::deque<std::pair<int, int> > &pendingPair)
 {
 
-	mainChain.insert(mainChain.begin(), pendingPair[0].second);//pendingChain의 0번째를 mainChain의 첫번째에 넣음
+	mainChain.insert(mainChain.begin(), pendingPair[0].second);
 	
 	int	size = static_cast<int>(pendingPair.size() - 1);
 	int	cnt = 1;
