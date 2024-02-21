@@ -55,6 +55,7 @@ void	BitcoinExchange::readCsvFile()
 		std::getline(iss, sDay, ',');
 		std::getline(iss, sRate);
 		iDate = sDatetoiDate(sYear, sMonth, sDay);
+		//std::cout << std::endl << "iDate csv: " << iDate << std::endl;
 		fRate = static_cast<float>(std::strtod(sRate.c_str(), NULL));
 		_csvMap[iDate] = fRate;
 	}
@@ -71,28 +72,26 @@ int	BitcoinExchange::sDatetoiDate(std::string sYear, std::string sMonth, std::st
 	year = static_cast<int>(std::strtod(sYear.c_str(), NULL));
 	month = static_cast<int>(std::strtod(sMonth.c_str(), NULL));
 	day = static_cast<int>(std::strtod(sDay.c_str(), NULL));
-	convertedDate = year * 1000 + month * 100 + day;
+	convertedDate = (year * 10000) + (month * 100) + day;
 	return (convertedDate);
 }
 
 void	BitcoinExchange::readInputFile()
 {
 	std::string	line;
+	int			cnt;
 
-	//std::getline(_infileStream, line);
-	// if (line == "date | value")
-	// 	std::getline(_infileStream, line);
-	//std::cout << "first line : " << line << std::endl;
+	cnt = 0;
 	while (std::getline(_infileStream, line))
 	{
-		if (line == "date | value")
+		if (line == "date | value" && cnt == 0)
+		{
+			cnt++;
 			continue ;
+		}
 		if (isOnlyWhitespace(line) == true)
 		{
-			//std::cout << "Error : only white space" << std::endl;
 			continue ;
-			// std::getline(_infileStream, line);
-			// continue ;
 		}
 		else if (isRightForm(line) == false)
 		{
@@ -112,15 +111,14 @@ void	BitcoinExchange::readInputFile()
 		}
 		else
 			displayResult();
-		//std::cout << "fRate: " << _fRate << std::endl;
-		//std::getline(_infileStream, line);
-		//std::cout << "line : " << line;
+		cnt++;
 	}
 }
 
 void	BitcoinExchange::displayResult()
 {
 
+	//std::cout << std::endl << "iDate: " << _iDate << std::endl;
 	std::map<int, float>::iterator it = _csvMap.lower_bound(_iDate);
 	if (it->first != _iDate)
 	{
@@ -131,11 +129,10 @@ void	BitcoinExchange::displayResult()
 		}
 		it--;
 	}
-	//같은날짜면 반환, 같은 날짜가 아니면 -- 한걸 반환 and
-	//if (it == _csvMap.end())
-	//	std::cout << "Error: no date matched" << std::endl;
+	//std::cout << std::endl << it->first << ", " << it->second << std::endl;
 	std::cout << _sDate << " => " << _fRate << " = " << _fRate * it->second << std::endl;
 }
+
 //-----------------------utils
 bool	BitcoinExchange::isOnlyWhitespace(std::string stdstr)
 {
@@ -206,23 +203,14 @@ bool	BitcoinExchange::isValidDate()
 		if (day > 31)
 			return (false);
 	}
-	_iDate = year * 1000 + month * 100 + day;
+	_iDate = year * 10000 + month * 100 + day;
 	return (true);
 }
 
 bool	BitcoinExchange::isLeapYear(int year)
 {
 	if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
-		return (true); // 윤년
+		return (true); // leaf yesr
 	else
-		return (false); // 윤년이 아님
-}
-
-//---------------------------------------
-void	BitcoinExchange::testPrintAllMapElement()
-{
-	for(std::map<int, float>::iterator itr = _csvMap.begin(); itr != _csvMap.end(); ++itr)
-	{
-		std::cout << itr->first << ":" << itr->second << std::endl;
-	}
+		return (false); // not leaf year
 }

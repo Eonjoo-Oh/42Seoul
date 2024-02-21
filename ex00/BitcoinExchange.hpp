@@ -23,6 +23,7 @@ class	BitcoinExchange
 		void	readCsvFile();
 		int		sDatetoiDate(std::string sYear, std::string sMonth, std::string sDay);
 		void	displayResult();
+
 		//------------------utils
 		bool	isOnlyWhitespace(std::string);
 		bool	isRightForm(std::string line);
@@ -39,7 +40,4 @@ class	BitcoinExchange
 				const char *what(void) const throw();
 		};
 		void	readInputFile();
-		//---------------------------
-		void	testPrintAllMapElement();
-
 };
