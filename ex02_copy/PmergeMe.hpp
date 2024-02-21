@@ -49,6 +49,7 @@ class	PmergeMe
 		//--------------deque
 		void				fillChain(std::deque<int> &target, const std::vector<int> &origin, size_t index, size_t span);
 		void				groupAndCompare(std::deque<int> &pendingChain);
+		void				recursiveSortLargeElement(std::deque<std::pair<int, int> > &d, int start, int end);
 		//void				dFillPendingChain();
 		//void				dGroupAndCompare();
 		//void				dRecursiveSortLargeElement();

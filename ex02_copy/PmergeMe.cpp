@@ -284,7 +284,15 @@ void	PmergeMe::sortDeque()
 	{
 		std::cout << i << ": " << _dPendingPair[i].first << ", " << _dPendingPair[i].second << std::endl;
 	}
-	//dRecursiveSortLargeElement();
+
+	recursiveSortLargeElement(_dPendingPair, 0, (_dPendingPair.size() - 1));
+	std::cout << "main: " << std::endl;
+	for(size_t i = 0; i < _dPendingPair.size(); i++)
+	{
+		std::cout << i << ": " << _dPendingPair[i].first << ", " << _dPendingPair[i].second << std::endl;
+	}
+
+
 	//dBinaryInsertSort();
 	_dEndTime = clock();
 }
@@ -312,6 +320,42 @@ void	PmergeMe::groupAndCompare(std::deque<int> &pendingChain)
 	}
 }
 
+void PmergeMe::recursiveSortLargeElement(std::deque<std::pair<int, int> >& v, int start, int end)
+{
+	if (start >= end)
+		return ;
+
+	int mid = (start + end) / 2;
+
+	recursiveSortLargeElement(v, start, mid);
+	recursiveSortLargeElement(v, mid + 1, end);
+
+	std::deque<std::pair <int, int> > temp(end + 1);
+	int tempIndex;
+	int i, j;
+
+	tempIndex = 0;
+	i = start;
+	j = mid + 1;
+
+	while(i <= mid && j <= end)
+	{
+		if(v[i].first < v[j].first)
+			temp[tempIndex++] = v[i++];
+		else
+			temp[tempIndex++] = v[j++];
+	}
+
+	while(i <= mid)
+		temp[tempIndex++] = v[i++];
+	while(j <= end)
+		temp[tempIndex++] = v[j++];
+
+	for(int k = start, tempIndex = 0 ; k <= end ; k++, tempIndex++)
+	{
+		v[k] = temp[tempIndex];
+	}
+}
 //---------------------Display
 void	PmergeMe::DisplayResult()
 {
