@@ -96,33 +96,11 @@ void	PmergeMe::sortVector()
 		return ;
 	}
 	groupAndCompare(_vPendingChain);
-	std::cout << "pending : " << std::endl;
-	for(size_t i = 0; i < _vPendingPair.size(); i++)
-	{
-		std::cout << i << ": " << _vPendingPair[i].first << ", " << _vPendingPair[i].second << std::endl;
-	}
-	
 	recursiveSortLargeElement(_vPendingPair, 0, (_vPendingPair.size() - 1));
-	std::cout << "pending2 : " << std::endl;
-	for(size_t i = 0; i < _vPendingPair.size(); i++)
-	{
-		std::cout << i << ": " << _vPendingPair[i].first << ", " << _vPendingPair[i].second << std::endl;
-	}
-	
 	fillMainChain(_vMainChain, _vPendingPair);
-	std::cout << "main: " << std::endl;
-	printvMainChain();
-	
 	binaryInsertSortUsingJacobsthal(_vMainChain, _vPendingPair);
-	std::cout << std::endl << "sorted main: " << std::endl;
-	printvMainChain();
-
-	std::cout << "_lastElement: " << _lastElement << std::endl;
 	if (_lastElement != -1)
 		binaryInsertSort(_vMainChain, _lastElement);
-	std::cout << std::endl << "sorted main2: " << std::endl;
-	printvMainChain();
-
 	_vEndTime = clock();
 }
 
@@ -199,14 +177,15 @@ void PmergeMe::recursiveSortLargeElement(std::vector<std::pair<int, int> >& v, i
 void	PmergeMe::binaryInsertSortUsingJacobsthal(std::vector<int> &mainChain, std::vector<std::pair<int, int> > &pendingPair)
 {
 
-	mainChain.insert(mainChain.begin(), pendingPair[0].second);//pendingChain의 0번째를 mainChain의 첫번째에 넣음
-	
+
 	int	size = static_cast<int>(pendingPair.size() - 1);
 	int	cnt = 1;
 	int	beforeJacobsthalNum = 1;
 	int	nowJacobsthalNum = 1;
 	int	jacobsthalN = 2;
 	int	targetIdx = 1;
+
+	mainChain.insert(mainChain.begin(), pendingPair[0].second);
 
 	while (cnt <= size)
 	{
@@ -229,7 +208,6 @@ void	PmergeMe::binaryInsertSortUsingJacobsthal(std::vector<int> &mainChain, std:
 				}
 			}
 		}
-		std::cout << std::endl << "target Idx: " << targetIdx;
 		binaryInsert(mainChain, pendingPair, targetIdx);
 		cnt++;
 	}
@@ -259,7 +237,6 @@ void	PmergeMe::binaryInsertSort(std::vector<int> &mainChain, int target)
 			right = mid - 1;
 		}
 	}
-	std::cout << "insertPosition: " << insertPosition << std::endl;
 	mainChain.insert(mainChain.begin() + insertPosition, target);
 }
 
@@ -270,9 +247,8 @@ void	PmergeMe::binaryInsert(std::vector<int> &mainChain, std::vector<std::pair <
 	std::vector<int>::iterator	it = std::find(mainChain.begin(), mainChain.end(), pendingPair[targetIdx].first);
 	int	right = std::distance(mainChain.begin(), it);
 	int	left = 0;
-	std::cout << std::endl << "right : " << right;
-	std::cout << std::endl << "target: " << targetValue << std::endl;
-	for (int i = 1; i <= right; ++i) {
+	for (int i = 1; i <= right; ++i)
+	{
 		while (left <= right) {
 			int mid = left + (right - left) / 2;
 			if (mainChain[mid] > targetValue)
@@ -298,36 +274,12 @@ void	PmergeMe::sortDeque()
 		_dEndTime = clock();
 		return ;
 	}
-	std::cout << "first pendingChain: ";
-	printAllDequeElement(_dPendingChain);
-
 	groupAndCompare(_dPendingChain);
-	std::cout << std::endl << "dPendingChain : " << std::endl;
-	for(size_t i = 0; i < _dPendingPair.size(); i++)
-	{
-		std::cout << i << ": " << _dPendingPair[i].first << ", " << _dPendingPair[i].second << std::endl;
-	}
-
 	recursiveSortLargeElement(_dPendingPair, 0, (_dPendingPair.size() - 1));
-	std::cout << "main: " << std::endl;
-	for(size_t i = 0; i < _dPendingPair.size(); i++)
-	{
-		std::cout << i << ": " << _dPendingPair[i].first << ", " << _dPendingPair[i].second << std::endl;
-	}
-
 	fillMainChain(_dMainChain, _dPendingPair);
-	std::cout << std::endl << "main: " << std::endl;
-	printAllDequeElement(_dMainChain);
-
 	binaryInsertSortUsingJacobsthal(_dMainChain, _dPendingPair);
-	std::cout << std::endl << "sorted main: " << std::endl;
-	printAllDequeElement(_dMainChain);
-
 	if (_lastElement != -1)
 		binaryInsertSort(_dMainChain, _lastElement);
-	std::cout << std::endl << "sorted main2: " << std::endl;
-	printAllDequeElement(_dMainChain);
-
 	_dEndTime = clock();
 }
 
@@ -432,7 +384,6 @@ void	PmergeMe::binaryInsertSortUsingJacobsthal(std::deque<int> &mainChain, std::
 				}
 			}
 		}
-		std::cout << std::endl << "target Idx: " << targetIdx;
 		binaryInsert(mainChain, pendingPair, targetIdx);
 		cnt++;
 	}
@@ -445,8 +396,6 @@ void	PmergeMe::binaryInsert(std::deque<int> &mainChain, std::deque<std::pair <in
 	std::deque<int>::iterator	it = std::find(mainChain.begin(), mainChain.end(), pendingPair[targetIdx].first);
 	int	right = std::distance(mainChain.begin(), it);
 	int	left = 0;
-	std::cout << std::endl << "right : " << right;
-	std::cout << std::endl << "target: " << targetValue << std::endl;
 	for (int i = 1; i <= right; ++i) {
 		while (left <= right) {
 			int mid = left + (right - left) / 2;
@@ -483,7 +432,6 @@ void	PmergeMe::binaryInsertSort(std::deque<int> &mainChain, int target)
 			right = mid - 1;
 		}
 	}
-	std::cout << "insertPosition: " << insertPosition << std::endl;
 	mainChain.insert(mainChain.begin() + insertPosition, target);
 }
 

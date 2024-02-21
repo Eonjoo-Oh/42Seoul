@@ -65,26 +65,4 @@ class	PmergeMe
 		void	sortVector();
 		void	sortDeque();
 		void	DisplayResult();
-
-		//test
-		void	printvInput() 
-		{
-			printAllElement(_vInput);
-		};
-		void	printvPendingChain() 
-		{
-			printAllElement(_vPendingChain);
-		};
-		void	printvMainChain() 
-		{
-			printAllElement(_vMainChain);
-		};
-		void	printAllDequeElement(std::deque<int> &d)
-		{
-			for(size_t i = 0; i < d.size(); i++)
-			{
-				std::cout << d[i] << " ";
-			}
-		}
-		
 };
