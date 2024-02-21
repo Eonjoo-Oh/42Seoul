@@ -258,13 +258,13 @@ void	PmergeMe::binaryInsert(std::vector<int> &mainChain, std::vector<std::pair <
 	for (int i = 1; i <= right; ++i) {
 		while (left <= right) {
 			int mid = left + (right - left) / 2;
-			if (_vMainChain[mid] > targetValue)
+			if (mainChain[mid] > targetValue)
 				right = mid - 1;
 			else
 				left = mid + 1;
 		}
 	}
-	_vMainChain.insert(_vMainChain.begin() + left, targetValue);
+	mainChain.insert(mainChain.begin() + left, targetValue);
 }
 
 
@@ -294,6 +294,10 @@ void	PmergeMe::sortDeque()
 
 	fillMainChain(_dMainChain, _dPendingPair);
 	std::cout << std::endl << "main: " << std::endl;
+	printAllDequeElement(_dMainChain);
+
+	binaryInsertSortUsingJacobsthal(_dMainChain, _dPendingPair);
+	std::cout << std::endl << "sorted main: " << std::endl;
 	printAllDequeElement(_dMainChain);
 
 	//dBinaryInsertSort();
@@ -366,6 +370,66 @@ void	PmergeMe::fillMainChain(std::deque<int> &mainChain, std::deque<std::pair<in
 	{
 		mainChain.push_back(pendingPair[i].first);
 	}
+}
+
+void	PmergeMe::binaryInsertSortUsingJacobsthal(std::deque<int> &mainChain, std::deque<std::pair<int, int> > &pendingPair)
+{
+
+	mainChain.insert(mainChain.begin(), pendingPair[0].second);//pendingChain의 0번째를 mainChain의 첫번째에 넣음
+	
+	int	size = static_cast<int>(pendingPair.size() - 1);
+	int	cnt = 1;
+	int	beforeJacobsthalNum = 1;
+	int	nowJacobsthalNum = 1;
+	int	jacobsthalN = 2;
+	int	targetIdx = 1;
+
+	while (cnt <= size)
+	{
+		if (cnt == 1)
+		{
+			targetIdx = 1;
+		}
+		else
+		{
+			targetIdx--;
+			if (targetIdx <= beforeJacobsthalNum)
+			{
+				jacobsthalN++;
+				beforeJacobsthalNum = nowJacobsthalNum;
+				nowJacobsthalNum = jacobsthal(jacobsthalN);
+				targetIdx = nowJacobsthalNum;
+				if (targetIdx >= static_cast<int>(pendingPair.size()))
+				{
+					targetIdx = static_cast<int>(pendingPair.size() - 1);
+				}
+			}
+		}
+		std::cout << std::endl << "target Idx: " << targetIdx;
+		binaryInsert(mainChain, pendingPair, targetIdx);
+		cnt++;
+	}
+}
+
+void	PmergeMe::binaryInsert(std::deque<int> &mainChain, std::deque<std::pair <int, int> > &pendingPair, int targetIdx)
+{
+	int	targetValue = pendingPair[targetIdx].second;
+
+	std::deque<int>::iterator	it = std::find(mainChain.begin(), mainChain.end(), pendingPair[targetIdx].first);
+	int	right = std::distance(mainChain.begin(), it);
+	int	left = 0;
+	std::cout << std::endl << "right : " << right;
+	std::cout << std::endl << "target: " << targetValue << std::endl;
+	for (int i = 1; i <= right; ++i) {
+		while (left <= right) {
+			int mid = left + (right - left) / 2;
+			if (mainChain[mid] > targetValue)
+				right = mid - 1;
+			else
+				left = mid + 1;
+		}
+	}
+	mainChain.insert(mainChain.begin() + left, targetValue);
 }
 //---------------------Display
 void	PmergeMe::DisplayResult()
