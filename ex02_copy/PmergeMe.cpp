@@ -292,6 +292,9 @@ void	PmergeMe::sortDeque()
 		std::cout << i << ": " << _dPendingPair[i].first << ", " << _dPendingPair[i].second << std::endl;
 	}
 
+	fillMainChain(_dMainChain, _dPendingPair);
+	std::cout << std::endl << "main: " << std::endl;
+	printAllDequeElement(_dMainChain);
 
 	//dBinaryInsertSort();
 	_dEndTime = clock();
@@ -354,6 +357,14 @@ void PmergeMe::recursiveSortLargeElement(std::deque<std::pair<int, int> >& v, in
 	for(int k = start, tempIndex = 0 ; k <= end ; k++, tempIndex++)
 	{
 		v[k] = temp[tempIndex];
+	}
+}
+
+void	PmergeMe::fillMainChain(std::deque<int> &mainChain, std::deque<std::pair<int, int> >pendingPair)
+{
+	for(size_t i = 0; i < pendingPair.size(); i++)
+	{
+		mainChain.push_back(pendingPair[i].first);
 	}
 }
 //---------------------Display
