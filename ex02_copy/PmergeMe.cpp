@@ -300,7 +300,11 @@ void	PmergeMe::sortDeque()
 	std::cout << std::endl << "sorted main: " << std::endl;
 	printAllDequeElement(_dMainChain);
 
-	//dBinaryInsertSort();
+	if (_lastElement != -1)
+		binaryInsertSort(_dMainChain, _lastElement);
+	std::cout << std::endl << "sorted main2: " << std::endl;
+	printAllDequeElement(_dMainChain);
+
 	_dEndTime = clock();
 }
 
@@ -431,6 +435,35 @@ void	PmergeMe::binaryInsert(std::deque<int> &mainChain, std::deque<std::pair <in
 	}
 	mainChain.insert(mainChain.begin() + left, targetValue);
 }
+
+void	PmergeMe::binaryInsertSort(std::deque<int> &mainChain, int target)
+{
+	int left = 0;
+	int right = mainChain.size() - 1;
+	int insertPosition = -1;
+
+	while (left <= right)
+	{
+		int mid = left + (right - left) / 2;
+		if (mainChain[mid] == target)
+		{
+			insertPosition = mid;
+			break;
+		}
+		else if (mainChain[mid] < target)
+		{
+			left = mid + 1;
+		}
+		else
+		{
+			insertPosition = mid;
+			right = mid - 1;
+		}
+	}
+	std::cout << "insertPosition: " << insertPosition << std::endl;
+	mainChain.insert(mainChain.begin() + insertPosition, target);
+}
+
 //---------------------Display
 void	PmergeMe::DisplayResult()
 {
