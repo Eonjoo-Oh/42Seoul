@@ -55,7 +55,6 @@ void	BitcoinExchange::readCsvFile()
 		std::getline(iss, sDay, ',');
 		std::getline(iss, sRate);
 		iDate = sDatetoiDate(sYear, sMonth, sDay);
-		//std::cout << std::endl << "iDate csv: " << iDate << std::endl;
 		fRate = static_cast<float>(std::strtod(sRate.c_str(), NULL));
 		_csvMap[iDate] = fRate;
 	}
@@ -118,7 +117,6 @@ void	BitcoinExchange::readInputFile()
 void	BitcoinExchange::displayResult()
 {
 
-	//std::cout << std::endl << "iDate: " << _iDate << std::endl;
 	std::map<int, float>::iterator it = _csvMap.lower_bound(_iDate);
 	if (it->first != _iDate)
 	{
@@ -129,7 +127,6 @@ void	BitcoinExchange::displayResult()
 		}
 		it--;
 	}
-	//std::cout << std::endl << it->first << ", " << it->second << std::endl;
 	std::cout << _sDate << " => " << _fRate << " = " << _fRate * it->second << std::endl;
 }
 
@@ -191,7 +188,6 @@ bool	BitcoinExchange::isValidDate()
 			return (false);
 		if (!isLeapYear(year) && day > 28)
 			return (false);
-		//윤년계산
 	}
 	if (month == 4 || month == 6 || month == 9 || month == 11)
 	{
@@ -210,7 +206,7 @@ bool	BitcoinExchange::isValidDate()
 bool	BitcoinExchange::isLeapYear(int year)
 {
 	if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
-		return (true); // leaf yesr
+		return (true); // leaf year
 	else
 		return (false); // not leaf year
 }
