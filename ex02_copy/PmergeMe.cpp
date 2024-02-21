@@ -68,6 +68,12 @@ void	PmergeMe::sortVector()
 {
 	_vStartTime = clock();
 	fillChain(_vPendingChain, _vInput, 0, 1);
+	if (_vPendingChain.size() == 1)
+	{
+		_vMainChain.push_back(_vPendingChain[0]);
+		_vEndTime = clock();
+		return ;
+	}
 	groupAndCompare(_vPendingChain);
 	std::cout << "pending : " << std::endl;
 	for(size_t i = 0; i < _vPendingPair.size(); i++)
@@ -275,6 +281,12 @@ void	PmergeMe::sortDeque()
 	_dStartTime = clock();
 
 	fillChain(_dPendingChain, _vInput, 0, 1);
+	if (_dPendingChain.size() == 1)
+	{
+		_dMainChain.push_back(_dPendingChain[0]);
+		_vEndTime = clock();
+		return ;
+	}
 	std::cout << "first pendingChain: ";
 	printAllDequeElement(_dPendingChain);
 
@@ -476,9 +488,9 @@ void	PmergeMe::DisplayResult()
 	std::cout << std::endl;
 
 	std::cout << "Time to process a range of "  << _vInput.size() << " elements with std::vector : ";
-	std::cout << (_vStartTime - _vEndTime) * 1000 << " us" << std::endl;
+	std::cout << (_vStartTime - _vEndTime) << " us" << std::endl;
 	std::cout << "Time to process a range of "  << _vInput.size() << " elements with std::deque : ";
-	std::cout << (_dStartTime - _dEndTime) * 0.0001 << " us" << std::endl;
+	std::cout << (_dStartTime - _dEndTime) << " us" << std::endl;
 }
 
 //-------------------Utils
