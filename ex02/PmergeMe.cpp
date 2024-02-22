@@ -217,27 +217,17 @@ void	PmergeMe::binaryInsertSort(std::vector<int> &mainChain, int target)
 {
 	int left = 0;
 	int right = mainChain.size() - 1;
-	int insertPosition = -1;
+	//int insertPosition = -1;
 
 	while (left <= right)
 	{
 		int mid = left + (right - left) / 2;
-		if (mainChain[mid] == target)
-		{
-			insertPosition = mid;
-			break;
-		}
-		else if (mainChain[mid] < target)
-		{
-			left = mid + 1;
-		}
-		else
-		{
-			insertPosition = mid;
+		if (mainChain[mid] > target)
 			right = mid - 1;
-		}
+		else
+			left = mid + 1;
 	}
-	mainChain.insert(mainChain.begin() + insertPosition, target);
+	mainChain.insert(mainChain.begin() + left, target);
 }
 
 void	PmergeMe::binaryInsert(std::vector<int> &mainChain, std::vector<std::pair <int, int> > &pendingPair, int targetIdx)
@@ -412,27 +402,16 @@ void	PmergeMe::binaryInsertSort(std::deque<int> &mainChain, int target)
 {
 	int left = 0;
 	int right = mainChain.size() - 1;
-	int insertPosition = -1;
 
 	while (left <= right)
 	{
 		int mid = left + (right - left) / 2;
-		if (mainChain[mid] == target)
-		{
-			insertPosition = mid;
-			break;
-		}
-		else if (mainChain[mid] < target)
-		{
-			left = mid + 1;
-		}
-		else
-		{
-			insertPosition = mid;
+		if (mainChain[mid] > target)
 			right = mid - 1;
-		}
+		else
+			left = mid + 1;
 	}
-	mainChain.insert(mainChain.begin() + insertPosition, target);
+	mainChain.insert(mainChain.begin() + left, target);
 }
 
 //---------------------Display
