@@ -11,8 +11,6 @@ class	RPN
 		RPN(const RPN &obj);
 		RPN &operator=(const RPN &obj);
 		std::stack<int>	_rpnStack;
-		//int				_rightValue;
-		//int				_leftValue;
 		int				_operatorCnt;
 
 		bool			isOperator(char c);
